@@ -6,21 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
+    "lint": "eslint && stylelint",
+    "eslint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix",
+    "stylelint": "stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
+    "lint-staged": "lint-staged",
     "format": "prettier --write src",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "pnpm format",
-      "pnpm lint"
-    ],
-    "*.scss": [
-      "pnpm lint"
-    ]
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",

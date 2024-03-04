@@ -1,0 +1,4 @@
+{
+  "*.{ts,tsx}": ["pnpm format", "pnpm eslint"],
+  "*.scss": ["pnpm format", "pnpm stylelint"]
+}

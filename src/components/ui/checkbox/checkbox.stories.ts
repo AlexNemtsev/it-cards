@@ -5,7 +5,6 @@ import { CheckboxRadix } from './';
 const meta = {
   component: CheckboxRadix,
   tags: ['autodocs'],
-  // title: 'Components/Button',
 } satisfies Meta<typeof CheckboxRadix>;
 
 export default meta;
@@ -15,6 +14,5 @@ export const BaseCheckbox: Story = {
   args: {
     children: 'Some text',
     disabled: true,
-    variant: 'primary',
   },
 };

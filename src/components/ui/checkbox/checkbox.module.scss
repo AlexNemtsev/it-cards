@@ -4,24 +4,41 @@ button {
 }
 
 .CheckboxRoot {
+  position: relative;
+
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 
-  width: 25px;
-  height: 25px;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
 
-  background-color: var(--color-light-100);
-  border-radius: 4px;
-  box-shadow: 0 2px 10px var(--color-dark-100);
-}
+  background-color: var(--color-dark-900);
+  border: 2px solid var(--color-light-900);
+  border-radius: 2px;
 
-.CheckboxRoot:hover {
-  background-color: var(--color-danger-300);
-}
+  &:hover {
+    &::after {
+      content: '';
 
-.CheckboxRoot:focus {
-  box-shadow: 0 0 0 2px black;
+      position: absolute;
+      z-index: -1;
+      top: -9px;
+      left: -9px;
+
+      width: 36px;
+      height: 36px;
+
+      background-color: var(--color-dark-500);
+      border-radius: 50%;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px black;
+  }
 }
 
 .CheckboxIndicator {
@@ -34,7 +51,7 @@ button {
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  color: white;
+  color: var(--color-light-100);
   text-align: left;
   letter-spacing: 0;
 }

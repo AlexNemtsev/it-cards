@@ -16,3 +16,16 @@ export const BaseCheckbox: Story = {
     disabled: true,
   },
 };
+
+export const BaseCheckboxWithoutLabel: Story = {
+  args: {
+    isChecked: true,
+  },
+};
+
+export const BaseCheckboxDisabled: Story = {
+  args: {
+    children: 'Some text',
+    isDisabled: true,
+  },
+};

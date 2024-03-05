@@ -13,13 +13,13 @@ type Story = StoryObj<typeof meta>;
 export const BaseCheckbox: Story = {
   args: {
     children: 'Some text',
-    disabled: true,
+    isChecked: false,
   },
 };
 
 export const BaseCheckboxWithoutLabel: Story = {
   args: {
-    isChecked: true,
+    isChecked: false,
   },
 };
 

@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from './';
+import { Button, Img } from './';
 
 const meta = {
-  // argTypes: {
-  //   variant: {
-  //     control: { type: 'radio' },
-  //     options: ['primary', 'secondary'],
-  //   },
-  // },
+  argTypes: {
+    variant: {
+      control: { type: 'radio' },
+      options: ['primary', 'secondary'],
+    },
+  },
+
   component: Button,
   tags: ['autodocs'],
   // title: 'Components/Button',
@@ -35,7 +36,7 @@ export const Secondary: Story = {
 
 export const FullWidth: Story = {
   args: {
-    children: 'Full Width Primary Button',
+    children: 'Full Width Primary Button Link that looks like a buttoLink that looks like a butto',
     disabled: false,
     fullWidth: true,
     variant: 'primary',
@@ -46,5 +47,28 @@ export const AsLink: Story = {
     as: 'a',
     children: 'Link that looks like a button',
     variant: 'primary',
+  },
+};
+export const Test: Story = {
+  args: {
+    children: Img,
+    disabled: true,
+    fullWidth: true,
+    variant: 'primary',
+  },
+};
+
+export const DisabledPrimary: Story = {
+  args: {
+    children: 'Disabled Primary',
+    disabled: true,
+    variant: 'primary',
+  },
+};
+export const DisabledSecondary: Story = {
+  args: {
+    children: 'Disabled Secondary',
+    disabled: true,
+    variant: 'secondary',
   },
 };

@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const BaseCheckbox: Story = {
   args: {
     children: 'Some text',
-    isChecked: false,
+    isChecked: true,
   },
 };
 

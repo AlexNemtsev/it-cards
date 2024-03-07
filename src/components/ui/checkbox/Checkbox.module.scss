@@ -2,15 +2,6 @@ button {
   all: unset;
 }
 
-.CheckboxWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 36px;
-  height: 36px;
-}
-
 .CheckboxRoot {
   position: relative;
 
@@ -49,7 +40,6 @@ button {
     display: none;
     width: 18px;
     height: 18px;
-    fill: transparent;
   }
 
   [data-state='checked'] {

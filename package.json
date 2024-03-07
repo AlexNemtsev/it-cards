@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint && stylelint",
+    "lint": "pnpm eslint && pnpm stylelint",
     "eslint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix",
     "stylelint": "stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
     "lint-staged": "lint-staged",

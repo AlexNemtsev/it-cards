@@ -16,11 +16,11 @@ jobs:
 # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
@@ -39,10 +39,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-            
+
       - name: Install
         run: pnpm install
       - name: Lint
-        run: pnpm lint .
+        run: pnpm lint
       - name: Prettier
         run: pnpm format

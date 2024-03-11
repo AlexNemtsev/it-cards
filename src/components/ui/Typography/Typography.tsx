@@ -4,16 +4,15 @@ import s from './Typography.module.scss';
 
 type Props<T extends ElementType> = {
   children?: ReactNode;
-  light?: boolean;
 } & ComponentPropsWithoutRef<T>;
 
 const createTypographyComponent = <T extends ElementType>(
   basicClassName: Component
 ): FC<Props<T>> => {
   return (props: Props<T>) => {
-    const { className, light } = props;
+    const { className } = props;
     const Component = COMPONENTS[basicClassName];
-    const classNames = `${s[basicClassName]} ${light ? s.light : ''} ${className}`;
+    const classNames = `${s[basicClassName]} ${className}`;
 
     return <Component className={classNames} {...props} />;
   };

@@ -14,22 +14,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const createStory = (
-  Component: typeof Typography.Body1,
-  children?: ReactNode,
-  light?: boolean
-): Story => {
+const createStory = (Component: typeof Typography.Body1, children?: ReactNode): Story => {
   return {
     args: {
       children,
-      light,
     },
-    parameters: {
-      backgrounds: {
-        default: light ? 'light' : 'dark',
-      },
-    },
-    render: ({ children, light }) => <Component light={light}>{children}</Component>,
+    render: ({ children }) => <Component>{children}</Component>,
   };
 };
 
@@ -77,27 +67,3 @@ export const Overline = createStory(Typography.Overline, testText);
 export const Link1 = createStory(Typography.Link1, testText);
 
 export const Link2 = createStory(Typography.Link2, testText);
-
-export const H1Light = createStory(Typography.H1, testText, true);
-
-export const H2Light = createStory(Typography.H2, testText, true);
-
-export const H3Light = createStory(Typography.H3, testText, true);
-
-export const H4Light = createStory(Typography.H4, testText, true);
-
-export const Body1Light = createStory(Typography.Body1, testText, true);
-
-export const Body2Light = createStory(Typography.Body2, testText, true);
-
-export const Subtitle1Light = createStory(Typography.Subtitle1, testText, true);
-
-export const Subtitle2Light = createStory(Typography.Subtitle2, testText, true);
-
-export const CaptionLight = createStory(Typography.Caption, testText, true);
-
-export const OverlineLight = createStory(Typography.Overline, testText, true);
-
-export const Link1Light = createStory(Typography.Link1, testText, true);
-
-export const Link2Light = createStory(Typography.Link2, testText, true);

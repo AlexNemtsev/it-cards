@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CheckedCross } from '@/components/ui/checkbox/CheckedCross';
-import { CheckedMark } from '@/components/ui/checkbox/CheckedMark';
+import { CheckedMark } from '@/assets/icons/CheckedMark';
 
 import { CheckboxRadix } from './Checkbox';
 
@@ -17,12 +16,6 @@ export const ExampleCheckedMark: Story = {
   args: {
     checked: true,
     icon: <CheckedMark />,
-  },
-};
-export const ExampleCheckedCross: Story = {
-  args: {
-    checked: true,
-    icon: <CheckedCross />,
   },
 };
 export const ExampleUnChecked: Story = {

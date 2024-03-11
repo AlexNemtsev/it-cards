@@ -71,9 +71,14 @@
 
   &:disabled {
     cursor: initial;
+    background-color: var(--color-light-700);
 
     &::before {
       display: none;
+    }
+
+    svg {
+      fill: var(--color-dark-100);
     }
   }
 }

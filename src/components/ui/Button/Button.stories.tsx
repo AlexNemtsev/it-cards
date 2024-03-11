@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button, Img } from './';
+import { LogOutIcon } from '@/assets/icons/LogOutIcon';
+
+import { Button } from './';
 
 const meta = {
   argTypes: {
@@ -20,7 +22,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: 'Primary Button',
+    children: (
+      <>
+        <LogOutIcon /> Primary Button
+      </>
+    ),
     disabled: false,
     variant: 'primary',
   },
@@ -28,7 +34,11 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    children: 'Secondary Button',
+    children: (
+      <>
+        <LogOutIcon /> Secondary Button
+      </>
+    ),
     disabled: false,
     variant: 'secondary',
   },
@@ -36,7 +46,11 @@ export const Secondary: Story = {
 
 export const FullWidth: Story = {
   args: {
-    children: 'Full Width Primary Button Link that looks like a buttoLink that looks like a butto',
+    children: (
+      <>
+        <LogOutIcon /> Full Width Primary Button
+      </>
+    ),
     disabled: false,
     fullWidth: true,
     variant: 'primary',
@@ -45,14 +59,22 @@ export const FullWidth: Story = {
 export const AsLink: Story = {
   args: {
     as: 'a',
-    children: 'Link that looks like a button',
+    children: (
+      <>
+        <LogOutIcon /> Link that looks like a Button
+      </>
+    ),
     variant: 'primary',
   },
 };
-export const Test: Story = {
+export const AsLinkFullWidth: Story = {
   args: {
-    children: Img,
-    disabled: true,
+    as: 'a',
+    children: (
+      <>
+        <LogOutIcon /> Link that looks like a Button
+      </>
+    ),
     fullWidth: true,
     variant: 'primary',
   },
@@ -60,14 +82,22 @@ export const Test: Story = {
 
 export const DisabledPrimary: Story = {
   args: {
-    children: 'Disabled Primary',
+    children: (
+      <>
+        <LogOutIcon /> Disabled Primary
+      </>
+    ),
     disabled: true,
     variant: 'primary',
   },
 };
 export const DisabledSecondary: Story = {
   args: {
-    children: 'Disabled Secondary',
+    children: (
+      <>
+        <LogOutIcon /> Disabled Secondary
+      </>
+    ),
     disabled: true,
     variant: 'secondary',
   },

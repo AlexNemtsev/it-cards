@@ -9,7 +9,7 @@ type Props = {
   id?: string;
 } & Parameters<typeof Checkbox.Root>[0];
 export const CheckboxRadix = (props: Props) => {
-  const { checked, children, className, disabled, icon, id } = props;
+  const { checked, className, disabled, icon, id } = props;
 
   const rootClassName = `${s.CheckboxRoot} ${className}`;
 
@@ -18,9 +18,6 @@ export const CheckboxRadix = (props: Props) => {
       <Checkbox.Root className={rootClassName} defaultChecked={checked} disabled={disabled} id={id}>
         <Checkbox.Indicator>{icon}</Checkbox.Indicator>
       </Checkbox.Root>
-      {children}
     </>
   );
 };
-
-export const bla = () => <p>888</p>;

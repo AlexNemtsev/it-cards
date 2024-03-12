@@ -10,6 +10,6 @@ module.exports = {
     },
   ],
   rules: {
-    'react/jsx-curly-brace-presence': 'off',
+    'react/jsx-curly-brace-presence': ['error', {props: 'never'}]
   }
 }

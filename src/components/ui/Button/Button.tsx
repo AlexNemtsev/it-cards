@@ -21,22 +21,16 @@ export const Button = <T extends ElementType = 'button'>(props: Props<T>) => {
     variant = 'primary',
     ...rest
   } = props;
-  //
-  // const classNames = clsx(
-  //   `${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${disabled ? s.disabled : ''}`,
-  //   className
-  // );
 
-  // const classNames = clsx(
-  //   s.button,
-  //   s[variant],
-  //   [s.fullWidth]: fullWidth ,
-  //   `${disabled ? s.disabled : ''}`,
-  //   className
-  // );
+  const classNames = clsx(
+    s.button,
+    s[variant],
+    { [s.disabled]: disabled, [s.fullWidth]: fullWidth },
+    className
+  );
 
   return (
-    <Component className={'classNames'} href={href} {...rest}>
+    <Component className={classNames} href={href} {...rest}>
       {children}
     </Component>
   );

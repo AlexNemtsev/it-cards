@@ -12,18 +12,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ExampleCheckedMark: Story = {
+export const CheckboxChecked: Story = {
   args: {
     checked: true,
     icon: <CheckedMark />,
   },
 };
-export const ExampleUnChecked: Story = {
+export const CheckboxUnchecked: Story = {
   args: {
     icon: <CheckedMark />,
   },
 };
-export const ExampleDisabled: Story = {
+export const CheckboxDisabled: Story = {
   args: {
     checked: true,
     disabled: true,

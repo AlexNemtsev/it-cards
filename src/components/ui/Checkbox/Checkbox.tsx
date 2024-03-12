@@ -7,7 +7,6 @@ import s from './Checkbox.module.scss';
 
 type Props = {
   icon?: ReactNode;
-  id?: string;
 } & ComponentPropsWithoutRef<typeof Checkbox.Root>;
 export const CheckboxRadix = (props: Props) => {
   const { checked, className, disabled, icon, id } = props;

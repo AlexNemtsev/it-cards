@@ -16,8 +16,9 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
     as: Component = 'button',
     children,
     className,
-    disabled = false,
+    disabled,
     fullWidth,
+    href,
     variant = 'primary',
     ...rest
   } = props;
@@ -28,7 +29,7 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
   );
 
   return (
-    <Component className={classNames} {...rest}>
+    <Component className={classNames} href={href} {...rest}>
       {children}
     </Component>
   );

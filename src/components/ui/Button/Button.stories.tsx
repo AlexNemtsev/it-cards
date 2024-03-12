@@ -1,20 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LogOutIcon } from '@/assets/icons/LogOutIcon';
+import { LogOutIcon } from '@/assets/icons/LogOutIcon/LogOutIcon';
 
 import { Button } from './';
 
 const meta = {
   argTypes: {
     variant: {
-      control: { type: 'radio' },
       options: ['primary', 'secondary'],
     },
   },
 
   component: Button,
   tags: ['autodocs'],
-  // title: 'Components/Button',
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -27,8 +25,6 @@ export const Primary: Story = {
         <LogOutIcon /> Primary Button
       </>
     ),
-    disabled: false,
-    variant: 'primary',
   },
 };
 
@@ -39,7 +35,6 @@ export const Secondary: Story = {
         <LogOutIcon /> Secondary Button
       </>
     ),
-    disabled: false,
     variant: 'secondary',
   },
 };
@@ -51,9 +46,7 @@ export const FullWidth: Story = {
         <LogOutIcon /> Full Width Primary Button
       </>
     ),
-    disabled: false,
     fullWidth: true,
-    variant: 'primary',
   },
 };
 export const AsLink: Story = {
@@ -64,7 +57,7 @@ export const AsLink: Story = {
         <LogOutIcon /> Link that looks like a Button
       </>
     ),
-    variant: 'primary',
+    href: 'https://www.google.com/',
   },
 };
 export const AsLinkFullWidth: Story = {
@@ -76,7 +69,7 @@ export const AsLinkFullWidth: Story = {
       </>
     ),
     fullWidth: true,
-    variant: 'primary',
+    href: 'https://www.google.com/',
   },
 };
 
@@ -88,7 +81,6 @@ export const DisabledPrimary: Story = {
       </>
     ),
     disabled: true,
-    variant: 'primary',
   },
 };
 export const DisabledSecondary: Story = {

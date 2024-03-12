@@ -35,6 +35,7 @@ export const Secondary: Story = {
         <LogOutIcon /> Secondary Button
       </>
     ),
+    className: 'blabla',
     variant: 'secondary',
   },
 };

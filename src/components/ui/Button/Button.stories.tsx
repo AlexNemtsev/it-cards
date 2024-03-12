@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { ReactNode } from 'react';
+
 import { LogOutIcon } from '@/assets/icons/LogOutIcon';
 
 import { Button } from './Button';
@@ -17,22 +19,55 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {
-    children: (
-      <>
-        <LogOutIcon /> Primary Button
-      </>
+const createStory = (
+  Component: typeof Button,
+  children?: ReactNode,
+  disabled?: boolean,
+  fullWidth?: boolean,
+  href?: string,
+  variant?: 'primary' | 'secondary'
+): Story => {
+  return {
+    args: {
+      children,
+      disabled,
+      fullWidth,
+      href,
+      variant,
+    },
+    render: args => (
+      <Component fullWidth={args.fullWidth} variant={args.variant}>
+        {args.children}
+      </Component>
     ),
-  },
+  };
 };
 
-export const Secondary: Story = {
+export const Primary = createStory(
+  Button,
+  <>
+    <LogOutIcon />
+    Primary Button
+  </>
+);
+
+export const Secondary = createStory(
+  Button,
+  <>
+    <LogOutIcon />
+    Secondary Button
+  </>,
+  false,
+  true,
+  'secondary'
+);
+
+export const SecondaryOld: Story = {
   args: {
     children: (
       <>
-        <LogOutIcon /> Secondary Button
+        <LogOutIcon />
+        Secondary Button
       </>
     ),
     variant: 'secondary',

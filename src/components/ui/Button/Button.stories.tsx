@@ -35,7 +35,7 @@ const createStory = (
       href,
       variant,
     },
-    render: args => (
+    render: ({ ...args }) => (
       <Component fullWidth={args.fullWidth} variant={args.variant}>
         {args.children}
       </Component>
@@ -50,17 +50,18 @@ export const Primary = createStory(
     Primary Button
   </>
 );
+// const args = {
+//   children: (
+//     <>
+//       <LogOutIcon />
+//       Secondary Button
+//     </>
+//   ),
+//   fullWidth: false,
+//   variant: 'secondary',
+// };
 
-export const Secondary = createStory(
-  Button,
-  <>
-    <LogOutIcon />
-    Secondary Button
-  </>,
-  false,
-  true,
-  'secondary'
-);
+export const Secondary = createStory(Button, { variant: 'secondary' });
 
 export const SecondaryOld: Story = {
   args: {

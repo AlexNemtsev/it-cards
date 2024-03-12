@@ -1,4 +1,4 @@
-import '../src/styles/index.scss';
+import '@/styles/index.scss';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/700.css';
 
@@ -12,6 +12,19 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#000000',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+      ],
     },
   },
 };

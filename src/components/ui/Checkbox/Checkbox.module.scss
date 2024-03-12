@@ -1,0 +1,84 @@
+.CheckboxRoot {
+  all: unset;
+
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid var(--color-light-900);
+  border-radius: 2px;
+  outline: none;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    top: -11px;
+    left: -11px;
+
+    display: none;
+
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+
+    background-color: var(--color-dark-500);
+    border-radius: 50%;
+  }
+
+  [data-state='checked'] {
+    svg {
+      display: block;
+      fill: var(--color-light-100);
+    }
+  }
+
+  &:active {
+    &::before {
+      background-color: var(--color-dark-100);
+    }
+
+    [data-state='checked'] {
+      background-color: var(--color-dark-900);
+    }
+  }
+
+  &:hover {
+    &::before {
+      display: block;
+    }
+  }
+
+  &:focus {
+    &::before {
+      display: block;
+      background-color: var(--color-dark-100);
+    }
+
+    [data-state='checked'] {
+      background-color: var(--color-dark-900);
+      border-radius: 2px;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background-color: var(--color-light-700);
+
+    &::before {
+      display: none;
+    }
+
+    svg {
+      fill: var(--color-dark-100);
+    }
+  }
+}

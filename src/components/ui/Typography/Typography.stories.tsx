@@ -25,21 +25,25 @@ const createStory = (Component: typeof Typography.Body1, children?: ReactNode): 
 
 const testText = 'Carosserie Test Zürich Stauffacherstrasse 31 8004 Zürich, ZH, CH';
 
+const allTypographyStyle = {
+  margin: '0.5rem 0',
+};
+
 export const AllTypography = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Typography.H1>Heading 1</Typography.H1>
-      <Typography.H2>Heading 2</Typography.H2>
-      <Typography.H3>Heading 3</Typography.H3>
-      <Typography.H4>Heading 4</Typography.H4>
-      <Typography.Body1>Body 1</Typography.Body1>
-      <Typography.Body2>Body 2</Typography.Body2>
-      <Typography.Subtitle1>Subtitle 1</Typography.Subtitle1>
-      <Typography.Subtitle2>Subtitle 2</Typography.Subtitle2>
-      <Typography.Caption>Caption</Typography.Caption>
-      <Typography.Overline>Overline</Typography.Overline>
-      <Typography.Link1>Link</Typography.Link1>
-      <Typography.Link2>Link</Typography.Link2>
+      <Typography.H1 style={allTypographyStyle}>Heading 1</Typography.H1>
+      <Typography.H2 style={allTypographyStyle}>Heading 2</Typography.H2>
+      <Typography.H3 style={allTypographyStyle}>Heading 3</Typography.H3>
+      <Typography.H4 style={allTypographyStyle}>Heading 4</Typography.H4>
+      <Typography.Body1 style={allTypographyStyle}>Body 1</Typography.Body1>
+      <Typography.Body2 style={allTypographyStyle}>Body 2</Typography.Body2>
+      <Typography.Subtitle1 style={allTypographyStyle}>Subtitle 1</Typography.Subtitle1>
+      <Typography.Subtitle2 style={allTypographyStyle}>Subtitle 2</Typography.Subtitle2>
+      <Typography.Caption style={allTypographyStyle}>Caption</Typography.Caption>
+      <Typography.Overline style={allTypographyStyle}>Overline</Typography.Overline>
+      <Typography.Link1 style={allTypographyStyle}>Link</Typography.Link1>
+      <Typography.Link2 style={allTypographyStyle}>Link</Typography.Link2>
     </div>
   ),
 };

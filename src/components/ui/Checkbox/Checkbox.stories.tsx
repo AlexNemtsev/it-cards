@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CheckedMark } from '@/assets/icons/CheckedMark';
+import { CheckedMark } from '@/assets/icons/CheckedMark/CheckedMark';
 
 import { CheckboxRadix } from './Checkbox';
 

@@ -1,1 +1,1 @@
-export { CheckboxRadix } from './Checkbox';
+export { Checkbox } from './Checkbox';

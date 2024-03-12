@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { CheckedMark } from '@/assets/icons/CheckedMark/CheckedMark';
 
-import { CheckboxRadix } from './Checkbox';
+import { Checkbox } from './Checkbox';
 
 const meta = {
-  component: CheckboxRadix,
+  component: Checkbox,
   tags: ['autodocs'],
-} satisfies Meta<typeof CheckboxRadix>;
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

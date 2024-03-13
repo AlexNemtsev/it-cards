@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ReactNode } from 'react';
-
 import { LogOutIcon } from '@/assets/icons/LogOutIcon';
 
 import { Button } from './Button';
@@ -19,51 +17,19 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-const createStory = (
-  Component: typeof Button,
-  children?: ReactNode,
-  disabled?: boolean,
-  fullWidth?: boolean,
-  href?: string,
-  variant?: 'primary' | 'secondary'
-): Story => {
-  return {
-    args: {
-      children,
-      disabled,
-      fullWidth,
-      href,
-      variant,
-    },
-    render: ({ ...args }) => (
-      <Component fullWidth={args.fullWidth} variant={args.variant}>
-        {args.children}
-      </Component>
+
+export const Primary: Story = {
+  args: {
+    children: (
+      <>
+        <LogOutIcon />
+        Primary Button
+      </>
     ),
-  };
+  },
 };
 
-export const Primary = createStory(
-  Button,
-  <>
-    <LogOutIcon />
-    Primary Button
-  </>
-);
-// const args = {
-//   children: (
-//     <>
-//       <LogOutIcon />
-//       Secondary Button
-//     </>
-//   ),
-//   fullWidth: false,
-//   variant: 'secondary',
-// };
-
-export const Secondary = createStory(Button, { variant: 'secondary' });
-
-export const SecondaryOld: Story = {
+export const Secondary: Story = {
   args: {
     children: (
       <>
@@ -79,7 +45,8 @@ export const FullWidth: Story = {
   args: {
     children: (
       <>
-        <LogOutIcon /> Full Width Primary Button
+        <LogOutIcon />
+        Full Width Primary Button
       </>
     ),
     fullWidth: true,
@@ -90,10 +57,24 @@ export const AsLink: Story = {
     as: 'a',
     children: (
       <>
-        <LogOutIcon /> Link that looks like a Button
+        <LogOutIcon />
+        Link that looks like a Button
       </>
     ),
     href: 'https://www.google.com/',
+  },
+};
+export const AsLinkSecondary: Story = {
+  args: {
+    as: 'a',
+    children: (
+      <>
+        <LogOutIcon />
+        Link that looks like a Button
+      </>
+    ),
+    href: 'https://www.google.com/',
+    variant: 'secondary',
   },
 };
 export const AsLinkFullWidth: Story = {
@@ -128,5 +109,18 @@ export const DisabledSecondary: Story = {
     ),
     disabled: true,
     variant: 'secondary',
+  },
+};
+export const AsLinkDisabled: Story = {
+  args: {
+    as: 'a',
+    children: (
+      <>
+        <LogOutIcon />
+        Link that looks like a Button
+      </>
+    ),
+    disabled: true,
+    href: 'https://www.google.com/',
   },
 };

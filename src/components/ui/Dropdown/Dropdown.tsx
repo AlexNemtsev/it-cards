@@ -6,12 +6,13 @@ import clsx from 'clsx';
 import s from './Dropdown.module.scss';
 
 type Props = {
+  children?: ReactNode;
   className?: string;
   icon?: ReactNode;
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Dropdown = (props: Props) => {
-  const { className, icon } = props;
+  const { children, className, icon } = props;
   const classNames = {
     DropdownMenuArrow: s.DropdownMenuArrow,
     DropdownMenuContent: s.DropdownMenuContent,
@@ -29,10 +30,7 @@ export const Dropdown = (props: Props) => {
 
       <Portal>
         <Content className={classNames.DropdownMenuContent} sideOffset={5}>
-          <p>10000000000</p>
-          <p>20000000000</p>
-          <p>30000000000</p>
-          <p>40000000000</p>
+          {children}
           <Arrow className={classNames.DropdownMenuArrow} />
         </Content>
       </Portal>

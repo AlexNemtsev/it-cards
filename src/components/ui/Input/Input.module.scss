@@ -1,0 +1,83 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  font-size: var(--font-size-s);
+  color: var(--color-dark-300);
+}
+
+.field {
+  cursor: text;
+
+  display: flex;
+  align-items: center;
+
+  min-width: 284px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+
+  font-size: var(--font-size-m);
+  color: var(--color-dark-300);
+
+  border: 1px solid var(--color-dark-300);
+
+  &:hover {
+    color: var(--color-dark-100);
+    background-color: var(--color-dark-700);
+    border: 1px solid var(--color-dark-100);
+  }
+
+  &:active {
+    color: var(--color-light-100);
+    border: 1px solid var(--color-light-100);
+  }
+
+  &:focus {
+    border: 1px solid var(--color-info-700);
+  }
+}
+
+.disabled {
+  cursor: auto;
+  color: var(--color-dark-300);
+  background-color: var(--color-dark-700);
+
+  &:hover {
+    border: 1px solid var(--color-dark-300);
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-dark-100);
+  }
+}
+
+.errorField {
+  color: var(--color-danger-300);
+  border: 1px solid var(--color-danger-300);
+
+  &:hover {
+    color: var(--color-danger-300);
+    border: 1px solid var(--color-danger-300);
+  }
+
+  &:active {
+    color: var(--color-danger-300);
+    border: 1px solid var(--color-danger-300);
+  }
+}
+
+.error {
+  color: var(--color-danger-300);
+}

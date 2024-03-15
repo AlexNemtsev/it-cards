@@ -8,7 +8,6 @@ import { DropdownItem } from '@/components/ui/Dropdown/DropdownItem';
 import { Typography } from '@/components/ui/Typography';
 
 import { Dropdown } from './Dropdown';
-
 const meta = {
   component: Dropdown,
   tags: ['autodocs'],
@@ -23,7 +22,7 @@ export const DropdownWithBurger: Story = {
   args: {
     children: (
       <>
-        <DropdownItem href="google.com">
+        <DropdownItem>
           <Learn />
           <Typography.Caption>Learn</Typography.Caption>
         </DropdownItem>

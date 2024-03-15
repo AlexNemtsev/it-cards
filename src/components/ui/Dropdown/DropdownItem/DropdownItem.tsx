@@ -8,12 +8,8 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<'a'>;
 export const DropdownItem = (props: Props) => {
-  const { children, href } = props;
+  const { children } = props;
   const classNames = clsx(s.dropdownItem);
 
-  return (
-    <a className={classNames} href={href}>
-      {children}
-    </a>
-  );
+  return <button className={classNames}>{children}</button>;
 };

@@ -19,6 +19,8 @@ export const BaseExample: Story = {
         <RadioGroupItem id="1" label="HTML" value="1" />
         <RadioGroupItem id="2" label="CSS" value="2" />
         <RadioGroupItem id="3" label="JS" value="3" />
+        <RadioGroupItem disabled id="4" label="PHP disabled" value="4" />
+        <RadioGroupItem id="5" label="React" value="5" />
       </>
     ),
   },

@@ -9,5 +9,5 @@ type Props = {
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const RadioGroup = ({ children }: Props) => (
-  <Root className={s.RadioGroupRoot}>{children}</Root>
+  <Root className={s.radioGroupRoot}>{children}</Root>
 );

@@ -4,17 +4,21 @@ import clsx from 'clsx';
 
 import s from './Search.module.scss';
 
-type OwnProps = {};
+type Props = { isError?: boolean; search: boolean } & SVGProps<SVGSVGElement>;
 
-type Props = OwnProps & Omit<SVGProps<SVGSVGElement>, keyof OwnProps>;
+export const Search = (props: Props) => {
+  const { isError, search, ...otherProps } = props;
 
-export const Search = ({ ...otherProps }: Props) => {
+  const cl = {
+    search: clsx(s.search, search && s.search_active, isError && s.search_error),
+  };
+
   return (
     <svg
-      className={clsx(s.search)}
-      height="24"
+      className={cl.search}
+      height="20"
       viewBox="0 0 24 24"
-      width="24"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}
     >

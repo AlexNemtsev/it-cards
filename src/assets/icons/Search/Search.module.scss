@@ -1,6 +1,16 @@
 .search {
-  // margin: 10px;
+  position: absolute;
+  top: 20%;
+  left: 14px;
   fill: var(--color-dark-300);
+
+  &_active {
+    fill: var(--color-light-100);
+  }
+
+  &_error {
+    fill: var(--color-dark-100);
+  }
 }
 
 .disabled {

@@ -1,48 +1,83 @@
-import { InputHTMLAttributes } from 'react';
+import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
 
+import { Close } from '@/assets/icons/Close';
 import { Eye } from '@/assets/icons/Eye/Eye';
-import { EyeOff } from '@/assets/icons/EyeOff/EyeOff';
 import { Search } from '@/assets/icons/Search';
 import { clsx } from 'clsx';
 
 import s from './Input.module.scss';
 
-type OwnProps = {
-  disabled?: boolean;
+import { Typography } from '../Typography';
+
+type Props = {
   error?: string;
-  labelValue?: string;
-  type: string;
-};
+  labelValue?: string | undefined;
+  typeInput?: string;
+} & InputHTMLAttributes<HTMLInputElement>;
 
-type Props = OwnProps & Omit<InputHTMLAttributes<HTMLInputElement>, keyof OwnProps>;
+export const Input = (props: Props) => {
+  const { disabled, error, labelValue, type, typeInput, ...otherProps } = props;
 
-export const Input = ({ disabled, error, labelValue, type, ...otherProps }: Props) => {
-  const show = false;
+  const [search, setSearch] = useState<boolean>(false);
+  const [inputValue, setSearchValue] = useState('');
+
+  const show = true;
+
+  const typePassword = typeInput === 'password';
+  const typeSearch = typeInput === 'search';
+
+  const cl = {
+    field: clsx(s.field, disabled && s.field_disabled, error && s.field_error),
+    input: clsx(
+      s.input,
+      error && s.input_error,
+      typePassword && s.input_password,
+      typeSearch && s.input_search
+    ),
+  };
+
+  const handleMouseDownInput = () => {
+    setSearch(true);
+  };
+  const handleMouseUpInput = () => {
+    setSearch(false);
+  };
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleClickClose = () => {
+    setSearchValue('');
+  };
 
   return (
-    <div className={clsx(s.inputWrapper)}>
+    <div className={s.inputWrapper}>
       {labelValue && (
-        <label className={clsx(s.label)} htmlFor={labelValue}>
+        <label className={s.label} htmlFor={labelValue}>
           {labelValue}
         </label>
       )}
 
-      <div className={clsx(s.field, disabled && s.disabled, error && s.errorField)}>
-        {type === 'search' && <Search />}
-
+      <div className={cl.field}>
+        {typeSearch && <Search isError={!!error} search={search} />}
         <input
-          className={clsx(s.input)}
+          className={cl.input}
           disabled={disabled}
-          type={type}
+          onChange={handleChangeInput}
+          onMouseDown={handleMouseDownInput}
+          onMouseUp={handleMouseUpInput}
+          value={inputValue}
           {...otherProps}
           id={labelValue}
         />
-
-        {type === 'password' && show && <Eye disabled={disabled} />}
-        {type === 'password' && !show && <EyeOff disabled={disabled} />}
+        {typePassword && <Eye disabled={disabled} show={show} />}
+        {typeSearch && inputValue && (
+          <Close handleClickClose={handleClickClose} isError={!!error} />
+        )}
       </div>
 
-      {error && <div className={clsx(s.error)}>{error}</div>}
+      {error && <div className={s.error}>{error}</div>}
+      <Typography.H1></Typography.H1>
     </div>
   );
 };

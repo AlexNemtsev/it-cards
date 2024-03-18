@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '.';
 
 const meta = {
+  args: {
+    placeholder: 'Input',
+  },
   component: Input,
   title: 'Components/ui/Input',
 } satisfies Meta<typeof Input>;
@@ -17,8 +20,39 @@ export const InputTypeText: Story = {
   },
 };
 
+export const InputTypeTextError: Story = {
+  args: {
+    error: 'Error!',
+    labelValue: 'input',
+    type: 'text',
+  },
+};
+
+export const InputTypeTextDisabled: Story = {
+  args: {
+    disabled: true,
+    labelValue: 'input',
+    type: 'text',
+  },
+};
+
 export const InputTypePassword: Story = {
   args: {
+    labelValue: 'input',
+    type: 'password',
+  },
+};
+
+export const InputTypePasswordError: Story = {
+  args: {
+    error: 'Error!',
+    labelValue: 'input',
+    type: 'password',
+  },
+};
+export const InputTypePasswordDisabled: Story = {
+  args: {
+    disabled: true,
     labelValue: 'input',
     type: 'password',
   },
@@ -30,18 +64,16 @@ export const InputTypeSearch: Story = {
   },
 };
 
-export const InputError: Story = {
+export const InputTypeSearchError: Story = {
   args: {
     error: 'Error!',
-    labelValue: 'input',
-    type: 'text',
+    type: 'search',
   },
 };
 
-export const InputDisabled: Story = {
+export const InputTypeSearchDisabled: Story = {
   args: {
     disabled: true,
-    labelValue: 'input',
-    type: 'text',
+    type: 'search',
   },
 };

@@ -1,3 +1,9 @@
+import { Input } from './components/ui/Input';
+
 export const App = () => {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <Input error="Error!" labelValue="Input" placeholder="Input" typeInput="search" />
+    </div>
+  );
 };

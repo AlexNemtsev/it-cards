@@ -5,10 +5,9 @@ import { Trigger } from '@radix-ui/react-tabs';
 
 import s from './Tab.module.scss';
 
-export type TabProps = {
-  label: string;
-  value: string;
-} & ComponentPropsWithoutRef<typeof Trigger>;
+import { TabOption } from '../tabOption';
+
+export type TabProps = TabOption & ComponentPropsWithoutRef<typeof Trigger>;
 
 export const Tab = (props: TabProps) => {
   const { label, value, ...restProps } = props;

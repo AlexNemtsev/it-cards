@@ -13,6 +13,9 @@ type Story = StoryObj<typeof RadioGroup>;
 
 export const BaseExample: Story = {
   args: {
+    onValueChange: (value: string) => {
+      console.log(value);
+    },
     options: [
       { label: 'HTML', value: '1' },
       { label: 'CSS', value: '2' },

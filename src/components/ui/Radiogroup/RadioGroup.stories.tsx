@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { RadioGroup } from './RadioGroup';
-import { RadioGroupItem } from './RadiogroupItem/RadioGroupItem';
 
 const meta = {
   component: RadioGroup,
@@ -10,18 +9,16 @@ const meta = {
 } satisfies Meta<typeof RadioGroup>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof RadioGroup>;
 
 export const BaseExample: Story = {
   args: {
-    children: (
-      <>
-        <RadioGroupItem id="1" label="HTML" value="1" />
-        <RadioGroupItem id="2" label="CSS" value="2" />
-        <RadioGroupItem id="3" label="JS" value="3" />
-        <RadioGroupItem disabled id="4" label="PHP disabled" value="4" />
-        <RadioGroupItem id="5" label="React" value="5" />
-      </>
-    ),
+    options: [
+      { label: 'HTML', value: '1' },
+      { label: 'CSS', value: '2' },
+      { label: 'JS', value: '3' },
+      { disabled: true, label: 'PHP disabled', value: '4' },
+      { label: 'React', value: '5' },
+    ],
   },
 };

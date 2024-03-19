@@ -1,13 +1,25 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
+import {
+  RadioGroupItem,
+  RadioGroupItemProps,
+} from '@/components/ui/Radiogroup/RadiogroupItem/RadioGroupItem';
 import { Root } from '@radix-ui/react-radio-group';
 
 import s from './RadioGroup.module.scss';
 
 type Props = {
-  children: ReactNode;
+  options: RadioGroupItemProps[];
 } & ComponentPropsWithoutRef<typeof Root>;
 
-export const RadioGroup = ({ children }: Props) => (
-  <Root className={s.radioGroupRoot}>{children}</Root>
-);
+export const RadioGroup = (props: Props) => {
+  const { options, ...restProps } = props;
+
+  return (
+    <Root {...restProps} className={s.radioGroupRoot}>
+      {options.map(el => (
+        <RadioGroupItem {...el} key={el.value} />
+      ))}
+    </Root>
+  );
+};

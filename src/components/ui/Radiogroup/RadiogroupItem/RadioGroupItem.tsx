@@ -6,12 +6,12 @@ import { clsx } from 'clsx';
 
 import s from './RagioGroupItem.module.scss';
 
-type Props = {
+export type RadioGroupItemProps = {
   label: string;
   value: string;
 } & ComponentPropsWithoutRef<typeof Root>;
-export const RadioGroupItem = (props: Props) => {
-  const { className, disabled, id, label, value } = props;
+export const RadioGroupItem = (props: RadioGroupItemProps) => {
+  const { className, disabled, label, value } = props;
 
   const classNames = {
     body2: clsx(s.body2, { [s.disabled]: disabled }),
@@ -21,8 +21,8 @@ export const RadioGroupItem = (props: Props) => {
   };
 
   return (
-    <label className={classNames.label} htmlFor={id} key={id}>
-      <Item className={classNames.radioGroupItem} disabled={disabled} id={id} value={value}>
+    <label className={classNames.label}>
+      <Item className={classNames.radioGroupItem} disabled={disabled} value={value}>
         <Indicator className={classNames.radioGroupIndicator} />
       </Item>
       <Typography.Body2 className={classNames.body2}>{label}</Typography.Body2>

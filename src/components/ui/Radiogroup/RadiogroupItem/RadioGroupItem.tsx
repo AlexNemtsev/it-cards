@@ -14,7 +14,6 @@ export const RadioGroupItem = (props: RadioGroupItemProps) => {
   const { className, disabled, label, value } = props;
 
   const classNames = {
-    body2: clsx(s.body2, { [s.disabled]: disabled }),
     label: clsx(s.label, { [s.disabled]: disabled }, className),
     radioGroupIndicator: s.radioGroupIndicator,
     radioGroupItem: s.radioGroupItem,
@@ -25,7 +24,7 @@ export const RadioGroupItem = (props: RadioGroupItemProps) => {
       <Item className={classNames.radioGroupItem} disabled={disabled} value={value}>
         <Indicator className={classNames.radioGroupIndicator} />
       </Item>
-      <Typography.Body2 className={classNames.body2}>{label}</Typography.Body2>
+      <Typography.Body2>{label}</Typography.Body2>
     </label>
   );
 };

@@ -68,14 +68,10 @@
     .radioGroupItem {
       border: 2px solid var(--color-accent-900);
     }
-  }
-}
 
-.body2 {
-  margin: 0;
-
-  &.disabled {
-    color: var(--color-light-900);
+    p {
+      color: var(--color-light-900);
+    }
   }
 }
 

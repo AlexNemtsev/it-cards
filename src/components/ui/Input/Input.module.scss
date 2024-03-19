@@ -9,11 +9,16 @@
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
   color: var(--color-dark-100);
+
+  &_disabled {
+    color: var(--color-dark-300);
+  }
 }
 
 .field {
   position: relative;
   min-width: 284px;
+  color: var(--color-dark-100);
   border-radius: 2px;
 }
 
@@ -26,7 +31,7 @@
 
   background-color: var(--color-dark-900);
   border: none;
-  outline: none;
+  border-radius: 2px;
   outline: 1px solid var(--color-dark-300);
 
   &::placeholder {
@@ -59,6 +64,10 @@
   &:disabled {
     color: var(--color-dark-300);
     background-color: var(--color-dark-900);
+
+    &::placeholder {
+      color: var(--color-dark-300);
+    }
 
     &:hover {
       background-color: var(--color-dark-900);

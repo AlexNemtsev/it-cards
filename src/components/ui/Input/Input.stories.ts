@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const InputTypeText: Story = {
   args: {
     labelValue: 'input',
-    type: 'text',
+    typeInput: 'text',
   },
 };
 
@@ -24,7 +24,7 @@ export const InputTypeTextError: Story = {
   args: {
     error: 'Error!',
     labelValue: 'input',
-    type: 'text',
+    typeInput: 'text',
   },
 };
 
@@ -32,14 +32,14 @@ export const InputTypeTextDisabled: Story = {
   args: {
     disabled: true,
     labelValue: 'input',
-    type: 'text',
+    typeInput: 'text',
   },
 };
 
 export const InputTypePassword: Story = {
   args: {
     labelValue: 'input',
-    type: 'password',
+    typeInput: 'password',
   },
 };
 
@@ -47,33 +47,33 @@ export const InputTypePasswordError: Story = {
   args: {
     error: 'Error!',
     labelValue: 'input',
-    type: 'password',
+    typeInput: 'password',
   },
 };
 export const InputTypePasswordDisabled: Story = {
   args: {
     disabled: true,
     labelValue: 'input',
-    type: 'password',
+    typeInput: 'password',
   },
 };
 
 export const InputTypeSearch: Story = {
   args: {
-    type: 'search',
+    typeInput: 'search',
   },
 };
 
 export const InputTypeSearchError: Story = {
   args: {
     error: 'Error!',
-    type: 'search',
+    typeInput: 'search',
   },
 };
 
 export const InputTypeSearchDisabled: Story = {
   args: {
     disabled: true,
-    type: 'search',
+    typeInput: 'search',
   },
 };

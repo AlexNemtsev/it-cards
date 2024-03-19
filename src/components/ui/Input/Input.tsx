@@ -18,7 +18,6 @@ type Props = {
 export const Input = (props: Props) => {
   const { disabled, error, labelValue, type, typeInput, ...otherProps } = props;
 
-  const [search, setSearch] = useState<boolean>(false);
   const [inputValue, setSearchValue] = useState('');
 
   const show = true;
@@ -34,14 +33,9 @@ export const Input = (props: Props) => {
       typePassword && s.input_password,
       typeSearch && s.input_search
     ),
+    label: clsx(s.label, disabled && s.label_disabled),
   };
 
-  const handleMouseDownInput = () => {
-    setSearch(true);
-  };
-  const handleMouseUpInput = () => {
-    setSearch(false);
-  };
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
@@ -53,19 +47,17 @@ export const Input = (props: Props) => {
   return (
     <div className={s.inputWrapper}>
       {labelValue && (
-        <label className={s.label} htmlFor={labelValue}>
-          {labelValue}
+        <label htmlFor={labelValue}>
+          <Typography.Caption className={cl.label}>{labelValue}</Typography.Caption>
         </label>
       )}
 
       <div className={cl.field}>
-        {typeSearch && <Search isError={!!error} search={search} />}
+        {typeSearch && <Search isError={!!error} />}
         <input
           className={cl.input}
           disabled={disabled}
           onChange={handleChangeInput}
-          onMouseDown={handleMouseDownInput}
-          onMouseUp={handleMouseUpInput}
           value={inputValue}
           {...otherProps}
           id={labelValue}
@@ -76,8 +68,7 @@ export const Input = (props: Props) => {
         )}
       </div>
 
-      {error && <div className={s.error}>{error}</div>}
-      <Typography.H1></Typography.H1>
+      {error && <Typography.Caption className={s.error}>{error}</Typography.Caption>}
     </div>
   );
 };

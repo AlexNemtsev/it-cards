@@ -4,13 +4,13 @@ import clsx from 'clsx';
 
 import s from './Search.module.scss';
 
-type Props = { isError?: boolean; search: boolean } & SVGProps<SVGSVGElement>;
+type Props = { isError?: boolean } & SVGProps<SVGSVGElement>;
 
 export const Search = (props: Props) => {
-  const { isError, search, ...otherProps } = props;
+  const { isError, ...otherProps } = props;
 
   const cl = {
-    search: clsx(s.search, search && s.search_active, isError && s.search_error),
+    search: clsx(s.search, isError && s.search_error),
   };
 
   return (

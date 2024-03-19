@@ -1,4 +1,4 @@
-.DropdownMenuContent {
+.dropdownMenuContent {
   will-change: transform, opacity;
 
   padding: 12px;
@@ -19,7 +19,7 @@
   }
 }
 
-.DropdownMenuArrow {
+.dropdownMenuArrow {
   transform: rotate(45deg) translate(-4px, -3px);
 
   width: 10px;
@@ -34,7 +34,7 @@
   }
 }
 
-.IconButton {
+.iconButton {
   all: unset;
 
   display: inline-flex;

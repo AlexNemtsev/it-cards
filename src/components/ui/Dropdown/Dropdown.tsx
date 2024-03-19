@@ -14,24 +14,22 @@ type Props = {
 export const Dropdown = (props: Props) => {
   const { children, className, icon } = props;
   const classNames = {
-    DropdownMenuArrow: s.DropdownMenuArrow,
-    DropdownMenuContent: s.DropdownMenuContent,
-    IconButton: clsx(s.IconButton, className),
-    root: clsx(s.IconButton),
+    dropdownMenuArrow: s.dropdownMenuArrow,
+    dropdownMenuContent: s.dropdownMenuContent,
+    iconButton: clsx(s.iconButton, className),
+    root: clsx(s.iconButton),
   };
 
   return (
     <Root>
       <Trigger asChild>
-        <button aria-label="Customise options" className={classNames.IconButton}>
-          {icon}
-        </button>
+        <button className={classNames.iconButton}>{icon}</button>
       </Trigger>
 
       <Portal>
-        <Content className={classNames.DropdownMenuContent} sideOffset={5}>
+        <Content className={classNames.dropdownMenuContent} sideOffset={5}>
           {children}
-          <Arrow className={classNames.DropdownMenuArrow} />
+          <Arrow className={classNames.dropdownMenuArrow} />
         </Content>
       </Portal>
     </Root>

@@ -1,1 +1,1 @@
-export { RadioGroupItem } from './RadioGroupItem';
+export * from './RadioGroupItem';

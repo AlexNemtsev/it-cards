@@ -12,7 +12,6 @@ export type RadioGroupItemProps = {
 } & ComponentPropsWithoutRef<typeof Root>;
 export const RadioGroupItem = (props: RadioGroupItemProps) => {
   const { className, disabled, label, value } = props;
-
   const classNames = {
     label: clsx(s.label, { [s.disabled]: disabled }, className),
     radioGroupIndicator: s.radioGroupIndicator,

@@ -14,7 +14,8 @@ import {
 } from '@radix-ui/react-select';
 // import { clsx } from 'clsx';
 
-import { ComponentPropsWithoutRef } from 'react';
+import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon';
+import { ChevronUpIcon } from '@/assets/icons/ChevronUpIcon';
 
 import s from './Select.module.scss';
 
@@ -24,28 +25,35 @@ import { SelectItemValue } from './Types';
 
 type Props = {
   ariaLabel: string;
+  disabled?: boolean;
   labelValue: string;
   placeholder: string;
   selectItemValues: SelectItemValue[];
-} & ComponentPropsWithoutRef<typeof Root>;
+};
 
 export const Select = (props: Props) => {
-  const { ariaLabel, labelValue, placeholder, selectItemValues } = props;
+  const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
+
+  // const classnames = {
+  //   selectTrigger: clsx(s.selectTrigger),
+  // };
 
   return (
     <div className={s.selectWrapper}>
       <label>
         <Typography.Caption className={s.label}>{labelValue}</Typography.Caption>
       </label>
-      <Root>
+      <Root disabled={disabled}>
         <Trigger aria-label={ariaLabel} className={s.selectTrigger}>
           <Value placeholder={placeholder} />
-          <Icon className={s.selectIcon}>{/* <ChevronDownIcon /> */} ▼</Icon>
+          <Icon className={s.selectIcon}>
+            <ChevronDownIcon />
+          </Icon>
         </Trigger>
         <Portal>
           <Content className={s.selectContent}>
             <ScrollUpButton className={s.selectScrollButton}>
-              {/* <ChevronUpIcon /> ChevronUpIcon */} ▲
+              <ChevronUpIcon /> ▲
             </ScrollUpButton>
             <Viewport className={s.selectViewport}>
               <Group>
@@ -58,7 +66,7 @@ export const Select = (props: Props) => {
               </Group>
             </Viewport>
             <ScrollDownButton className={s.selectScrollButton}>
-              {/* <ChevronDownIcon /> */} ▼
+              <ChevronDownIcon />
             </ScrollDownButton>
           </Content>
         </Portal>

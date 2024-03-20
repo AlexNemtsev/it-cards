@@ -14,7 +14,7 @@ export const App = () => {
       <Select
         ariaLabel="food"
         labelValue="Select-box"
-        placeholder="Select a fruit!!!"
+        placeholder="Select-box"
         selectItemValues={selectItemValues}
       />
     </div>

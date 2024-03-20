@@ -3,6 +3,18 @@ button {
   all: unset;
 }
 
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 210px;
+}
+
+.label {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  color: var(--color-dark-100);
+}
+
 .selectTrigger {
   display: inline-flex;
   gap: 5px;

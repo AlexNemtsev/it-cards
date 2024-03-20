@@ -13,6 +13,7 @@ export const App = () => {
     <div>
       <Select
         ariaLabel="food"
+        labelValue="Select-box"
         placeholder="Select a fruit!!!"
         selectItemValues={selectItemValues}
       />

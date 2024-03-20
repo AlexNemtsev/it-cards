@@ -1,13 +1,8 @@
-import React, { ComponentPropsWithoutRef, ForwardedRef } from 'react';
-
 // import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 import {
   Content,
   Group,
   Icon,
-  Item,
-  ItemIndicator,
-  ItemText,
   Label,
   Portal,
   Root,
@@ -17,46 +12,48 @@ import {
   Value,
   Viewport,
 } from '@radix-ui/react-select';
-import { clsx } from 'clsx';
+// import { clsx } from 'clsx';
 
-export const SelectDemo = () => (
-  <Root>
-    <Trigger aria-label="Food" className="SelectTrigger">
-      <Value placeholder="Select a fruit…" />
-      <Icon className="SelectIcon">{/* <ChevronDownIcon /> */} ChevronDownIcon</Icon>
-    </Trigger>
-    <Portal>
-      <Content className="SelectContent">
-        <ScrollUpButton className="SelectScrollButton">
-          {/* <ChevronUpIcon /> ChevronUpIcon */}
-        </ScrollUpButton>
-        <Viewport className="SelectViewport">
-          <Group>
-            <Label className="SelectLabel">Fruits</Label>
-            <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
-            <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes">Grapes</SelectItem>
-            <SelectItem value="pineapple">Pineapple</SelectItem>
-          </Group>
-        </Viewport>
-        <ScrollDownButton className="SelectScrollButton">
-          {/* <ChevronDownIcon /> */} ChevronDownIcon
-        </ScrollDownButton>
-      </Content>
-    </Portal>
-  </Root>
-);
+import s from './Select.module.scss';
 
-type Props = {} & ComponentPropsWithoutRef<typeof Item>;
+import { SelectItem } from './SelectItem/SelectItem';
+import { SelectItemValue } from './Types';
 
-const SelectItem = React.forwardRef((props: Props, forwardedRef) => {
-  const { children, className, ...restProps } = props;
+type Props = {
+  ariaLabel: string;
+  placeholder: string;
+  selectItemValues: SelectItemValue[];
+};
+
+export const Select = (props: Props) => {
+  const { ariaLabel, placeholder, selectItemValues } = props;
 
   return (
-    <Item className={clsx('SelectItem', className)} {...restProps} ref={forwardedRef}>
-      <ItemText>{children}</ItemText>
-      <ItemIndicator className="SelectItemIndicator">{/* <CheckIcon /> */} CheckIcon</ItemIndicator>
-    </Item>
+    <Root>
+      <Trigger aria-label={ariaLabel} className={s.selectTrigger}>
+        <Value placeholder={placeholder} />
+        <Icon className={s.selectIcon}>{/* <ChevronDownIcon /> */} ▼</Icon>
+      </Trigger>
+      <Portal>
+        <Content className={s.selectContent}>
+          <ScrollUpButton className={s.selectScrollButton}>
+            {/* <ChevronUpIcon /> ChevronUpIcon */} ▲
+          </ScrollUpButton>
+          <Viewport className={s.selectViewport}>
+            <Group>
+              <Label className={s.selectLabel}>Fruits</Label>
+              {selectItemValues.map(item => (
+                <SelectItem key={item.id} value={item.value}>
+                  {item.value}
+                </SelectItem>
+              ))}
+            </Group>
+          </Viewport>
+          <ScrollDownButton className={s.selectScrollButton}>
+            {/* <ChevronDownIcon /> */} ▼
+          </ScrollDownButton>
+        </Content>
+      </Portal>
+    </Root>
   );
-});
+};

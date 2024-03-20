@@ -1,47 +1,45 @@
-@import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/violet.css';
-
 /* reset */
 button {
   all: unset;
 }
 
-.SelectTrigger {
+.selectTrigger {
   display: inline-flex;
   gap: 5px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
-  height: 35px;
-  padding: 0 15px;
+  min-width: 210px;
+  padding: 6px 15px;
 
-  font-size: 13px;
-  line-height: 1;
+  font-size: var(--font-size-m);
+  line-height: var(--font-size-xxl);
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+  border-radius: 2px;
+  outline: 1px solid var(--color-dark-300);
+
+  &:hover {
+    background-color: var(--color-dark-500);
+    outline: 1px solid var(--color-dark-100);
+  }
+
+  &:focus {
+    background-color: inherit;
+    outline: 2px solid var(--color-info-700);
+  }
+
+  &[data-placeholder] {
+    color: var(--color-light-100);
+  }
+}
+
+.selectIcon {
   color: var(--violet-11);
-
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 10px var(--black-a7);
 }
 
-.SelectTrigger:hover {
-  background-color: var(--mauve-3);
-}
-
-.SelectTrigger:focus {
-  box-shadow: 0 0 0 2px black;
-}
-
-.SelectTrigger[data-placeholder] {
-  color: var(--violet-9);
-}
-
-.SelectIcon {
-  color: var(--violet-11);
-}
-
-.SelectContent {
+.selectContent {
   overflow: hidden;
   background-color: white;
   border-radius: 6px;
@@ -50,64 +48,18 @@ button {
     0 10px 20px -15px rgb(22 23 24 / 20%);
 }
 
-.SelectViewport {
+.selectViewport {
   padding: 5px;
 }
 
-.SelectItem {
-  user-select: none;
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  height: 25px;
-  padding: 0 35px 0 25px;
-
-  font-size: 13px;
-  line-height: 1;
-  color: var(--violet-11);
-
-  border-radius: 3px;
-}
-
-.SelectItem[data-disabled] {
-  pointer-events: none;
-  color: var(--mauve-8);
-}
-
-.SelectItem[data-highlighted] {
-  color: var(--violet-1);
-  background-color: var(--violet-9);
-  outline: none;
-}
-
-.SelectLabel {
+.selectLabel {
   padding: 0 25px;
   font-size: 12px;
   line-height: 25px;
   color: var(--mauve-11);
 }
 
-.SelectSeparator {
-  height: 1px;
-  margin: 5px;
-  background-color: var(--violet-6);
-}
-
-.SelectItemIndicator {
-  position: absolute;
-  left: 0;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 25px;
-}
-
-.SelectScrollButton {
+.selectScrollButton {
   cursor: default;
 
   display: flex;

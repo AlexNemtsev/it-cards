@@ -25,7 +25,6 @@ export const Dropdown = (props: Props) => {
       <Trigger asChild>
         <button className={classNames.iconButton}>{icon}</button>
       </Trigger>
-
       <Portal>
         <Content className={classNames.dropdownMenuContent} sideOffset={5}>
           {children}

@@ -1,1 +1,1 @@
-export * from './Eye';
+export { Eye } from './Eye';

@@ -1,7 +1,7 @@
 .inputWrapper {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
   align-items: flex-start;
 }
 
@@ -17,14 +17,13 @@
 
 .field {
   position: relative;
-  min-width: 284px;
   color: var(--color-dark-100);
   border-radius: 2px;
 }
 
 .input {
   width: 100%;
-  padding: 6px 12px;
+  padding: 7px 12px;
 
   font-size: var(--font-size-m);
   color: var(--color-dark-100);
@@ -103,6 +102,6 @@
 
 .error {
   font-size: var(--font-size-xs);
-  line-height: var(--line-height-s);
+  line-height: var(--line-height-m);
   color: var(--color-danger-300);
 }

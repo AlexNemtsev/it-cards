@@ -10,15 +10,13 @@
   line-height: var(--line-height-s);
   color: var(--color-dark-100);
 
-  &_disabled {
+  &.disabled {
     color: var(--color-dark-300);
   }
 }
 
 .field {
   position: relative;
-  color: var(--color-dark-100);
-  border-radius: 2px;
 }
 
 .input {
@@ -33,24 +31,15 @@
   border-radius: 2px;
   outline: 1px solid var(--color-dark-300);
 
-  &::placeholder {
-    color: var(--color-dark-100);
-  }
-
-  &_search {
+  &.search {
     padding: 6px 46px 6px 42px;
   }
 
-  &_password {
+  &.password {
     padding: 6px 46px 6px 12px;
   }
 
-  &:focus {
-    outline: 1px solid var(--color-info-700);
-  }
-
   &:hover {
-    color: var(--color-dark-100);
     background-color: var(--color-dark-700);
     outline: 1px solid var(--color-dark-100);
   }
@@ -60,47 +49,30 @@
     outline: 1px solid var(--color-light-100);
   }
 
-  &:disabled {
-    color: var(--color-dark-300);
-    background-color: var(--color-dark-900);
+  &:focus {
+    outline: 1px solid var(--color-info-700);
+  }
 
+  &:disabled {
     &::placeholder {
       color: var(--color-dark-300);
     }
 
-    &:hover {
-      background-color: var(--color-dark-900);
-      outline: 1px solid var(--color-dark-300);
-    }
-
+    &:hover,
     &:active {
+      color: var(--color-dark-300);
       background-color: var(--color-dark-900);
       outline: 1px solid var(--color-dark-300);
     }
   }
 
-  &_error {
+  &.error {
     color: var(--color-danger-300);
     outline: 1px solid var(--color-danger-300);
-
-    &:hover {
-      color: var(--color-danger-300);
-      outline: 1px solid var(--color-danger-300);
-    }
-
-    &:active {
-      color: var(--color-danger-300);
-      outline: 1px solid var(--color-danger-300);
-    }
-
-    &:focus {
-      color: var(--color-danger-300);
-      outline: 1px solid var(--color-danger-300);
-    }
   }
 }
 
-.error {
+.errorText {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-m);
   color: var(--color-danger-300);

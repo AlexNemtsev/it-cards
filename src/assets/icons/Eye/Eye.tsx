@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import s from './Eye.module.scss';
 
-type Props = { disabled?: boolean; show: boolean } & SVGProps<SVGSVGElement>;
+type Props = { disabled?: boolean; show?: boolean } & SVGProps<SVGSVGElement>;
 
 export const Eye = (props: Props) => {
   const { disabled, show, ...otherProps } = props;

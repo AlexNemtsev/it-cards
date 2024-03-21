@@ -12,62 +12,55 @@ import { Typography } from '../Typography';
 type Props = {
   error?: string;
   labelValue?: string | undefined;
+  typeValue?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = (props: Props) => {
-  const { disabled, error, labelValue, type, ...otherProps } = props;
+  const { disabled, error, labelValue, typeValue, ...otherProps } = props;
 
-  const [inputValue, setSearchValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
-  const show = true;
+  const typePassword = typeValue === 'password';
+  const typeSearch = typeValue === 'search';
 
-  const typePassword = type === 'password';
-  const typeSearch = type === 'search';
-
-  const cl = {
-    field: clsx(s.field, disabled && s.field_disabled, error && s.field_error),
-    input: clsx(
-      s.input,
-      error && s.input_error,
-      typePassword && s.input_password,
-      typeSearch && s.input_search
-    ),
-    label: clsx(s.label, disabled && s.label_disabled),
+  const classnames = {
+    input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
+    label: clsx(s.label, disabled && s.disabled),
   };
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const handleClickClose = () => {
-    setSearchValue('');
+    setInputValue('');
   };
 
   return (
     <div className={s.inputWrapper}>
       {labelValue && !typeSearch && (
         <label htmlFor={labelValue}>
-          <Typography.Caption className={cl.label}>{labelValue}</Typography.Caption>
+          <Typography.Caption className={classnames.label}>{labelValue}</Typography.Caption>
         </label>
       )}
 
-      <div className={cl.field}>
+      <div className={s.field}>
         {typeSearch && <Search isError={!!error} />}
         <input
-          className={cl.input}
+          className={classnames.input}
           disabled={disabled}
           onChange={handleChangeInput}
           value={inputValue}
           {...otherProps}
           id={labelValue}
         />
-        {typePassword && <Eye disabled={disabled} show={show} />}
+        {typePassword && <Eye disabled={disabled} />}
         {typeSearch && inputValue && (
           <Close handleClickClose={handleClickClose} isError={!!error} />
         )}
       </div>
 
-      {error && <Typography.Caption className={s.error}>{error}</Typography.Caption>}
+      {error && <Typography.Caption className={s.errorText}>{error}</Typography.Caption>}
     </div>
   );
 };

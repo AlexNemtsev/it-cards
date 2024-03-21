@@ -1,5 +1,7 @@
 import React, { ComponentPropsWithoutRef, ForwardedRef } from 'react';
 
+import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon';
+import { ChevronUpIcon } from '@/assets/icons/ChevronUpIcon';
 import {
   Content,
   Group,
@@ -20,35 +22,69 @@ import clsx from 'clsx';
 
 import s from './PrimitiveSelect.module.scss';
 
-const SelectDemo = () => (
-  <Root>
-    <Trigger aria-label="Select-box" className={s.SelectTrigger}>
-      <Value placeholder="Select-box…" />
-      <Icon className={s.SelectIcon}>▼</Icon>
-    </Trigger>
-    <Portal>
-      <Content className={s.SelectContent}>
-        <ScrollUpButton className={s.SelectScrollButton}>▲</ScrollUpButton>
-        <Viewport className="SelectViewport">
-          <Group>
-            <Label className={s.SelectLabel}>Select-box</Label>
-            <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
-            <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes">Grapes</SelectItem>
-            <SelectItem value="pineapple">Pineapple</SelectItem>
-          </Group>
-        </Viewport>
-        <ScrollDownButton className={s.SelectScrollButton}>▼</ScrollDownButton>
-      </Content>
-    </Portal>
-  </Root>
-);
+import { Typography } from '../Typography';
+import { SelectItemValue } from './Types';
 
-type Props = {} & ComponentPropsWithoutRef<typeof Item>;
+type Props = {
+  ariaLabel: string;
+  disabled?: boolean;
+  labelValue: string;
+  placeholder: string;
+  selectItemValues: SelectItemValue[];
+};
+
+const PrimitiveSelect = (props: Props) => {
+  const { ariaLabel, labelValue, placeholder, selectItemValues } = props;
+
+  return (
+    <div className={s.SelectWrapper}>
+      <label>
+        <Typography.Caption className={s.label}>{labelValue}</Typography.Caption>
+      </label>
+      <Root>
+        <Trigger aria-label={ariaLabel} className={s.SelectTrigger}>
+          <Value placeholder={placeholder} />
+          <Icon className={s.SelectIcon}>
+            <ChevronDownIcon />
+          </Icon>
+        </Trigger>
+        <Portal>
+          <Content className={s.SelectContent}>
+            <ScrollUpButton className={s.SelectScrollButton}>
+              <ChevronUpIcon />
+            </ScrollUpButton>
+            <Viewport className={s.SelectViewport}>
+              <Group>
+                <Label className={s.SelectLabel}>
+                  <Typography.Caption className={s.SelectLabelTypograpgy}>
+                    {labelValue}
+                  </Typography.Caption>
+                  <ChevronUpIcon />
+                </Label>
+                {selectItemValues.map(item => (
+                  <SelectItem key={item.id} value={item.value}>
+                    {item.value}
+                  </SelectItem>
+                ))}
+              </Group>
+            </Viewport>
+            <ScrollDownButton className={s.SelectScrollButton}>
+              <ChevronDownIcon />
+            </ScrollDownButton>
+          </Content>
+        </Portal>
+      </Root>
+    </div>
+  );
+};
+
+type PropsSelectItem = {} & ComponentPropsWithoutRef<typeof Item>;
 
 const SelectItem = React.forwardRef(
-  ({ children, className, ...props }: Props, forwardedRef: ForwardedRef<HTMLDivElement>) => {
+  (
+    { children, className, ...props }: PropsSelectItem,
+    forwardedRef: ForwardedRef<HTMLDivElement>
+  ) => {
     return (
       <Item className={clsx(s.SelectItem, className)} {...props} ref={forwardedRef}>
         <ItemText>{children}</ItemText>
@@ -58,4 +94,4 @@ const SelectItem = React.forwardRef(
   }
 );
 
-export default SelectDemo;
+export default PrimitiveSelect;

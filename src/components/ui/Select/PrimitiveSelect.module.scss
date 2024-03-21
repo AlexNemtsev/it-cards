@@ -3,14 +3,28 @@ button {
   all: unset;
 }
 
+.SelectWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 100px;
+}
+
+.label {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  color: var(--color-dark-100);
+}
+
 .SelectTrigger {
   display: inline-flex;
-  gap: 45px;
+  gap: 5px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
+  min-width: 126px;
+  max-width: 210px;
   height: 35px;
-  margin: 100px;
   padding: 6px 15px;
 
   font-size: var(--font-size-m);
@@ -18,37 +32,45 @@ button {
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-300);
   border-radius: 2px;
-  outline: 1px solid var(--color-dark-300);
 
   &:hover {
     background-color: var(--color-dark-500);
-    outline: 1px solid var(--color-dark-100);
+    border: 1px solid var(--color-dark-100);
   }
 
   &:focus {
     background-color: inherit;
-    outline: 2px solid var(--color-info-700);
+    border: 1px solid var(--color-info-700);
   }
 
   &[data-placeholder] {
     color: currentcolor;
   }
-}
 
-.SelectIcon {
-  // color: var(--color-light-100);
-  // background-color: var(--color-dark-900);
+  &:disabled {
+    &:hover,
+    &:focus {
+      background-color: inherit;
+      border: 1px solid var(--color-dark-300);
+    }
+
+    .selectIcon {
+      fill: var(--color-dark-300);
+    }
+
+    &[data-placeholder] {
+      color: var(--color-dark-300);
+    }
+  }
 }
 
 .SelectContent {
   overflow: hidden;
-  background-color: white;
-  border-radius: 6px;
-}
-
-.SelectViewport {
-  padding: 5px;
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
 }
 
 .SelectItem {
@@ -58,39 +80,35 @@ button {
 
   display: flex;
   align-items: center;
-
-  height: 25px;
+  height: 36px;
   padding: 0 35px 0 25px;
 
-  font-size: 13px;
+  font-size: var(--font-size-m);
   line-height: 1;
-  color: #6550b9;
+  color: var(--color-light-100);
 
-  border-radius: 3px;
-}
+  &[data-disabled] {
+    pointer-events: none;
+  }
 
-.SelectItem[data-disabled] {
-  pointer-events: none;
-  color: #73aec9;
-}
-
-.SelectItem[data-highlighted] {
-  color: #50b991;
-  background-color: #6550b9;
-  outline: none;
+  &[data-highlighted] {
+    background-color: var(--color-accent-900);
+    outline: none;
+  }
 }
 
 .SelectLabel {
-  padding: 0 25px;
-  font-size: 12px;
-  line-height: 25px;
-  color: #562cff;
-}
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.SelectSeparator {
-  height: 1px;
-  margin: 5px;
-  background-color: #a6b950;
+  padding: 10px 25px;
+
+  font-size: var(--font-size-m);
+  line-height: 25px;
+  color: var(--color-light-100);
+
+  border-bottom: 1px solid var(--color-dark-300);
 }
 
 .SelectItemIndicator {
@@ -113,7 +131,13 @@ button {
 
   height: 25px;
 
-  color: #6550b9;
+  color: var(--color-light-100);
 
-  background-color: white;
+  background-color: var(--color-dark-900);
+}
+
+.SelectLabelTypograpgy {
+  font-size: var(--font-size-m);
+  line-height: var(--font-size-xxl);
+  color: var(--color-light-100);
 }

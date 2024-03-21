@@ -11,7 +11,7 @@ import { Typography } from '../Typography';
 
 type Props = {
   error?: string;
-  labelValue?: string | undefined;
+  labelValue?: string;
   typeValue?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
@@ -23,7 +23,7 @@ export const Input = (props: Props) => {
   const typePassword = typeValue === 'password';
   const typeSearch = typeValue === 'search';
 
-  const classnames = {
+  const classNames = {
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
     label: clsx(s.label, disabled && s.disabled),
   };
@@ -40,14 +40,14 @@ export const Input = (props: Props) => {
     <div className={s.inputWrapper}>
       {labelValue && !typeSearch && (
         <label htmlFor={labelValue}>
-          <Typography.Caption className={classnames.label}>{labelValue}</Typography.Caption>
+          <Typography.Caption className={classNames.label}>{labelValue}</Typography.Caption>
         </label>
       )}
 
       <div className={s.field}>
         {typeSearch && <Search isError={!!error} />}
         <input
-          className={classnames.input}
+          className={classNames.input}
           disabled={disabled}
           onChange={handleChangeInput}
           value={inputValue}

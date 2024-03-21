@@ -22,29 +22,29 @@ button {
   outline: 1px solid var(--color-dark-300);
 
   &:hover {
-    background-color: rgb(184 184 184);
+    background-color: var(--color-dark-500);
+    outline: 1px solid var(--color-dark-100);
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px black;
+    background-color: inherit;
+    outline: 2px solid var(--color-info-700);
   }
 
   &[data-placeholder] {
-    color: #39315a;
+    color: currentcolor;
   }
 }
 
 .SelectIcon {
-  color: #6550b9;
+  // color: var(--color-light-100);
+  // background-color: var(--color-dark-900);
 }
 
 .SelectContent {
   overflow: hidden;
   background-color: white;
   border-radius: 6px;
-  box-shadow:
-    0 10px 38px -10px rgb(22 23 24 / 35%),
-    0 10px 20px -15px rgb(22 23 24 / 20%);
 }
 
 .SelectViewport {

@@ -17,7 +17,7 @@ export const SelectItem = forwardRef((props: Props, forwardedRef: ForwardedRef<H
   return (
     <Item className={cl.selectItem} {...restProps} ref={forwardedRef}>
       <ItemText>{children}</ItemText>
-      <ItemIndicator className="SelectItemIndicator">{/* <CheckIcon /> */} CheckIcon</ItemIndicator>
+      {/* <ItemIndicator className={s.selectItemIndicator}>+</ItemIndicator> */}
     </Item>
   );
 });

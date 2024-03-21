@@ -1,3 +1,4 @@
+import PrimitiveSelect from './components/ui/Select/PrimitiveSelect';
 import { Select } from './components/ui/Select/Select';
 import { SelectItemValue } from './components/ui/Select/Types';
 
@@ -11,12 +12,13 @@ const selectItemValues: SelectItemValue[] = [
 export const App = () => {
   return (
     <div>
-      <Select
-        ariaLabel="food"
+      {/* <Select
+        ariaLabel="Select-box"
         labelValue="Select-box"
         placeholder="Select-box"
         selectItemValues={selectItemValues}
-      />
+      /> */}
+      <PrimitiveSelect />
     </div>
   );
 };

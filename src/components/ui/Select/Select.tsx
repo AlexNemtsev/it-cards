@@ -3,7 +3,6 @@ import {
   Content,
   Group,
   Icon,
-  Label,
   Portal,
   Root,
   ScrollDownButton,
@@ -34,10 +33,6 @@ type Props = {
 export const Select = (props: Props) => {
   const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
 
-  // const classnames = {
-  //   selectTrigger: clsx(s.selectTrigger),
-  // };
-
   return (
     <div className={s.selectWrapper}>
       <label>
@@ -53,11 +48,10 @@ export const Select = (props: Props) => {
         <Portal>
           <Content className={s.selectContent}>
             <ScrollUpButton className={s.selectScrollButton}>
-              <ChevronUpIcon /> ▲
+              <ChevronUpIcon />
             </ScrollUpButton>
             <Viewport className={s.selectViewport}>
               <Group>
-                <Label className={s.selectLabel}>Fruits</Label>
                 {selectItemValues.map(item => (
                   <SelectItem key={item.id} value={item.value}>
                     {item.value}

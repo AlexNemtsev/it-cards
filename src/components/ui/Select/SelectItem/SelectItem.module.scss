@@ -6,14 +6,7 @@
   display: flex;
   align-items: center;
 
-  height: 25px;
-  padding: 0 35px 0 25px;
-
-  font-size: 13px;
-  line-height: 1;
-  color: greenyellow;
-
-  border-radius: 3px;
+  border-radius: 2px;
 
   &[data-disabled] {
     pointer-events: none;

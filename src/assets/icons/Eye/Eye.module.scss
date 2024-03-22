@@ -1,0 +1,15 @@
+.eye,
+.eyeOff {
+  cursor: pointer;
+
+  position: absolute;
+  top: 20%;
+  right: 12px;
+
+  fill: var(--color-light-100);
+}
+
+.disabled {
+  cursor: auto;
+  fill: var(--color-dark-300);
+}

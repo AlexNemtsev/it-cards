@@ -1,0 +1,13 @@
+.close {
+  cursor: pointer;
+
+  position: absolute;
+  top: 26%;
+  right: 12px;
+
+  fill: var(--color-light-100);
+
+  &_error {
+    fill: var(--color-danger-300);
+  }
+}

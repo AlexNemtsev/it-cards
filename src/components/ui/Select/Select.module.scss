@@ -17,7 +17,7 @@ button {
   line-height: var(--line-height-m);
   color: var(--color-dark-100);
 
-  &Disabled {
+  &.disabled {
     color: var(--color-dark-300);
   }
 }
@@ -83,31 +83,6 @@ button {
   border-radius: 2px;
 }
 
-.selectItem {
-  user-select: none;
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  height: 36px;
-  padding: 0 35px 0 25px;
-
-  font-size: var(--font-size-m);
-  line-height: 1;
-  color: var(--color-light-100);
-
-  &[data-disabled] {
-    pointer-events: none;
-  }
-
-  &[data-highlighted] {
-    background-color: var(--color-accent-900);
-    outline: none;
-  }
-}
-
 .selectLabel {
   display: flex;
   align-items: center;
@@ -120,17 +95,6 @@ button {
   color: var(--color-light-100);
 
   border-bottom: 1px solid var(--color-dark-300);
-}
-
-.selectItemIndicator {
-  position: absolute;
-  left: 0;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 25px;
 }
 
 .selectScrollButton {

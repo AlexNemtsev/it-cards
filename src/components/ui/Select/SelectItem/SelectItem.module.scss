@@ -1,0 +1,35 @@
+.selectItem {
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 36px;
+  padding: 0 35px 0 25px;
+
+  font-size: var(--font-size-m);
+  line-height: 1;
+  color: var(--color-light-100);
+
+  &[data-disabled] {
+    pointer-events: none;
+  }
+
+  &[data-highlighted] {
+    background-color: var(--color-accent-900);
+    outline: none;
+  }
+}
+
+.selectItemIndicator {
+  position: absolute;
+  left: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+}

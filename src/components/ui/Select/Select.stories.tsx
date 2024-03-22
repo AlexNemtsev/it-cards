@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { PrimitiveSelect } from './PrimitiveSelect';
-import { SelectItemValue } from './Types';
+import { Select } from './Select';
+import { SelectItemValue } from './SelectItemValue';
 
 const selectItemValues: SelectItemValue[] = [
   { id: 1, value: 'apple' },
@@ -11,10 +11,10 @@ const selectItemValues: SelectItemValue[] = [
 ];
 
 const meta = {
-  component: PrimitiveSelect,
+  component: Select,
   tags: ['autodocs'],
-  // title: 'Components/PrimitiveSelect',
-} satisfies Meta<typeof PrimitiveSelect>;
+  title: 'Components/PrimitiveSelect',
+} satisfies Meta<typeof Select>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

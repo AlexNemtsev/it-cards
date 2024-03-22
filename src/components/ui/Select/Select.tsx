@@ -1,14 +1,9 @@
-import React, { ComponentPropsWithoutRef, ForwardedRef } from 'react';
-
 import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/assets/icons/ChevronUpIcon';
 import {
   Content,
   Group,
   Icon,
-  Item,
-  ItemIndicator,
-  ItemText,
   Label,
   Portal,
   Root,
@@ -20,10 +15,11 @@ import {
 } from '@radix-ui/react-select';
 import clsx from 'clsx';
 
-import s from './PrimitiveSelect.module.scss';
+import s from './Select.module.scss';
 
 import { Typography } from '../Typography';
-import { SelectItemValue } from './Types';
+import { SelectItem } from './SelectItem';
+import { SelectItemValue } from './SelectItemValue';
 
 type Props = {
   ariaLabel: string;
@@ -33,11 +29,11 @@ type Props = {
   selectItemValues: SelectItemValue[];
 };
 
-export const PrimitiveSelect = (props: Props) => {
+export const Select = (props: Props) => {
   const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
 
   const classNames = {
-    label: clsx(s.label, disabled && s.labelDisabled),
+    label: clsx(s.label, { [s.disabled]: disabled }),
   };
 
   return (
@@ -81,19 +77,3 @@ export const PrimitiveSelect = (props: Props) => {
     </div>
   );
 };
-
-type PropsSelectItem = {} & ComponentPropsWithoutRef<typeof Item>;
-
-const SelectItem = React.forwardRef(
-  (
-    { children, className, ...props }: PropsSelectItem,
-    forwardedRef: ForwardedRef<HTMLDivElement>
-  ) => {
-    return (
-      <Item className={clsx(s.selectItem, className)} {...props} ref={forwardedRef}>
-        <ItemText>{children}</ItemText>
-        <ItemIndicator className={s.selectItemIndicator}>✓</ItemIndicator>
-      </Item>
-    );
-  }
-);

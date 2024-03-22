@@ -41,26 +41,26 @@ export const PrimitiveSelect = (props: Props) => {
   };
 
   return (
-    <div className={s.SelectWrapper}>
+    <div className={s.selectWrapper}>
       <label>
         <Typography.Caption className={classNames.label}>{labelValue}</Typography.Caption>
       </label>
       <Root disabled={disabled}>
-        <Trigger aria-label={ariaLabel} className={s.SelectTrigger}>
+        <Trigger aria-label={ariaLabel} className={s.selectTrigger}>
           <Value placeholder={placeholder} />
-          <Icon className={s.SelectIcon}>
+          <Icon className={s.selectIcon}>
             <ChevronDownIcon />
           </Icon>
         </Trigger>
         <Portal>
-          <Content className={s.SelectContent}>
-            <ScrollUpButton className={s.SelectScrollButton}>
+          <Content className={s.selectContent}>
+            <ScrollUpButton className={s.selectScrollButton}>
               <ChevronUpIcon />
             </ScrollUpButton>
-            <Viewport className={s.SelectViewport}>
+            <Viewport className={s.selectViewport}>
               <Group>
-                <Label className={s.SelectLabel}>
-                  <Typography.Caption className={s.SelectLabelTypograpgy}>
+                <Label className={s.selectLabel}>
+                  <Typography.Caption className={s.selectLabelTypograpgy}>
                     {labelValue}
                   </Typography.Caption>
                   <ChevronUpIcon />
@@ -72,7 +72,7 @@ export const PrimitiveSelect = (props: Props) => {
                 ))}
               </Group>
             </Viewport>
-            <ScrollDownButton className={s.SelectScrollButton}>
+            <ScrollDownButton className={s.selectScrollButton}>
               <ChevronDownIcon />
             </ScrollDownButton>
           </Content>
@@ -90,9 +90,9 @@ const SelectItem = React.forwardRef(
     forwardedRef: ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <Item className={clsx(s.SelectItem, className)} {...props} ref={forwardedRef}>
+      <Item className={clsx(s.selectItem, className)} {...props} ref={forwardedRef}>
         <ItemText>{children}</ItemText>
-        <ItemIndicator className={s.SelectItemIndicator}>✓</ItemIndicator>
+        <ItemIndicator className={s.selectItemIndicator}>✓</ItemIndicator>
       </Item>
     );
   }

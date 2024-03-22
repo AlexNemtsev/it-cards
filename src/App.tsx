@@ -13,7 +13,6 @@ export const App = () => {
     <div>
       <PrimitiveSelect
         ariaLabel="Select-box"
-        disabled
         labelValue="Select-box"
         placeholder="Select-box"
         selectItemValues={selectItemValues}

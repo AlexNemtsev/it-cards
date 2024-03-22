@@ -13,7 +13,7 @@ const selectItemValues: SelectItemValue[] = [
 const meta = {
   component: Select,
   tags: ['autodocs'],
-  title: 'Components/PrimitiveSelect',
+  title: 'Components/Select',
 } satisfies Meta<typeof Select>;
 
 export default meta;

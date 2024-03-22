@@ -33,7 +33,7 @@ export const Select = (props: Props) => {
   const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
 
   const classNames = {
-    label: clsx(s.label, { [s.disabled]: disabled }),
+    label: clsx(s.label, disabled && s.disabled),
   };
 
   return (

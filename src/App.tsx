@@ -1,4 +1,4 @@
-import PrimitiveSelect from './components/ui/Select/PrimitiveSelect';
+import { PrimitiveSelect } from './components/ui/Select/PrimitiveSelect';
 import { SelectItemValue } from './components/ui/Select/Types';
 
 const selectItemValues: SelectItemValue[] = [
@@ -13,6 +13,7 @@ export const App = () => {
     <div>
       <PrimitiveSelect
         ariaLabel="Select-box"
+        disabled
         labelValue="Select-box"
         placeholder="Select-box"
         selectItemValues={selectItemValues}

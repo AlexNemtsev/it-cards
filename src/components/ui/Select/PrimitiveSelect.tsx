@@ -33,15 +33,19 @@ type Props = {
   selectItemValues: SelectItemValue[];
 };
 
-const PrimitiveSelect = (props: Props) => {
-  const { ariaLabel, labelValue, placeholder, selectItemValues } = props;
+export const PrimitiveSelect = (props: Props) => {
+  const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
+
+  const classNames = {
+    label: clsx(s.label, disabled && s.labelDisabled),
+  };
 
   return (
     <div className={s.SelectWrapper}>
       <label>
-        <Typography.Caption className={s.label}>{labelValue}</Typography.Caption>
+        <Typography.Caption className={classNames.label}>{labelValue}</Typography.Caption>
       </label>
-      <Root>
+      <Root disabled={disabled}>
         <Trigger aria-label={ariaLabel} className={s.SelectTrigger}>
           <Value placeholder={placeholder} />
           <Icon className={s.SelectIcon}>
@@ -93,5 +97,3 @@ const SelectItem = React.forwardRef(
     );
   }
 );
-
-export default PrimitiveSelect;

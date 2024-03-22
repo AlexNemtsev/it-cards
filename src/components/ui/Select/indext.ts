@@ -1,1 +1,1 @@
-export * from './Select';
+export { PrimitiveSelect } from './PrimitiveSelect';

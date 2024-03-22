@@ -16,6 +16,10 @@ button {
   font-size: var(--font-size-m);
   line-height: var(--line-height-m);
   color: var(--color-dark-100);
+
+  &Disabled {
+    color: var(--color-dark-300);
+  }
 }
 
 .SelectTrigger {
@@ -52,6 +56,8 @@ button {
   }
 
   &:disabled {
+    fill: var(--color-dark-300);
+
     &:hover,
     &:focus {
       background-color: inherit;

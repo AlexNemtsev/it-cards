@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
+import { Button } from '@/components/ui/Button';
 import { Typography } from '@/components/ui/Typography';
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group';
 import { clsx } from 'clsx';
@@ -24,6 +25,7 @@ export const RadioGroupItem = (props: RadioGroupItemProps) => {
         <Indicator className={classNames.radioGroupIndicator} />
       </Item>
       <Typography.Body2>{label}</Typography.Body2>
+      <Button>123</Button>
     </label>
   );
 };

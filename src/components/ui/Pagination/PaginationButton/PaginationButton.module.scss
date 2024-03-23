@@ -1,0 +1,36 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 8px;
+
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+
+  transition: background-color 1s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-dark-500);
+    transition: background-color 0.4s;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-info-900);
+  }
+
+  svg {
+    fill: green;
+  }
+}
+
+.active {
+  color: var(--color-dark-900);
+  background-color: var(--color-light-100);
+
+  &:hover {
+    cursor: auto;
+  }
+}

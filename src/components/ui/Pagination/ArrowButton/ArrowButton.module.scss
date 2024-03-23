@@ -1,0 +1,34 @@
+.button {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: transparent;
+  border: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  svg {
+    fill: currentcolor;
+  }
+
+  &.next {
+    transform: rotate(180deg);
+  }
+}
+
+.active {
+  color: var(--color-dark-900);
+  background-color: var(--color-light-100);
+
+  &:hover {
+    cursor: auto;
+  }
+}

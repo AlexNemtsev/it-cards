@@ -32,14 +32,12 @@ type Props = {
 export const Select = (props: Props) => {
   const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
 
-  const classNames = {
-    label: clsx(s.label, disabled && s.disabled),
-  };
-
   return (
     <div className={s.selectWrapper}>
       <label>
-        <Typography.Caption className={classNames.label}>{labelValue}</Typography.Caption>
+        <Typography.Caption className={clsx(s.label, disabled && s.disabled)}>
+          {labelValue}
+        </Typography.Caption>
       </label>
       <Root disabled={disabled}>
         <Trigger aria-label={ariaLabel} className={s.selectTrigger}>

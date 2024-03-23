@@ -1,20 +1,29 @@
-import * as Dialog from '@radix-ui/react-dialog';
+import {
+  Close,
+  Content,
+  Description,
+  Overlay,
+  Portal,
+  Root,
+  Title,
+  Trigger,
+} from '@radix-ui/react-dialog';
 
 import s from './Modal.module.scss';
 // import { Cross2Icon } from '@radix-ui/react-icons';
 
 export const Modal = () => (
-  <Dialog.Root>
-    <Dialog.Trigger asChild>
+  <Root>
+    <Trigger asChild>
       <button className="Button violet">Edit profile</button>
-    </Dialog.Trigger>
-    <Dialog.Portal>
-      <Dialog.Overlay className={s.DialogOverlay} />
-      <Dialog.Content className={s.DialogContent}>
-        <Dialog.Title className={s.DialogTitle}>Edit profile</Dialog.Title>
-        <Dialog.Description className={s.DialogDescription}>
+    </Trigger>
+    <Portal>
+      <Overlay className={s.DialogOverlay} />
+      <Content className={s.DialogContent}>
+        <Title className={s.DialogTitle}>Edit profile</Title>
+        <Description className={s.DialogDescription}>
           Make changes to your profile here. Click save when you are done.
-        </Dialog.Description>
+        </Description>
         <fieldset className={s.Fieldset}>
           <label className={s.Label} htmlFor="name">
             Name
@@ -28,18 +37,18 @@ export const Modal = () => (
           <input className={s.Input} defaultValue="@peduarte" id="username" />
         </fieldset>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 25 }}>
-          <Dialog.Close asChild>
+          <Close asChild>
             <button className="Button green">Save changes</button>
-          </Dialog.Close>
+          </Close>
         </div>
-        <Dialog.Close asChild>
+        <Close asChild>
           <button aria-label="Close" className="IconButton">
             {/* <Cross2Icon /> */}
           </button>
-        </Dialog.Close>
-      </Dialog.Content>
-    </Dialog.Portal>
-  </Dialog.Root>
+        </Close>
+      </Content>
+    </Portal>
+  </Root>
 );
 
 export default Modal;

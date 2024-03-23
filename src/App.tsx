@@ -1,3 +1,9 @@
+import { Modal } from './components/ui/Modal';
+
 export const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Modal />
+    </div>
+  );
 };

@@ -1,14 +1,39 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { useState } from 'react';
+
+import { Typography } from '../Typography';
 import { Select } from './Select';
 import { SelectItemValue } from './SelectItemValue';
 
-const selectItemValues: SelectItemValue[] = [
-  { id: 1, value: 'apple' },
-  { id: 2, value: 'pea' },
-  { id: 3, value: 'cocount' },
-  { id: 4, value: 'banana' },
-];
+const selectData = {
+  ariaLabel: 'Select-box',
+  labelValue: 'Select-box',
+  placeholder: 'Select-box',
+  values: [
+    { id: 1, value: 'apple' },
+    { id: 2, value: 'pea' },
+    { id: 3, value: 'cocount' },
+    { id: 4, value: 'banana' },
+  ] as SelectItemValue[],
+};
+
+const smallSelectData = {
+  ariaLabel: 'pagination',
+  isSmall: true,
+  placeholder: '100',
+  values: [
+    { id: 1, value: '1' },
+    { id: 2, value: '2' },
+    { id: 3, value: '3' },
+    { id: 4, value: '4' },
+    { id: 5, value: '5' },
+    { id: 6, value: '6' },
+    { id: 7, value: '7' },
+    { id: 8, value: '8' },
+    { id: 9, value: '9' },
+  ] as SelectItemValue[],
+};
 
 const meta = {
   component: Select,
@@ -19,20 +44,79 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const BasePrimitiveSelect: Story = {
+export const BaseSelect: Story = {
   args: {
-    ariaLabel: 'Select-box',
-    labelValue: 'Select-box',
-    placeholder: 'Select-box',
-    selectItemValues: selectItemValues,
+    ariaLabel: selectData.ariaLabel,
+    labelValue: selectData.labelValue,
+    placeholder: selectData.placeholder,
+    selectItemValues: selectData.values,
+  },
+  render: () => {
+    const [displayValue, setDisplayValue] = useState('');
+
+    const onValueChange = (value: string) => {
+      setDisplayValue(value);
+    };
+
+    return (
+      <>
+        <Select
+          ariaLabel={selectData.ariaLabel}
+          labelValue={selectData.labelValue}
+          onValueChange={onValueChange}
+          placeholder={selectData.placeholder}
+          selectItemValues={selectData.values}
+        />
+        <Typography.Body1>{displayValue}</Typography.Body1>
+      </>
+    );
   },
 };
-export const PrimitiveSelectDisabled: Story = {
+
+export const SmallSelect: Story = {
   args: {
-    ariaLabel: 'Select-box',
+    ariaLabel: smallSelectData.ariaLabel,
+    isSmall: smallSelectData.isSmall,
+    placeholder: smallSelectData.placeholder,
+    selectItemValues: smallSelectData.values,
+  },
+  render: () => {
+    const [displayValue, setDisplayValue] = useState('');
+
+    const onValueChange = (value: string) => {
+      setDisplayValue(value);
+    };
+
+    return (
+      <>
+        <Select
+          ariaLabel={smallSelectData.ariaLabel}
+          isSmall={smallSelectData.isSmall}
+          onValueChange={onValueChange}
+          placeholder={smallSelectData.placeholder}
+          selectItemValues={smallSelectData.values}
+        />
+        <Typography.Body1>{displayValue}</Typography.Body1>
+      </>
+    );
+  },
+};
+
+export const SelectOpen: Story = {
+  args: {
+    ariaLabel: selectData.ariaLabel,
+    labelValue: selectData.labelValue,
+    open: true,
+    placeholder: selectData.placeholder,
+    selectItemValues: selectData.values,
+  },
+};
+export const SelectDisabled: Story = {
+  args: {
+    ariaLabel: selectData.ariaLabel,
     disabled: true,
-    labelValue: 'Select-box',
-    placeholder: 'Select-box',
-    selectItemValues: selectItemValues,
+    labelValue: selectData.labelValue,
+    placeholder: selectData.placeholder,
+    selectItemValues: selectData.values,
   },
 };

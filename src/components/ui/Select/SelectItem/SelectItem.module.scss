@@ -7,11 +7,16 @@
   align-items: center;
 
   height: 36px;
-  padding: 0 35px 0 25px;
+  padding: 0 24px;
 
   font-size: var(--font-size-m);
   line-height: 1;
   color: var(--color-light-100);
+
+  &.small {
+    height: 24px;
+    padding: 0 5px;
+  }
 
   &[data-disabled] {
     pointer-events: none;
@@ -21,15 +26,4 @@
     background-color: var(--color-accent-900);
     outline: none;
   }
-}
-
-.selectItemIndicator {
-  position: absolute;
-  left: 0;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 25px;
 }

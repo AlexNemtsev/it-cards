@@ -1,3 +1,5 @@
+import { ComponentPropsWithoutRef } from 'react';
+
 import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/assets/icons/ChevronUpIcon';
 import {
@@ -23,24 +25,27 @@ import { SelectItemValue } from './SelectItemValue';
 
 type Props = {
   ariaLabel: string;
-  disabled?: boolean;
-  labelValue: string;
-  placeholder: string;
+  isSmall?: boolean;
+  labelValue?: number | string;
+  placeholder: number | string;
   selectItemValues: SelectItemValue[];
-};
+} & ComponentPropsWithoutRef<typeof Root>;
 
 export const Select = (props: Props) => {
-  const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
+  const { ariaLabel, disabled, isSmall, labelValue, placeholder, selectItemValues, ...restProps } =
+    props;
 
   return (
     <div className={s.selectWrapper}>
-      <label>
-        <Typography.Caption className={clsx(s.label, disabled && s.disabled)}>
-          {labelValue}
-        </Typography.Caption>
-      </label>
-      <Root disabled={disabled}>
-        <Trigger aria-label={ariaLabel} className={s.selectTrigger}>
+      {labelValue && (
+        <label>
+          <Typography.Caption className={clsx(s.label, disabled && s.disabled)}>
+            {labelValue}
+          </Typography.Caption>
+        </label>
+      )}
+      <Root disabled={disabled} {...restProps}>
+        <Trigger aria-label={ariaLabel} className={clsx(s.selectTrigger, isSmall && s.small)}>
           <Value placeholder={placeholder} />
           <Icon className={s.selectIcon}>
             <ChevronDownIcon />
@@ -53,14 +58,14 @@ export const Select = (props: Props) => {
             </ScrollUpButton>
             <Viewport className={s.selectViewport}>
               <Group>
-                <Label className={s.selectLabel}>
+                <Label className={clsx(s.selectLabel, isSmall && s.small)}>
                   <Typography.Caption className={s.selectLabelTypograpgy}>
                     {labelValue}
                   </Typography.Caption>
                   <ChevronUpIcon />
                 </Label>
                 {selectItemValues.map(item => (
-                  <SelectItem key={item.id} value={item.value}>
+                  <SelectItem isSmall={!!isSmall} key={item.id} value={item.value}>
                     {item.value}
                   </SelectItem>
                 ))}

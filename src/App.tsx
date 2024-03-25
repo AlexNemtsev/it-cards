@@ -3,7 +3,7 @@ import { Modal } from './components/ui/Modal';
 export const App = () => {
   return (
     <div>
-      <Modal />
+      <Modal title="Title" />
     </div>
   );
 };

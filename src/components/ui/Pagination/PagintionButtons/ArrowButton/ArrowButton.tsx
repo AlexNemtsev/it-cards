@@ -6,8 +6,8 @@ import s from './ArrowButton.module.scss';
 type Props = { isPrev?: boolean } & ComponentPropsWithoutRef<'button'>;
 
 export const ArrowButton = (props: Props) => {
-  const { children, className, isPrev, ...restProps } = props;
-  const classNames = clsx(s.button, isPrev && s.next, className);
+  const { children, className, disabled, isPrev, ...restProps } = props;
+  const classNames = clsx(s.button, disabled && s.disabled, isPrev && s.prev, className);
 
   return (
     <button className={classNames} {...restProps}>

@@ -1,4 +1,4 @@
-import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes } from 'react';
 
 import { Close } from '@/assets/icons/Close';
 import { Eye } from '@/assets/icons/Eye/Eye';
@@ -10,15 +10,26 @@ import s from './Input.module.scss';
 import { Typography } from '../Typography';
 
 type Props = {
+  clearSearch?: () => void;
   error?: string;
   labelValue?: string;
+  maskedPassword?: boolean;
+  showPassword?: (value: boolean) => void;
   typeValue?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = (props: Props) => {
-  const { disabled, error, labelValue, typeValue, ...otherProps } = props;
-
-  const [inputValue, setInputValue] = useState('');
+  const {
+    clearSearch,
+    disabled,
+    error,
+    labelValue,
+    maskedPassword,
+    showPassword,
+    typeValue,
+    value,
+    ...otherProps
+  } = props;
 
   const typePassword = typeValue === 'password';
   const typeSearch = typeValue === 'search';
@@ -26,14 +37,6 @@ export const Input = (props: Props) => {
   const classNames = {
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
     label: clsx(s.label, disabled && s.disabled),
-  };
-
-  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleClickClose = () => {
-    setInputValue('');
   };
 
   return (
@@ -49,15 +52,15 @@ export const Input = (props: Props) => {
         <input
           className={classNames.input}
           disabled={disabled}
-          onChange={handleChangeInput}
-          value={inputValue}
+          type={typePassword && maskedPassword ? 'password' : 'text'}
+          value={value}
           {...otherProps}
           id={labelValue}
         />
-        {typePassword && <Eye disabled={disabled} />}
-        {typeSearch && inputValue && (
-          <Close handleClickClose={handleClickClose} isError={!!error} />
+        {typePassword && (
+          <Eye disabled={disabled} maskedPassword={maskedPassword} showPassword={showPassword!} />
         )}
+        {typeSearch && value && <Close handleClickClose={clearSearch!} isError={!!error} />}
       </div>
 
       {error && <Typography.Caption className={s.errorText}>{error}</Typography.Caption>}

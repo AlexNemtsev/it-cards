@@ -1,0 +1,26 @@
+.dropdownItem {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  width: 100%;
+
+  background-color: transparent;
+  border: none;
+
+  transition: 0.5s;
+
+  svg {
+    fill: var(--color-light-100);
+    transition: 0.5s;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-dark-100);
+
+    svg {
+      fill: var(--color-dark-100);
+    }
+  }
+}

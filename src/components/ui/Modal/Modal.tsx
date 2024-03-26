@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
+import { Close as CloseIcon } from '@/assets/icons/Close';
 import {
   Close,
   Content,
@@ -57,7 +58,7 @@ export const Modal = (props: Props) => {
           </div>
           <Close asChild>
             <button aria-label="Close" className={s.IconButton}>
-              {/* <Cross2Icon /> */}x
+              {/* <CloseIcon /> */}x
             </button>
           </Close>
         </Content>

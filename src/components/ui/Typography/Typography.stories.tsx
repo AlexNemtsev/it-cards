@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ReactNode } from 'react';
+import { ElementType, ReactNode, useState } from 'react';
 
 import { Typography } from './Typography';
 
@@ -14,12 +14,20 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const createStory = (Component: typeof Typography.Body1, children?: ReactNode): Story => {
+type createStoryArgs = {
+  Component: typeof Typography.Body1;
+  as?: ElementType;
+  children?: ReactNode;
+};
+
+const createStory = (args: createStoryArgs): Story => {
+  const { Component, as, children } = args;
+
   return {
     args: {
       children,
     },
-    render: ({ children }) => <Component>{children}</Component>,
+    render: ({ children }) => <Component as={as}>{children}</Component>,
   };
 };
 
@@ -48,26 +56,46 @@ export const AllTypography = {
   ),
 };
 
-export const H1 = createStory(Typography.H1, testText);
+export const H1 = createStory({ Component: Typography.H1, children: testText });
 
-export const H2 = createStory(Typography.H2, testText);
+export const H2 = createStory({ Component: Typography.H2, children: testText });
 
-export const H3 = createStory(Typography.H3, testText);
+export const H3 = createStory({ Component: Typography.H3, children: testText });
 
-export const H4 = createStory(Typography.H4, testText);
+export const H4 = createStory({ Component: Typography.H4, children: testText });
 
-export const Body1 = createStory(Typography.Body1, testText);
+export const Body1 = createStory({ Component: Typography.Body1, children: testText });
 
-export const Body2 = createStory(Typography.Body2, testText);
+export const Body2 = createStory({ Component: Typography.Body2, children: testText });
 
-export const Subtitle1 = createStory(Typography.Subtitle1, testText);
+export const Subtitle1 = createStory({ Component: Typography.Subtitle1, children: testText });
 
-export const Subtitle2 = createStory(Typography.Subtitle2, testText);
+export const Subtitle2 = createStory({ Component: Typography.Subtitle2, children: testText });
 
-export const Caption = createStory(Typography.Caption, testText);
+export const Caption = createStory({ Component: Typography.Caption, children: testText });
 
-export const Overline = createStory(Typography.Overline, testText);
+export const Overline = createStory({ Component: Typography.Overline, children: testText });
 
-export const Link1 = createStory(Typography.Link1, testText);
+export const Link1 = createStory({ Component: Typography.Link1, children: testText });
 
-export const Link2 = createStory(Typography.Link2, testText);
+export const Link2 = createStory({ Component: Typography.Link2, children: testText });
+
+export const TypographyAsButton: Story = {
+  render: () => {
+    const [value, setValue] = useState(0);
+
+    return (
+      <>
+        <Typography.Body1
+          as="button"
+          onClick={() => {
+            setValue(value + 1);
+          }}
+        >
+          like a button press to increase
+        </Typography.Body1>
+        <Typography.Body2>{value}</Typography.Body2>
+      </>
+    );
+  },
+};

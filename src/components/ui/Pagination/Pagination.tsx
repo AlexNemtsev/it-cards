@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, useState } from 'react';
 
 import { ArrowButton } from '@/components/ui/Pagination/PagintionButtons/ArrowButton';
 import { PagintionButtons } from '@/components/ui/Pagination/PagintionButtons/PagintionButtons';
@@ -15,14 +15,20 @@ type Props = {
 
 export const Pagination = (props: Props) => {
   const { currentPage, itemsPerPage, totalItems, totalPages, ...restProps } = props;
+  const [localCurrentPage, setLocalCurrentPage] = useState(currentPage);
 
-  const beforeCurrentPage = currentPage > 1 ? currentPage - 1 : null;
+  // const beforeCurrentPage = localCurrentPage > 1 ? localCurrentPage - 1 : null;
 
   return (
     <div className={s.pagination}>
-      <ArrowButton disabled={currentPage == 1} isPrev />
-      <PagintionButtons {...restProps} currentPage={currentPage} totalPages={totalPages} />
-      <ArrowButton disabled={currentPage >= totalPages - 1} />
+      <ArrowButton disabled={localCurrentPage == 1} isPrev />
+      <PagintionButtons
+        {...restProps}
+        currentPage={localCurrentPage}
+        setLocalCurrentPage={setLocalCurrentPage}
+        totalPages={totalPages}
+      />
+      <ArrowButton disabled={localCurrentPage >= totalPages - 1} />
       <Select
         ariaLabel="SelectBox"
         labelValue=""
@@ -30,8 +36,8 @@ export const Pagination = (props: Props) => {
         selectItemValues={[
           { id: 1, value: '5' },
           { id: 2, value: '7' },
-          { id: 2, value: '10' },
-          { id: 2, value: '15' },
+          { id: 3, value: '10' },
+          { id: 4, value: '15' },
         ]}
       />
     </div>

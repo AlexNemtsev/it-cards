@@ -5,6 +5,7 @@ import { clsx } from 'clsx';
 import s from './Typography.module.scss';
 
 type Props<T extends ElementType> = {
+  as?: ElementType;
   children?: ReactNode;
 } & ComponentPropsWithoutRef<T>;
 
@@ -12,11 +13,11 @@ const createTypographyComponent = <T extends ElementType>(
   basicClassName: Component
 ): FC<Props<T>> => {
   return (props: Props<T>) => {
-    const { className } = props;
-    const Component = COMPONENTS[basicClassName];
+    const { as, className, ...restProps } = props;
+    const Component = as || COMPONENTS[basicClassName];
     const classNames = clsx(s[basicClassName], className);
 
-    return <Component className={classNames} {...props} />;
+    return <Component className={classNames} {...restProps} />;
   };
 };
 

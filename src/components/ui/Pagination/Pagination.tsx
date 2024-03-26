@@ -14,14 +14,14 @@ type Props = {
 } & ComponentPropsWithoutRef<'div'>;
 
 export const Pagination = (props: Props) => {
-  const { currentPage, itemsPerPage, totalItems, totalPages } = props;
+  const { currentPage, itemsPerPage, totalItems, totalPages, ...restProps } = props;
 
   const beforeCurrentPage = currentPage > 1 ? currentPage - 1 : null;
 
   return (
     <div className={s.pagination}>
       <ArrowButton disabled={currentPage == 1} isPrev />
-      <PagintionButtons currentPage={currentPage} totalPages={totalPages} />
+      <PagintionButtons {...restProps} currentPage={currentPage} totalPages={totalPages} />
       <ArrowButton disabled={currentPage >= totalPages - 1} />
       <Select
         ariaLabel="SelectBox"

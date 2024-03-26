@@ -11,14 +11,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Pagination>;
 
-export const Pagination7: Story = {
-  args: {
-    currentPage: 1,
-    itemsPerPage: 5,
-    totalItems: 7,
-    totalPages: 2,
-  },
-};
 export const Pagination305: Story = {
   args: {
     currentPage: 1,
@@ -27,3 +19,12 @@ export const Pagination305: Story = {
     totalPages: 21,
   },
 };
+
+// export const Pagination7: Story = {
+//   args: {
+//     currentPage: 1,
+//     itemsPerPage: 5,
+//     totalItems: 7,
+//     totalPages: 2,
+//   },
+// };

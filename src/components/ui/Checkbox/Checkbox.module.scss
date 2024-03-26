@@ -71,7 +71,7 @@
 
   &:disabled {
     pointer-events: none;
-    background-color: transparent;
+    background-color: var(--color-dark-900);
 
     &::before {
       display: none;

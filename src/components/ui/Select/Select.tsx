@@ -26,26 +26,27 @@ import { SelectItemValue } from './SelectItemValue';
 type Props = {
   ariaLabel: string;
   isSmall?: boolean;
-  labelValue?: number | string;
-  placeholder: number | string;
+  label?: number | string;
+  placeholder: string;
   selectItemValues: SelectItemValue[];
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Select = (props: Props) => {
-  const { ariaLabel, disabled, isSmall, labelValue, placeholder, selectItemValues, ...restProps } =
+  const { ariaLabel, disabled, isSmall, label, placeholder, selectItemValues, ...restProps } =
     props;
 
   return (
     <div className={s.selectWrapper}>
-      {labelValue && (
+      {label && (
         <label>
           <Typography.Caption className={clsx(s.label, disabled && s.disabled)}>
-            {labelValue}
+            {label}
           </Typography.Caption>
         </label>
       )}
       <Root disabled={disabled} {...restProps}>
         <Trigger aria-label={ariaLabel} className={clsx(s.selectTrigger, isSmall && s.small)}>
+          {/* Добавить в placeholder Компонент типографики */}
           <Value placeholder={placeholder} />
           <Icon className={s.selectIcon}>
             <ChevronDownIcon />
@@ -60,7 +61,7 @@ export const Select = (props: Props) => {
               <Group>
                 <Label className={clsx(s.selectLabel, isSmall && s.small)}>
                   <Typography.Caption className={s.selectLabelTypograpgy}>
-                    {labelValue}
+                    {label}
                   </Typography.Caption>
                   <ChevronUpIcon />
                 </Label>

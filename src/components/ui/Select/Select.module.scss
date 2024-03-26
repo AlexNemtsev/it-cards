@@ -10,8 +10,8 @@ button {
 }
 
 .label {
-  font-size: var(--font-size-m);
-  line-height: var(--line-height-m);
+  // font-size: var(--font-size-m);
+  // line-height: var(--line-height-m);
   color: var(--color-dark-100);
 
   &.disabled {
@@ -30,8 +30,8 @@ button {
   height: 36px;
   padding: 6px 12px;
 
-  font-size: var(--font-size-m);
-  line-height: var(--line-height-m);
+  // font-size: var(--font-size-m);
+  // line-height: var(--line-height-m);
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);

@@ -8,7 +8,7 @@ import { SelectItemValue } from './SelectItemValue';
 
 const selectData = {
   ariaLabel: 'Select-box',
-  labelValue: 'Select-box',
+  label: 'Select-box',
   placeholder: 'Select-box',
   values: [
     { id: 1, value: 'apple' },
@@ -47,7 +47,7 @@ type Story = StoryObj<typeof meta>;
 export const BaseSelect: Story = {
   args: {
     ariaLabel: selectData.ariaLabel,
-    labelValue: selectData.labelValue,
+    label: selectData.label,
     placeholder: selectData.placeholder,
     selectItemValues: selectData.values,
   },
@@ -62,7 +62,7 @@ export const BaseSelect: Story = {
       <>
         <Select
           ariaLabel={selectData.ariaLabel}
-          labelValue={selectData.labelValue}
+          label={selectData.label}
           onValueChange={onValueChange}
           placeholder={selectData.placeholder}
           selectItemValues={selectData.values}
@@ -105,7 +105,7 @@ export const SmallSelect: Story = {
 export const SelectOpen: Story = {
   args: {
     ariaLabel: selectData.ariaLabel,
-    labelValue: selectData.labelValue,
+    label: selectData.label,
     open: true,
     placeholder: selectData.placeholder,
     selectItemValues: selectData.values,
@@ -115,7 +115,7 @@ export const SelectDisabled: Story = {
   args: {
     ariaLabel: selectData.ariaLabel,
     disabled: true,
-    labelValue: selectData.labelValue,
+    label: selectData.label,
     placeholder: selectData.placeholder,
     selectItemValues: selectData.values,
   },

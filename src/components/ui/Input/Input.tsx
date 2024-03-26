@@ -1,6 +1,6 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 
-import { Close } from '@/assets/icons/Close';
+import { Cross } from '@/assets/icons/Cross';
 import { Eye } from '@/assets/icons/Eye/Eye';
 import { Search } from '@/assets/icons/Search';
 import { clsx } from 'clsx';
@@ -10,29 +10,23 @@ import s from './Input.module.scss';
 import { Typography } from '../Typography';
 
 type Props = {
-  clearSearch?: () => void;
+  clearInput?: () => void;
   error?: string;
-  labelValue?: string;
-  maskedPassword?: boolean;
-  showPassword?: (value: boolean) => void;
-  typeValue?: 'password' | 'search';
+  label?: string;
+  type?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = (props: Props) => {
-  const {
-    clearSearch,
-    disabled,
-    error,
-    labelValue,
-    maskedPassword,
-    showPassword,
-    typeValue,
-    value,
-    ...otherProps
-  } = props;
+  const { clearInput, disabled, error, label, type, value, ...restProps } = props;
 
-  const typePassword = typeValue === 'password';
-  const typeSearch = typeValue === 'search';
+  const [maskedPassword, setMaskedPassword] = useState(false);
+
+  const showPassword = () => {
+    setMaskedPassword(!maskedPassword);
+  };
+
+  const typePassword = type === 'password';
+  const typeSearch = type === 'search';
 
   const classNames = {
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
@@ -41,9 +35,9 @@ export const Input = (props: Props) => {
 
   return (
     <div className={s.inputWrapper}>
-      {labelValue && !typeSearch && (
-        <label htmlFor={labelValue}>
-          <Typography.Caption className={classNames.label}>{labelValue}</Typography.Caption>
+      {label && !typeSearch && (
+        <label htmlFor={label}>
+          <Typography.Caption className={classNames.label}>{label}</Typography.Caption>
         </label>
       )}
 
@@ -54,13 +48,13 @@ export const Input = (props: Props) => {
           disabled={disabled}
           type={typePassword && maskedPassword ? 'password' : 'text'}
           value={value}
-          {...otherProps}
-          id={labelValue}
+          {...restProps}
+          id={label}
         />
         {typePassword && (
-          <Eye disabled={disabled} maskedPassword={maskedPassword} showPassword={showPassword!} />
+          <Eye disabled={disabled} maskedPassword={maskedPassword} onClick={showPassword} />
         )}
-        {typeSearch && value && <Close handleClickClose={clearSearch!} isError={!!error} />}
+        {typeSearch && value && <Cross isError={!!error} onClick={clearInput} />}
       </div>
 
       {error && <Typography.Caption className={s.errorText}>{error}</Typography.Caption>}

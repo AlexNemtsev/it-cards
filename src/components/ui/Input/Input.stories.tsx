@@ -25,7 +25,7 @@ export const InputTypeText: Story = {
 
     return (
       <>
-        <Input labelValue="Input" onChange={onValueChange} value={displayValue} />
+        <Input label="Input" onChange={onValueChange} value={displayValue} />
         <Typography.Body1>{displayValue}</Typography.Body1>
       </>
     );
@@ -35,7 +35,7 @@ export const InputTypeText: Story = {
 export const InputTypeTextError: Story = {
   args: {
     error: 'Error',
-    labelValue: 'input',
+    label: 'input',
     value: 'Error!',
   },
 };
@@ -43,33 +43,21 @@ export const InputTypeTextError: Story = {
 export const InputTypeTextDisabled: Story = {
   args: {
     disabled: true,
-    labelValue: 'input',
+    label: 'input',
   },
 };
 
 export const InputTypePassword: Story = {
   render: () => {
     const [password, setPassword] = useState('');
-    const [maskedPassword, setMaskedPassword] = useState(false);
 
     const onValueChange = (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
     };
 
-    const showPassword = (value: boolean) => {
-      setMaskedPassword(value);
-    };
-
     return (
       <>
-        <Input
-          labelValue="Input"
-          maskedPassword={maskedPassword}
-          onChange={onValueChange}
-          showPassword={showPassword}
-          typeValue="password"
-          value={password}
-        />
+        <Input label="Input" onChange={onValueChange} type="password" value={password} />
         <Typography.Body1>{password}</Typography.Body1>
       </>
     );
@@ -79,16 +67,16 @@ export const InputTypePassword: Story = {
 export const InputTypePasswordError: Story = {
   args: {
     error: 'Error!',
-    labelValue: 'input',
-    typeValue: 'password',
+    label: 'input',
+    type: 'password',
     value: 'Error',
   },
 };
 export const InputTypePasswordDisabled: Story = {
   args: {
     disabled: true,
-    labelValue: 'input',
-    typeValue: 'password',
+    label: 'input',
+    type: 'password',
   },
 };
 
@@ -106,12 +94,7 @@ export const InputTypeSearch: Story = {
 
     return (
       <>
-        <Input
-          clearSearch={clearSearch}
-          onChange={onValueChange}
-          typeValue="search"
-          value={search}
-        />
+        <Input clearInput={clearSearch} onChange={onValueChange} type="search" value={search} />
         <Typography.Body1>{search}</Typography.Body1>
       </>
     );
@@ -121,7 +104,7 @@ export const InputTypeSearch: Story = {
 export const InputTypeSearchError: Story = {
   args: {
     error: 'Error!',
-    typeValue: 'search',
+    type: 'search',
     value: 'Input search',
   },
 };
@@ -129,6 +112,6 @@ export const InputTypeSearchError: Story = {
 export const InputTypeSearchDisabled: Story = {
   args: {
     disabled: true,
-    typeValue: 'search',
+    type: 'search',
   },
 };

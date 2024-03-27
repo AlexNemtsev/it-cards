@@ -30,18 +30,19 @@ export const Input = (props: Props) => {
 
   const classNames = {
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
+    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
     label: clsx(s.label, disabled && s.disabled),
   };
 
   return (
-    <div className={s.inputWrapper}>
+    <div className={classNames.inputWrapper}>
       {label && !typeSearch && (
         <label htmlFor={label}>
-          <Typography.Caption className={classNames.label}>{label}</Typography.Caption>
+          <Typography.Body2 className={classNames.label}>{label}</Typography.Body2>
         </label>
       )}
 
-      <div className={s.field}>
+      <div className={clsx(s.field, disabled && s.disabled)}>
         {typeSearch && <Search isError={!!error} />}
         <input
           className={classNames.input}
@@ -51,9 +52,7 @@ export const Input = (props: Props) => {
           {...restProps}
           id={label}
         />
-        {typePassword && (
-          <Eye disabled={disabled} maskedPassword={maskedPassword} onClick={showPassword} />
-        )}
+        {typePassword && <Eye maskedPassword={maskedPassword} onClick={showPassword} />}
         {typeSearch && value && <Cross isError={!!error} onClick={clearInput} />}
       </div>
 

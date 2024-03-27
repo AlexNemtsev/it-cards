@@ -5,6 +5,8 @@ import clsx from 'clsx';
 
 import s from './SelectItem.module.scss';
 
+import { TypographySelector } from './TypographySelector';
+
 type Props = { isSmall: boolean } & ComponentPropsWithoutRef<typeof Item>;
 
 export const SelectItem = forwardRef((props: Props, forwardedRef: ForwardedRef<HTMLDivElement>) => {
@@ -16,7 +18,9 @@ export const SelectItem = forwardRef((props: Props, forwardedRef: ForwardedRef<H
       {...restProps}
       ref={forwardedRef}
     >
-      <ItemText>{children}</ItemText>
+      <ItemText>
+        <TypographySelector isSmall={isSmall}>{children}</TypographySelector>
+      </ItemText>
     </Item>
   );
 });

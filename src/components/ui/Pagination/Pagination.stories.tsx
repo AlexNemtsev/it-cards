@@ -13,42 +13,53 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Pagination>;
 
-export const Pagination305: Story = {
+export const Pagination7: Story = {
   args: {
     currentPage: 1,
-    itemsPerPage: 15,
-    totalItems: 305,
+    itemsPerPage: 10,
     totalPages: 7,
   },
-
-  render: ({ currentPage, itemsPerPage, totalItems, totalPages }) => {
+  render: ({ currentPage, itemsPerPage, totalPages }) => {
     const [displayValue, setDisplayValue] = useState(currentPage);
-
-    const onChangeHandler = () => {
-      // setDisplayValue(value);
-      console.log(123);
+    const onValueChange = (currentPage: number) => {
+      setDisplayValue(currentPage);
     };
 
     return (
       <>
-        <p>{currentPage}</p>
+        <p>currentPage is № {displayValue}</p>
         <Pagination
-          currentPage={currentPage}
+          currentPage={displayValue}
           itemsPerPage={itemsPerPage}
-          // onClick={onChangeHandler}
-          totalItems={totalItems}
+          onValueChange={onValueChange}
           totalPages={totalPages}
         />
       </>
     );
   },
 };
+export const Pagination12: Story = {
+  args: {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalPages: 12,
+  },
+  render: ({ currentPage, itemsPerPage, totalPages }) => {
+    const [displayValue, setDisplayValue] = useState(currentPage);
+    const onValueChange = (currentPage: number) => {
+      setDisplayValue(currentPage);
+    };
 
-// export const Pagination7: Story = {
-//   args: {
-//     currentPage: 1,
-//     itemsPerPage: 5,
-//     totalItems: 7,
-//     totalPages: 2,
-//   },
-// };
+    return (
+      <>
+        <p>currentPage is № {displayValue}</p>
+        <Pagination
+          currentPage={displayValue}
+          itemsPerPage={itemsPerPage}
+          onValueChange={onValueChange}
+          totalPages={totalPages}
+        />
+      </>
+    );
+  },
+};

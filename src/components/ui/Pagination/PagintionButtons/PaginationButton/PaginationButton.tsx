@@ -7,15 +7,14 @@ import s from './PaginationButton.module.scss';
 
 type Props = {
   isActive?: boolean;
-  setLocalCurrentPage: (value: number) => void;
+  onValueChange: (value: number) => void;
 } & ComponentPropsWithoutRef<'button'>;
 
 export const PaginationButton = (props: Props) => {
-  const { children, className, isActive, setLocalCurrentPage, ...restProps } = props;
+  const { children, className, isActive, onValueChange, ...restProps } = props;
   const classNames = clsx(s.button, isActive && s.active, className);
-
   const onClickHandler = () => {
-    children && setLocalCurrentPage(Number(children));
+    children && onValueChange(Number(children));
   };
 
   return (

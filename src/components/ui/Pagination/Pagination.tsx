@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import { ArrowButton } from '@/components/ui/Pagination/PagintionButtons/ArrowButton';
 import { PagintionButtons } from '@/components/ui/Pagination/PagintionButtons/PagintionButtons';
@@ -8,32 +8,29 @@ import s from './Pagination.module.scss';
 type Props = {
   currentPage: number;
   itemsPerPage: number;
-  totalItems: number;
+  onValueChange: (currentPage: number) => void;
   totalPages: number;
 } & ComponentPropsWithoutRef<'div'>;
 
 export const Pagination = (props: Props) => {
-  const { currentPage, itemsPerPage, totalItems, totalPages, ...restProps } = props;
-  const [localCurrentPage, setLocalCurrentPage] = useState(currentPage);
+  const { currentPage, onValueChange, totalPages } = props;
 
   const toPrevPageHandler = () => {
-    setLocalCurrentPage(p => p - 1);
+    onValueChange(currentPage - 1);
   };
   const toNextPageHandler = () => {
-    setLocalCurrentPage(p => p + 1);
+    onValueChange(currentPage + 1);
   };
-  // const beforeCurrentPage = localCurrentPage > 1 ? localCurrentPage - 1 : null;
 
   return (
     <div className={s.pagination}>
-      <ArrowButton disabled={localCurrentPage == 1} isPrev onClick={toPrevPageHandler} />
+      <ArrowButton disabled={currentPage == 1} isPrev onClick={toPrevPageHandler} />
       <PagintionButtons
-        {...restProps}
-        currentPage={localCurrentPage}
-        setLocalCurrentPage={setLocalCurrentPage}
+        currentPage={currentPage}
+        onValueChange={onValueChange}
         totalPages={totalPages}
       />
-      <ArrowButton disabled={localCurrentPage >= totalPages} onClick={toNextPageHandler} />
+      <ArrowButton disabled={currentPage >= totalPages} onClick={toNextPageHandler} />
       {/*<Select*/}
       {/*  ariaLabel="SelectBox"*/}
       {/*  labelValue=""*/}

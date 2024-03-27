@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { useState } from 'react';
+
 import { CheckedMark } from '@/assets/icons/CheckedMark/CheckedMark';
+import { Typography } from '@/components/ui/Typography';
 
 import { Checkbox } from './Checkbox';
 
@@ -13,20 +16,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CheckboxChecked: Story = {
+export const BaseCheckbox: Story = {
   args: {
     checked: true,
     icon: <CheckedMark />,
   },
+
+  render: ({ checked, icon }) => {
+    const [displayValue, setDisplayValue] = useState(true);
+
+    const onCheckedChange = (value: boolean) => {
+      setDisplayValue(value);
+    };
+
+    return (
+      <>
+        <Checkbox checked={checked} icon={icon} onCheckedChange={onCheckedChange} />
+        <br />
+        <Typography.Caption>{`Now checkbox is ${
+          displayValue ? 'checked' : 'unchecked'
+        }`}</Typography.Caption>
+      </>
+    );
+  },
 };
-export const CheckboxUnchecked: Story = {
+export const DisabledCheckedCheckbox: Story = {
   args: {
+    checked: true,
+    disabled: true,
     icon: <CheckedMark />,
   },
 };
-export const CheckboxDisabled: Story = {
+export const DisabledUncheckedCheckbox: Story = {
   args: {
-    checked: true,
     disabled: true,
     icon: <CheckedMark />,
   },

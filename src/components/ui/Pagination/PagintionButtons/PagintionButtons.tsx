@@ -1,20 +1,18 @@
-import { ComponentPropsWithoutRef } from 'react';
-
-import { PaginationButton } from '@/components/ui/Pagination/PagintionButtons/PaginationButton/PaginationButton';
+import { PaginationButton } from '@/components/ui/Pagination/PagintionButtons/PaginationButton';
+import { Typography } from '@/components/ui/Typography';
 
 type Props = {
   currentPage: number;
   onValueChange: (value: number) => void;
   totalPages: number;
-} & ComponentPropsWithoutRef<React.FC>;
-
+};
 export const PagintionButtons = (props: Props) => {
   const { currentPage, onValueChange, totalPages, ...restProps } = props;
 
   let arrayOfButtonsValues: Array<'...' | number>;
 
   if (totalPages <= 7) {
-    arrayOfButtonsValues = Array.from({ length: totalPages }, (_, i) => 1 + i);
+    arrayOfButtonsValues = Array.from({ length: totalPages }, (_, i) => i + 1);
   } else {
     arrayOfButtonsValues = [1, 2, 3, 4, 5, '...', totalPages];
     if (currentPage > 3 && totalPages - currentPage > 3) {
@@ -46,7 +44,9 @@ export const PagintionButtons = (props: Props) => {
     <>
       {arrayOfButtonsValues.map((el, index) =>
         el === '...' ? (
-          <div key={index}>{el}</div>
+          <Typography.Body2 as="div" key={index}>
+            {el}
+          </Typography.Body2>
         ) : (
           <PaginationButton
             isActive={el == currentPage}

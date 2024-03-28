@@ -7,7 +7,9 @@ import { clsx } from 'clsx';
 
 import s from './Input.module.scss';
 
+import { EyeOff } from '../../../assets/icons/EyeOff';
 import { Typography } from '../Typography';
+import { InputButton } from './InputButton';
 
 type Props = {
   clearInput?: () => void;
@@ -29,6 +31,8 @@ export const Input = (props: Props) => {
   const typeSearch = type === 'search';
 
   const classNames = {
+    cross: clsx(),
+    field: clsx(s.field, disabled && s.disabled),
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
     inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
     label: clsx(s.label, disabled && s.disabled),
@@ -42,8 +46,12 @@ export const Input = (props: Props) => {
         </label>
       )}
 
-      <div className={clsx(s.field, disabled && s.disabled)}>
-        {typeSearch && <Search isError={!!error} />}
+      <div className={classNames.field}>
+        {typeSearch && (
+          <InputButton className="search">
+            <Search />
+          </InputButton>
+        )}
         <input
           className={classNames.input}
           disabled={disabled}
@@ -52,8 +60,18 @@ export const Input = (props: Props) => {
           {...restProps}
           id={label}
         />
-        {typePassword && <Eye maskedPassword={maskedPassword} onClick={showPassword} />}
-        {typeSearch && value && <Cross isError={!!error} onClick={clearInput} />}
+
+        {typePassword && (
+          <InputButton className={s.buttonEye} onClick={showPassword}>
+            {maskedPassword ? <EyeOff /> : <Eye />}
+          </InputButton>
+        )}
+
+        {typeSearch && value && (
+          <InputButton onClick={clearInput}>
+            <Cross />
+          </InputButton>
+        )}
       </div>
 
       {error && <Typography.Caption className={s.errorText}>{error}</Typography.Caption>}

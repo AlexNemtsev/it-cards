@@ -1,21 +1,15 @@
 import { SVGProps } from 'react';
 
-import clsx from 'clsx';
-
 import s from './Search.module.scss';
 
-type Props = { isError?: boolean } & SVGProps<SVGSVGElement>;
+type Props = SVGProps<SVGSVGElement>;
 
 export const Search = (props: Props) => {
-  const { isError, ...otherProps } = props;
-
-  const cl = {
-    search: clsx(s.search, isError && s.search_error),
-  };
+  const { ...otherProps } = props;
 
   return (
     <svg
-      className={cl.search}
+      className={s.search}
       height="20"
       viewBox="0 0 24 24"
       width="20"

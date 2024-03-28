@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import s from './Pagination.module.scss';
 
 import { PagintionButtons } from './PagintionButtons';
@@ -15,15 +13,11 @@ type Props = {
 export const Pagination = (props: Props) => {
   const { currentPage, onValueChange, totalPages } = props;
 
-  const [localCurrentPage, setLocalCurrentPage] = useState(currentPage);
-
   const toPrevPageHandler = () => {
     onValueChange(currentPage - 1);
-    setLocalCurrentPage(localCurrentPage - 1);
   };
   const toNextPageHandler = () => {
     onValueChange(currentPage + 1);
-    setLocalCurrentPage(localCurrentPage + 1);
   };
 
   return (

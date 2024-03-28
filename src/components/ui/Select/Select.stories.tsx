@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { useState } from 'react';
+import { ComponentPropsWithoutRef, useState } from 'react';
 
 import { Typography } from '../Typography';
 import { Select } from './Select';
-import { SelectItemValue } from './SelectItemValue';
 
-const selectData = {
+const selectData: ComponentPropsWithoutRef<typeof Select> = {
   label: 'Select-box',
   placeholder: 'Select-box',
   values: [
@@ -14,10 +13,10 @@ const selectData = {
     { id: 2, value: 'pea' },
     { id: 3, value: 'coconut' },
     { id: 4, value: 'banana' },
-  ] as SelectItemValue[],
+  ],
 };
 
-const smallSelectData = {
+const smallSelectData: ComponentPropsWithoutRef<typeof Select> = {
   isSmall: true,
   label: '100',
   placeholder: '100',
@@ -31,7 +30,7 @@ const smallSelectData = {
     { id: 7, value: '70' },
     { id: 8, value: '80' },
     { id: 9, value: '90' },
-  ] as SelectItemValue[],
+  ],
 };
 
 const meta = {
@@ -47,9 +46,9 @@ export const BaseSelect: Story = {
   args: {
     label: selectData.label,
     placeholder: selectData.placeholder,
-    selectItemValues: selectData.values,
+    values: selectData.values,
   },
-  render: () => {
+  render: ({ label, placeholder, values }) => {
     const [displayValue, setDisplayValue] = useState('');
 
     const onValueChange = (value: string) => {
@@ -59,10 +58,10 @@ export const BaseSelect: Story = {
     return (
       <>
         <Select
-          label={selectData.label}
+          label={label}
           onValueChange={onValueChange}
-          placeholder={selectData.placeholder}
-          selectItemValues={selectData.values}
+          placeholder={placeholder}
+          values={values}
         />
         <Typography.Body1>{displayValue}</Typography.Body1>
       </>
@@ -75,15 +74,16 @@ export const SelectOpen: Story = {
     label: selectData.label,
     open: true,
     placeholder: selectData.placeholder,
-    selectItemValues: selectData.values,
+    values: selectData.values,
   },
 };
+
 export const SelectDisabled: Story = {
   args: {
     disabled: true,
     label: selectData.label,
     placeholder: selectData.placeholder,
-    selectItemValues: selectData.values,
+    values: selectData.values,
   },
 };
 
@@ -92,9 +92,9 @@ export const SmallSelect: Story = {
     isSmall: smallSelectData.isSmall,
     label: smallSelectData.label,
     placeholder: smallSelectData.placeholder,
-    selectItemValues: smallSelectData.values,
+    values: smallSelectData.values,
   },
-  render: () => {
+  render: ({ isSmall, label, placeholder, values }) => {
     const [displayValue, setDisplayValue] = useState('');
 
     const onValueChange = (value: string) => {
@@ -104,11 +104,11 @@ export const SmallSelect: Story = {
     return (
       <>
         <Select
-          isSmall={smallSelectData.isSmall}
-          label={smallSelectData.label}
+          isSmall={isSmall}
+          label={label}
           onValueChange={onValueChange}
-          placeholder={smallSelectData.placeholder}
-          selectItemValues={smallSelectData.values}
+          placeholder={placeholder}
+          values={values}
         />
         <Typography.Body1>{displayValue}</Typography.Body1>
       </>
@@ -121,9 +121,9 @@ export const SmallSelectOpen: Story = {
     isSmall: smallSelectData.isSmall,
     label: smallSelectData.label,
     placeholder: smallSelectData.placeholder,
-    selectItemValues: smallSelectData.values,
+    values: smallSelectData.values,
   },
-  render: () => {
+  render: ({ isSmall, label, placeholder, values }) => {
     const [displayValue, setDisplayValue] = useState('');
 
     const onValueChange = (value: string) => {
@@ -133,12 +133,12 @@ export const SmallSelectOpen: Story = {
     return (
       <>
         <Select
-          isSmall={smallSelectData.isSmall}
-          label={smallSelectData.label}
+          isSmall={isSmall}
+          label={label}
           onValueChange={onValueChange}
           open
-          placeholder={smallSelectData.placeholder}
-          selectItemValues={smallSelectData.values}
+          placeholder={placeholder}
+          values={values}
         />
         <Typography.Body1>{displayValue}</Typography.Body1>
       </>

@@ -21,18 +21,18 @@ import s from './Select.module.scss';
 
 import { Typography } from '../Typography';
 import { SelectItem } from './SelectItem';
-import { TypographySelector } from './SelectItem/TypographySelector';
 import { SelectItemValue } from './SelectItemValue';
+import { TypographySelector } from './TypographySelector';
 
 type Props = {
   isSmall?: boolean;
-  label?: number | string;
+  label: number | string;
   placeholder: string;
-  selectItemValues: SelectItemValue[];
+  values: SelectItemValue[];
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Select = (props: Props) => {
-  const { disabled, isSmall, label, placeholder, selectItemValues, ...restProps } = props;
+  const { disabled, isSmall, label, placeholder, values, ...restProps } = props;
 
   return (
     <div className={s.selectWrapper}>
@@ -61,8 +61,8 @@ export const Select = (props: Props) => {
                   <TypographySelector isSmall={isSmall}>{label}</TypographySelector>
                   <ChevronUpIcon />
                 </Label>
-                {selectItemValues.map(item => (
-                  <SelectItem isSmall={!!isSmall} key={item.id} value={item.value}>
+                {values.map(item => (
+                  <SelectItem isSmall={isSmall} key={item.id} value={item.value}>
                     {item.value}
                   </SelectItem>
                 ))}

@@ -1,11 +1,9 @@
 /* reset */
-button,
-fieldset,
-input {
+button {
   all: unset;
 }
 
-.DialogOverlay {
+.overlay {
   position: fixed;
   inset: 0;
 
@@ -15,146 +13,48 @@ input {
   animation: overlay-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.DialogContent {
+.content {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 90vw;
-  max-width: 450px;
-  max-height: 85vh;
-  padding: 25px;
+  min-width: 542px;
 
-  background-color: var(--color-dark-900);
+  background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
-  border-radius: 6px;
-  box-shadow:
-    hsl(206deg 22% 7% / 35%) 0 10px 38px -10px,
-    hsl(206deg 22% 7% / 20%) 0 10px 20px -15px;
+  border-radius: 2px;
 
   animation: content-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.DialogContent:focus {
-  outline: none;
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--color-dark-500);
 }
 
-.DialogTitle {
+.title {
   margin: 0;
-  font-size: 17px;
-  font-weight: 500;
   color: var(--color-light-100);
 }
 
-.DialogDescription {
-  margin: 10px 0 20px;
-  font-size: 15px;
-  line-height: 1.5;
-  color: rgb(34 15 15);
+.main {
+  padding: 24px;
 }
 
-.Button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 35px;
-  padding: 0 15px;
-
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1;
-
-  border-radius: 4px;
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px 36px;
 }
 
-.Button.violet {
-  color: violet;
-  background-color: red;
-}
-
-.Button.violet:hover {
-  background-color: rgb(187 63 187);
-}
-
-.Button.violet:focus {
-  box-shadow: 0 0 0 2px black;
-}
-
-.Button.green {
-  color: green;
-  background-color: greenyellow;
-}
-
-.Button.green:hover {
-  background-color: rgb(155 194 97);
-}
-
-.Button.green:focus {
-  box-shadow: 0 0 0 2px rgb(122 141 94);
-}
-
-.IconButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
+.iconButton {
+  cursor: pointer;
   width: 25px;
   height: 25px;
-
-  font-family: inherit;
-  color: violet;
-
-  border-radius: 100%;
-}
-
-.IconButton:hover {
-  background-color: violet;
-}
-
-.IconButton:focus {
-  box-shadow: 0 0 0 2px rgb(78 63 78);
-}
-
-.Fieldset {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.Label {
-  width: 90px;
-  font-size: 15px;
-  color: violet;
-  text-align: right;
-}
-
-.Input {
-  display: inline-flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 35px;
-  padding: 0 10px;
-
-  font-size: 15px;
-  line-height: 1;
-  color: violet;
-
-  border-radius: 4px;
-  box-shadow: 0 0 0 1px violet;
-}
-
-.Input:focus {
-  box-shadow: 0 0 0 2px rgb(90 56 90);
+  color: var(--color-light-100);
 }
 
 @keyframes overlay-show {

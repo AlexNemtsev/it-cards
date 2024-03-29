@@ -2,8 +2,8 @@ import { Modal } from './components/ui/Modal';
 
 export const App = () => {
   return (
-    <div>
-      <Modal title="Title" />
+    <div style={{ margin: 100 }}>
+      <Modal title="Add new Desk">Lorem</Modal>
     </div>
   );
 };

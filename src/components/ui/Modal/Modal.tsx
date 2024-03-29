@@ -1,66 +1,52 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import { Close as CloseIcon } from '@/assets/icons/Close';
-import {
-  Close,
-  Content,
-  Description,
-  Overlay,
-  Portal,
-  Root,
-  Title,
-  Trigger,
-} from '@radix-ui/react-dialog';
-import clsx from 'clsx';
+import { Close, Content, Overlay, Portal, Root, Title, Trigger } from '@radix-ui/react-dialog';
 
 import s from './Modal.module.scss';
 
 import { Button } from '../Button';
-// import { Cross2Icon } from '@radix-ui/react-icons';
+import { Typography } from '../Typography';
 
 type Props = {
+  children: ReactNode;
+  isSign?: boolean;
   title: string;
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Modal = (props: Props) => {
-  const { title } = props;
+  const { children, title, ...restProps } = props;
 
   return (
-    <Root>
+    <Root {...restProps}>
       <Trigger asChild>
-        <Button className={clsx(s.Button, s.violet)}>Edit profile</Button>
+        <Button>
+          <Typography.H3>{title}</Typography.H3>
+        </Button>
       </Trigger>
       <Portal>
-        <Overlay className={s.DialogOverlay} />
-        <Content className={s.DialogContent}>
-          <Title className={s.DialogTitle}>{title}</Title>
-          <Description className={s.DialogDescription}>
-            Make changes to your profile here. Click save when you are done.
-          </Description>
-          <fieldset className={s.Fieldset}>
-            <label className={s.Label} htmlFor="name">
-              Name
-            </label>
-            <input className={s.Input} defaultValue="Pedro Duarte" id="name" />
-          </fieldset>
-          <fieldset className={s.Fieldset}>
-            <label className={s.Label} htmlFor="username">
-              Username
-            </label>
-            <input className={s.Input} defaultValue="@peduarte" id="username" />
-          </fieldset>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 25 }}>
+        <Overlay className={s.overlay} />
+        <Content className={s.content}>
+          <div className={s.header}>
+            <Title className={s.title}>
+              <Typography.H3>{title}</Typography.H3>
+            </Title>
             <Close asChild>
-              <Button className="Button green" variant="primary">
-                Save changes
+              <button className={s.iconButton}>✕</button>
+            </Close>
+          </div>
+          <div className={s.main}>{children}</div>
+          <div className={s.footer}>
+            <Close asChild className={s.cancel}>
+              <Button variant="secondary">
+                <Typography.Subtitle2>Cancel</Typography.Subtitle2>
+              </Button>
+            </Close>
+            <Close asChild>
+              <Button>
+                <Typography.Subtitle2>{title}</Typography.Subtitle2>
               </Button>
             </Close>
           </div>
-          <Close asChild>
-            <button aria-label="Close" className={s.IconButton}>
-              {/* <CloseIcon /> */}x
-            </button>
-          </Close>
         </Content>
       </Portal>
     </Root>

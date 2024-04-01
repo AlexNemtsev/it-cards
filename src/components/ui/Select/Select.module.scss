@@ -1,0 +1,118 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  width: 200px;
+  margin: 100px;
+}
+
+.label {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  color: var(--color-dark-100);
+
+  &.disabled {
+    color: var(--color-dark-300);
+  }
+}
+
+.selectTrigger {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-width: 126px;
+  height: 35px;
+  padding: 6px 15px;
+
+  font-size: var(--font-size-m);
+  line-height: var(--font-size-xxl);
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+
+  fill: var(--color-dark-100);
+
+  &:hover {
+    background-color: var(--color-dark-500);
+    border: 1px solid var(--color-dark-100);
+  }
+
+  &:focus {
+    background-color: inherit;
+    border: 1px solid var(--color-info-700);
+  }
+
+  &[data-placeholder] {
+    color: currentcolor;
+  }
+
+  &:disabled {
+    fill: var(--color-dark-300);
+
+    &:hover,
+    &:focus {
+      background-color: inherit;
+      border: 1px solid var(--color-dark-300);
+    }
+
+    .selectIcon {
+      fill: var(--color-dark-300);
+    }
+
+    &[data-placeholder] {
+      color: var(--color-dark-300);
+    }
+  }
+}
+
+.selectContent {
+  overflow: hidden;
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+}
+
+.selectLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 25px;
+
+  font-size: var(--font-size-m);
+  line-height: 25px;
+  color: var(--color-light-100);
+
+  border-bottom: 1px solid var(--color-dark-300);
+}
+
+.selectScrollButton {
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 25px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+}
+
+.selectLabelTypograpgy {
+  font-size: var(--font-size-m);
+  line-height: var(--font-size-xxl);
+  color: var(--color-light-100);
+}

@@ -1,62 +1,74 @@
-import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 
-import { Close } from '@/assets/icons/Close';
+import { Cross } from '@/assets/icons/Cross';
 import { Eye } from '@/assets/icons/Eye/Eye';
 import { Search } from '@/assets/icons/Search';
 import { clsx } from 'clsx';
 
 import s from './Input.module.scss';
 
+import { EyeOff } from '../../../assets/icons/EyeOff';
 import { Typography } from '../Typography';
+import { InputButton } from './InputButton';
 
 type Props = {
+  clearInput?: () => void;
   error?: string;
-  labelValue?: string;
-  typeValue?: 'password' | 'search';
+  label?: string;
+  type?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = (props: Props) => {
-  const { disabled, error, labelValue, typeValue, ...otherProps } = props;
+  const { clearInput, disabled, error, label, type, value, ...restProps } = props;
 
-  const [inputValue, setInputValue] = useState('');
+  const [maskedPassword, setMaskedPassword] = useState(false);
 
-  const typePassword = typeValue === 'password';
-  const typeSearch = typeValue === 'search';
+  const showPassword = () => {
+    setMaskedPassword(!maskedPassword);
+  };
+
+  const typePassword = type === 'password';
+  const typeSearch = type === 'search';
 
   const classNames = {
+    cross: clsx(),
+    field: clsx(s.field, disabled && s.disabled),
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
+    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
     label: clsx(s.label, disabled && s.disabled),
   };
 
-  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleClickClose = () => {
-    setInputValue('');
-  };
-
   return (
-    <div className={s.inputWrapper}>
-      {labelValue && !typeSearch && (
-        <label htmlFor={labelValue}>
-          <Typography.Caption className={classNames.label}>{labelValue}</Typography.Caption>
+    <div className={classNames.inputWrapper}>
+      {label && !typeSearch && (
+        <label htmlFor={label}>
+          <Typography.Body2 className={classNames.label}>{label}</Typography.Body2>
         </label>
       )}
 
-      <div className={s.field}>
-        {typeSearch && <Search isError={!!error} />}
+      <div className={classNames.field}>
+        {typeSearch && (
+          <InputButton className="search">
+            <Search />
+          </InputButton>
+        )}
         <input
           className={classNames.input}
           disabled={disabled}
-          onChange={handleChangeInput}
-          value={inputValue}
-          {...otherProps}
-          id={labelValue}
+          type={typePassword && maskedPassword ? 'password' : 'text'}
+          value={value}
+          {...restProps}
+          id={label}
         />
-        {typePassword && <Eye disabled={disabled} />}
-        {typeSearch && inputValue && (
-          <Close handleClickClose={handleClickClose} isError={!!error} />
+
+        {typePassword && (
+          <InputButton onClick={showPassword}>{maskedPassword ? <EyeOff /> : <Eye />}</InputButton>
+        )}
+
+        {typeSearch && value && (
+          <InputButton onClick={clearInput}>
+            <Cross />
+          </InputButton>
         )}
       </div>
 

@@ -1,3 +1,5 @@
+import { ComponentPropsWithoutRef } from 'react';
+
 import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/assets/icons/ChevronUpIcon';
 import {
@@ -20,28 +22,30 @@ import s from './Select.module.scss';
 import { Typography } from '../Typography';
 import { SelectItem } from './SelectItem';
 import { SelectItemValue } from './SelectItemValue';
+import { TypographySelector } from './TypographySelector';
 
 type Props = {
-  ariaLabel: string;
-  disabled?: boolean;
-  labelValue: string;
+  isSmall?: boolean;
+  label: number | string;
   placeholder: string;
-  selectItemValues: SelectItemValue[];
-};
+  values: SelectItemValue[];
+} & ComponentPropsWithoutRef<typeof Root>;
 
 export const Select = (props: Props) => {
-  const { ariaLabel, disabled, labelValue, placeholder, selectItemValues } = props;
+  const { disabled, isSmall, label, placeholder, values, ...restProps } = props;
 
   return (
     <div className={s.selectWrapper}>
-      <label>
-        <Typography.Caption className={clsx(s.label, disabled && s.disabled)}>
-          {labelValue}
-        </Typography.Caption>
-      </label>
-      <Root disabled={disabled}>
-        <Trigger aria-label={ariaLabel} className={s.selectTrigger}>
-          <Value placeholder={placeholder} />
+      {label && !isSmall && (
+        <Typography.Body2 as="label" className={clsx(s.label, disabled && s.disabled)}>
+          {label}
+        </Typography.Body2>
+      )}
+      <Root disabled={disabled} {...restProps}>
+        <Trigger className={clsx(s.selectTrigger, isSmall && s.small)}>
+          <Value
+            placeholder={<TypographySelector isSmall={isSmall}>{placeholder}</TypographySelector>}
+          />
           <Icon className={s.selectIcon}>
             <ChevronDownIcon />
           </Icon>
@@ -53,14 +57,12 @@ export const Select = (props: Props) => {
             </ScrollUpButton>
             <Viewport className={s.selectViewport}>
               <Group>
-                <Label className={s.selectLabel}>
-                  <Typography.Caption className={s.selectLabelTypograpgy}>
-                    {labelValue}
-                  </Typography.Caption>
+                <Label className={clsx(s.selectLabel, isSmall && s.small)}>
+                  <TypographySelector isSmall={isSmall}>{label}</TypographySelector>
                   <ChevronUpIcon />
                 </Label>
-                {selectItemValues.map(item => (
-                  <SelectItem key={item.id} value={item.value}>
+                {values.map(item => (
+                  <SelectItem isSmall={isSmall} key={item.id} value={item.value}>
                     {item.value}
                   </SelectItem>
                 ))}

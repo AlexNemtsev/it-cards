@@ -1,4 +1,6 @@
 .button {
+  cursor: pointer;
+
   position: absolute;
   top: 24%;
   right: 12px;
@@ -13,9 +15,12 @@
   fill: inherit;
 
   &.search {
+    cursor: auto;
+
     top: 24%;
     right: auto;
     left: 12px;
+
     fill: var(--color-dark-100);
 
     &:has(~ input:active) {

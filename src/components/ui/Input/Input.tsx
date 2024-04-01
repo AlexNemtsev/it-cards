@@ -62,9 +62,7 @@ export const Input = (props: Props) => {
         />
 
         {typePassword && (
-          <InputButton className={s.buttonEye} onClick={showPassword}>
-            {maskedPassword ? <EyeOff /> : <Eye />}
-          </InputButton>
+          <InputButton onClick={showPassword}>{maskedPassword ? <EyeOff /> : <Eye />}</InputButton>
         )}
 
         {typeSearch && value && (

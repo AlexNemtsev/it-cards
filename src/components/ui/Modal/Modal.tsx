@@ -4,12 +4,12 @@ import { Close, Content, Overlay, Portal, Root, Title, Trigger } from '@radix-ui
 
 import s from './Modal.module.scss';
 
+import { Cross } from '../../../assets/icons/Cross';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 
 type Props = {
   children: ReactNode;
-  isSign?: boolean;
   title: string;
 } & ComponentPropsWithoutRef<typeof Root>;
 
@@ -31,22 +31,12 @@ export const Modal = (props: Props) => {
               <Typography.H3>{title}</Typography.H3>
             </Title>
             <Close asChild>
-              <button className={s.iconButton}>✕</button>
+              <button className={s.iconButton}>
+                <Cross />
+              </button>
             </Close>
           </div>
           <div className={s.main}>{children}</div>
-          <div className={s.footer}>
-            <Close asChild className={s.cancel}>
-              <Button variant="secondary">
-                <Typography.Subtitle2>Cancel</Typography.Subtitle2>
-              </Button>
-            </Close>
-            <Close asChild>
-              <Button>
-                <Typography.Subtitle2>{title}</Typography.Subtitle2>
-              </Button>
-            </Close>
-          </div>
         </Content>
       </Portal>
     </Root>

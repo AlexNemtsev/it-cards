@@ -4,15 +4,23 @@ import { Modal } from '.';
 
 const meta = {
   component: Modal,
-  title: 'Components/ui/Input',
+  title: 'Components/Modal',
 } satisfies Meta<typeof Modal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ModalExample: Story = {
+export const BaseModal: Story = {
   args: {
-    children: 'text',
-    title: 'Modal>',
+    children: 'children',
+    title: 'Modal',
+  },
+};
+
+export const ModalOpen: Story = {
+  args: {
+    children: 'children',
+    open: true,
+    title: 'Modal',
   },
 };

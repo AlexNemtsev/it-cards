@@ -44,19 +44,6 @@ button {
   padding: 24px;
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 24px 36px;
-}
-
-.iconButton {
-  cursor: pointer;
-  width: 25px;
-  height: 25px;
-  color: var(--color-light-100);
-}
-
 @keyframes overlay-show {
   from {
     opacity: 0;

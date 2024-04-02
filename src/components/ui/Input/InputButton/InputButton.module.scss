@@ -1,0 +1,34 @@
+.button {
+  cursor: pointer;
+
+  position: absolute;
+  top: 24%;
+  right: 12px;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  fill: inherit;
+
+  &.search {
+    cursor: auto;
+
+    top: 24%;
+    right: auto;
+    left: 12px;
+
+    fill: var(--color-dark-100);
+
+    &:has(~ input:active) {
+      fill: var(--color-light-100);
+    }
+
+    &:has(~ input:disabled) {
+      fill: var(--color-dark-300);
+    }
+  }
+}

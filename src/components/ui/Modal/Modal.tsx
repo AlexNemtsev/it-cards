@@ -32,7 +32,7 @@ export const Modal = (props: Props) => {
             </Title>
             <Close asChild>
               <button className={s.iconButton}>
-                <Cross />
+                <Cross height={25} width={25} />
               </button>
             </Close>
           </div>

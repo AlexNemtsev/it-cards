@@ -1,11 +1,14 @@
 .sliderWrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 155px auto;
+  gap: 12px;
   align-items: center;
+
+  width: 251px;
 }
 
 .sliderInput {
   width: 36px;
-  height: 36px;
 }
 
 .sliderRoot {
@@ -17,7 +20,7 @@
   display: flex;
   align-items: center;
 
-  width: 155px;
+  // width: 155px;
   height: 20px;
 }
 

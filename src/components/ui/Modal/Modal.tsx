@@ -30,10 +30,8 @@ export const Modal = (props: Props) => {
             <Title className={s.title}>
               <Typography.H3>{title}</Typography.H3>
             </Title>
-            <Close asChild>
-              <button className={s.iconButton}>
-                <Cross height={25} width={25} />
-              </button>
+            <Close>
+              <Cross height={25} width={25} />
             </Close>
           </div>
           <div className={s.main}>{children}</div>

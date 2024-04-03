@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { useState } from 'react';
+
 import { Modal } from '.';
+import { ModalButton } from './ModalButton';
 
 const meta = {
   component: Modal,
@@ -12,15 +15,55 @@ type Story = StoryObj<typeof meta>;
 
 export const BaseModal: Story = {
   args: {
-    children: 'children',
+    children: <div>children</div>,
     title: 'Modal',
   },
 };
 
-export const ModalOpen: Story = {
+export const BaseModalOpen: Story = {
   args: {
-    children: 'children',
+    children: <div>children</div>,
     open: true,
     title: 'Modal',
+  },
+};
+
+export const ModalWithButtons: Story = {
+  args: {
+    children: (
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <ModalButton type="reset" variant="secondary">
+          Cancel
+        </ModalButton>
+        <ModalButton type="submit">Add new Card</ModalButton>
+      </div>
+    ),
+    title: 'Modal',
+  },
+  render: ({ title }) => {
+    const [value, setValue] = useState('');
+
+    const addNewCard = () => {
+      setValue('add new Card');
+    };
+    const resetForm = () => {
+      setValue('reset Form');
+    };
+
+    return (
+      <>
+        <Modal title={title}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <ModalButton onClick={resetForm} type="reset" variant="secondary">
+              Cancel
+            </ModalButton>
+            <ModalButton onClick={addNewCard} type="submit">
+              Add new Card
+            </ModalButton>
+          </div>
+        </Modal>
+        <div>{value}</div>
+      </>
+    );
   },
 };

@@ -5,6 +5,12 @@
   align-items: center;
 
   width: 251px;
+
+  input {
+    padding-right: 0;
+    padding-left: 0;
+    text-align: center;
+  }
 }
 
 .sliderInput {
@@ -20,19 +26,26 @@
   display: flex;
   align-items: center;
 
-  // width: 155px;
   height: 20px;
 }
 
 .sliderTrack {
   position: relative;
-
   flex-grow: 1;
-
   height: 5px;
-
-  background-color: var(--color-accent-500-50);
   border-radius: 10px;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    opacity: 0.5;
+    background-color: var(--color-accent-500);
+    border-radius: 10px;
+  }
 }
 
 .sliderRange {

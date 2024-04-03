@@ -12,7 +12,6 @@ import { Typography } from '../Typography';
 import { InputButton } from './InputButton';
 
 type Props = {
-  centerValue?: boolean;
   clearInput?: () => void;
   error?: string;
   label?: string;
@@ -20,7 +19,7 @@ type Props = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = (props: Props) => {
-  const { centerValue, clearInput, disabled, error, label, type, value, ...restProps } = props;
+  const { clearInput, disabled, error, label, type, value, ...restProps } = props;
 
   const [maskedPassword, setMaskedPassword] = useState(false);
 
@@ -34,13 +33,7 @@ export const Input = (props: Props) => {
   const classNames = {
     cross: clsx(),
     field: clsx(s.field, disabled && s.disabled),
-    input: clsx(
-      s.input,
-      error && s.error,
-      typePassword && s.password,
-      typeSearch && s.search,
-      centerValue && s.centerValue
-    ),
+    input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
     inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
     label: clsx(s.label, disabled && s.disabled),
   };

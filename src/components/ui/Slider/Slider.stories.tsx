@@ -19,7 +19,7 @@ export const SliderExample: Story = {
     defaultValue: [25, 75],
     delay: 2000,
     max: 100,
-    min: 0,
+    min: -50,
   },
   render: ({ defaultValue, delay, max, min }) => {
     const [range, setRange] = useState<[number, number]>(defaultValue);

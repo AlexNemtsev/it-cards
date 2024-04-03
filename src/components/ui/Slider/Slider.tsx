@@ -22,6 +22,7 @@ type Props = RedefinedProps & RadixSliderOmittedProps;
 
 export const Slider = (props: Props) => {
   const { defaultValue, delay, onValueChange, ...restProps } = props;
+  const { max = 10, min = 0 } = restProps;
   const [sliderValue, setSliderValue] = useState<RangeValue>(defaultValue);
 
   const [timerId, setTimerId] = useState<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -40,20 +41,36 @@ export const Slider = (props: Props) => {
   };
 
   const onLeftValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = (+event.target.value || restProps.min) ?? 0;
+    const { value } = event.target;
 
-    onSliderValueChange([value, sliderValue[1]]);
+    if (Number.isNaN(+value)) {
+      return;
+    }
+
+    const inputValue = Math.max(+value || min, min);
+
+    const leftSliderValue = Math.min(inputValue, sliderValue[1]);
+
+    onSliderValueChange([leftSliderValue, sliderValue[1]]);
   };
 
   const onRightValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = (+event.target.value || restProps.max) ?? 1;
+    const { value } = event.target;
 
-    onSliderValueChange([sliderValue[0], value]);
+    if (Number.isNaN(+value)) {
+      return;
+    }
+
+    const inputValue = Math.min(+value || max, max);
+
+    const rightSliderValue = Math.max(inputValue, sliderValue[0]);
+
+    onSliderValueChange([sliderValue[0], rightSliderValue]);
   };
 
   return (
     <div className={s.sliderWrapper}>
-      <Input centerValue onChange={onLeftValueChange} value={sliderValue[0]} />
+      <Input onChange={onLeftValueChange} value={sliderValue[0]} />
       <Root
         className={s.sliderRoot}
         {...restProps}
@@ -66,7 +83,7 @@ export const Slider = (props: Props) => {
         <Thumb className={s.sliderThumb} />
         <Thumb className={s.sliderThumb} />
       </Root>
-      <Input centerValue onChange={onRightValueChange} value={sliderValue[1]} />
+      <Input onChange={onRightValueChange} value={sliderValue[1]} />
     </div>
   );
 };

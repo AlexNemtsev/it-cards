@@ -1,9 +1,8 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
+import { Button } from '@/components/ui/Button';
+import { Typography } from '@/components/ui/Typography';
 import { Close } from '@radix-ui/react-dialog';
-
-import { Button } from '../../Button';
-import { Typography } from '../../Typography';
 
 type Props = {
   children: ReactNode;

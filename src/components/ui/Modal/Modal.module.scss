@@ -1,5 +1,5 @@
 /* reset */
-button {
+.buttonClose {
   all: unset;
 }
 
@@ -19,7 +19,8 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  min-width: 542px;
+  width: 50%;
+  min-width: 300px;
 
   background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);

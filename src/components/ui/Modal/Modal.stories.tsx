@@ -30,14 +30,7 @@ export const BaseModalOpen: Story = {
 
 export const ModalWithButtons: Story = {
   args: {
-    children: (
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <ModalButton type="reset" variant="secondary">
-          Cancel
-        </ModalButton>
-        <ModalButton type="submit">Add new Card</ModalButton>
-      </div>
-    ),
+    children: null,
     title: 'Modal',
   },
   render: ({ title }) => {
@@ -53,7 +46,7 @@ export const ModalWithButtons: Story = {
     return (
       <>
         <Modal title={title}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', gap: 20, justifyContent: 'space-between' }}>
             <ModalButton onClick={resetForm} type="reset" variant="secondary">
               Cancel
             </ModalButton>

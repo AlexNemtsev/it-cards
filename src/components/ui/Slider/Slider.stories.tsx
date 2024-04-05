@@ -44,3 +44,12 @@ export const SliderExample: Story = {
     );
   },
 };
+
+export const SliderWithoutOnValueChang: Story = {
+  args: {
+    defaultValue: [25, 75],
+    delay: 2000,
+    max: 100,
+    min: -50,
+  },
+};

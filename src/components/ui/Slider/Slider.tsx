@@ -1,6 +1,7 @@
 import { ChangeEvent, ComponentPropsWithoutRef, useState } from 'react';
 
 import { Input } from '@/components/ui/Input';
+import { useDebounce } from '@/hooks/useDebounce';
 import { Range, Root, Thumb, Track } from '@radix-ui/react-slider';
 
 import s from './Slider.module.scss';
@@ -25,19 +26,11 @@ export const Slider = (props: Props) => {
   const { max = 10, min = 0 } = restProps;
   const [sliderValue, setSliderValue] = useState<RangeValue>(defaultValue);
 
-  const [timerId, setTimerId] = useState<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const debouncedOnValueChange = useDebounce(onValueChange ?? (() => {}), delay);
 
   const onSliderValueChange = (value: RangeValue) => {
     setSliderValue(value);
-    if (onValueChange) {
-      clearTimeout(timerId);
-
-      const newTimerId = setTimeout(() => {
-        onValueChange(value);
-      }, delay ?? 0);
-
-      setTimerId(newTimerId);
-    }
+    debouncedOnValueChange(value);
   };
 
   const onLeftValueChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +40,7 @@ export const Slider = (props: Props) => {
       return;
     }
 
-    const inputValue = Math.max(+value || min, min);
+    const inputValue = Math.max(+value ?? min, min);
 
     const leftSliderValue = Math.min(inputValue, sliderValue[1]);
 
@@ -61,7 +54,7 @@ export const Slider = (props: Props) => {
       return;
     }
 
-    const inputValue = Math.min(+value || max, max);
+    const inputValue = Math.min(+value ?? max, max);
 
     const rightSliderValue = Math.max(inputValue, sliderValue[0]);
 

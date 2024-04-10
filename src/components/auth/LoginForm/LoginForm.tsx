@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { FormCheckbox } from '@/components/FormCheckbox/FormCheckbox';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { DevTool } from '@hookform/devtools';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -36,10 +35,9 @@ export const LoginForm = () => {
       <Input {...register('email')} error={errors.email?.message} label="email" />
       <Input {...register('password')} error={errors.password?.message} label="password" />
 
-      <FormCheckbox control={control} errorMessage="123" name="rememberMe" />
+      <FormCheckbox control={control} name="rememberMe" />
 
       <Button type="submit">Submit</Button>
-      <DevTool control={control} />
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 
 import { Card } from '@/components/ui//Card';
 import { Button } from '@/components/ui/Button';
@@ -14,16 +14,23 @@ type FormValues = {
 };
 
 export const LogUp = () => {
-  const { handleSubmit, register } = useForm<FormValues>();
+  const { control, handleSubmit, register } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
 
+  const {
+    field: { onChange: onEmailChange, value: emailValue },
+  } = useController({
+    control,
+    name: 'email',
+  });
+
   return (
     <Card className={s.logUp}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input {...register('email')} label="email" />
+        <Input onChange={onEmailChange} value={emailValue} />
         <Input {...register('password')} label="password" type="password" />
         <Input {...register('confirmPassword')} label="Confirm Password" type="password" />
         <Button fullWidth type="submit" variant="primary">

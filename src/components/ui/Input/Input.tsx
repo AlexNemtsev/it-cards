@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, forwardRef, useState } from 'react';
 
 import { Cross } from '@/assets/icons/Cross';
 import { Eye } from '@/assets/icons/Eye/Eye';
@@ -18,7 +18,7 @@ type Props = {
   type?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = (props: Props) => {
+export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   const { clearInput, disabled, error, label, type, value, ...restProps } = props;
 
   const [maskedPassword, setMaskedPassword] = useState(false);
@@ -55,6 +55,7 @@ export const Input = (props: Props) => {
         <input
           className={classNames.input}
           disabled={disabled}
+          ref={ref}
           type={typePassword && maskedPassword ? 'password' : 'text'}
           value={value}
           {...restProps}
@@ -75,4 +76,4 @@ export const Input = (props: Props) => {
       {error && <Typography.Caption className={s.errorText}>{error}</Typography.Caption>}
     </div>
   );
-};
+});

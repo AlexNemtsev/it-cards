@@ -17,9 +17,12 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>((props: Props, ref)
 
   return (
     <label className={classNames}>
-      <Root {...restProps} defaultChecked={checked} disabled={disabled} ref={ref}>
-        <Indicator>{icon ? icon : <CheckedMark />}</Indicator>
-      </Root>
+      <div className={s.buttonWrapper}>
+        <Root {...restProps} defaultChecked={checked} disabled={disabled} ref={ref}>
+          <Indicator>{icon ? icon : <CheckedMark />}</Indicator>
+        </Root>
+      </div>
+
       {label && <Typography.Body2>{label}</Typography.Body2>}
     </label>
   );

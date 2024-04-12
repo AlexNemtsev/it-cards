@@ -1,21 +1,52 @@
 .checkbox {
+  cursor: pointer;
+
   display: inline-flex;
-  gap: 10px;
+  gap: 2px;
   align-items: center;
 
-  &.disabled {
-    color: var(--color-dark-100);
+  width: max-content;
+
+  .buttonWrapper {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    & button[data-state='checked'] {
+      border: none;
+    }
+
+    &:focus-within {
+      background-color: var(--color-dark-100);
+
+      & button[data-state='checked'] {
+        background-color: var(--color-dark-900);
+        border: none;
+      }
+    }
+  }
+
+  &:active {
+    .buttonWrapper {
+      background-color: var(--color-dark-100);
+
+      & button[data-state='checked'] {
+        background-color: var(--color-dark-900);
+        border: none;
+      }
+    }
   }
 
   button {
     all: unset;
 
     position: relative;
-
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
 
     box-sizing: border-box;
     width: 18px;
@@ -25,75 +56,19 @@
     border-radius: 2px;
     outline: none;
 
-    &::before {
-      content: '';
+    svg {
+      fill: var(--color-light-100);
+    }
+  }
 
-      position: absolute;
-      z-index: -1;
-      top: -11px;
-      left: -11px;
-
-      display: none;
-
-      box-sizing: border-box;
-      width: 36px;
-      height: 36px;
-
+  &:hover {
+    .buttonWrapper {
       background-color: var(--color-dark-500);
-      border-radius: 50%;
     }
+  }
 
-    [data-state='checked'] {
-      svg {
-        display: block;
-        fill: var(--color-light-100);
-      }
-    }
-
-    &:active {
-      &::before {
-        background-color: var(--color-dark-100);
-      }
-
-      [data-state='checked'] {
-        background-color: var(--color-dark-900);
-      }
-    }
-
-    &:hover {
-      &::before {
-        display: block;
-      }
-    }
-
-    &:focus {
-      &::before {
-        display: block;
-        background-color: var(--color-dark-100);
-      }
-
-      [data-state='checked'] {
-        background-color: var(--color-dark-900);
-        border-radius: 2px;
-      }
-    }
-
-    &:disabled {
-      pointer-events: none;
-      background-color: var(--color-dark-900);
-
-      &::before {
-        display: none;
-      }
-
-      svg {
-        fill: var(--color-dark-100);
-      }
-
-      [data-state='checked'] {
-        background-color: var(--color-light-700);
-        border-radius: 2px;
-      }
-    }
+  &.disabled {
+    pointer-events: none;
+    color: var(--color-dark-100);
   }
 }

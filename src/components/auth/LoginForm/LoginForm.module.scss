@@ -15,29 +15,27 @@
     text-align: center;
   }
 
-  input {
-    &:first-of-type {
-      margin-bottom: 24px;
-    }
-
-    &:last-of-type {
-      margin-bottom: 12px;
-    }
-  }
-
-  button {
-    margin-bottom: 20px;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 12px;
   }
 }
 
-.checkbox {
-  margin-bottom: 6px;
+.signIn {
+  margin-bottom: 20px;
 }
 
 .forgot {
   cursor: pointer;
+
   display: block;
+
+  width: max-content;
   margin-bottom: 60px;
+  margin-left: auto;
+
   text-align: right;
 }
 

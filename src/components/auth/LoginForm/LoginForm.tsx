@@ -27,8 +27,6 @@ export const LoginForm = () => {
     delayError: 2000,
     resolver: zodResolver(loginScheme),
   });
-
-  console.log(errors);
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
@@ -37,25 +35,22 @@ export const LoginForm = () => {
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <Typography.H1>SIgn In</Typography.H1>
 
-      <Input {...register('email')} error={errors.email?.message} label="Email" />
-      <Input
-        {...register('password')}
-        error={errors.password?.message}
-        label="Password"
-        type="password"
-      />
+      <div className={s.wrapper}>
+        <Input {...register('email')} error={errors.email?.message} label="Email" />
+        <Input
+          {...register('password')}
+          error={errors.password?.message}
+          label="Password"
+          type="password"
+        />
 
-      <FormCheckbox
-        className={s.checkbox}
-        control={control}
-        label="Remember me"
-        name="rememberMe"
-      />
+        <FormCheckbox control={control} label="Remember me" name="rememberMe" />
+      </div>
 
       <Typography.Body2 as="a" className={s.forgot}>
         Forgot Password?
       </Typography.Body2>
-      <Button fullWidth type="submit">
+      <Button className={s.signIn} fullWidth type="submit">
         Sign In
       </Button>
 

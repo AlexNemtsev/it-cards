@@ -2,12 +2,12 @@ import { InputHTMLAttributes, forwardRef, useState } from 'react';
 
 import { Cross } from '@/assets/icons/Cross';
 import { Eye } from '@/assets/icons/Eye/Eye';
+import { EyeOff } from '@/assets/icons/EyeOff';
 import { Search } from '@/assets/icons/Search';
 import { clsx } from 'clsx';
 
 import s from './Input.module.scss';
 
-import { EyeOff } from '../../../assets/icons/EyeOff';
 import { Typography } from '../Typography';
 import { InputButton } from './InputButton';
 
@@ -19,7 +19,7 @@ type Props = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
-  const { clearInput, disabled, error, label, type, value, ...restProps } = props;
+  const { className, clearInput, disabled, error, label, type, value, ...restProps } = props;
 
   const [maskedPassword, setMaskedPassword] = useState(false);
 
@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => 
     cross: clsx(),
     field: clsx(s.field, disabled && s.disabled),
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
-    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
+    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error, className),
     label: clsx(s.label, disabled && s.disabled),
   };
 

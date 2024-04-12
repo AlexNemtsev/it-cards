@@ -35,17 +35,26 @@ export const LoginForm = () => {
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <Typography.H1>SIgn In</Typography.H1>
 
-      <div className={s.wrapper}>
-        <Input {...register('email')} error={errors.email?.message} label="Email" />
-        <Input
-          {...register('password')}
-          error={errors.password?.message}
-          label="Password"
-          type="password"
-        />
+      <Input
+        className={s.input}
+        {...register('email')}
+        error={errors.email?.message}
+        label="Email"
+      />
+      <Input
+        className={s.input}
+        {...register('password')}
+        error={errors.password?.message}
+        label="Password"
+        type="password"
+      />
 
-        <FormCheckbox control={control} label="Remember me" name="rememberMe" />
-      </div>
+      <FormCheckbox
+        className={s.checkbox}
+        control={control}
+        label="Remember me"
+        name="rememberMe"
+      />
 
       <Typography.Body2 as="a" className={s.forgot}>
         Forgot Password?

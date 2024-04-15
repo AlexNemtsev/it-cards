@@ -4,17 +4,41 @@ import { Card } from '@/components/ui//Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Typography } from '@/components/ui/Typography';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 import s from './LogUp.module.scss';
 
-type FormValues = {
-  confirmPassword: string;
-  email: string;
-  password: string;
-};
+const schema = z
+  .object({
+    email: z.string().email('Invalid email address').nonempty('Enter email'),
+    password: z.string().nonempty('Enter password'),
+    passwordConfirmation: z.string().nonempty('Confirm your password'),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.passwordConfirmation) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Passwords do not match',
+        path: ['passwordConfirmation'],
+      });
+    }
+
+    return data;
+  });
+
+type FormValues = z.infer<typeof schema>;
 
 export const LogUp = () => {
-  const { control, handleSubmit, register } = useForm<FormValues>();
+  const { control, handleSubmit, register } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+    },
+    mode: 'onSubmit',
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
@@ -30,9 +54,10 @@ export const LogUp = () => {
   return (
     <Card className={s.logUp}>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <Typography.H1>Sign Up</Typography.H1>
         <Input onChange={onEmailChange} value={emailValue} />
         <Input {...register('password')} label="password" type="password" />
-        <Input {...register('confirmPassword')} label="Confirm Password" type="password" />
+        <Input {...register('passwordConfirmation')} label="Confirm Password" type="password" />
         <Button fullWidth type="submit" variant="primary">
           Sign Up
         </Button>

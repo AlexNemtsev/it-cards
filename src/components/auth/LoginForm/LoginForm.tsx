@@ -2,9 +2,9 @@ import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
 import { Typography } from '@/components/ui/Typography';
 import { CheckboxWithController } from '@/components/withControllers/CheckboxWithController';
+import { InputWithController } from '@/components/withControllers/InputWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -21,9 +21,9 @@ type FormValues = z.infer<typeof loginScheme>;
 export const LoginForm = () => {
   const {
     control,
-    formState: { errors },
+    // formState: { errors },
     handleSubmit,
-    register,
+    // register,
   } = useForm<FormValues>({
     delayError: 2000,
     resolver: zodResolver(loginScheme),
@@ -37,19 +37,21 @@ export const LoginForm = () => {
       <Typography.H1>Sign In</Typography.H1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          className={s.input}
-          {...register('email')}
-          error={errors.email?.message}
-          label="Email"
-        />
-        <Input
-          className={s.input}
-          {...register('password')}
-          error={errors.password?.message}
-          label="Password"
-          type="password"
-        />
+        <InputWithController control={control} label="Email" name="email" />
+        <InputWithController control={control} label="Password" name="password" />
+        {/*<Input*/}
+        {/*  containerClassName={s.input}*/}
+        {/*  {...register('email')}*/}
+        {/*  error={errors.email?.message}*/}
+        {/*  label="Email"*/}
+        {/*/>*/}
+        {/*<Input*/}
+        {/*  containerClassName={s.input}*/}
+        {/*  {...register('password')}*/}
+        {/*  error={errors.password?.message}*/}
+        {/*  label="Password"*/}
+        {/*  type="password"*/}
+        {/*/>*/}
 
         <CheckboxWithController
           className={s.checkbox}

@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 
-import { FormCheckbox } from '@/components/FormCheckbox/FormCheckbox';
 import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Typography } from '@/components/ui/Typography';
+import { CheckboxWithController } from '@/components/withControllers/CheckboxWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -11,7 +12,7 @@ import s from './LoginForm.module.scss';
 
 const loginScheme = z.object({
   email: z.string().email(),
-  password: z.string().min(3),
+  password: z.string(),
   rememberMe: z.boolean().optional(),
 });
 
@@ -32,44 +33,47 @@ export const LoginForm = () => {
   };
 
   return (
-    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-      <Typography.H1>SIgn In</Typography.H1>
+    <Card className={s.card}>
+      <Typography.H1>Sign In</Typography.H1>
 
-      <Input
-        className={s.input}
-        {...register('email')}
-        error={errors.email?.message}
-        label="Email"
-      />
-      <Input
-        className={s.input}
-        {...register('password')}
-        error={errors.password?.message}
-        label="Password"
-        type="password"
-      />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          className={s.input}
+          {...register('email')}
+          error={errors.email?.message}
+          label="Email"
+        />
+        <Input
+          className={s.input}
+          {...register('password')}
+          error={errors.password?.message}
+          label="Password"
+          type="password"
+        />
 
-      <FormCheckbox
-        className={s.checkbox}
-        control={control}
-        label="Remember me"
-        name="rememberMe"
-      />
+        <CheckboxWithController
+          className={s.checkbox}
+          control={control}
+          label="Remember me"
+          name="rememberMe"
+        />
 
-      <Typography.Body2 as="a" className={s.forgot}>
-        Forgot Password?
-      </Typography.Body2>
-      <Button className={s.signIn} fullWidth type="submit">
-        Sign In
-      </Button>
+        <Typography.Body2 as="a" className={s.forgot}>
+          Forgot Password?
+        </Typography.Body2>
 
-      <Typography.Body2 as="a" className={s.dontHaveAccount}>
-        Don&apos;t have an account?
-      </Typography.Body2>
+        <Button className={s.signIn} fullWidth type="submit">
+          Sign In
+        </Button>
 
-      <Typography.Subtitle1 as="a" className={s.signUp}>
-        Sign Up
-      </Typography.Subtitle1>
-    </form>
+        <Typography.Body2 as="a" className={s.dontHaveAccount}>
+          {`Don't have an account?`}
+        </Typography.Body2>
+
+        <Typography.Subtitle1 as="a" className={s.signUp}>
+          Sign Up
+        </Typography.Subtitle1>
+      </form>
+    </Card>
   );
 };

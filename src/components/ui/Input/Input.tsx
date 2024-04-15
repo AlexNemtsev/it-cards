@@ -19,7 +19,7 @@ export type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
-  const { clearInput, disabled, error, label, type, value, ...restProps } = props;
+  const { className, clearInput, disabled, error, label, type, value, ...restProps } = props;
 
   const [maskedPassword, setMaskedPassword] = useState(false);
 
@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps
     cross: clsx(),
     field: clsx(s.field, disabled && s.disabled),
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
-    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
+    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error, className),
     label: clsx(s.label, disabled && s.disabled),
   };
 

@@ -7,7 +7,7 @@ import s from './Tab.module.scss';
 
 import { TabOption } from '../tabOption';
 
-export type TabProps = TabOption & ComponentPropsWithoutRef<typeof Trigger>;
+export type TabProps = ComponentPropsWithoutRef<typeof Trigger> & TabOption;
 
 export const Tab = (props: TabProps) => {
   const { label, value, ...restProps } = props;

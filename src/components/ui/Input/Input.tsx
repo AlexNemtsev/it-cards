@@ -11,14 +11,14 @@ import { EyeOff } from '../../../assets/icons/EyeOff';
 import { Typography } from '../Typography';
 import { InputButton } from './InputButton';
 
-type Props = {
+export type InputProps = {
   clearInput?: () => void;
   error?: string;
   label?: string;
   type?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
   const { clearInput, disabled, error, label, type, value, ...restProps } = props;
 
   const [maskedPassword, setMaskedPassword] = useState(false);

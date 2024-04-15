@@ -1,9 +1,9 @@
-import { useController, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { Card } from '@/components/ui//Card';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
 import { Typography } from '@/components/ui/Typography';
+import { InputWithController } from '@/components/withController/InputWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -30,7 +30,7 @@ const schema = z
 type FormValues = z.infer<typeof schema>;
 
 export const LogUp = () => {
-  const { control, handleSubmit, register } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       email: '',
       password: '',
@@ -44,26 +44,24 @@ export const LogUp = () => {
     console.log(data);
   };
 
-  const {
-    field: { onChange: onEmailChange, value: emailValue },
-  } = useController({
-    control,
-    name: 'email',
-  });
-
   return (
     <Card className={s.logUp}>
+      <Typography.H1>Sign Up</Typography.H1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Typography.H1>Sign Up</Typography.H1>
-        <Input onChange={onEmailChange} value={emailValue} />
-        <Input {...register('password')} label="password" type="password" />
-        <Input {...register('passwordConfirmation')} label="Confirm Password" type="password" />
+        <InputWithController control={control} label="Email" name="email" />
+        <InputWithController control={control} label="Password" name="password" type="password" />
+        <InputWithController
+          control={control}
+          label="Password confirm"
+          name="passwordConfirmation"
+          type="password"
+        />
         <Button fullWidth type="submit" variant="primary">
           Sign Up
         </Button>
-        <Typography.Body2 variant="body2">Already have an account?</Typography.Body2>
-        <Typography.Link1 to="/sign-up">Sign In</Typography.Link1>
       </form>
+      <Typography.Body2 variant="body2">Already have an account?</Typography.Body2>
+      <Typography.Link1 to="/sign-up">Sign In</Typography.Link1>
     </Card>
   );
 };

@@ -37,21 +37,19 @@ export const LoginForm = () => {
       <Typography.H1>Sign In</Typography.H1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputWithController control={control} label="Email" name="email" />
-        <InputWithController control={control} label="Password" name="password" />
-        {/*<Input*/}
-        {/*  containerClassName={s.input}*/}
-        {/*  {...register('email')}*/}
-        {/*  error={errors.email?.message}*/}
-        {/*  label="Email"*/}
-        {/*/>*/}
-        {/*<Input*/}
-        {/*  containerClassName={s.input}*/}
-        {/*  {...register('password')}*/}
-        {/*  error={errors.password?.message}*/}
-        {/*  label="Password"*/}
-        {/*  type="password"*/}
-        {/*/>*/}
+        <InputWithController
+          containerClassName={s.input}
+          control={control}
+          label="Email"
+          name="email"
+        />
+        <InputWithController
+          containerClassName={s.input}
+          control={control}
+          label="Password"
+          name="password"
+          type="password"
+        />
 
         <CheckboxWithController
           className={s.checkbox}

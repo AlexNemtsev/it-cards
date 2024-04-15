@@ -46,22 +46,34 @@ export const LogUp = () => {
 
   return (
     <Card className={s.logUp}>
-      <Typography.H1>Sign Up</Typography.H1>
+      <Typography.H1 className={s.title}>Sign Up</Typography.H1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputWithController control={control} label="Email" name="email" />
-        <InputWithController control={control} label="Password" name="password" type="password" />
         <InputWithController
+          containerClassName={s.input}
           control={control}
-          label="Password confirm"
+          label="Email"
+          name="email"
+        />
+        <InputWithController
+          containerClassName={s.input}
+          control={control}
+          label="Password"
+          name="password"
+          type="password"
+        />
+        <InputWithController
+          containerClassName={s.input}
+          control={control}
+          label="Confirm password"
           name="passwordConfirmation"
           type="password"
         />
-        <Button fullWidth type="submit" variant="primary">
+        <Button className={s.singUp} fullWidth type="submit" variant="primary">
           Sign Up
         </Button>
       </form>
-      <Typography.Body2 variant="body2">Already have an account?</Typography.Body2>
-      <Typography.Link1 to="/sign-up">Sign In</Typography.Link1>
+      <Typography.Body2 className={s.haveAccount}>Already have an account?</Typography.Body2>
+      <Typography.Subtitle1 className={s.signIn}>Sign In</Typography.Subtitle1>
     </Card>
   );
 };

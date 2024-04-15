@@ -11,15 +11,17 @@ import { EyeOff } from '../../../assets/icons/EyeOff';
 import { Typography } from '../Typography';
 import { InputButton } from './InputButton';
 
-type Props = {
+export type InputProps = {
   clearInput?: () => void;
+  containerClassName?: string;
   error?: string;
   label?: string;
   type?: 'password' | 'search';
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
-  const { clearInput, disabled, error, label, type, value, ...restProps } = props;
+export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
+  const { clearInput, containerClassName, disabled, error, label, type, value, ...restProps } =
+    props;
 
   const [maskedPassword, setMaskedPassword] = useState(false);
 
@@ -31,15 +33,15 @@ export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => 
   const typeSearch = type === 'search';
 
   const classNames = {
+    container: clsx(s.container, disabled && s.disabled, error && s.error, containerClassName),
     cross: clsx(),
     field: clsx(s.field, disabled && s.disabled),
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
-    inputWrapper: clsx(s.inputWrapper, disabled && s.disabled, error && s.error),
     label: clsx(s.label, disabled && s.disabled),
   };
 
   return (
-    <div className={classNames.inputWrapper}>
+    <div className={classNames.container}>
       {label && !typeSearch && (
         <label htmlFor={label}>
           <Typography.Body2 className={classNames.label}>{label}</Typography.Body2>

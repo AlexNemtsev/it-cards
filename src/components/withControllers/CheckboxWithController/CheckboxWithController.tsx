@@ -3,8 +3,11 @@ import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 import { Checkbox } from '@/components/ui/Checkbox';
 import { CheckboxProps } from '@/components/ui/Checkbox/Checkbox';
 
-type Props<T extends FieldValues> = UseControllerProps<T> &
-  Omit<CheckboxProps, 'defaultValue' | 'icon' | 'onChange' | 'value'>;
+type Props<T extends FieldValues> = Omit<
+  CheckboxProps,
+  'defaultValue' | 'icon' | 'onChange' | 'value'
+> &
+  UseControllerProps<T>;
 export const CheckboxWithController = <T extends FieldValues>(props: Props<T>) => {
   const { className, control, defaultValue, disabled, name } = props;
 

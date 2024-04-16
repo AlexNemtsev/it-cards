@@ -12,7 +12,7 @@ import s from './LogUp.module.scss';
 const schema = z
   .object({
     email: z.string().email('Invalid email address'),
-    password: z.string(),
+    password: z.string().min(3),
     passwordConfirmation: z.string(),
   })
   .superRefine((data, ctx) => {

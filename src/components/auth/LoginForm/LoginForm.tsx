@@ -19,12 +19,7 @@ const loginScheme = z.object({
 type FormValues = z.infer<typeof loginScheme>;
 
 export const LoginForm = () => {
-  const {
-    control,
-    // formState: { errors },
-    handleSubmit,
-    // register,
-  } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<FormValues>({
     delayError: 2000,
     resolver: zodResolver(loginScheme),
   });
@@ -50,26 +45,21 @@ export const LoginForm = () => {
           name="password"
           type="password"
         />
-
         <CheckboxWithController
           className={s.checkbox}
           control={control}
           label="Remember me"
           name="rememberMe"
         />
-
         <Typography.Body2 as="a" className={s.forgot}>
           Forgot Password?
         </Typography.Body2>
-
         <Button className={s.signIn} fullWidth type="submit">
           Sign In
         </Button>
-
         <Typography.Body2 as="a" className={s.dontHaveAccount}>
           {`Don't have an account?`}
         </Typography.Body2>
-
         <Typography.Subtitle1 as="a" className={s.signUp}>
           Sign Up
         </Typography.Subtitle1>

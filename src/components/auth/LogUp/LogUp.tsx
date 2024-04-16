@@ -11,9 +11,9 @@ import s from './LogUp.module.scss';
 
 const schema = z
   .object({
-    email: z.string().email('Invalid email address').nonempty('Enter email'),
-    password: z.string().nonempty('Enter password'),
-    passwordConfirmation: z.string().nonempty('Confirm your password'),
+    email: z.string().email('Invalid email address'),
+    password: z.string(),
+    passwordConfirmation: z.string(),
   })
   .superRefine((data, ctx) => {
     if (data.password !== data.passwordConfirmation) {

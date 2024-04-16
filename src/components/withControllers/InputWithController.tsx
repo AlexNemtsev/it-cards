@@ -7,12 +7,12 @@ type Props<T extends FieldValues> = Omit<InputProps, 'onChange' | 'value'> & Use
 export const InputWithController = <T extends FieldValues>(props: Props<T>) => {
   const { control, name, ...rest } = props;
   const {
-    field,
+    field: { value, ...restField },
     fieldState: { error },
   } = useController({
     control,
     name,
   });
 
-  return <Input {...rest} error={error?.message} {...field} name={name} />;
+  return <Input {...rest} error={error?.message} {...restField} name={name} />;
 };

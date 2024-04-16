@@ -4,11 +4,11 @@ import { Cross } from '@/assets/icons/Cross';
 import { Eye } from '@/assets/icons/Eye/Eye';
 import { EyeOff } from '@/assets/icons/EyeOff';
 import { Search } from '@/assets/icons/Search';
+import { Typography } from '@/components/ui/Typography';
 import { clsx } from 'clsx';
 
 import s from './Input.module.scss';
 
-import { Typography } from '../Typography';
 import { InputButton } from './InputButton';
 
 export type InputProps = {
@@ -34,7 +34,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps
 
   const classNames = {
     container: clsx(s.container, disabled && s.disabled, error && s.error, containerClassName),
-    cross: clsx(),
     field: clsx(s.field, disabled && s.disabled),
     input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
     label: clsx(s.label, disabled && s.disabled),

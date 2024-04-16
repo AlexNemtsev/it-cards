@@ -19,7 +19,7 @@ type RadixSliderOmittedProps = Omit<
   'onValueCommit' | 'value' | keyof RedefinedProps
 >;
 
-type Props = RedefinedProps & RadixSliderOmittedProps;
+type Props = RadixSliderOmittedProps & RedefinedProps;
 
 export const Slider = (props: Props) => {
   const { defaultValue, delay, onValueChange, ...restProps } = props;

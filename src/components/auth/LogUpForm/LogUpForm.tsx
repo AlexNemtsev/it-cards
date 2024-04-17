@@ -5,49 +5,38 @@ import { Button } from '@/components/ui/Button';
 import { Typography } from '@/components/ui/Typography';
 import { InputWithController } from '@/components/withControllers/InputWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 
-import s from './LogUp.module.scss';
+import s from './LogUpForm.module.scss';
 
-const schema = z
-  .object({
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(3),
-    passwordConfirmation: z.string(),
-  })
-  .superRefine((data, ctx) => {
-    if (data.password !== data.passwordConfirmation) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'Passwords do not match',
-        path: ['passwordConfirmation'],
-      });
-    }
+import { logUpFormSchema } from './LogUpFormShema';
+import { LogUpFormValues } from './LogUpFormValues';
 
-    return data;
-  });
+type Props = {
+  onSubmit: (data: Omit<LogUpFormValues, 'passwordConfirmation'>) => void;
+};
 
-type FormValues = z.infer<typeof schema>;
-
-export const LogUp = () => {
-  const { control, handleSubmit } = useForm<FormValues>({
+export const LogUpForm = (props: Props) => {
+  const { onSubmit } = props;
+  const { control, handleSubmit } = useForm<LogUpFormValues>({
     defaultValues: {
       email: '',
       password: '',
       passwordConfirmation: '',
     },
     mode: 'onSubmit',
-    resolver: zodResolver(schema),
+    resolver: zodResolver(logUpFormSchema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  const onSubmitLogUp = (data: LogUpFormValues) => {
+    const { passwordConfirmation, ...dataLogUpForm } = data;
+
+    onSubmit(dataLogUpForm);
   };
 
   return (
     <Card className={s.logUp}>
       <Typography.H1 className={s.title}>Sign Up</Typography.H1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitLogUp)}>
         <InputWithController
           containerClassName={s.input}
           control={control}

@@ -1,6 +1,8 @@
+@import '@/styles/form-container-mixin';
+
 .card {
-  max-width: 420px;
-  margin: 0 auto;
+  @include form-container;
+
   padding: 33px 36px 25px;
 
   background-color: var(--color-dark-700);

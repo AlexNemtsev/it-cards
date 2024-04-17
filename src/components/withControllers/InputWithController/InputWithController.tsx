@@ -1,20 +1,18 @@
-import { Control, FieldPath, FieldValues, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 
 import { Input, InputProps } from '@/components/ui/Input';
 
-export type ControlledTextFieldProps<T extends FieldValues> = {
-  control: Control<T>;
-  name: FieldPath<T>;
-} & Omit<InputProps, 'id' | 'onChange' | 'value'>;
+type Props<T extends FieldValues> = Omit<InputProps, 'onChange' | 'value'> & UseControllerProps<T>;
 
-export const InputWithController = <T extends FieldValues>(props: ControlledTextFieldProps<T>) => {
+export const InputWithController = <T extends FieldValues>(props: Props<T>) => {
+  const { control, name, ...rest } = props;
   const {
     field,
     fieldState: { error },
   } = useController({
-    control: props.control,
-    name: props.name,
+    control,
+    name,
   });
 
-  return <Input {...props} {...field} error={error?.message} />;
+  return <Input {...rest} error={error?.message} {...field} name={name} />;
 };

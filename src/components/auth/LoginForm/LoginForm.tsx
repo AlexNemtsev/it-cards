@@ -16,9 +16,12 @@ const loginScheme = z.object({
   rememberMe: z.boolean().optional(),
 });
 
-type FormValues = z.infer<typeof loginScheme>;
-
-export const LoginForm = () => {
+export type FormValues = z.infer<typeof loginScheme>;
+type Props = {
+  onSubmit: (data: FormValues) => void;
+};
+export const LoginForm = (props: Props) => {
+  const { onSubmit } = props;
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       email: '',
@@ -27,15 +30,15 @@ export const LoginForm = () => {
     delayError: 2000,
     resolver: zodResolver(loginScheme),
   });
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  const onSubmitLogIn = (data: FormValues) => {
+    onSubmit(data);
   };
 
   return (
     <Card className={s.card}>
       <Typography.H1>Sign In</Typography.H1>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitLogIn)}>
         <InputWithController
           containerClassName={s.input}
           control={control}

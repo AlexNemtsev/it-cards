@@ -20,6 +20,10 @@ type FormValues = z.infer<typeof loginScheme>;
 
 export const LoginForm = () => {
   const { control, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
     delayError: 2000,
     resolver: zodResolver(loginScheme),
   });

@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const logUpFormSchema = z
   .object({
     email: z.string().email('Invalid email address'),
-    password: z.string().min(3),
+    password: z.string().min(3).max(30),
     passwordConfirmation: z.string(),
   })
   .superRefine((data, ctx) => {

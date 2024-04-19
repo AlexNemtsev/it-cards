@@ -1,0 +1,65 @@
+@import '@/styles/form-container-mixin';
+
+.card {
+  @include form-container;
+
+  padding: 33px 36px 25px;
+
+  h1 {
+    margin-bottom: 27px;
+    text-align: center;
+  }
+
+  .input {
+    &:first-of-type {
+      margin-bottom: 24px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 21px;
+    }
+  }
+}
+
+.checkbox {
+  margin-bottom: 12px;
+}
+
+.signIn {
+  margin-bottom: 20px;
+}
+
+.forgot {
+  cursor: pointer;
+
+  display: block;
+
+  width: max-content;
+  margin-bottom: 60px;
+  margin-left: auto;
+
+  text-align: right;
+}
+
+.dontHaveAccount {
+  cursor: pointer;
+
+  display: block;
+
+  width: max-content;
+  margin: 0 auto 11px;
+
+  color: var(--color-light-900);
+}
+
+.signUp {
+  cursor: pointer;
+
+  display: block;
+
+  width: max-content;
+  margin: 0 auto;
+
+  color: var(--color-accent-500);
+  text-decoration: underline;
+}

@@ -37,9 +37,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       textError: s.textError,
       textField: clsx(s.textField, disabled && s.disabled, className),
     };
-
-    console.log(classNames.textField);
-
     const onClickHandler = () => {
       if (type === 'password') {
         setShowPassword(prev => !prev);

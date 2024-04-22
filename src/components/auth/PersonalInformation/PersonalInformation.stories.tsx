@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { useState } from 'react';
+
+import avatar from '@/assets/img/avatar-for-dropmenu.png';
+
 import { FormValues, PersonalInformation } from './PersonalInformation';
 
 const meta = {
@@ -10,13 +14,21 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Primary: Story = {
+export const ExampleWithAvatar: Story = {
   args: {
+    avatar: avatar,
     onSubmit: (data: FormValues) => {
       console.log(data);
     },
+    setAvatar: () => {},
   },
-  render: ({ onSubmit }) => {
-    return <PersonalInformation onSubmit={onSubmit} />;
+  render: ({ avatar, onSubmit }) => {
+    const [ava, setAvatar] = useState(avatar);
+
+    return (
+      <div>
+        <PersonalInformation avatar={ava} onSubmit={onSubmit} setAvatar={setAvatar} />
+      </div>
+    );
   },
 };

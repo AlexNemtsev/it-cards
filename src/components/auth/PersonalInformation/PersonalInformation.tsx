@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Edit } from '@/assets/icons/Edit/Edit';
@@ -19,18 +19,23 @@ const PersonalInformationScheme = z.object({
 export type FormValues = z.infer<typeof PersonalInformationScheme>;
 type Props = {
   avatar?: string;
+  name: string;
   onSubmit: (data: FormValues) => void;
   setAvatar: (file: any) => void;
 };
 export const PersonalInformation = (props: Props) => {
-  const { avatar = unknownAvatar, onSubmit, setAvatar } = props;
+  const { avatar = unknownAvatar, name, onSubmit, setAvatar } = props;
+
+  const [isEditMode, setIsEditMode] = useState(false);
+
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       nickname: '',
     },
     resolver: zodResolver(PersonalInformationScheme),
   });
-  const onSubmitLogIn = (data: FormValues) => {
+  const onSubmitPersonalInformation = (data: FormValues) => {
+    setIsEditMode(false);
     onSubmit(data);
   };
 
@@ -58,25 +63,31 @@ export const PersonalInformation = (props: Props) => {
         </label>
 
         <img alt="avatar" className={s.avatar} src={avatar} />
-      </div>
-      <Typography.H2>
-        Ivan
-        <button className={s.editName}>
-          <Edit />
-        </button>
-      </Typography.H2>
 
-      <form onSubmit={handleSubmit(onSubmitLogIn)}>
-        <InputWithController
-          containerClassName={s.input}
-          control={control}
-          label="Nickname"
-          name="nickname"
-        />
-        <Button fullWidth type="submit">
-          Save Changes
-        </Button>
-      </form>
+        {!isEditMode && (
+          <Typography.H2 className={s.name}>
+            {name}
+
+            <button className={s.editName} onClick={() => setIsEditMode(true)}>
+              <Edit />
+            </button>
+          </Typography.H2>
+        )}
+      </div>
+
+      {isEditMode && (
+        <form onSubmit={handleSubmit(onSubmitPersonalInformation)}>
+          <InputWithController
+            containerClassName={s.input}
+            control={control}
+            label="Nickname"
+            name="nickname"
+          />
+          <Button fullWidth type="submit">
+            Save Changes
+          </Button>
+        </form>
+      )}
     </Card>
   );
 };

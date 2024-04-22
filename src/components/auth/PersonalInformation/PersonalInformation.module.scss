@@ -78,31 +78,43 @@
     }
   }
 
-  .name {
+  .notEditModeWrapper {
     display: flex;
-    gap: 9px;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 
-    .editName {
-      cursor: pointer;
-
+    .name {
       display: flex;
+      gap: 9px;
       align-items: center;
       justify-content: center;
 
-      width: 16px;
-      height: 16px;
-      padding: 0;
+      .editName {
+        cursor: pointer;
 
-      background-color: transparent;
-      border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      svg {
         width: 16px;
         height: 16px;
-        fill: currentcolor;
+        padding: 0;
+
+        background-color: transparent;
+        border: none;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          fill: currentcolor;
+        }
       }
+    }
+
+    .email {
+      margin-bottom: 13px;
+      color: var(--color-dark-100);
+      text-align: center;
     }
   }
 }

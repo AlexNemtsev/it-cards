@@ -17,6 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const ExampleWithAvatar: Story = {
   args: {
     avatar: avatar,
+    logout: () => {},
     name: 'Ivan',
     onSubmit: () => {},
     setAvatar: () => {},
@@ -26,14 +27,18 @@ export const ExampleWithAvatar: Story = {
     const [nickname, setName] = useState(name);
 
     const onSubmitHandler = (data: FormValues) => {
-      console.log('123', data);
+      console.log(data);
       setName(data.nickname);
+    };
+    const onLogoutHandler = () => {
+      alert('Куда же Вы?');
     };
 
     return (
       <div>
         <PersonalInformation
           avatar={ava}
+          logout={onLogoutHandler}
           name={nickname}
           onSubmit={onSubmitHandler}
           setAvatar={setAvatar}

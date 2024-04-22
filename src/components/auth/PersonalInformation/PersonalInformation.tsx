@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Edit } from '@/assets/icons/Edit/Edit';
+import { LogOutIcon } from '@/assets/icons/LogOutIcon';
 import unknownAvatar from '@/assets/img/unknown-avatar.png';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -19,12 +20,13 @@ const PersonalInformationScheme = z.object({
 export type FormValues = z.infer<typeof PersonalInformationScheme>;
 type Props = {
   avatar?: string;
+  logout: () => void;
   name: string;
   onSubmit: (data: FormValues) => void;
   setAvatar: (file: any) => void;
 };
 export const PersonalInformation = (props: Props) => {
-  const { avatar = unknownAvatar, name, onSubmit, setAvatar } = props;
+  const { avatar = unknownAvatar, logout, name, onSubmit, setAvatar } = props;
 
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -54,6 +56,8 @@ export const PersonalInformation = (props: Props) => {
     <Card className={s.card}>
       <Typography.H1>Personal Information</Typography.H1>
       <div className={s.avatarWrapper}>
+        <img alt="avatar" className={s.avatar} src={avatar} />
+
         <label className={s.editAvatar}>
           <input accept="image/jpeg, image/png, image/gif" onChange={uploadHandler} type="file" />
 
@@ -61,10 +65,10 @@ export const PersonalInformation = (props: Props) => {
             <Edit />
           </span>
         </label>
+      </div>
 
-        <img alt="avatar" className={s.avatar} src={avatar} />
-
-        {!isEditMode && (
+      {!isEditMode && (
+        <div className={s.notEditModeWrapper}>
           <Typography.H2 className={s.name}>
             {name}
 
@@ -72,12 +76,19 @@ export const PersonalInformation = (props: Props) => {
               <Edit />
             </button>
           </Typography.H2>
-        )}
-      </div>
 
+          <Typography.Body2 className={s.email}> j&johnson@gmail.com</Typography.Body2>
+
+          <Button onClick={logout} variant="secondary">
+            <LogOutIcon />
+            Logout
+          </Button>
+        </div>
+      )}
       {isEditMode && (
         <form onSubmit={handleSubmit(onSubmitPersonalInformation)}>
           <InputWithController
+            autoFocus
             containerClassName={s.input}
             control={control}
             label="Nickname"

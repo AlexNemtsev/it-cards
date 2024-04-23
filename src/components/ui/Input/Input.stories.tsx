@@ -94,7 +94,7 @@ export const InputTypeSearch: Story = {
 
     return (
       <>
-        <Input clearInput={clearSearch} onChange={onValueChange} type="search" value={search} />
+        <Input onChange={onValueChange} onClearInput={clearSearch} type="search" value={search} />
         <Typography.Body1>{search}</Typography.Body1>
       </>
     );

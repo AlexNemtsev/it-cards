@@ -10,7 +10,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Example: Story = {
+export const BaseExample: Story = {
   args: {
     onSubmit: (data: FormValues) => {
       console.log(data.email);

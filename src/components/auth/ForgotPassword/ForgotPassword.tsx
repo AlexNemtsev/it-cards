@@ -25,7 +25,7 @@ export const ForgotPassword = (props: Props) => {
     },
     resolver: zodResolver(forgotPasswordScheme),
   });
-  const onSubmitLogIn = (data: FormValues) => {
+  const onSubmitHandler = (data: FormValues) => {
     onSubmit(data);
   };
 
@@ -33,7 +33,7 @@ export const ForgotPassword = (props: Props) => {
     <Card className={s.card}>
       <Typography.H1>Forgot your password?</Typography.H1>
 
-      <form onSubmit={handleSubmit(onSubmitLogIn)}>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <InputWithController
           containerClassName={s.input}
           control={control}
@@ -48,7 +48,7 @@ export const ForgotPassword = (props: Props) => {
           Send Instructions
         </Button>
 
-        <Typography.Body2 as="a" className={s.remember} href="#">
+        <Typography.Body2 className={s.remember} href="#">
           Did you remember your password?
         </Typography.Body2>
         <Typography.Subtitle1 as="a" className={s.tryLogin} href="#">

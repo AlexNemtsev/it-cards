@@ -25,7 +25,7 @@ export const CreateNewPassword = (props: Props) => {
     },
     resolver: zodResolver(CreateNewPasswordScheme),
   });
-  const onSubmitLogIn = (data: FormValues) => {
+  const onSubmitHandler = (data: FormValues) => {
     onSubmit(data);
   };
 
@@ -33,7 +33,7 @@ export const CreateNewPassword = (props: Props) => {
     <Card className={s.card}>
       <Typography.H1>Create new password</Typography.H1>
 
-      <form onSubmit={handleSubmit(onSubmitLogIn)}>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <InputWithController
           containerClassName={s.input}
           control={control}
@@ -41,7 +41,7 @@ export const CreateNewPassword = (props: Props) => {
           name="password"
           type="password"
         />
-        <Typography.Body2 as="a" className={s.notice}>
+        <Typography.Body2 className={s.notice}>
           Create new password and we will send you further instructions to email
         </Typography.Body2>
 

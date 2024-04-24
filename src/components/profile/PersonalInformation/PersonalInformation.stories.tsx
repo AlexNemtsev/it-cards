@@ -53,7 +53,7 @@ const PersonalInformationWrapper = (props: Props) => {
     setNickname(data.nickname);
   };
   const onLogoutHandler = () => {
-    console.log('Куда же Вы?');
+    console.log('Logout');
   };
 
   return (

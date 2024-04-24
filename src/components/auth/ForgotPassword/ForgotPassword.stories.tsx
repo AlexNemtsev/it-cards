@@ -16,7 +16,4 @@ export const BaseExample: Story = {
       console.log(data.email);
     },
   },
-  render: ({ onSubmit }) => {
-    return <ForgotPassword onSubmit={onSubmit} />;
-  },
 };

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';
 
-import s from './CreateNewPassword.module.scss';
+import s from './CheckEmail.module.scss';
 
 type Props = {
   backToSignIn: () => void;

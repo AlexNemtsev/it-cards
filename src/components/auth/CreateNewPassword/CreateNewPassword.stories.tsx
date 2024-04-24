@@ -16,7 +16,4 @@ export const BaseExample: Story = {
       console.log(data.password);
     },
   },
-  render: ({ onSubmit }) => {
-    return <CreateNewPassword onSubmit={onSubmit} />;
-  },
 };

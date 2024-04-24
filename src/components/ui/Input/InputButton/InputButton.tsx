@@ -12,7 +12,7 @@ export const InputButton = (props: Props) => {
   const { children, className, ...restProps } = props;
 
   return (
-    <button {...restProps} className={clsx(s.button, className && s[className])}>
+    <button {...restProps} className={clsx(s.button, className && s[className])} type="button">
       {children}
     </button>
   );

@@ -35,7 +35,7 @@ export const InputTypeText: Story = {
 export const InputTypeTextError: Story = {
   args: {
     error: 'Error',
-    label: 'input',
+    label: 'Input',
     value: 'Error!',
   },
 };
@@ -43,7 +43,7 @@ export const InputTypeTextError: Story = {
 export const InputTypeTextDisabled: Story = {
   args: {
     disabled: true,
-    label: 'input',
+    label: 'Input',
   },
 };
 
@@ -67,7 +67,7 @@ export const InputTypePassword: Story = {
 export const InputTypePasswordError: Story = {
   args: {
     error: 'Error!',
-    label: 'input',
+    label: 'Input',
     type: 'password',
     value: 'Error',
   },
@@ -75,7 +75,7 @@ export const InputTypePasswordError: Story = {
 export const InputTypePasswordDisabled: Story = {
   args: {
     disabled: true,
-    label: 'input',
+    label: 'Input',
     type: 'password',
   },
 };
@@ -94,7 +94,7 @@ export const InputTypeSearch: Story = {
 
     return (
       <>
-        <Input clearInput={clearSearch} onChange={onValueChange} type="search" value={search} />
+        <Input onChange={onValueChange} onClearInput={clearSearch} type="search" value={search} />
         <Typography.Body1>{search}</Typography.Body1>
       </>
     );

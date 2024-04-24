@@ -6,37 +6,36 @@ import { Typography } from '@/components/ui/Typography';
 import { InputWithController } from '@/components/withControllers/InputWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import s from './LogUpForm.module.scss';
+import s from './SignUpForm.module.scss';
 
-import { logUpFormSchema } from './LogUpFormShema';
-import { LogUpFormValues } from './LogUpFormValues';
+import { SignUpFormSchema, SignUpFormValues } from './SignUpFormShema';
 
 type Props = {
-  onSubmit: (data: Omit<LogUpFormValues, 'passwordConfirmation'>) => void;
+  onSubmit: (data: Omit<SignUpFormValues, 'passwordConfirmation'>) => void;
 };
 
-export const LogUpForm = (props: Props) => {
+export const SignUpForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, handleSubmit } = useForm<LogUpFormValues>({
+  const { control, handleSubmit } = useForm<SignUpFormValues>({
     defaultValues: {
       email: '',
       password: '',
       passwordConfirmation: '',
     },
     mode: 'onSubmit',
-    resolver: zodResolver(logUpFormSchema),
+    resolver: zodResolver(SignUpFormSchema),
   });
 
-  const onSubmitLogUp = (data: LogUpFormValues) => {
-    const { passwordConfirmation, ...dataLogUpForm } = data;
+  const onSubmitSignUp = handleSubmit(data => {
+    const { passwordConfirmation, ...dataSignUpForm } = data;
 
-    onSubmit(dataLogUpForm);
-  };
+    onSubmit(dataSignUpForm);
+  });
 
   return (
-    <Card className={s.logUp}>
+    <Card className={s.signUp}>
       <Typography.H1 className={s.title}>Sign Up</Typography.H1>
-      <form onSubmit={handleSubmit(onSubmitLogUp)}>
+      <form onSubmit={onSubmitSignUp}>
         <InputWithController
           containerClassName={s.input}
           control={control}
@@ -57,7 +56,7 @@ export const LogUpForm = (props: Props) => {
           name="passwordConfirmation"
           type="password"
         />
-        <Button className={s.singUp} fullWidth type="submit" variant="primary">
+        <Button className={s.signUpButton} fullWidth type="submit" variant="primary">
           Sign Up
         </Button>
       </form>

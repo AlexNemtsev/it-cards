@@ -1,6 +1,6 @@
 @import '@/styles/form-container-mixin';
 
-.logUp {
+.signUp {
   @include form-container;
 
   padding: 33px 36px 25px;
@@ -20,7 +20,7 @@
   }
 }
 
-.singUp {
+.signUpButton {
   margin-bottom: 20px;
 }
 

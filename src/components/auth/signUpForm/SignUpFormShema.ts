@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-export const logUpFormSchema = z
+export const SignUpFormSchema = z
   .object({
-    email: z.string().email('Invalid email address'),
+    email: z.string().email(),
     password: z.string().min(3).max(30),
     passwordConfirmation: z.string(),
   })
@@ -17,3 +17,5 @@ export const logUpFormSchema = z
 
     return data;
   });
+
+export type SignUpFormValues = z.infer<typeof SignUpFormSchema>;

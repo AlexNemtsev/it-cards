@@ -23,29 +23,8 @@ export const ExampleWithAvatar: Story = {
     onSubmit: () => {},
     setAvatar: () => {},
   },
-  render: ({ avatar, name }) => {
-    const [ava, setAvatar] = useState(avatar);
-    const [nickname, setName] = useState(name);
-
-    const onSubmitHandler = (data: FormValues) => {
-      console.log(data);
-      setName(data.nickname);
-    };
-    const onLogoutHandler = () => {
-      alert('Куда же Вы?');
-    };
-
-    return (
-      <div>
-        <PersonalInformation
-          avatar={ava}
-          logout={onLogoutHandler}
-          name={nickname}
-          onSubmit={onSubmitHandler}
-          setAvatar={setAvatar}
-        />
-      </div>
-    );
+  render: args => {
+    return <PersonalInformationWrapper {...args} />;
   },
 };
 export const ExampleWithoutAvatar: Story = {
@@ -55,28 +34,35 @@ export const ExampleWithoutAvatar: Story = {
     onSubmit: () => {},
     setAvatar: () => {},
   },
-  render: ({ avatar, name }) => {
-    const [ava, setAvatar] = useState(avatar);
-    const [nickname, setName] = useState(name);
-
-    const onSubmitHandler = (data: FormValues) => {
-      console.log(data);
-      setName(data.nickname);
-    };
-    const onLogoutHandler = () => {
-      alert('Куда же Вы?');
-    };
-
-    return (
-      <div>
-        <PersonalInformation
-          avatar={ava}
-          logout={onLogoutHandler}
-          name={nickname}
-          onSubmit={onSubmitHandler}
-          setAvatar={setAvatar}
-        />
-      </div>
-    );
+  render: args => {
+    return <PersonalInformationWrapper {...args} />;
   },
+};
+
+type Props = {
+  avatar?: string;
+  name: string;
+};
+const PersonalInformationWrapper = (props: Props) => {
+  const { avatar, name } = props;
+  const [ava, setAva] = useState(avatar);
+  const [nickname, setNickname] = useState(name);
+
+  const onSubmitHandler = (data: FormValues) => {
+    console.log(data.nickname);
+    setNickname(data.nickname);
+  };
+  const onLogoutHandler = () => {
+    console.log('Куда же Вы?');
+  };
+
+  return (
+    <PersonalInformation
+      avatar={ava}
+      logout={onLogoutHandler}
+      name={nickname}
+      onSubmit={onSubmitHandler}
+      setAvatar={setAva}
+    />
+  );
 };

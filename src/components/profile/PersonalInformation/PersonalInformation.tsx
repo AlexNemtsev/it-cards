@@ -35,6 +35,7 @@ export const PersonalInformation = (props: Props) => {
       const reader = new FileReader();
 
       reader.readAsDataURL(e.target.files[0]);
+
       reader.onloadend = () => {
         setAvatar(reader.result as string);
       };

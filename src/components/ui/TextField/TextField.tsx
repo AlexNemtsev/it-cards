@@ -1,12 +1,13 @@
 import { ComponentPropsWithoutRef, forwardRef, useState } from 'react';
 
-import { CheckedCross } from '@/assets/icons/CheckedCross';
-import { Search } from '@/assets/icons/Search';
-import { SwitchingEye } from '@/assets/icons/SwitchingEye/SwitchingEye';
 import { Typography } from '@/components/ui/Typography';
 import { clsx } from 'clsx';
 
 import s from './TextField.module.scss';
+
+import { CheckedCross } from './CheckedCross';
+import { Search } from './Search';
+import { SwitchingEye } from './SwitchingEye/SwitchingEye';
 
 export type TextFieldProps = {
   clearInput?: () => void;

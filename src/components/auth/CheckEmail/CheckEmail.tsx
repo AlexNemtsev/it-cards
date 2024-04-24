@@ -6,11 +6,11 @@ import { Typography } from '@/components/ui/Typography';
 import s from './CreateNewPassword.module.scss';
 
 type Props = {
+  backToSignIn: () => void;
   email: string;
-  onClick: () => void;
 };
 export const CheckEmail = (props: Props) => {
-  const { email, ...restProps } = props;
+  const { backToSignIn, email } = props;
 
   return (
     <Card className={s.card}>
@@ -20,7 +20,7 @@ export const CheckEmail = (props: Props) => {
         We’ve sent an Email with instructions to {email}
       </Typography.Body2>
 
-      <Button className={s.send} fullWidth {...restProps}>
+      <Button className={s.send} fullWidth onClick={backToSignIn}>
         Back to Sign In
       </Button>
     </Card>

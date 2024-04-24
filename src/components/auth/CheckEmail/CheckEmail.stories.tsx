@@ -12,12 +12,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const BaseExample: Story = {
   args: {
-    email: 'example@mail.com',
-    onClick: () => {
+    backToSignIn: () => {
       console.log('Back to Sign In');
     },
-  },
-  render: ({ email, onClick }) => {
-    return <CheckEmail email={email} onClick={onClick} />;
+    email: 'example@mail.com',
   },
 };

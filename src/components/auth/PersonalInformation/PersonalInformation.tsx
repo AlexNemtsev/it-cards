@@ -1,23 +1,18 @@
 import { ChangeEvent, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import { Edit } from '@/assets/icons/Edit/Edit';
 import { LogOutIcon } from '@/assets/icons/LogOutIcon';
 import unknownAvatar from '@/assets/img/unknown-avatar.png';
+import {
+  EditNickNameForm,
+  FormValues,
+} from '@/components/auth/PersonalInformation/EditNickNameForm';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';
-import { InputWithController } from '@/components/withControllers/InputWithController';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 
 import s from './PersonalInformation.module.scss';
 
-const PersonalInformationScheme = z.object({
-  nickname: z.string().min(1),
-});
-
-export type FormValues = z.infer<typeof PersonalInformationScheme>;
 type Props = {
   avatar?: string;
   logout: () => void;
@@ -30,12 +25,6 @@ export const PersonalInformation = (props: Props) => {
 
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const { control, handleSubmit } = useForm<FormValues>({
-    defaultValues: {
-      nickname: '',
-    },
-    resolver: zodResolver(PersonalInformationScheme),
-  });
   const onSubmitPersonalInformation = (data: FormValues) => {
     setIsEditMode(false);
     onSubmit(data);
@@ -67,7 +56,9 @@ export const PersonalInformation = (props: Props) => {
         </label>
       </div>
 
-      {!isEditMode && (
+      {isEditMode ? (
+        <EditNickNameForm onSubmit={onSubmitPersonalInformation} />
+      ) : (
         <div className={s.notEditModeWrapper}>
           <Typography.H2 className={s.name}>
             {name}
@@ -84,20 +75,6 @@ export const PersonalInformation = (props: Props) => {
             Logout
           </Button>
         </div>
-      )}
-      {isEditMode && (
-        <form onSubmit={handleSubmit(onSubmitPersonalInformation)}>
-          <InputWithController
-            autoFocus
-            containerClassName={s.input}
-            control={control}
-            label="Nickname"
-            name="nickname"
-          />
-          <Button fullWidth type="submit">
-            Save Changes
-          </Button>
-        </form>
       )}
     </Card>
   );

@@ -18,7 +18,7 @@ type Props = {
   logout: () => void;
   name: string;
   onSubmit: (data: FormValues) => void;
-  setAvatar: (file: any) => void;
+  setAvatar: (file: string) => void;
 };
 export const PersonalInformation = (props: Props) => {
   const { avatar = unknownAvatar, logout, name, onSubmit, setAvatar } = props;

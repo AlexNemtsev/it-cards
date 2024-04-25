@@ -44,17 +44,23 @@ export const PersonalInformation = (props: Props) => {
 
   return (
     <Card className={s.card}>
-      <Typography.H1>Personal Information</Typography.H1>
+      <Typography.H1 className={s.title}>Personal Information</Typography.H1>
       <div className={s.avatarWrapper}>
         <img alt="avatar" className={s.avatar} src={avatar} />
 
-        <label className={s.editAvatar}>
-          <input accept="image/jpeg, image/png, image/gif" onChange={uploadHandler} type="file" />
-
-          <span>
-            <Edit />
-          </span>
-        </label>
+        <button className={s.button} tabIndex={-1}>
+          <label className={s.button}>
+            <input
+              accept="image/jpeg, image/png, image/gif"
+              className={s.uploadInput}
+              onChange={uploadHandler}
+              type="file"
+            />
+            <span className={s.file}>
+              <Edit />
+            </span>
+          </label>
+        </button>
       </div>
 
       {isEditMode ? (

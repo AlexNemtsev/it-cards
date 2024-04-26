@@ -1,0 +1,18 @@
+.search {
+  position: absolute;
+  top: 20%;
+  left: 14px;
+  fill: var(--color-dark-100);
+
+  &:has(~ input:active) {
+    fill: var(--color-light-100);
+  }
+
+  &:has(~ input:disabled) {
+    fill: var(--color-dark-300);
+  }
+
+  &_error {
+    fill: var(--color-dark-100);
+  }
+}

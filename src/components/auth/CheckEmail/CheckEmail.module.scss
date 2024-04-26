@@ -1,0 +1,25 @@
+@import '@/styles/form-container-mixin';
+
+.card {
+  @include form-container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 33px 36px 60px;
+}
+
+.title {
+  margin-bottom: 27px;
+  text-align: center;
+}
+
+.notice {
+  display: block;
+
+  margin-top: 19px;
+  margin-bottom: 65px;
+
+  color: var(--color-light-900);
+  text-align: center;
+}

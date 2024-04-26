@@ -31,7 +31,7 @@ export const ForgotPassword = (props: Props) => {
 
   return (
     <Card className={s.card}>
-      <Typography.H1>Forgot your password?</Typography.H1>
+      <Typography.H1 className={s.title}>Forgot your password?</Typography.H1>
 
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <InputWithController

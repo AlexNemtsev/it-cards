@@ -14,7 +14,7 @@ export const CheckEmail = (props: Props) => {
 
   return (
     <Card className={s.card}>
-      <Typography.H1>Check Email</Typography.H1>
+      <Typography.H1 className={s.title}>Check Email</Typography.H1>
       <CheckEmailIcon />
       <Typography.Body2 className={s.notice}>
         We’ve sent an Email with instructions to {email}

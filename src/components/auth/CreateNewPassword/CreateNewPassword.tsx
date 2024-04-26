@@ -31,7 +31,7 @@ export const CreateNewPassword = (props: Props) => {
 
   return (
     <Card className={s.card}>
-      <Typography.H1>Create new password</Typography.H1>
+      <Typography.H1 className={s.title}>Create new password</Typography.H1>
 
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <InputWithController

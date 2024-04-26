@@ -6,7 +6,7 @@ import unknownAvatar from '@/assets/img/unknown-avatar.png';
 import {
   EditNickNameForm,
   FormValues,
-} from '@/components/profile/PersonalInformation/EditNickNameForm';
+} from '@/components/profile/PersonalInformation/EditNickNameForm/EditNickNameForm';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';

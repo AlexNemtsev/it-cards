@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { CheckEmail } from '@/components/auth/CheckEmail';
+import { action } from '@storybook/addon-actions';
 
 const meta = {
   component: CheckEmail,
@@ -12,9 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const BaseExample: Story = {
   args: {
-    backToSignIn: () => {
-      console.log('Back to Sign In');
-    },
+    backToSignIn: action('Back to Sign In'),
     email: 'example@mail.com',
   },
 };

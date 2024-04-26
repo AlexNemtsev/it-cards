@@ -5,7 +5,7 @@ import { InputWithController } from '@/components/withControllers/InputWithContr
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import s from '@/components/profile/PersonalInformation/PersonalInformation.module.scss';
+import s from './EditNickNameForm.module.scss';
 
 const PersonalInformationScheme = z.object({
   nickname: z.string().min(1),

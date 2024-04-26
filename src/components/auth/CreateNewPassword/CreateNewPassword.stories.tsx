@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { CreateNewPassword, FormValues } from '@/components/auth/CreateNewPassword';
+import { action } from '@storybook/addon-actions';
 
 const meta = {
   component: CreateNewPassword,
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const BaseExample: Story = {
   args: {
     onSubmit: (data: FormValues) => {
-      console.log(data.password);
+      action(data.password)();
     },
   },
 };

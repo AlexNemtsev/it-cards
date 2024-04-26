@@ -25,15 +25,16 @@ export const ForgotPassword = (props: Props) => {
     },
     resolver: zodResolver(forgotPasswordScheme),
   });
-  const onSubmitHandler = (data: FormValues) => {
+
+  const onSubmitHandler = handleSubmit(data => {
     onSubmit(data);
-  };
+  });
 
   return (
     <Card className={s.card}>
       <Typography.H1 className={s.title}>Forgot your password?</Typography.H1>
 
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <form onSubmit={onSubmitHandler}>
         <InputWithController
           containerClassName={s.input}
           control={control}

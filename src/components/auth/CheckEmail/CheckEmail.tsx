@@ -1,7 +1,7 @@
-import { CheckEmailIcon } from '@/assets/icons/CheckEmail/CheckEmailIcon';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Typography } from '@/components/ui/Typography';
+import { CheckEmailIcon } from '@/shared/assets/icons/CheckEmail/CheckEmailIcon';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Typography } from '@/shared/ui/Typography';
 
 import s from './CheckEmail.module.scss';
 

@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Typography } from '@/components/ui/Typography';
 import { InputWithController } from '@/components/withControllers/InputWithController';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Typography } from '@/shared/ui/Typography';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import s from './NewPasswordForm.module.scss';

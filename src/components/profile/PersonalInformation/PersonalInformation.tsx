@@ -1,15 +1,15 @@
 import { ChangeEvent, useState } from 'react';
 
-import { Edit } from '@/assets/icons/Edit/Edit';
-import { LogOutIcon } from '@/assets/icons/LogOutIcon';
-import unknownAvatar from '@/assets/img/unknown-avatar.png';
 import {
   EditNickNameForm,
   FormValues,
 } from '@/components/profile/PersonalInformation/EditNickNameForm/EditNickNameForm';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Typography } from '@/components/ui/Typography';
+import { Edit } from '@/shared/assets/icons/Edit/Edit';
+import { LogOutIcon } from '@/shared/assets/icons/LogOutIcon';
+import unknownAvatar from '@/shared/assets/img/unknown-avatar.png';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Typography } from '@/shared/ui/Typography';
 
 import s from './PersonalInformation.module.scss';
 

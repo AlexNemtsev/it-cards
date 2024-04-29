@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@/components//ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';
 import { InputWithController } from '@/components/withControllers/InputWithController';

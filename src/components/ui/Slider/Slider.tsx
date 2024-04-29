@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentPropsWithoutRef, useState } from 'react';
 
 import { Input } from '@/components/ui/Input';
-import { useDebounce } from '@/hooks/useDebounce';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Range, Root, Thumb, Track } from '@radix-ui/react-slider';
 
 import s from './Slider.module.scss';

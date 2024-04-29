@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react';
 
-import { CheckedMark } from '@/assets/icons/CheckedMark/CheckedMark';
+import { CheckedMark } from '@/shared/assets/icons/CheckedMark/CheckedMark';
 import { Typography } from '@/shared/ui/Typography';
 import { Indicator, Root } from '@radix-ui/react-checkbox';
 import clsx from 'clsx';

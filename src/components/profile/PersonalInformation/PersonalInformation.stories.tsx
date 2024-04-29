@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { useState } from 'react';
 
-import avatar from '@/assets/img/avatar-for-dropmenu.png';
 import { FormValues } from '@/components/profile/PersonalInformation/EditNickNameForm/EditNickNameForm';
+import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
 
 import { PersonalInformation } from './PersonalInformation';
 

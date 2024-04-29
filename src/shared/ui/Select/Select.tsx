@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon';
-import { ChevronUpIcon } from '@/assets/icons/ChevronUpIcon';
+import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
+import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import {
   Content,
   Group,

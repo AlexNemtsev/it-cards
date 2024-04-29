@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import { Cross } from '@/assets/icons/Cross';
+import { Cross } from '@/shared/assets/icons/Cross';
 import { Button } from '@/shared/ui/Button';
 import { Typography } from '@/shared/ui/Typography';
 import { Close, Content, Overlay, Portal, Root, Title, Trigger } from '@radix-ui/react-dialog';

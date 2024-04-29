@@ -1,4 +1,4 @@
-import avatar from '@/assets/img/avatar-for-dropmenu.png';
+import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
 
 import s from './DropdownMenuAvatar.module.scss';
 export const DropdownMenuAvatar = () => {

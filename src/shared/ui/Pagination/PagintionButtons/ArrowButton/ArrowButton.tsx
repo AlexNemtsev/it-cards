@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-import { Arrow } from '@/assets/icons/Arrow/Arrow';
+import { Arrow } from '@/shared/assets/icons/Arrow/Arrow';
 import { clsx } from 'clsx';
 
 import s from './ArrowButton.module.scss';

@@ -8,10 +8,10 @@ import {
   useState,
 } from 'react';
 
-import { Cross } from '@/assets/icons/Cross';
-import { Eye } from '@/assets/icons/Eye/Eye';
-import { EyeOff } from '@/assets/icons/EyeOff';
-import { Search } from '@/assets/icons/Search';
+import { Cross } from '@/shared/assets/icons/Cross';
+import { Eye } from '@/shared/assets/icons/Eye/Eye';
+import { EyeOff } from '@/shared/assets/icons/EyeOff';
+import { Search } from '@/shared/assets/icons/Search';
 import { Typography } from '@/shared/ui/Typography';
 import { clsx } from 'clsx';
 

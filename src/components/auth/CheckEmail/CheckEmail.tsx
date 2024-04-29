@@ -1,4 +1,4 @@
-import { CheckEmailIcon } from '@/assets/icons/CheckEmail/CheckEmailIcon';
+import { CheckEmailIcon } from '@/shared/assets/icons/CheckEmail/CheckEmailIcon';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';

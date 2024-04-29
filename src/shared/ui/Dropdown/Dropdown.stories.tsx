@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Burger } from '@/assets/icons/Burger/Burger';
-import { Delete } from '@/assets/icons/Delete/Delete';
-import { DropdownMenuAvatar } from '@/assets/icons/DropdownMenuAvatar';
-import { Edit } from '@/assets/icons/Edit/Edit';
-import { Learn } from '@/assets/icons/Learn/Learn';
-import { Profile } from '@/assets/icons/Profile/Profile';
-import { SignOut } from '@/assets/icons/SignOut/SignOut';
+import { Burger } from '@/shared/assets/icons/Burger/Burger';
+import { Delete } from '@/shared/assets/icons/Delete/Delete';
+import { DropdownMenuAvatar } from '@/shared/assets/icons/DropdownMenuAvatar';
+import { Edit } from '@/shared/assets/icons/Edit/Edit';
+import { Learn } from '@/shared/assets/icons/Learn/Learn';
+import { Profile } from '@/shared/assets/icons/Profile/Profile';
+import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';

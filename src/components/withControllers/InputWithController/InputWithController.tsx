@@ -1,6 +1,6 @@
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 
-import { Input, InputProps } from '@/components/ui/Input';
+import { Input, InputProps } from '@/shared/ui/Input';
 
 type Props<T extends FieldValues> = Omit<InputProps, 'onChange' | 'value'> &
   Omit<UseControllerProps<T>, 'defaultValue' | 'disabled' | 'rules' | 'shouldUnregister'>;

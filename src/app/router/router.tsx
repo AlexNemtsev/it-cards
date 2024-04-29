@@ -1,19 +1,21 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
+import { LoginPage } from '@/pages/LoginPage';
+import { MainPage } from '@/pages/MainPage';
 import { Routes } from '@/shared/constants/routes';
 
 import { PrivateRoutes } from './PrivateRoutes';
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <div>login</div>,
+    element: <LoginPage />,
     path: Routes.LOGIN,
   },
 ];
 
 const privateRoutes: RouteObject[] = [
   {
-    element: <div>hello</div>,
+    element: <MainPage />,
     path: Routes.MAIN,
   },
 ];

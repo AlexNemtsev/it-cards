@@ -1,4 +1,4 @@
-import { useGetDecksQuery } from '@/entities/deck/model/api';
+import { useGetDecksQuery } from '@/entities/deck/api/api';
 
 export const MainPage = () => {
   const result = useGetDecksQuery();

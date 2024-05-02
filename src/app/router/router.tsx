@@ -1,7 +1,7 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
+import { MainPage } from '@/pages/DecksPage';
 import { LoginPage } from '@/pages/LoginPage';
-import { MainPage } from '@/pages/MainPage';
 import { Routes } from '@/shared/constants/routes';
 
 import { PrivateRoutes } from './PrivateRoutes';

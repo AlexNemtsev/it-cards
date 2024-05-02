@@ -1,14 +1,15 @@
-import { LoginForm } from '@/components/auth/LoginForm/LoginForm';
-import { useGetDecksQuery } from '@/entities/deck/api/api';
+import { FormValues, LoginForm } from '@/components/auth/LoginForm/LoginForm';
+import { useLoginMutation } from '@/pages/LoginPage/api/login.api';
 
 export const LoginPage = () => {
-  const res = useGetDecksQuery();
-
-  console.log(res);
+  const [login] = useLoginMutation();
+  const onSubmitHandler = (data: FormValues) => {
+    login(data);
+  };
 
   return (
     <div>
-      <LoginForm onSubmit={() => {}} />
+      <LoginForm onSubmit={onSubmitHandler} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
+import { ForgotPassword } from '@/components/auth/ForgotPassword';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
 import { Routes } from '@/shared/constants/routes';
@@ -10,6 +11,10 @@ const publicRoutes: RouteObject[] = [
   {
     element: <LoginPage />,
     path: Routes.LOGIN,
+  },
+  {
+    element: <ForgotPassword />,
+    path: Routes.FORGOTPASSWORD,
   },
 ];
 

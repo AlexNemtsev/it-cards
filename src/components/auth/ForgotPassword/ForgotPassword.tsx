@@ -15,7 +15,7 @@ const forgotPasswordScheme = z.object({
 
 export type FormValues = z.infer<typeof forgotPasswordScheme>;
 type Props = {
-  onSubmit: (data: FormValues) => void;
+  onSubmit?: (data: FormValues) => void;
 };
 export const ForgotPassword = (props: Props) => {
   const { onSubmit } = props;
@@ -27,7 +27,7 @@ export const ForgotPassword = (props: Props) => {
   });
 
   const onSubmitHandler = handleSubmit(data => {
-    onSubmit(data);
+    onSubmit && onSubmit(data);
   });
 
   return (

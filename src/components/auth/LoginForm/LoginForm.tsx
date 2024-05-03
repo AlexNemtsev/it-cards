@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { CheckboxWithController } from '@/components/withControllers/CheckboxWithController';
 import { InputWithController } from '@/components/withControllers/InputWithController';
@@ -58,9 +59,11 @@ export const LoginForm = (props: Props) => {
           label="Remember me"
           name="rememberMe"
         />
-        <Typography.Body2 as="a" className={s.forgot}>
-          Forgot Password?
-        </Typography.Body2>
+
+        <Link className={s.forgot} to="/forgotPassword">
+          <Typography.Body2 className={s.forgot}>Forgot Password?</Typography.Body2>
+        </Link>
+
         <Button className={s.signIn} fullWidth type="submit">
           Sign In
         </Button>

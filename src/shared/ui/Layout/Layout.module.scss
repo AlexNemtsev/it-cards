@@ -1,0 +1,20 @@
+.header {
+  position: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 136px;
+
+  background-color: var(--color-dark-700);
+  border-bottom: 1px solid var(--color-dark-500);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--header-height);
+}

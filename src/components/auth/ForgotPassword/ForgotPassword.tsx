@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 
+import { CheckEmail } from '@/components/auth/CheckEmail';
 import { InputWithController } from '@/components/withControllers/InputWithController';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
@@ -28,6 +29,8 @@ export const ForgotPassword = (props: Props) => {
 
   const onSubmitHandler = handleSubmit(data => {
     onSubmit && onSubmit(data);
+
+    return <CheckEmail backToSignIn={() => {}} email={data.email} />;
   });
 
   return (

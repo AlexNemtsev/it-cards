@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { CheckboxWithController } from '@/components/withControllers/CheckboxWithController';
 import { InputWithController } from '@/components/withControllers/InputWithController';
+import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
@@ -60,9 +61,9 @@ export const LoginForm = (props: Props) => {
           name="rememberMe"
         />
 
-        <Link className={s.forgot} to="/forgotPassword">
-          <Typography.Body2 className={s.forgot}>Forgot Password?</Typography.Body2>
-        </Link>
+        <Typography.Body2 as={Link} className={s.forgot} to={Routes.FORGOTPASSWORD}>
+          Forgot Password?
+        </Typography.Body2>
 
         <Button className={s.signIn} fullWidth type="submit">
           Sign In

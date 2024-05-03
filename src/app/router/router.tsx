@@ -1,6 +1,7 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import { ForgotPassword } from '@/components/auth/ForgotPassword';
+import { SignUpForm } from '@/components/auth/signUpForm';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
 import { Routes } from '@/shared/constants/routes';
@@ -15,6 +16,10 @@ const publicRoutes: RouteObject[] = [
   {
     element: <ForgotPassword />,
     path: Routes.FORGOTPASSWORD,
+  },
+  {
+    element: <SignUpForm onSubmit={() => {}} />,
+    path: Routes.SIGNUP,
   },
 ];
 

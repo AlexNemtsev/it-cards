@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { LoginForm } from '@/components/auth/LoginForm/LoginForm';
+import { action } from '@storybook/addon-actions';
 
 const meta = {
   component: LoginForm,
@@ -15,7 +16,9 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     onSubmit: data => {
-      console.log(data);
+      action(data.email)();
+      action(data.password)();
+      action(data.rememberMe.toString())();
     },
   },
   render: ({ onSubmit }) => {

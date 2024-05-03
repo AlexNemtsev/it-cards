@@ -10,10 +10,10 @@ import s from './Slider.module.scss';
 type RangeValue = [number, number];
 
 type RedefinedProps = {
-  classNameWrapper?: string;
   defaultValue: RangeValue;
   delay?: number;
   onValueChange?: (value: RangeValue) => void;
+  wrapperClassName?: string;
 };
 
 type RadixSliderOmittedProps = Omit<
@@ -24,12 +24,12 @@ type RadixSliderOmittedProps = Omit<
 type Props = RadixSliderOmittedProps & RedefinedProps;
 
 export const Slider = (props: Props) => {
-  const { classNameWrapper, defaultValue, delay, onValueChange, ...restProps } = props;
+  const { defaultValue, delay, onValueChange, wrapperClassName, ...restProps } = props;
   const { max = 10, min = 0 } = restProps;
   const [sliderValue, setSliderValue] = useState<RangeValue>(defaultValue);
 
   const classNames = {
-    sliderWrapper: clsx(s.sliderWrapper, classNameWrapper),
+    sliderWrapper: clsx(s.sliderWrapper, wrapperClassName),
   };
 
   const debouncedOnValueChange = useDebounce(onValueChange ?? (() => {}), delay);

@@ -4,12 +4,12 @@ import { IncubatorLogo } from '@/shared/assets/icons/IncubatorLogo';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 
-import styles from './Layout.module.scss';
+import s from './Layout.module.scss';
 
 export const Layout = () => {
   return (
     <>
-      <header className={styles.header}>
+      <header className={s.header}>
         <a href="https://it-incubator.io" rel="noreferrer" target="_blank">
           <IncubatorLogo />
         </a>
@@ -17,7 +17,7 @@ export const Layout = () => {
           Sign in
         </Button>
       </header>
-      <main className={styles.main}>
+      <main className={s.main}>
         <Outlet />
       </main>
     </>

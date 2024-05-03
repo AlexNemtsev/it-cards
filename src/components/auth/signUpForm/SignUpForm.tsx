@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { InputWithController } from '@/components/withControllers/InputWithController';
+import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
@@ -61,7 +63,10 @@ export const SignUpForm = (props: Props) => {
         </Button>
       </form>
       <Typography.Body2 className={s.haveAccount}>Already have an account?</Typography.Body2>
-      <Typography.Subtitle1 className={s.signIn}>Sign In</Typography.Subtitle1>
+
+      <Typography.Subtitle1 as={Link} className={s.signIn} to={Routes.LOGIN}>
+        Sign In
+      </Typography.Subtitle1>
     </Card>
   );
 };

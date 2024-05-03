@@ -25,26 +25,17 @@
 }
 
 .haveAccount {
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   margin-bottom: 10px;
-
   color: var(--color-light-900);
-  white-space: nowrap;
+  text-align: center;
 }
 
 .signIn {
-  cursor: pointer;
+  display: block;
+  width: max-content;
+  margin: 0 auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--color-accent-500);
-  text-decoration: underline;
-  white-space: nowrap;
+  &:visited {
+    color: var(--color-accent-500);
+  }
 }

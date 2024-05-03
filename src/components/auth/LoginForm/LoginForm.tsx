@@ -69,10 +69,11 @@ export const LoginForm = (props: Props) => {
           Sign In
         </Button>
 
-        <Typography.Body2 as="a" className={s.dontHaveAccount}>
+        <Typography.Body2 className={s.dontHaveAccount}>
           {`Don't have an account?`}
         </Typography.Body2>
-        <Typography.Subtitle1 as="a" className={s.signUp}>
+
+        <Typography.Subtitle1 as={Link} className={s.signUp} to={Routes.SIGNUP}>
           Sign Up
         </Typography.Subtitle1>
       </form>

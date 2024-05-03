@@ -13,14 +13,15 @@ const publicRoutes: RouteObject[] = [
   {
     children: [{ element: <LoginPage />, path: Routes.LOGIN }],
     element: <Layout />,
+    path: Routes.LOGIN,
   },
   {
     element: <ForgotPassword />,
-    path: Routes.FORGOTPASSWORD,
+    path: Routes.FORGOT_PASSWORD,
   },
   {
     element: <SignUpForm onSubmit={() => {}} />,
-    path: Routes.SIGNUP,
+    path: Routes.SIGN_UP,
   },
 ];
 

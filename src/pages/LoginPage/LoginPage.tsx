@@ -8,8 +8,8 @@ export const LoginPage = () => {
   };
 
   return (
-    <div>
+    <>
       <LoginForm onSubmit={onSubmitHandler} />
-    </div>
+    </>
   );
 };

@@ -3,12 +3,14 @@ import { ChangeEvent, ComponentPropsWithoutRef, useState } from 'react';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Input } from '@/shared/ui/Input';
 import { Range, Root, Thumb, Track } from '@radix-ui/react-slider';
+import clsx from 'clsx';
 
 import s from './Slider.module.scss';
 
 type RangeValue = [number, number];
 
 type RedefinedProps = {
+  classNameWrapper?: string;
   defaultValue: RangeValue;
   delay?: number;
   onValueChange?: (value: RangeValue) => void;
@@ -22,9 +24,13 @@ type RadixSliderOmittedProps = Omit<
 type Props = RadixSliderOmittedProps & RedefinedProps;
 
 export const Slider = (props: Props) => {
-  const { defaultValue, delay, onValueChange, ...restProps } = props;
+  const { classNameWrapper, defaultValue, delay, onValueChange, ...restProps } = props;
   const { max = 10, min = 0 } = restProps;
   const [sliderValue, setSliderValue] = useState<RangeValue>(defaultValue);
+
+  const classNames = {
+    sliderWrapper: clsx(s.sliderWrapper, classNameWrapper),
+  };
 
   const debouncedOnValueChange = useDebounce(onValueChange ?? (() => {}), delay);
 
@@ -62,8 +68,8 @@ export const Slider = (props: Props) => {
   };
 
   return (
-    <div className={s.sliderWrapper}>
-      <Input onChange={onLeftValueChange} value={sliderValue[0]} />
+    <div className={classNames.sliderWrapper}>
+      <Input className={s.sliderInput} onChange={onLeftValueChange} value={sliderValue[0]} />
       <Root
         className={s.sliderRoot}
         {...restProps}
@@ -76,7 +82,7 @@ export const Slider = (props: Props) => {
         <Thumb className={s.sliderThumb} />
         <Thumb className={s.sliderThumb} />
       </Root>
-      <Input onChange={onRightValueChange} value={sliderValue[1]} />
+      <Input className={s.sliderInput} onChange={onRightValueChange} value={sliderValue[1]} />
     </div>
   );
 };

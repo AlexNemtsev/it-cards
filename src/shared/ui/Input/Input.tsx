@@ -29,6 +29,7 @@ export type InputProps = {
 
 export const Input = forwardRef<ElementRef<'input'>, InputProps>((props: InputProps, ref) => {
   const {
+    className,
     containerClassName,
     disabled,
     error,
@@ -58,7 +59,13 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props: InputPr
   const classNames = {
     container: clsx(s.container, disabled && s.disabled, error && s.error, containerClassName),
     field: clsx(s.field, disabled && s.disabled),
-    input: clsx(s.input, error && s.error, typePassword && s.password, typeSearch && s.search),
+    input: clsx(
+      s.input,
+      error && s.error,
+      typePassword && s.password,
+      typeSearch && s.search,
+      className
+    ),
     label: clsx(s.label, disabled && s.disabled),
   };
 

@@ -35,6 +35,11 @@
   width: max-content;
   margin: 0 auto;
 
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 1px solid var(--color-info-500);
+  }
+
   &:visited {
     color: var(--color-accent-500);
   }

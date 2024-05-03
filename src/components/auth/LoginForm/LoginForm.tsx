@@ -61,7 +61,7 @@ export const LoginForm = (props: Props) => {
           name="rememberMe"
         />
 
-        <Typography.Body2 as={Link} className={s.forgot} to={Routes.FORGOTPASSWORD}>
+        <Typography.Body2 as={Link} className={s.forgot} to={Routes.FORGOT_PASSWORD}>
           Forgot Password?
         </Typography.Body2>
 
@@ -73,7 +73,7 @@ export const LoginForm = (props: Props) => {
           {`Don't have an account?`}
         </Typography.Body2>
 
-        <Typography.Subtitle1 as={Link} className={s.signUp} to={Routes.SIGNUP}>
+        <Typography.Subtitle1 as={Link} className={s.signUp} to={Routes.SIGN_UP}>
           Sign Up
         </Typography.Subtitle1>
       </form>

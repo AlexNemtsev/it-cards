@@ -68,6 +68,7 @@ export const LoginForm = (props: Props) => {
         <Button className={s.signIn} fullWidth type="submit">
           Sign In
         </Button>
+
         <Typography.Body2 as="a" className={s.dontHaveAccount}>
           {`Don't have an account?`}
         </Typography.Body2>

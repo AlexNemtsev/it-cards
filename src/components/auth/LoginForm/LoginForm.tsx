@@ -32,15 +32,15 @@ export const LoginForm = (props: Props) => {
     delayError: 2000,
     resolver: zodResolver(loginScheme),
   });
-  const onSubmitLogIn = (data: FormValues) => {
+  const onSubmitLogIn = handleSubmit(data => {
     onSubmit(data);
-  };
+  });
 
   return (
     <Card className={s.card}>
       <Typography.H1>Sign In</Typography.H1>
 
-      <form onSubmit={handleSubmit(onSubmitLogIn)}>
+      <form onSubmit={onSubmitLogIn}>
         <InputWithController
           containerClassName={s.input}
           control={control}

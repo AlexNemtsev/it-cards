@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { CheckEmail } from '@/components/auth/CheckEmail';
 import { InputWithController } from '@/components/withControllers/InputWithController';
+import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
@@ -55,7 +57,8 @@ export const ForgotPassword = (props: Props) => {
         <Typography.Body2 className={s.remember} href="#">
           Did you remember your password?
         </Typography.Body2>
-        <Typography.Subtitle1 as="a" className={s.tryLogin} href="#">
+
+        <Typography.Subtitle1 as={Link} className={s.tryLogin} to={Routes.LOGIN}>
           Try logging in
         </Typography.Subtitle1>
       </form>

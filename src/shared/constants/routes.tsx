@@ -1,6 +1,6 @@
 export const Routes = {
-  FORGOTPASSWORD: '/forgotPassword',
+  FORGOT_PASSWORD: '/forgot-password',
   LOGIN: '/login',
   MAIN: '/',
-  SIGNUP: '/signUp',
+  SIGNUP: '/sign-up',
 };

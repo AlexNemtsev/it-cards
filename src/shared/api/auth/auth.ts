@@ -1,4 +1,4 @@
-import { LoginRequest, LoginResponse } from '@/pages/LoginPage/api/login.types';
+import { LoginRequest, LoginResponse } from '@/shared/api/auth/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
 export const authApi = flashcardsApi.injectEndpoints({

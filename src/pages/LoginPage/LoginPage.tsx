@@ -1,5 +1,5 @@
 import { FormValues, LoginForm } from '@/components/auth/LoginForm/LoginForm';
-import { useLoginMutation } from '@/pages/LoginPage/api/login.api';
+import { useLoginMutation } from '@/shared/api/auth/auth';
 
 export const LoginPage = () => {
   const [login] = useLoginMutation();

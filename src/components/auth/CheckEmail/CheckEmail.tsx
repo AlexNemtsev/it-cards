@@ -6,8 +6,8 @@ import { Typography } from '@/shared/ui/Typography';
 import s from './CheckEmail.module.scss';
 
 type Props = {
-  backToSignIn: () => void;
-  email: string;
+  backToSignIn?: () => void;
+  email?: string;
 };
 export const CheckEmail = (props: Props) => {
   const { backToSignIn, email } = props;

@@ -1,8 +1,17 @@
+import { Navigate } from 'react-router-dom';
+
 import { FormValues, LoginForm } from '@/components/auth/LoginForm/LoginForm';
-import { useLoginMutation } from '@/shared/api/auth/auth';
+import { useLoginMutation, useMeQuery } from '@/shared/api/auth/auth';
+import { Routes } from '@/shared/constants/routes';
 
 export const LoginPage = () => {
+  const { data } = useMeQuery();
   const [login] = useLoginMutation();
+
+  if (data) {
+    return <Navigate to={Routes.MAIN} />;
+  }
+
   const onSubmitHandler = (data: FormValues) => {
     login(data)
       .unwrap()

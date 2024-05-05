@@ -10,6 +10,7 @@ export const authApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
       login: builder.mutation<LoginResponse, LoginRequest>({
+        invalidatesTags: ['Me'],
         query: args => {
           return {
             body: args,
@@ -18,7 +19,14 @@ export const authApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
+      logout: builder.mutation({
+        query: () => ({
+          method: 'POST',
+          url: '/v1/auth/logout',
+        }),
+      }),
       me: builder.query<MeResponse, void>({
+        providesTags: ['Me'],
         query: () => '/v1/auth/me',
       }),
       recoverPassword: builder.mutation<unknown, RecoverPasswordRequest>({
@@ -36,6 +44,7 @@ export const authApi = flashcardsApi.injectEndpoints({
 
 export const {
   useLoginMutation,
+  useLogoutMutation,
   useMeQuery,
   useRecoverPasswordMutation: useRecoverPasswordMutation,
 } = authApi;

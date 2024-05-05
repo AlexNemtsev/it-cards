@@ -1,4 +1,4 @@
-import { LoginRequest, LoginResponse } from '@/shared/api/auth/types';
+import { LoginRequest, LoginResponse, RecoverPasswordRequest } from '@/shared/api/auth/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
 export const authApi = flashcardsApi.injectEndpoints({
@@ -11,11 +11,11 @@ export const authApi = flashcardsApi.injectEndpoints({
               ...args,
             },
             method: 'POST',
-            url: 'v1/auth/login',
+            url: '/v1/auth/login',
           };
         },
       }),
-      recoverPassword: builder.mutation({
+      recoverPassword: builder.mutation<unknown, RecoverPasswordRequest>({
         query: args => {
           return {
             body: { ...args },

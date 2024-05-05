@@ -5,5 +5,10 @@ export const MainPage = () => {
 
   console.log(result);
 
-  return <div>MainPage</div>;
+  return (
+    <div>
+      MainPage
+      <p>Аутентификация прошла успешно</p>
+    </div>
+  );
 };

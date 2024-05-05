@@ -1,4 +1,9 @@
-import { LoginRequest, LoginResponse, RecoverPasswordRequest } from '@/shared/api/auth/types';
+import {
+  LoginRequest,
+  LoginResponse,
+  MeResponse,
+  RecoverPasswordRequest,
+} from '@/shared/api/auth/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
 export const authApi = flashcardsApi.injectEndpoints({
@@ -13,6 +18,9 @@ export const authApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
+      me: builder.query<MeResponse, void>({
+        query: () => '/v1/auth/me',
+      }),
       recoverPassword: builder.mutation<unknown, RecoverPasswordRequest>({
         query: args => {
           return {
@@ -26,4 +34,8 @@ export const authApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const { useLoginMutation, useRecoverPasswordMutation: useRecoverPasswordMutation } = authApi;
+export const {
+  useLoginMutation,
+  useMeQuery,
+  useRecoverPasswordMutation: useRecoverPasswordMutation,
+} = authApi;

@@ -7,9 +7,7 @@ export const authApi = flashcardsApi.injectEndpoints({
       login: builder.mutation<LoginResponse, LoginRequest>({
         query: args => {
           return {
-            body: {
-              ...args,
-            },
+            body: args,
             method: 'POST',
             url: '/v1/auth/login',
           };
@@ -18,7 +16,7 @@ export const authApi = flashcardsApi.injectEndpoints({
       recoverPassword: builder.mutation<unknown, RecoverPasswordRequest>({
         query: args => {
           return {
-            body: { ...args },
+            body: args,
             method: 'POST',
             url: '/v1/auth/recover-password',
           };

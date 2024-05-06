@@ -24,7 +24,7 @@ const publicRoutes: RouteObject[] = [
       },
       {
         element: <CreateNewPassword />,
-        path: Routes.CHECK_EMAIL,
+        path: Routes.CREATE_NEW_PASSWORD,
       },
       {
         element: <CheckEmail />,

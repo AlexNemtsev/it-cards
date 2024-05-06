@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { BrowserRouter } from 'react-router-dom';
-
 import { LoginForm } from '@/components/auth/LoginForm/LoginForm';
 import { action } from '@storybook/addon-actions';
 
@@ -22,10 +20,6 @@ export const Primary: Story = {
     },
   },
   render: ({ onSubmit }) => {
-    return (
-      <BrowserRouter>
-        <LoginForm onSubmit={onSubmit} />;
-      </BrowserRouter>
-    );
+    return <LoginForm onSubmit={onSubmit} />;
   },
 };

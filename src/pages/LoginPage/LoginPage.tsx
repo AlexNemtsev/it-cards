@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 import { FormValues, LoginForm } from '@/components/auth/LoginForm/LoginForm';
-import { useLoginMutation, useMeQuery } from '@/shared/api/auth/auth';
+import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
 import { Routes } from '@/shared/constants/routes';
 
 export const LoginPage = () => {

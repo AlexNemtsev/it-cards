@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { useMeQuery } from '@/shared/api/auth/auth';
+import { useMeQuery } from '@/entities/auth/api/auth';
 import { Routes } from '@/shared/constants/routes';
 
 export const PrivateRoutes = () => {

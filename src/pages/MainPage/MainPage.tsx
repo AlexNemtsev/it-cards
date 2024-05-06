@@ -1,5 +1,5 @@
+import { useLogoutMutation } from '@/entities/auth/api/auth';
 import { useGetDecksQuery } from '@/entities/deck/api/api';
-import { useLogoutMutation } from '@/shared/api/auth/auth';
 
 export const MainPage = () => {
   const result = useGetDecksQuery();

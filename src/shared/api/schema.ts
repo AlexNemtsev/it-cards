@@ -5,176 +5,175 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/v1/users": {
-    get: operations["UsersController_findAll"];
-    post: operations["UsersController_create"];
-    delete: operations["UsersController_removeAll"];
+  '/v1/users': {
+    get: operations['UsersController_findAll'];
+    post: operations['UsersController_create'];
+    delete: operations['UsersController_removeAll'];
   };
-  "/v1/users/{id}": {
-    delete: operations["UsersController_remove"];
+  '/v1/users/{id}': {
+    delete: operations['UsersController_remove'];
   };
-  "/v1/auth/me": {
+  '/v1/auth/me': {
     /**
      * Current user data
      * @description Retrieve current user data.
      */
-    get: operations["AuthController_getUserData"];
+    get: operations['AuthController_getUserData'];
     /**
      * Update user data
      * @description Update current user data.
      */
-    patch: operations["AuthController_updateUserData"];
+    patch: operations['AuthController_updateUserData'];
   };
-  "/v1/auth/login": {
+  '/v1/auth/login': {
     /**
      * Sign in using email and password. Must have an account to do so.
      * @description Sign in using email and password. Must have an account to do so.
      */
-    post: operations["AuthController_login"];
+    post: operations['AuthController_login'];
   };
-  "/v1/auth/sign-up": {
+  '/v1/auth/sign-up': {
     /**
      * Create a new user account
      * @description Create a new user account
      */
-    post: operations["AuthController_registration"];
+    post: operations['AuthController_registration'];
   };
-  "/v1/auth/verify-email": {
+  '/v1/auth/verify-email': {
     /**
      * Verify user email
      * @description Verify user email
      */
-    post: operations["AuthController_confirmRegistration"];
+    post: operations['AuthController_confirmRegistration'];
   };
-  "/v1/auth/resend-verification-email": {
+  '/v1/auth/resend-verification-email': {
     /**
      * Send verification email again
      * @description Send verification email again
      */
-    post: operations["AuthController_resendVerificationEmail"];
+    post: operations['AuthController_resendVerificationEmail'];
   };
-  "/v1/auth/logout": {
+  '/v1/auth/logout': {
     /**
      * Sign current user out
      * @description Sign current user out
      */
-    post: operations["AuthController_logout"];
+    post: operations['AuthController_logout'];
   };
-  "/v1/auth/refresh-token": {
+  '/v1/auth/refresh-token': {
     /**
      * Deprecated, use v2
      * @deprecated
      * @description Deprecated, use v2
      */
-    post: operations["AuthController_refreshToken"];
+    post: operations['AuthController_refreshToken'];
   };
-  "/v2/auth/refresh-token": {
+  '/v2/auth/refresh-token': {
     /**
      * Get new access token using refresh token
      * @description Get new access token using refresh token
      */
-    post: operations["AuthController_refreshTokenV2"];
+    post: operations['AuthController_refreshTokenV2'];
   };
-  "/v1/auth/recover-password": {
+  '/v1/auth/recover-password': {
     /**
      * Send password recovery email
      * @description Send password recovery email
      */
-    post: operations["AuthController_recoverPassword"];
+    post: operations['AuthController_recoverPassword'];
   };
-  "/v1/auth/reset-password/{token}": {
+  '/v1/auth/reset-password/{token}': {
     /**
      * Reset password
      * @description Reset password
      */
-    post: operations["AuthController_resetPassword"];
+    post: operations['AuthController_resetPassword'];
   };
-  "/v1/decks": {
+  '/v1/decks': {
     /**
      * Paginated decks list
      * @deprecated
      * @description Deprecated. Use v2 in combination with /min-max-cards request
      */
-    get: operations["DecksController_findAllV1"];
+    get: operations['DecksController_findAllV1'];
     /**
      * Create a deck
      * @description Create a deck
      */
-    post: operations["DecksController_create"];
+    post: operations['DecksController_create'];
   };
-  "/v2/decks": {
+  '/v2/decks': {
     /**
      * Paginated decks list
      * @description Retrieve paginated decks list.
      */
-    get: operations["DecksController_findAllV2"];
+    get: operations['DecksController_findAllV2'];
   };
-  "/v2/decks/min-max-cards": {
+  '/v2/decks/min-max-cards': {
     /**
      * Minimum and maximum amount of cards in a deck
      * @description Retrieve the minimum and maximum amount of cards in a deck.
      */
-    get: operations["DecksController_findMinMaxCards"];
+    get: operations['DecksController_findMinMaxCards'];
   };
-  "/v1/decks/{id}": {
+  '/v1/decks/{id}': {
     /**
      * Retrieve a deck by id
      * @description Retrieve a deck by id
      */
-    get: operations["DecksController_findOne"];
+    get: operations['DecksController_findOne'];
     /**
      * Delete a deck
      * @description Delete a deck
      */
-    delete: operations["DecksController_remove"];
+    delete: operations['DecksController_remove'];
     /**
      * Update a deck
      * @description Update a deck
      */
-    patch: operations["DecksController_update"];
+    patch: operations['DecksController_update'];
   };
-  "/v1/decks/{id}/cards": {
+  '/v1/decks/{id}/cards': {
     /**
      * Retrieve cards in a deck
      * @description Retrieve paginated cards in a deck
      */
-    get: operations["DecksController_findCardsInDeck"];
+    get: operations['DecksController_findCardsInDeck'];
     /**
      * Create a card
      * @description Create card in a deck
      */
-    post: operations["DecksController_createCardInDeck"];
+    post: operations['DecksController_createCardInDeck'];
   };
-  "/v1/decks/{id}/learn": {
+  '/v1/decks/{id}/learn': {
     /**
      * Retrieve a random card
      * @description Retrieve a random card in a deck. The cards priority is based on the grade
      */
-    get: operations["DecksController_findRandomCardInDeck"];
+    get: operations['DecksController_findRandomCardInDeck'];
     /**
      * Save the grade of a card
      * @description Save the grade of a card
      */
-    post: operations["DecksController_saveGrade"];
+    post: operations['DecksController_saveGrade'];
   };
-  "/v1/cards/{id}": {
+  '/v1/cards/{id}': {
     /**
      * Get card by id
      * @description Get card by id
      */
-    get: operations["CardsController_findOne"];
+    get: operations['CardsController_findOne'];
     /**
      * Delete card by id
      * @description Delete card by id
      */
-    delete: operations["CardsController_remove"];
+    delete: operations['CardsController_remove'];
     /**
      * Update card
      * @description Update partial card data
      */
-    patch: operations["CardsController_update"];
+    patch: operations['CardsController_update'];
   };
 }
 
@@ -270,7 +269,7 @@ export interface components {
       name: string;
     };
     DeckWithAuthor: {
-      author: components["schemas"]["DeckAuthor"];
+      author: components['schemas']['DeckAuthor'];
       id: string;
       userId: string;
       name: string;
@@ -289,13 +288,13 @@ export interface components {
       totalItems: number;
     };
     PaginatedDecksWithMaxCardsCount: {
-      items: components["schemas"]["DeckWithAuthor"][];
-      pagination: components["schemas"]["Pagination"];
+      items: components['schemas']['DeckWithAuthor'][];
+      pagination: components['schemas']['Pagination'];
       maxCardsCount: number;
     };
     PaginatedDecks: {
-      items: components["schemas"]["DeckWithAuthor"][];
-      pagination: components["schemas"]["Pagination"];
+      items: components['schemas']['DeckWithAuthor'][];
+      pagination: components['schemas']['Pagination'];
     };
     MinMaxCards: {
       max: number;
@@ -350,8 +349,8 @@ export interface components {
       updated: string;
     };
     PaginatedCardsWithGrade: {
-      pagination: components["schemas"]["Pagination"];
-      items: components["schemas"]["CardWithGrade"][];
+      pagination: components['schemas']['Pagination'];
+      items: components['schemas']['CardWithGrade'][];
     };
     CreateCardRequest: {
       question: string;
@@ -404,12 +403,11 @@ export type $defs = Record<string, never>;
 export type external = Record<string, never>;
 
 export interface operations {
-
   UsersController_findAll: {
     responses: {
       200: {
         content: {
-          "application/json": Record<string, never>;
+          'application/json': Record<string, never>;
         };
       };
     };
@@ -417,13 +415,13 @@ export interface operations {
   UsersController_create: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserRequest"];
+        'application/json': components['schemas']['CreateUserRequest'];
       };
     };
     responses: {
       201: {
         content: {
-          "application/json": Record<string, never>;
+          'application/json': Record<string, never>;
         };
       };
     };
@@ -444,7 +442,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": boolean;
+          'application/json': boolean;
         };
       };
     };
@@ -457,7 +455,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["User"];
+          'application/json': components['schemas']['User'];
         };
       };
       /** @description User not found */
@@ -477,13 +475,13 @@ export interface operations {
   AuthController_updateUserData: {
     requestBody: {
       content: {
-        "multipart/form-data": components["schemas"]["UpdateUserRequest"];
+        'multipart/form-data': components['schemas']['UpdateUserRequest'];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["User"];
+          'application/json': components['schemas']['User'];
         };
       };
       /** @description User not found */
@@ -503,13 +501,13 @@ export interface operations {
   AuthController_login: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["LoginRequest"];
+        'application/json': components['schemas']['LoginRequest'];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["LoginResponse"];
+          'application/json': components['schemas']['LoginResponse'];
         };
       };
       /** @description Invalid credentials */
@@ -525,13 +523,13 @@ export interface operations {
   AuthController_registration: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["RegistrationRequest"];
+        'application/json': components['schemas']['RegistrationRequest'];
       };
     };
     responses: {
       201: {
         content: {
-          "application/json": components["schemas"]["User"];
+          'application/json': components['schemas']['User'];
         };
       };
       /** @description Email already exists */
@@ -547,7 +545,7 @@ export interface operations {
   AuthController_confirmRegistration: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["EmailVerificationRequest"];
+        'application/json': components['schemas']['EmailVerificationRequest'];
       };
     };
     responses: {
@@ -572,7 +570,7 @@ export interface operations {
   AuthController_resendVerificationEmail: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ResendVerificationEmailRequest"];
+        'application/json': components['schemas']['ResendVerificationEmailRequest'];
       };
     };
     responses: {
@@ -646,7 +644,7 @@ export interface operations {
   AuthController_recoverPassword: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["RecoverPasswordRequest"];
+        'application/json': components['schemas']['RecoverPasswordRequest'];
       };
     };
     responses: {
@@ -676,7 +674,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ResetPasswordRequest"];
+        'application/json': components['schemas']['ResetPasswordRequest'];
       };
     };
     responses: {
@@ -708,7 +706,18 @@ export interface operations {
          * Available directions: "asc" and "desc".
          * @example name-desc
          */
-        orderBy?: "null" | "cardsCount-asc" | "updated-asc" | "name-asc" | "author.name-asc" | "created-asc" | "cardsCount-desc" | "updated-desc" | "name-desc" | "author.name-desc" | "created-desc";
+        orderBy?:
+          | 'null'
+          | 'cardsCount-asc'
+          | 'updated-asc'
+          | 'name-asc'
+          | 'author.name-asc'
+          | 'created-asc'
+          | 'cardsCount-desc'
+          | 'updated-desc'
+          | 'name-desc'
+          | 'author.name-desc'
+          | 'created-desc';
         minCardsCount?: number;
         maxCardsCount?: number;
         /** @description Search by deck name */
@@ -722,7 +731,7 @@ export interface operations {
     responses: {
       206: {
         content: {
-          "application/json": components["schemas"]["PaginatedDecksWithMaxCardsCount"];
+          'application/json': components['schemas']['PaginatedDecksWithMaxCardsCount'];
         };
       };
       /** @description Unauthorized */
@@ -738,13 +747,13 @@ export interface operations {
   DecksController_create: {
     requestBody: {
       content: {
-        "multipart/form-data": components["schemas"]["CreateDeckRequest"];
+        'multipart/form-data': components['schemas']['CreateDeckRequest'];
       };
     };
     responses: {
       201: {
         content: {
-          "application/json": components["schemas"]["DeckWithAuthor"];
+          'application/json': components['schemas']['DeckWithAuthor'];
         };
       };
       /** @description Unauthorized */
@@ -766,7 +775,18 @@ export interface operations {
          * Available directions: "asc" and "desc".
          * @example name-desc
          */
-        orderBy?: "null" | "cardsCount-asc" | "updated-asc" | "name-asc" | "author.name-asc" | "created-asc" | "cardsCount-desc" | "updated-desc" | "name-desc" | "author.name-desc" | "created-desc";
+        orderBy?:
+          | 'null'
+          | 'cardsCount-asc'
+          | 'updated-asc'
+          | 'name-asc'
+          | 'author.name-asc'
+          | 'created-asc'
+          | 'cardsCount-desc'
+          | 'updated-desc'
+          | 'name-desc'
+          | 'author.name-desc'
+          | 'created-desc';
         minCardsCount?: number;
         maxCardsCount?: number;
         /** @description Search by deck name */
@@ -780,7 +800,7 @@ export interface operations {
     responses: {
       206: {
         content: {
-          "application/json": components["schemas"]["PaginatedDecks"];
+          'application/json': components['schemas']['PaginatedDecks'];
         };
       };
       /** @description Unauthorized */
@@ -797,7 +817,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["MinMaxCards"];
+          'application/json': components['schemas']['MinMaxCards'];
         };
       };
       /** @description Unauthorized */
@@ -819,7 +839,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["DeckWithAuthor"];
+          'application/json': components['schemas']['DeckWithAuthor'];
         };
       };
       /** @description Unauthorized */
@@ -842,7 +862,7 @@ export interface operations {
       /** @description Deck deleted */
       200: {
         content: {
-          "application/json": components["schemas"]["Deck"];
+          'application/json': components['schemas']['Deck'];
         };
       };
       /** @description Unauthorized */
@@ -867,13 +887,13 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "multipart/form-data": components["schemas"]["UpdateDeckRequest"];
+        'multipart/form-data': components['schemas']['UpdateDeckRequest'];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["DeckWithAuthor"];
+          'application/json': components['schemas']['DeckWithAuthor'];
         };
       };
       /** @description Unauthorized */
@@ -906,7 +926,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["PaginatedCardsWithGrade"];
+          'application/json': components['schemas']['PaginatedCardsWithGrade'];
         };
       };
     };
@@ -923,13 +943,13 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "multipart/form-data": components["schemas"]["CreateCardRequest"];
+        'multipart/form-data': components['schemas']['CreateCardRequest'];
       };
     };
     responses: {
       201: {
         content: {
-          "application/json": components["schemas"]["Card"];
+          'application/json': components['schemas']['Card'];
         };
       };
       /** @description Unauthorized */
@@ -958,7 +978,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["CardWithGrade"];
+          'application/json': components['schemas']['CardWithGrade'];
         };
       };
       /** @description Unauthorized */
@@ -974,14 +994,14 @@ export interface operations {
   DecksController_saveGrade: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["SaveGradeRequest"];
+        'application/json': components['schemas']['SaveGradeRequest'];
       };
     };
     responses: {
       /** @description A new random card in the deck. Will never return the same card that was sent */
       200: {
         content: {
-          "application/json": components["schemas"]["CardWithGrade"];
+          'application/json': components['schemas']['CardWithGrade'];
         };
       };
       /** @description Grade saved */
@@ -1011,7 +1031,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["CardWithGrade"];
+          'application/json': components['schemas']['CardWithGrade'];
         };
       };
       /** @description Unauthorized */
@@ -1061,13 +1081,13 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "multipart/form-data": components["schemas"]["UpdateCardRequest"];
+        'multipart/form-data': components['schemas']['UpdateCardRequest'];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Card"];
+          'application/json': components['schemas']['Card'];
         };
       };
       /** @description Unauthorized */

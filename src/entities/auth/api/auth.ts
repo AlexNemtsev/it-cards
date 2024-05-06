@@ -3,7 +3,7 @@ import {
   LoginResponse,
   MeResponse,
   RecoverPasswordRequest,
-} from '@/shared/api/auth/types';
+} from '@/entities/auth/api/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
 export const authApi = flashcardsApi.injectEndpoints({

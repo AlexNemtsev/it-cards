@@ -1,8 +1,11 @@
 import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { FormValues, LoginForm } from '@/components/auth/LoginForm/LoginForm';
 import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
 import { Routes } from '@/shared/constants/routes';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export const LoginPage = () => {
   const { data } = useMeQuery();
@@ -14,11 +17,11 @@ export const LoginPage = () => {
 
   const onSubmitHandler = async (data: FormValues) => {
     try {
-      const d = await login(data).unwrap();
+      await login(data).unwrap();
 
-      console.log(d);
+      toast.success('You are authorized!');
     } catch (e: any) {
-      console.log(e.data.message);
+      toast.error(e.data.message);
     }
   };
 

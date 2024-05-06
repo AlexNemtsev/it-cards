@@ -12,15 +12,14 @@ export const LoginPage = () => {
     return <Navigate to={Routes.MAIN} />;
   }
 
-  const onSubmitHandler = (data: FormValues) => {
-    login(data)
-      .unwrap()
-      .then(d => {
-        console.log(d);
-      })
-      .catch(e => {
-        console.log(e.data.message);
-      });
+  const onSubmitHandler = async (data: FormValues) => {
+    try {
+      const d = await login(data).unwrap();
+
+      console.log(d);
+    } catch (e: any) {
+      console.log(e.data.message);
+    }
   };
 
   return (

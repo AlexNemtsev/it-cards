@@ -16,12 +16,12 @@ type Story = StoryObj<typeof meta>;
 
 export const SliderExample: Story = {
   args: {
-    defaultValue: [25, 75],
     max: 100,
     min: -50,
+    value: [25, 75],
   },
-  render: ({ defaultValue, max, min }) => {
-    const [range, setRange] = useState<[number, number]>(defaultValue);
+  render: ({ max, min, value }) => {
+    const [range, setRange] = useState<[number, number]>(value);
 
     const onValueChange = (value: [number, number]) => {
       setRange(value);
@@ -29,7 +29,7 @@ export const SliderExample: Story = {
 
     return (
       <>
-        <Slider defaultValue={defaultValue} max={max} min={min} onValueChange={onValueChange} />
+        <Slider max={max} min={min} onValueChange={onValueChange} value={range} />
         <p>
           Range: {range[0]} - {range[1]}
         </p>
@@ -40,8 +40,8 @@ export const SliderExample: Story = {
 
 export const SliderWithoutOnValueChang: Story = {
   args: {
-    defaultValue: [25, 75],
     max: 100,
     min: -50,
+    value: [25, 75],
   },
 };

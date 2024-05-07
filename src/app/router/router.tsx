@@ -2,10 +2,10 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import { CheckEmail } from '@/components/auth/CheckEmail';
 import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
-import { SignUpForm } from '@/components/auth/signUpForm';
 import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage/ForgotPasswordPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
+import { SignUpPage } from '@/pages/SignUpPage';
 import { Routes } from '@/shared/constants/routes';
 import { Layout } from '@/shared/ui/Layout';
 
@@ -31,7 +31,7 @@ const publicRoutes: RouteObject[] = [
         path: Routes.CHECK_EMAIL,
       },
       {
-        element: <SignUpForm onSubmit={() => {}} />,
+        element: <SignUpPage />,
         path: Routes.SIGN_UP,
       },
     ],

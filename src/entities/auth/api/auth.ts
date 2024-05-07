@@ -4,6 +4,8 @@ import {
   MeResponse,
   RecoverPasswordRequest,
   RecoverPasswordResponse,
+  SignUpRequest,
+  SignUpResponse,
 } from '@/entities/auth/api/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
@@ -39,6 +41,15 @@ export const authApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
+      signUp: builder.mutation<SignUpResponse, SignUpRequest>({
+        query: args => {
+          return {
+            body: args,
+            method: 'POST',
+            url: '/v1/auth/sign-up',
+          };
+        },
+      }),
     };
   },
 });
@@ -47,5 +58,6 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useMeQuery,
-  useRecoverPasswordMutation: useRecoverPasswordMutation,
+  useRecoverPasswordMutation,
+  useSignUpMutation,
 } = authApi;

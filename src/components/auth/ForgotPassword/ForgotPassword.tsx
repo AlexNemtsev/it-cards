@@ -1,6 +1,9 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
+import { CheckEmail } from '@/components/auth/CheckEmail';
 import { InputWithController } from '@/components/withControllers/InputWithController';
+import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
@@ -15,7 +18,7 @@ const forgotPasswordScheme = z.object({
 
 export type FormValues = z.infer<typeof forgotPasswordScheme>;
 type Props = {
-  onSubmit: (data: FormValues) => void;
+  onSubmit?: (data: FormValues) => void;
 };
 export const ForgotPassword = (props: Props) => {
   const { onSubmit } = props;
@@ -27,7 +30,9 @@ export const ForgotPassword = (props: Props) => {
   });
 
   const onSubmitHandler = handleSubmit(data => {
-    onSubmit(data);
+    onSubmit && onSubmit(data);
+
+    return <CheckEmail backToSignIn={() => {}} email={data.email} />;
   });
 
   return (
@@ -52,7 +57,8 @@ export const ForgotPassword = (props: Props) => {
         <Typography.Body2 className={s.remember} href="#">
           Did you remember your password?
         </Typography.Body2>
-        <Typography.Subtitle1 as="a" className={s.tryLogin} href="#">
+
+        <Typography.Subtitle1 as={Link} className={s.tryLogin} to={Routes.LOGIN}>
           Try logging in
         </Typography.Subtitle1>
       </form>

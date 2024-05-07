@@ -3,14 +3,24 @@ import { flashcardsApi } from '@/shared/api/flashcardsApi';
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      getDecks: builder.query<getDecksResponse, void>({
-        query: () => `v2/decks`,
+      getDecks: builder.query<getDecksResponse, GetDecksArgs | void>({
+        providesTags: ['Decks'],
+        query: args => ({
+          params: args ?? undefined,
+          url: `v2/decks`,
+        }),
+      }),
+      getMinMaxCards: builder.query<getMinMaxCardsResponse, void>({
+        providesTags: ['Decks'],
+        query: () => ({
+          url: `v2/decks/min-max-cards`,
+        }),
       }),
     };
   },
 });
 
-export const { useGetDecksQuery } = deckApi;
+export const { useGetDecksQuery, useGetMinMaxCardsQuery } = deckApi;
 
 export type Author = {
   id: string;
@@ -38,6 +48,19 @@ export type Pagination = {
 
 export type getDecksResponse = {
   items: Deck[];
-  maxCardsCount: number;
   pagination: Pagination;
+};
+
+export type GetDecksArgs = {
+  authorId?: string;
+  currentPage?: number;
+  itemsPerPage?: number;
+  maxCardsCount?: number;
+  minCardsCount?: number;
+  name?: string;
+};
+
+export type getMinMaxCardsResponse = {
+  max: number;
+  min: number;
 };

@@ -1,4 +1,4 @@
-@import '@/styles/form-container-mixin';
+@import '@/shared/scss/form-container-mixin';
 
 .card {
   @include form-container;

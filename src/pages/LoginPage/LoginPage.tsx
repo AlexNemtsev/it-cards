@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
 import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
+import { LoginErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,10 +19,10 @@ export const LoginPage = () => {
   const onSubmitHandler = async (data: LoginFormValues) => {
     try {
       await login(data).unwrap();
+    } catch (error) {
+      const loginError = error as LoginErrorResponse;
 
-      toast.success('You are authorized!');
-    } catch (e: any) {
-      toast.error(e.data.message);
+      toast.error(loginError.data.message);
     }
   };
 

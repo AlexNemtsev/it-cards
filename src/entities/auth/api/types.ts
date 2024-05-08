@@ -14,3 +14,12 @@ export type RecoverPasswordResponse = {
   statusCode: number;
   timestamp: string;
 };
+
+export type LoginErrorResponse = {
+  data: {
+    message: string;
+    path: string;
+    statusCode: number;
+    timestamp: string;
+  };
+};

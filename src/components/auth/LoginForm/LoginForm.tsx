@@ -15,7 +15,7 @@ import s from './LoginForm.module.scss';
 const loginScheme = z.object({
   email: z.string().email(),
   password: z.string().min(3).max(30),
-  rememberMe: z.boolean().optional(),
+  rememberMe: z.boolean(),
 });
 
 export type LoginFormValues = z.infer<typeof loginScheme>;

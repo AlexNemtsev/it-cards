@@ -15,7 +15,7 @@ import s from './LoginForm.module.scss';
 const loginScheme = z.object({
   email: z.string().email(),
   password: z.string().min(3).max(30),
-  rememberMe: z.boolean(),
+  rememberMe: z.boolean().optional(),
 });
 
 export type LoginFormValues = z.infer<typeof loginScheme>;
@@ -28,6 +28,7 @@ export const LoginForm = (props: Props) => {
     defaultValues: {
       email: '',
       password: '',
+      rememberMe: false,
     },
     delayError: 2000,
     resolver: zodResolver(loginScheme),

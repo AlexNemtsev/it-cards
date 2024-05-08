@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
+import { Burger } from '@/shared/assets/icons/Burger/Burger';
+import { Avatar } from '@/shared/ui/Avatar';
 import { Arrow, Content, Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import clsx from 'clsx';
 
@@ -8,11 +10,12 @@ import s from './Dropdown.module.scss';
 type Props = {
   children?: ReactNode;
   className?: string;
-  icon?: ReactNode;
+  img?: string;
+  withAvatar?: boolean;
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Dropdown = (props: Props) => {
-  const { children, className, icon } = props;
+  const { children, className, img, withAvatar } = props;
   const classNames = {
     dropdownMenuArrow: s.dropdownMenuArrow,
     dropdownMenuContent: s.dropdownMenuContent,
@@ -23,7 +26,9 @@ export const Dropdown = (props: Props) => {
   return (
     <Root>
       <Trigger asChild>
-        <button className={classNames.iconButton}>{icon}</button>
+        <button className={classNames.iconButton}>
+          {withAvatar ? <Avatar img={img} /> : <Burger />}
+        </button>
       </Trigger>
       <Portal>
         <Content className={classNames.dropdownMenuContent} sideOffset={5}>

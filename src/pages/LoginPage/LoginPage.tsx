@@ -5,8 +5,6 @@ import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginFor
 import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
 import { Routes } from '@/shared/constants/routes';
 
-import 'react-toastify/dist/ReactToastify.css';
-
 export const LoginPage = () => {
   const { data } = useMeQuery();
   const [login] = useLoginMutation();
@@ -19,7 +17,7 @@ export const LoginPage = () => {
     try {
       await login(data).unwrap();
 
-      toast.success('You are authorized!');
+      // toast.success('You are authorized!');
     } catch (e: any) {
       toast.error(e.data.message);
     }

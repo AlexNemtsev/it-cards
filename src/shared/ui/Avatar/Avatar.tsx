@@ -1,16 +1,29 @@
+import { ComponentPropsWithoutRef } from 'react';
+
 import unknownAvatar from '@/shared/assets/img/unknown-avatar.png';
+import clsx from 'clsx';
 
 import s from './Avatar.module.scss';
 
 type Props = {
-  bla?: string;
   img?: string;
   size?: number;
-};
+} & ComponentPropsWithoutRef<'img'>;
 export const Avatar = (props: Props) => {
-  const { img = unknownAvatar, size = 36 } = props;
+  const { className, img, size = 36 } = props;
 
-  // const finalImg = img ?? unknownAvatar;
+  const classNames = {
+    avatar: clsx(s.avatar, className),
+  };
 
-  return <img alt="ava" className={s.avatar} src={img} style={{ height: size, width: size }} />;
+  const finalImg = img ?? unknownAvatar;
+
+  return (
+    <img
+      alt="ava"
+      className={classNames.avatar}
+      src={finalImg}
+      style={{ height: size, width: size }}
+    />
+  );
 };

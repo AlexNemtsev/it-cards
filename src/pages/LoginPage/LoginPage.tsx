@@ -4,7 +4,7 @@ import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginFor
 import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
 import { LoginErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
-import { errorNotification } from '@/shared/lib/errorNotification';
+import { errorNotifications } from '@/shared/lib/notifications';
 
 export const LoginPage = () => {
   const { data } = useMeQuery();
@@ -20,7 +20,7 @@ export const LoginPage = () => {
     } catch (error) {
       const loginError = error as LoginErrorResponse;
 
-      errorNotification(loginError.data.message);
+      errorNotifications(loginError.data.message || 'Some error occured');
     }
   };
 

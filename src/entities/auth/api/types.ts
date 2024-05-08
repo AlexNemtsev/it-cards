@@ -23,3 +23,8 @@ export type LoginErrorResponse = {
     timestamp: string;
   };
 };
+export type SignUpErrorResponse = {
+  data: {
+    errorMessages: string[];
+  };
+};

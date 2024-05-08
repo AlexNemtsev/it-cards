@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export const errorNotifications: typeof toast.error = (...args) => {
+export const errorNotification: typeof toast.error = (...args) => {
   return toast.error(...args);
 };
 

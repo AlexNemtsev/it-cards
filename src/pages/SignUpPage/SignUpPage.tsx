@@ -6,7 +6,7 @@ import { SignUpFormValues } from '@/components/auth/SignUpForm/SignUpFormShema';
 import { useLoginMutation, useMeQuery, useSignUpMutation } from '@/entities/auth/api/auth';
 import { SignUpErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
-import { errorNotifications, successNotification } from '@/shared/lib/notifications';
+import { errorNotification, successNotification } from '@/shared/lib/notifications';
 
 export const SignUpPage = () => {
   const { data: useMeData } = useMeQuery();
@@ -28,7 +28,7 @@ export const SignUpPage = () => {
     } catch (e) {
       const signUpError = e as SignUpErrorResponse;
 
-      errorNotifications(signUpError.data.errorMessages[0] || 'Some error occured');
+      errorNotification(signUpError.data.errorMessages[0] || 'Some error occured');
     }
   };
 

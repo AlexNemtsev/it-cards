@@ -15,7 +15,7 @@ export type RecoverPasswordResponse = {
   timestamp: string;
 };
 
-export type LoginErrorResponse = {
+export type LoginOrRecoverPasswordErrorResponse = {
   data: {
     message: string;
     path: string;

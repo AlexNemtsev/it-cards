@@ -28,6 +28,7 @@ export const LoginForm = (props: Props) => {
     defaultValues: {
       email: '',
       password: '',
+      rememberMe: false,
     },
     delayError: 2000,
     resolver: zodResolver(loginScheme),

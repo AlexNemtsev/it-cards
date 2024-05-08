@@ -1,13 +1,12 @@
 import { Navigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import { LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
 import { SignUpForm } from '@/components/auth/SignUpForm';
 import { SignUpFormValues } from '@/components/auth/SignUpForm/SignUpFormShema';
 import { useLoginMutation, useMeQuery, useSignUpMutation } from '@/entities/auth/api/auth';
+import { SignUpErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
-
-import 'react-toastify/dist/ReactToastify.css';
+import { errorNotification, successNotification } from '@/shared/lib/notifications';
 
 export const SignUpPage = () => {
   const { data: useMeData } = useMeQuery();
@@ -21,12 +20,15 @@ export const SignUpPage = () => {
     try {
       const res = await signUp(data).unwrap();
 
-      toast.success(`${res.name}, you are successfully registered`);
+      successNotification(`${res.name}, you are successfully registered`);
+
       const dataForLogin: LoginFormValues = { rememberMe: false, ...data };
 
       await login(dataForLogin).unwrap();
-    } catch (e: any) {
-      toast.error(e.data.errorMessages[0] || 'Some error occured');
+    } catch (e) {
+      const signUpError = e as SignUpErrorResponse;
+
+      errorNotification(signUpError.data.errorMessages[0] || 'Some error occured');
     }
   };
 

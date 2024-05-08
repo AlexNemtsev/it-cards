@@ -22,7 +22,7 @@ export const authApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
-      logout: builder.mutation({
+      logout: builder.mutation<void, void>({
         query: () => ({
           method: 'POST',
           url: '/v1/auth/logout',

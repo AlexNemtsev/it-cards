@@ -5,6 +5,7 @@ import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
 import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage/ForgotPasswordPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
+import { ProfilePage } from '@/pages/ProfilePage';
 import { SignUpPage } from '@/pages/SignUpPage';
 import { Routes } from '@/shared/constants/routes';
 import { Layout } from '@/shared/ui/Layout';
@@ -33,6 +34,10 @@ const publicRoutes: RouteObject[] = [
       {
         element: <SignUpPage />,
         path: Routes.SIGN_UP,
+      },
+      {
+        element: <ProfilePage />,
+        path: Routes.PROFILE,
       },
     ],
     element: <Layout />,

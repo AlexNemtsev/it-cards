@@ -11,7 +11,7 @@ export const MainPage = () => {
   const [logout] = useLogoutMutation();
 
   const onClickHandler = () => {
-    logout({});
+    logout();
   };
 
   return (

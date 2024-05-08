@@ -35,7 +35,7 @@ export const Layout = () => {
               </div>
             </DropdownProfileInfo>
             <DropdownItemDivider />
-            <DropdownItem>
+            <DropdownItem to={Routes.PROFILE}>
               <Profile />
               <Typography.Caption>My Profile</Typography.Caption>
             </DropdownItem>

@@ -7,6 +7,7 @@ import {
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { LogOutIcon } from '@/shared/assets/icons/LogOutIcon';
 import unknownAvatar from '@/shared/assets/img/unknown-avatar.png';
+import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
@@ -46,7 +47,7 @@ export const PersonalInformation = (props: Props) => {
     <Card className={s.card}>
       <Typography.H1 className={s.title}>Personal Information</Typography.H1>
       <div className={s.avatarWrapper}>
-        <img alt="avatar" className={s.avatar} src={avatar} />
+        <Avatar img={avatar} size={96} />
 
         <label className={s.uploadButton}>
           <input

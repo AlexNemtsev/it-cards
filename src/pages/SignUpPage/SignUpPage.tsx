@@ -28,7 +28,7 @@ export const SignUpPage = () => {
     } catch (e) {
       const signUpError = e as SignUpErrorResponse;
 
-      errorNotification(signUpError.data.errorMessages[0] || 'Some error occured');
+      errorNotification(signUpError.data.errorMessages[0] || 'Some error occurred');
     }
   };
 

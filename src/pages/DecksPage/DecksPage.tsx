@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+// import { useSearchParams } from 'react-router-dom';
 
-import { useGetDecksQuery } from '@/entities/deck/model/api';
+import { useSearchParams } from 'react-router-dom';
+
+import { useMeQuery } from '@/entities/auth/api/auth';
+import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/model/api';
+import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
+import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
@@ -17,20 +23,34 @@ import { Typography } from '@/shared/ui/Typography';
 
 import s from './DecksPage.module.scss';
 
-import { useMeQuery } from '../../entities/auth/api/auth';
-
 const TabSwitcherStates = {
   ALL: 'All Cards',
   MY: 'My Cards',
 };
 
+// const updateSearchParams = (currentSearchParams: URLSearchParams) => {
+//   const newSearchParams = new URLSearchParams(currentSearchParams);
+
+//   newSearchParams.append('newParamName', 'newValue');
+
+//   return newSearchParams;
+// };
+
 export const DecksPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const [range, setRange] = useState([0, 10]);
   const [search, setSearch] = useState('');
   const [decksAuthor, setDecksAuthor] = useState('');
+  const [sort, setSort] = useState({
+    direction: 'desc',
+    key: 'updated',
+  });
+
+  const { data: minMaxCards } = useGetMinMaxCardsQuery();
+  const [range, setRange] = useState<[number, number]>([0, 0]);
 
   const { data: me } = useMeQuery();
+
   const currentUserId = me?.id;
   const authorId = decksAuthor === TabSwitcherStates.MY ? currentUserId : undefined;
 
@@ -44,6 +64,7 @@ export const DecksPage = () => {
     maxCardsCount: range[1],
     minCardsCount: range[0],
     name: search,
+    orderBy: `${sort.key}-${sort.direction}`,
   });
 
   function formatDate(date: string | undefined) {
@@ -54,6 +75,13 @@ export const DecksPage = () => {
     return new Date(date).toLocaleDateString('ru-RU');
   }
 
+  const clearFilters = () => {
+    setRange([minMaxCards!.min, minMaxCards!.max]);
+    setDecksAuthor(TabSwitcherStates.ALL);
+    setSearch('');
+    setSort({ ...sort, direction: 'desc' });
+  };
+
   const getNumberOfCards = (value: [number, number]) => {
     setRange(value);
   };
@@ -61,6 +89,30 @@ export const DecksPage = () => {
   const getDecksAuthor = (value: string) => {
     setDecksAuthor(value);
   };
+
+  const getSortedLastedUpdated = () => {
+    setSearchParams(prev => prev);
+    setSort({ ...sort, direction: sort.direction === 'desc' ? 'asc' : 'desc' });
+  };
+
+  const getValueSearch = (value: string) => {
+    setSearchParams({ search: value });
+    if (!value) {
+      searchParams.delete('search');
+      setSearchParams(searchParams);
+    }
+    setSearch(value);
+  };
+
+  const clearValueSearch = () => {
+    setSearch('');
+    searchParams.delete('search');
+    setSearchParams(searchParams);
+  };
+
+  useEffect(() => {
+    setRange([minMaxCards?.min ?? 0, minMaxCards?.max ?? 0]);
+  }, [minMaxCards?.min, minMaxCards?.max]);
 
   if (isError) {
     return <div>Error...</div>;
@@ -79,8 +131,8 @@ export const DecksPage = () => {
       <div className={s.filters}>
         <Input
           containerClassName={s.input}
-          onClearInput={() => setSearch('')}
-          onValueChange={value => setSearch(value)}
+          onClearInput={clearValueSearch}
+          onValueChange={getValueSearch}
           placeholder="Input search"
           type="search"
           value={search}
@@ -101,13 +153,13 @@ export const DecksPage = () => {
           ]}
         />
         <Slider
-          defaultValue={[0, 10]}
-          max={10}
-          min={0}
+          max={minMaxCards?.max}
+          min={minMaxCards?.min}
           onValueChange={getNumberOfCards}
+          value={range}
           wrapperClassName={s.slider}
         />
-        <Button className={s.button} variant="secondary">
+        <Button className={s.button} onClick={clearFilters} variant="secondary">
           <Delete />
           Clear Filter
         </Button>
@@ -118,8 +170,11 @@ export const DecksPage = () => {
             <TableRow>
               <TableHeadCell>Name</TableHeadCell>
               <TableHeadCell>Cards</TableHeadCell>
-              <TableHeadCell>Last Updated</TableHeadCell>
+              <TableHeadCell className={s.updated} onClick={getSortedLastedUpdated}>
+                Last Updated {sort ? <ChevronDownIcon /> : <ChevronUpIcon />}
+              </TableHeadCell>
               <TableHeadCell>Created by</TableHeadCell>
+              <TableHeadCell></TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>

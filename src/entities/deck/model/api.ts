@@ -58,6 +58,7 @@ export type GetDecksArgs = {
   maxCardsCount?: number;
   minCardsCount?: number;
   name?: string;
+  orderBy?: string;
 };
 
 export type getMinMaxCardsResponse = {

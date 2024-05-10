@@ -49,7 +49,7 @@ export const ForgotPassword = () => {
   return (
     <>
       {email ? (
-        <CheckEmail />
+        <CheckEmail email={email} />
       ) : (
         <Card className={s.card}>
           <Typography.H1 className={s.title}>Forgot your password?</Typography.H1>

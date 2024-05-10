@@ -1,6 +1,5 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
-import { CheckEmail } from '@/components/auth/CheckEmail';
 import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
 import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage/ForgotPasswordPage';
 import { LoginPage } from '@/pages/LoginPage';
@@ -26,10 +25,6 @@ const publicRoutes: RouteObject[] = [
       {
         element: <CreateNewPassword />,
         path: Routes.CREATE_NEW_PASSWORD,
-      },
-      {
-        element: <CheckEmail />,
-        path: Routes.CHECK_EMAIL,
       },
       {
         element: <SignUpPage />,

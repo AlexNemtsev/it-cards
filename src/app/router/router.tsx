@@ -43,22 +43,6 @@ const publicRoutes: RouteObject[] = [
     element: <Layout />,
     path: Routes.MAIN,
   },
-  // {
-  //   element: <ForgotPassword />,
-  //   path: Routes.FORGOT_PASSWORD,
-  // },
-  // {
-  //   element: <CreateNewPassword />,
-  //   path: Routes.CHECK_EMAIL,
-  // },
-  // {
-  //   element: <CheckEmail />,
-  //   path: Routes.CHECK_EMAIL,
-  // },
-  // {
-  //   element: <SignUpForm onSubmit={() => {}} />,
-  //   path: Routes.SIGN_UP,
-  // },
 ];
 
 const privateRoutes: RouteObject[] = [

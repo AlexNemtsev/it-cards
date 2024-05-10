@@ -37,7 +37,7 @@ const TabSwitcherStates = {
 // };
 
 export const DecksPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
   const [decksAuthor, setDecksAuthor] = useState('');
@@ -60,12 +60,14 @@ export const DecksPage = () => {
     isLoading,
   } = useGetDecksQuery({
     authorId,
-    currentPage,
+    currentPage: Number(searchParams.get('currentPage')) || 1,
     maxCardsCount: range[1],
     minCardsCount: range[0],
     name: search,
     orderBy: `${sort.key}-${sort.direction}`,
   });
+
+  console.log(Number(searchParams.get('currentPage')));
 
   function formatDate(date: string | undefined) {
     if (!date) {
@@ -80,6 +82,7 @@ export const DecksPage = () => {
     setDecksAuthor(TabSwitcherStates.ALL);
     setSearch('');
     setSort({ ...sort, direction: 'desc' });
+    setSearchParams({});
   };
 
   const getNumberOfCards = (value: [number, number]) => {
@@ -91,14 +94,18 @@ export const DecksPage = () => {
   };
 
   const getSortedLastedUpdated = () => {
-    setSearchParams(prev => prev);
+    searchParams.set('direction', String(sort.direction === 'desc' ? 'asc' : 'desc'));
+    setSearchParams(searchParams);
     setSort({ ...sort, direction: sort.direction === 'desc' ? 'asc' : 'desc' });
   };
 
   const getValueSearch = (value: string) => {
-    setSearchParams({ search: value });
+    searchParams.set('search', value);
+
+    setSearchParams(searchParams);
     if (!value) {
       searchParams.delete('search');
+
       setSearchParams(searchParams);
     }
     setSearch(value);
@@ -108,6 +115,13 @@ export const DecksPage = () => {
     setSearch('');
     searchParams.delete('search');
     setSearchParams(searchParams);
+  };
+
+  const getCurrentPage = (value: number) => {
+    if (!value) {
+      searchParams.delete('currentPage');
+    }
+    searchParams.set('currentPage', String(value));
   };
 
   useEffect(() => {
@@ -191,9 +205,9 @@ export const DecksPage = () => {
         </Table>
       </div>
       <Pagination
-        currentPage={currentPage}
+        currentPage={Number(searchParams.get('currentPage')) || 1}
         itemsPerPage={decks!.pagination.itemsPerPage}
-        onValueChange={value => setCurrentPage(value)}
+        onValueChange={value => getCurrentPage(value)}
         totalPages={decks!.pagination.totalPages}
       />
     </section>

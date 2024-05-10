@@ -32,7 +32,7 @@ export const ForgotPassword = (props: Props) => {
   const onSubmitHandler = handleSubmit(data => {
     onSubmit && onSubmit(data);
 
-    return <CheckEmail backToSignIn={() => {}} email={data.email} />;
+    return <CheckEmail email={data.email} />;
   });
 
   return (

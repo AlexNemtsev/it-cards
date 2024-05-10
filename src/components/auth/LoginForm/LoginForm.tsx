@@ -62,9 +62,9 @@ export const LoginForm = (props: Props) => {
           name="rememberMe"
         />
 
-        <Typography.Body2 as={Link} className={s.forgot} to={Routes.FORGOT_PASSWORD}>
+        <Typography.Link1 as={Link} className={s.forgot} to={Routes.FORGOT_PASSWORD}>
           Forgot Password?
-        </Typography.Body2>
+        </Typography.Link1>
 
         <Button className={s.signIn} fullWidth type="submit">
           Sign In

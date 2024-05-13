@@ -1,4 +1,6 @@
 .dropdownItem {
+  cursor: pointer;
+
   display: flex;
   gap: 6px;
   align-items: center;
@@ -10,17 +12,11 @@
 
   transition: 0.5s;
 
-  svg {
-    fill: var(--color-light-100);
-    transition: 0.5s;
+  &:hover {
+    color: var(--color-accent-100);
   }
 
-  &:hover {
-    cursor: pointer;
-    color: var(--color-dark-100);
-
-    svg {
-      fill: var(--color-dark-100);
-    }
+  svg {
+    fill: currentcolor;
   }
 }

@@ -1,5 +1,8 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
+import { Burger } from '@/shared/assets/icons/Burger/Burger';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Typography } from '@/shared/ui/Typography';
 import { Arrow, Content, Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import clsx from 'clsx';
 
@@ -8,22 +11,30 @@ import s from './Dropdown.module.scss';
 type Props = {
   children?: ReactNode;
   className?: string;
-  icon?: ReactNode;
+  img?: string;
+  name?: string;
+  withAvatar?: boolean;
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Dropdown = (props: Props) => {
-  const { children, className, icon } = props;
+  const { children, className, img, name, withAvatar } = props;
   const classNames = {
+    avatar: s.avatar,
     dropdownMenuArrow: s.dropdownMenuArrow,
     dropdownMenuContent: s.dropdownMenuContent,
-    iconButton: clsx(s.iconButton, className),
-    root: clsx(s.iconButton),
+    name: s.name,
+    triggerButton: clsx(s.triggerButton, className),
   };
 
   return (
     <Root>
       <Trigger asChild>
-        <button className={classNames.iconButton}>{icon}</button>
+        <button className={classNames.triggerButton}>
+          {name && (
+            <Typography.Subtitle2 className={classNames.name}> {name} </Typography.Subtitle2>
+          )}
+          {withAvatar ? <Avatar className={classNames.avatar} img={img} /> : <Burger />}
+        </button>
       </Trigger>
       <Portal>
         <Content className={classNames.dropdownMenuContent} sideOffset={5}>

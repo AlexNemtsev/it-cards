@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { CheckEmailIcon } from '@/shared/assets/icons/CheckEmail/CheckEmailIcon';
 import { Routes } from '@/shared/constants/routes';
@@ -14,15 +14,12 @@ type Props = {
 export const CheckEmail = (props: Props) => {
   const { email } = props;
 
-  const location = useLocation();
-  const finallyEmail = email ?? location.state;
-
   return (
     <Card className={s.card}>
       <Typography.H1 className={s.title}>Check Email</Typography.H1>
       <CheckEmailIcon />
       <Typography.Body2 className={s.notice}>
-        We’ve sent an Email with instructions to {finallyEmail}
+        We’ve sent an Email with instructions to {email}
       </Typography.Body2>
 
       <Button as={Link} className={s.send} fullWidth to={Routes.LOGIN}>

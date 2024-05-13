@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 
 import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
 import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
-import { LoginOrRecoverPasswordErrorResponse } from '@/entities/auth/api/types';
+import { BaseErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
 
@@ -18,9 +18,9 @@ export const LoginPage = () => {
     try {
       await login(data).unwrap();
     } catch (e) {
-      const error = e as LoginOrRecoverPasswordErrorResponse;
+      const error = e as BaseErrorResponse;
 
-      errorNotification(error.data.message || 'Some error occured');
+      errorNotification(error.data.message || 'Some error occurred');
     }
   };
 

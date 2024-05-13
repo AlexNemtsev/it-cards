@@ -16,7 +16,7 @@ type Props = {
 };
 export const UserMenu = ({ data }: Props) => {
   return (
-    <Dropdown img={data && data.avatar} name={data.name} withAvatar>
+    <Dropdown img={data && data.avatar} name={data.name}>
       <DropdownProfileInfo>
         <Avatar img={data && data.avatar} />
         <div>

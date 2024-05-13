@@ -7,8 +7,8 @@ import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Dropdown } from '@/shared/ui/Dropdown';
-import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
+import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
 import { Typography } from '@/shared/ui/Typography';
 
@@ -35,15 +35,17 @@ export const Layout = () => {
               </div>
             </DropdownProfileInfo>
             <DropdownItemDivider />
-            <DropdownItem to={Routes.PROFILE}>
+
+            <DropdownLink to={Routes.PROFILE}>
               <Profile />
               <Typography.Caption>My Profile</Typography.Caption>
-            </DropdownItem>
+            </DropdownLink>
             <DropdownItemDivider />
-            <DropdownItem>
+
+            <DropdownLink>
               <SignOut />
               <Typography.Caption>Sign Out</Typography.Caption>
-            </DropdownItem>
+            </DropdownLink>
           </Dropdown>
         ) : (
           <Button as={Link} to={Routes.LOGIN} variant="secondary">

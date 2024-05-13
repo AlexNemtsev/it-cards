@@ -6,6 +6,7 @@ import { Learn } from '@/shared/assets/icons/Learn/Learn';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';
 import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
 import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
+import { Avatar } from '@/shared/ui/Avatar';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
@@ -52,6 +53,7 @@ export const DropdownWithAvatar: Story = {
     children: (
       <>
         <DropdownProfileInfo>
+          <Avatar />
           <div>
             <Typography.Subtitle2>Ivan</Typography.Subtitle2>
             <Typography.Caption className={DropdownProfileInfoStyles.email}>

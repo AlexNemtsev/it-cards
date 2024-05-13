@@ -11,26 +11,14 @@ export const ProfilePage = () => {
   const logoutHandler = async () => {
     await logout();
     await navigate(Routes.LOGIN);
-
-    // try {
-    //   // await logout().unwrap();
-    //   await logout().unwrap();
-    //   navigate(Routes.LOGIN);
-    // } catch (e) {
-    //   const error = e as BaseErrorResponse;
-    //
-    //   infoNotification(error.data.message || 'Some error occurred');
-    // }
   };
 
   return (
-    <>
-      <PersonalInformation
-        logout={logoutHandler}
-        name="asd"
-        onSubmit={() => {}}
-        setAvatar={() => {}}
-      />
-    </>
+    <PersonalInformation
+      logout={logoutHandler}
+      name="asd"
+      onSubmit={() => {}}
+      setAvatar={() => {}}
+    />
   );
 };

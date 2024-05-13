@@ -62,13 +62,12 @@ export const PersonalInformation = (props: Props) => {
         </label>
       </div>
 
-      {isEditMode && <EditNickNameForm onSubmit={onSubmitPersonalInformation} />}
-
-      {!isEditMode && (
+      {isEditMode ? (
+        <EditNickNameForm onSubmit={onSubmitPersonalInformation} />
+      ) : (
         <div className={s.notEditModeWrapper}>
           <Typography.H2 className={s.name}>
             {name}
-
             <button className={s.editName} onClick={() => setIsEditMode(true)}>
               <Edit />
             </button>

@@ -32,9 +32,5 @@ export const SignUpPage = () => {
     }
   };
 
-  return (
-    <>
-      <SignUpForm onSubmit={onSubmitHandler} />
-    </>
-  );
+  return <SignUpForm onSubmit={onSubmitHandler} />;
 };

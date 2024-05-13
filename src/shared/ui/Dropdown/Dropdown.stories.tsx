@@ -75,6 +75,5 @@ export const DropdownWithAvatar: Story = {
     ),
     img: avatar,
     name: 'Ivan',
-    withAvatar: true,
   },
 };

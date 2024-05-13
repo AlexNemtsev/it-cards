@@ -13,11 +13,10 @@ type Props = {
   className?: string;
   img?: string;
   name?: string;
-  withAvatar?: boolean;
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Dropdown = (props: Props) => {
-  const { children, className, img, name, withAvatar } = props;
+  const { children, className, img, name } = props;
   const classNames = {
     avatar: s.avatar,
     dropdownMenuArrow: s.dropdownMenuArrow,
@@ -33,7 +32,7 @@ export const Dropdown = (props: Props) => {
           {name && (
             <Typography.Subtitle2 className={classNames.name}> {name} </Typography.Subtitle2>
           )}
-          {withAvatar ? <Avatar className={classNames.avatar} img={img} /> : <Burger />}
+          {img ? <Avatar className={classNames.avatar} img={img} /> : <Burger />}
         </button>
       </Trigger>
       <Portal>

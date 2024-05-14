@@ -28,6 +28,14 @@ const TabSwitcherStates = {
   MY: 'My Cards',
 };
 
+function formatDate(date: string | undefined) {
+  if (!date) {
+    return '';
+  }
+
+  return new Date(date).toLocaleDateString('ru-RU');
+}
+
 // const updateSearchParams = (currentSearchParams: URLSearchParams) => {
 //   const newSearchParams = new URLSearchParams(currentSearchParams);
 
@@ -38,7 +46,6 @@ const TabSwitcherStates = {
 
 export const DecksPage = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
-  const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
   const [decksAuthor, setDecksAuthor] = useState('');
   const [sort, setSort] = useState({
@@ -66,16 +73,6 @@ export const DecksPage = () => {
     name: search,
     orderBy: `${sort.key}-${sort.direction}`,
   });
-
-  console.log(Number(searchParams.get('currentPage')));
-
-  function formatDate(date: string | undefined) {
-    if (!date) {
-      return '';
-    }
-
-    return new Date(date).toLocaleDateString('ru-RU');
-  }
 
   const clearFilters = () => {
     setRange([minMaxCards!.min, minMaxCards!.max]);
@@ -120,8 +117,10 @@ export const DecksPage = () => {
   const getCurrentPage = (value: number) => {
     if (!value) {
       searchParams.delete('currentPage');
+      setSearchParams(searchParams);
     }
     searchParams.set('currentPage', String(value));
+    setSearchParams(searchParams);
   };
 
   useEffect(() => {

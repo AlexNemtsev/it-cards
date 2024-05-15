@@ -48,8 +48,13 @@ const privateRoutes: RouteObject[] = [
         element: <MainPage />,
         path: Routes.MAIN,
       },
+      {
+        element: <Page404 />,
+        path: 'error',
+      },
     ],
     element: <Layout />,
+    errorElement: <Page404 />,
   },
 ];
 

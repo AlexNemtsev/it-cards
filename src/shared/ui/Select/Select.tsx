@@ -27,7 +27,7 @@ import { TypographySelector } from './TypographySelector';
 type Props = {
   isSmall?: boolean;
   label: number | string;
-  placeholder: string;
+  placeholder: number | string;
   values: SelectItemValue[];
 } & ComponentPropsWithoutRef<typeof Root>;
 

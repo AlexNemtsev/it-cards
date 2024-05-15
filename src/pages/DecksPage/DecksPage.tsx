@@ -39,6 +39,7 @@ export const DecksPage = () => {
   const currentPage = Number(searchParams.get('currentPage')) || 1;
   const search = searchParams.get('search') || '';
   const decksAuthor = searchParams.get('decksAuthor') || TabSwitcherStates.ALL;
+  const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
 
   const { data: minMaxCards } = useGetMinMaxCardsQuery();
 
@@ -60,7 +61,8 @@ export const DecksPage = () => {
     isLoading,
   } = useGetDecksQuery({
     authorId,
-    currentPage: currentPage,
+    currentPage,
+    itemsPerPage,
     maxCardsCount: range[1],
     minCardsCount: range[0],
     name: search,
@@ -106,6 +108,11 @@ export const DecksPage = () => {
       setSearchParams(searchParams);
     }
     searchParams.set('currentPage', String(value));
+    setSearchParams(searchParams);
+  };
+
+  const getItemsPerPage = (count: string) => {
+    searchParams.set('itemsPerPage', count);
     setSearchParams(searchParams);
   };
 
@@ -188,7 +195,8 @@ export const DecksPage = () => {
             </Table>
             <Pagination
               currentPage={currentPage || 1}
-              itemsPerPage={decks?.pagination.itemsPerPage || 10}
+              itemsPerPage={itemsPerPage || 10}
+              onItemsPerPageChange={getItemsPerPage}
               onValueChange={getCurrentPage}
               totalPages={decks?.pagination.totalPages || 1}
             />

@@ -4,6 +4,7 @@ import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
 import { Routes } from '@/shared/constants/routes';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Dropdown } from '@/shared/ui/Dropdown';
+import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
@@ -26,18 +27,24 @@ export const UserMenu = ({ data }: Props) => {
           </Typography.Caption>
         </div>
       </DropdownProfileInfo>
+
       <DropdownItemDivider />
 
-      <DropdownLink to={Routes.PROFILE}>
-        <Profile />
-        <Typography.Caption>My Profile</Typography.Caption>
-      </DropdownLink>
+      <DropdownItem className="bla">
+        <DropdownLink to={Routes.PROFILE}>
+          <Profile />
+          <Typography.Caption>My Profile</Typography.Caption>
+        </DropdownLink>
+      </DropdownItem>
+
       <DropdownItemDivider />
 
-      <DropdownLink>
-        <SignOut />
-        <Typography.Caption>Sign Out</Typography.Caption>
-      </DropdownLink>
+      <DropdownItem>
+        <DropdownLink>
+          <SignOut />
+          <Typography.Caption>Sign Out</Typography.Caption>
+        </DropdownLink>
+      </DropdownItem>
     </Dropdown>
   );
 };

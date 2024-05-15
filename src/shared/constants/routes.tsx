@@ -4,6 +4,7 @@ export const Routes = {
   FORGOT_PASSWORD: '/recover-password',
   LOGIN: '/login',
   MAIN: '/',
+  PAGE404: '/404',
   PROFILE: '/profile',
   SIGN_UP: '/sign-up',
 };

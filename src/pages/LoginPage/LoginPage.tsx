@@ -5,6 +5,7 @@ import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
 import { BaseErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
+import { Page } from '@/shared/ui/Page/Page';
 
 export const LoginPage = () => {
   const { data } = useMeQuery();
@@ -25,8 +26,8 @@ export const LoginPage = () => {
   };
 
   return (
-    <>
+    <Page>
       <LoginForm onSubmit={onSubmitHandler} />
-    </>
+    </Page>
   );
 };

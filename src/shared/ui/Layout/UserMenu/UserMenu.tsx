@@ -30,7 +30,7 @@ export const UserMenu = ({ data }: Props) => {
 
       <DropdownItemDivider />
 
-      <DropdownItem className="bla">
+      <DropdownItem>
         <DropdownLink to={Routes.PROFILE}>
           <Profile />
           <Typography.Caption>My Profile</Typography.Caption>

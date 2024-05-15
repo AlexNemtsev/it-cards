@@ -7,6 +7,7 @@ import { useLoginMutation, useMeQuery, useSignUpMutation } from '@/entities/auth
 import { SignUpErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification, successNotification } from '@/shared/lib/notifications';
+import { Page } from '@/shared/ui/Page/Page';
 
 export const SignUpPage = () => {
   const { data: useMeData } = useMeQuery();
@@ -32,5 +33,9 @@ export const SignUpPage = () => {
     }
   };
 
-  return <SignUpForm onSubmit={onSubmitHandler} />;
+  return (
+    <Page>
+      <SignUpForm onSubmit={onSubmitHandler} />;
+    </Page>
+  );
 };

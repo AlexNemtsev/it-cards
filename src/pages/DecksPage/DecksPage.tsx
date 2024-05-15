@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-// import { useSearchParams } from 'react-router-dom';
-
 import { useSearchParams } from 'react-router-dom';
 
 import { useMeQuery } from '@/entities/auth/api/auth';
@@ -36,25 +33,21 @@ function formatDate(date: string | undefined) {
   return new Date(date).toLocaleDateString('ru-RU');
 }
 
-// const updateSearchParams = (currentSearchParams: URLSearchParams) => {
-//   const newSearchParams = new URLSearchParams(currentSearchParams);
-
-//   newSearchParams.append('newParamName', 'newValue');
-
-//   return newSearchParams;
-// };
-
 export const DecksPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams({});
-  const [search, setSearch] = useState('');
-  const [decksAuthor, setDecksAuthor] = useState('');
-  const [sort, setSort] = useState({
-    direction: 'desc',
-    key: 'updated',
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = `${searchParams.get('key') || 'updated'}-${searchParams.get('direction') || 'asc'}`;
+  const currentPage = Number(searchParams.get('currentPage')) || 1;
+  const search = searchParams.get('search') || '';
+  const decksAuthor = searchParams.get('decksAuthor') || TabSwitcherStates.ALL;
 
   const { data: minMaxCards } = useGetMinMaxCardsQuery();
-  const [range, setRange] = useState<[number, number]>([0, 0]);
+
+  const range: [number, number] = searchParams.has('range')
+    ? [
+        searchParams.get('range')?.split(',').map(Number)[0] || minMaxCards?.min || 0,
+        searchParams.get('range')?.split(',').map(Number)[1] || minMaxCards?.max || 0,
+      ]
+    : [minMaxCards?.min || 0, minMaxCards?.max || 0];
 
   const { data: me } = useMeQuery();
 
@@ -67,50 +60,43 @@ export const DecksPage = () => {
     isLoading,
   } = useGetDecksQuery({
     authorId,
-    currentPage: Number(searchParams.get('currentPage')) || 1,
+    currentPage: currentPage,
     maxCardsCount: range[1],
     minCardsCount: range[0],
     name: search,
-    orderBy: `${sort.key}-${sort.direction}`,
+    orderBy: sort,
   });
 
   const clearFilters = () => {
-    setRange([minMaxCards!.min, minMaxCards!.max]);
-    setDecksAuthor(TabSwitcherStates.ALL);
-    setSearch('');
-    setSort({ ...sort, direction: 'desc' });
     setSearchParams({});
-  };
-
-  const getNumberOfCards = (value: [number, number]) => {
-    setRange(value);
-  };
-
-  const getDecksAuthor = (value: string) => {
-    setDecksAuthor(value);
-  };
-
-  const getSortedLastedUpdated = () => {
-    searchParams.set('direction', String(sort.direction === 'desc' ? 'asc' : 'desc'));
-    setSearchParams(searchParams);
-    setSort({ ...sort, direction: sort.direction === 'desc' ? 'asc' : 'desc' });
   };
 
   const getValueSearch = (value: string) => {
     searchParams.set('search', value);
-
     setSearchParams(searchParams);
     if (!value) {
       searchParams.delete('search');
-
       setSearchParams(searchParams);
     }
-    setSearch(value);
   };
 
   const clearValueSearch = () => {
-    setSearch('');
     searchParams.delete('search');
+    setSearchParams(searchParams);
+  };
+
+  const getNumberOfCards = (value: [number, number]) => {
+    searchParams.set('range', value.toString());
+    setSearchParams(searchParams);
+  };
+
+  const getDecksAuthor = (value: string) => {
+    searchParams.set('decksAuthor', value);
+    setSearchParams(searchParams);
+  };
+
+  const getSortedLastedUpdated = () => {
+    searchParams.set('direction', searchParams.get('direction') === 'desc' ? 'asc' : 'desc');
     setSearchParams(searchParams);
   };
 
@@ -122,10 +108,6 @@ export const DecksPage = () => {
     searchParams.set('currentPage', String(value));
     setSearchParams(searchParams);
   };
-
-  useEffect(() => {
-    setRange([minMaxCards?.min ?? 0, minMaxCards?.max ?? 0]);
-  }, [minMaxCards?.min, minMaxCards?.max]);
 
   if (isError) {
     return <div>Error...</div>;
@@ -178,37 +160,43 @@ export const DecksPage = () => {
         </Button>
       </div>
       <div className="decks">
-        <Table className={s.decks}>
-          <TableHead>
-            <TableRow>
-              <TableHeadCell>Name</TableHeadCell>
-              <TableHeadCell>Cards</TableHeadCell>
-              <TableHeadCell className={s.updated} onClick={getSortedLastedUpdated}>
-                Last Updated {sort ? <ChevronDownIcon /> : <ChevronUpIcon />}
-              </TableHeadCell>
-              <TableHeadCell>Created by</TableHeadCell>
-              <TableHeadCell></TableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {decks?.items.map(item => (
-              <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.cardsCount}</TableCell>
-                <TableCell>{formatDate(item.updated)}</TableCell>
-                <TableCell>{formatDate(item.created)}</TableCell>
-                <TableCell>tools</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        {decks?.items.length ? (
+          <>
+            <Table className={s.decks}>
+              <TableHead>
+                <TableRow>
+                  <TableHeadCell>Name</TableHeadCell>
+                  <TableHeadCell>Cards</TableHeadCell>
+                  <TableHeadCell className={s.updated} onClick={getSortedLastedUpdated}>
+                    Last Updated {sort ? <ChevronDownIcon /> : <ChevronUpIcon />}
+                  </TableHeadCell>
+                  <TableHeadCell>Created by</TableHeadCell>
+                  <TableHeadCell></TableHeadCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {decks?.items.map(item => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.cardsCount}</TableCell>
+                    <TableCell>{formatDate(item.updated)}</TableCell>
+                    <TableCell>{formatDate(item.created)}</TableCell>
+                    <TableCell>tools</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <Pagination
+              currentPage={currentPage || 1}
+              itemsPerPage={decks?.pagination.itemsPerPage || 10}
+              onValueChange={getCurrentPage}
+              totalPages={decks?.pagination.totalPages || 1}
+            />
+          </>
+        ) : (
+          <div>Пустэча... Шукай ў iншым месце</div>
+        )}
       </div>
-      <Pagination
-        currentPage={Number(searchParams.get('currentPage')) || 1}
-        itemsPerPage={decks!.pagination.itemsPerPage}
-        onValueChange={value => getCurrentPage(value)}
-        totalPages={decks!.pagination.totalPages}
-      />
     </section>
   );
 };

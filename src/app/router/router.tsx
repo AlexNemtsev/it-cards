@@ -50,11 +50,11 @@ const privateRoutes: RouteObject[] = [
       },
       {
         element: <Page404 />,
-        path: 'error',
+        errorElement: <Page404 />,
+        path: '*',
       },
     ],
     element: <Layout />,
-    errorElement: <Page404 />,
   },
 ];
 
@@ -62,7 +62,6 @@ export const router = createBrowserRouter([
   {
     children: privateRoutes,
     element: <PrivateRoutes />,
-    errorElement: <Page404 />,
   },
   ...publicRoutes,
 ]);

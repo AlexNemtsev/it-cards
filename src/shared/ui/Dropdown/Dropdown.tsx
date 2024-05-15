@@ -32,7 +32,7 @@ export const Dropdown = (props: Props) => {
           {name && (
             <Typography.Subtitle2 className={classNames.name}> {name} </Typography.Subtitle2>
           )}
-          {img ? <Avatar className={classNames.avatar} img={img} /> : <Burger />}
+          {name ? <Avatar className={classNames.avatar} img={img} /> : <Burger />}
         </button>
       </Trigger>
       <Portal>

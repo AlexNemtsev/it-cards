@@ -8,6 +8,7 @@ import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
+import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
 
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
@@ -15,9 +16,10 @@ import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/
 type Props = {
   data: MeResponse;
 };
+
 export const UserMenu = ({ data }: Props) => {
   return (
-    <Dropdown img={data && data.avatar} name={data.name}>
+    <Dropdown trigger={<Trigger img={data.avatar} name={data.name} />}>
       <DropdownProfileInfo>
         <Avatar img={data && data.avatar} />
         <div>

@@ -18,7 +18,7 @@ export const Avatar = (props: Props) => {
 
   return (
     <img
-      alt="ava"
+      alt="uset avatar"
       className={classNames.avatar}
       src={img ?? avatarDummy}
       style={{ height: size, width: size }}

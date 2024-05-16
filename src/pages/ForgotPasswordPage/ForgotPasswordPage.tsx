@@ -1,10 +1,10 @@
 import { ForgotPassword } from '@/components/auth/ForgotPassword';
-import { Page } from '@/shared/ui/Page/Page';
+import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 
 export const ForgotPasswordPage = () => {
   return (
-    <Page>
+    <PageContainer>
       <ForgotPassword />
-    </Page>
+    </PageContainer>
   );
 };

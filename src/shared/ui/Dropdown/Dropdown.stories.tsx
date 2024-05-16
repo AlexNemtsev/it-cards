@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Burger } from '@/shared/assets/icons/Burger/Burger';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Learn } from '@/shared/assets/icons/Learn/Learn';
@@ -11,6 +12,7 @@ import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
+import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
 
 import DropdownProfileInfoStyles from './DropdownProfileInfo/DropdownProfileInfo.module.scss';
@@ -53,6 +55,7 @@ export const DropdownWithBurger: Story = {
         </DropdownItem>
       </>
     ),
+    trigger: <Burger />,
   },
 };
 export const DropdownWithAvatar: Story = {
@@ -84,7 +87,6 @@ export const DropdownWithAvatar: Story = {
         </DropdownItem>
       </>
     ),
-    img: avatar,
-    name: 'Ivan',
+    trigger: <Trigger img={avatar} name="Ivan" />,
   },
 };

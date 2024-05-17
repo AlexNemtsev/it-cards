@@ -1,15 +1,28 @@
 import { Link, Outlet } from 'react-router-dom';
 
-import { useMeQuery } from '@/entities/auth/api/auth';
+import { useLogoutMutation, useMeQuery } from '@/entities/auth/api/auth';
+import { BaseErrorResponse } from '@/entities/auth/api/types';
 import { IncubatorLogo } from '@/shared/assets/icons/IncubatorLogo';
+import { LogOutIcon } from '@/shared/assets/icons/LogOutIcon';
 import { Routes } from '@/shared/constants/routes';
+import { errorNotification } from '@/shared/lib/notifications';
 import { Button } from '@/shared/ui/Button';
-import { UserMenu } from '@/shared/ui/Layout/UserMenu';
 
 import s from './Layout.module.scss';
 
 export const Layout = () => {
-  const { data, isSuccess } = useMeQuery();
+  const [logout] = useLogoutMutation();
+  const { isSuccess } = useMeQuery();
+
+  const logoutHandler = async () => {
+    try {
+      await logout();
+    } catch (e) {
+      const error = e as BaseErrorResponse;
+
+      errorNotification(error.data.message || 'Some error occurred');
+    }
+  };
 
   return (
     <>
@@ -18,9 +31,12 @@ export const Layout = () => {
           <IncubatorLogo />
         </a>
         {isSuccess ? (
-          <UserMenu data={data} />
+          <Button onClick={logoutHandler} variant="secondary">
+            <LogOutIcon />
+            Logout
+          </Button>
         ) : (
-          <Button as={Link} to={Routes.LOGIN} variant="secondary">
+          <Button as={Link} to={Routes.MAIN} variant="secondary">
             Sign in
           </Button>
         )}

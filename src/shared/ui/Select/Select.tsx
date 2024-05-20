@@ -26,13 +26,13 @@ import { TypographySelector } from './TypographySelector';
 
 type Props = {
   isSmall?: boolean;
-  label: number | string;
+  label?: number | string;
   placeholder: string;
   values: SelectItemValue[];
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Select = (props: Props) => {
-  const { disabled, isSmall, label, placeholder, values, ...restProps } = props;
+  const { disabled, isSmall, label, placeholder, value, values, ...restProps } = props;
 
   return (
     <div className={s.selectWrapper}>
@@ -58,7 +58,7 @@ export const Select = (props: Props) => {
             <Viewport className={s.selectViewport}>
               <Group>
                 <Label className={clsx(s.selectLabel, isSmall && s.small)}>
-                  <TypographySelector isSmall={isSmall}>{label}</TypographySelector>
+                  <TypographySelector isSmall={isSmall}>{value}</TypographySelector>
                   <ChevronUpIcon />
                 </Label>
                 {values.map(item => (

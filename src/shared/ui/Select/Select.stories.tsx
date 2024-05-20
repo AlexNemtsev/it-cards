@@ -49,10 +49,10 @@ export const BaseSelect: Story = {
     values: selectData.values,
   },
   render: ({ label, placeholder, values }) => {
-    const [displayValue, setDisplayValue] = useState('');
+    const [selectValue, setSelectValue] = useState('');
 
     const onValueChange = (value: string) => {
-      setDisplayValue(value);
+      setSelectValue(value);
     };
 
     return (
@@ -61,9 +61,10 @@ export const BaseSelect: Story = {
           label={label}
           onValueChange={onValueChange}
           placeholder={placeholder}
+          value={selectValue}
           values={values}
         />
-        <Typography.Body1>{displayValue}</Typography.Body1>
+        <Typography.Body1>{selectValue}</Typography.Body1>
       </>
     );
   },
@@ -90,27 +91,26 @@ export const SelectDisabled: Story = {
 export const SmallSelect: Story = {
   args: {
     isSmall: smallSelectData.isSmall,
-    label: smallSelectData.label,
     placeholder: smallSelectData.placeholder,
     values: smallSelectData.values,
   },
-  render: ({ isSmall, label, placeholder, values }) => {
-    const [displayValue, setDisplayValue] = useState('');
+  render: ({ isSmall, placeholder, values }) => {
+    const [selectValue, setSelectValue] = useState('');
 
     const onValueChange = (value: string) => {
-      setDisplayValue(value);
+      setSelectValue(value);
     };
 
     return (
       <>
         <Select
           isSmall={isSmall}
-          label={label}
           onValueChange={onValueChange}
           placeholder={placeholder}
+          value={selectValue}
           values={values}
         />
-        <Typography.Body1>{displayValue}</Typography.Body1>
+        <Typography.Body1>{selectValue}</Typography.Body1>
       </>
     );
   },
@@ -119,28 +119,27 @@ export const SmallSelect: Story = {
 export const SmallSelectOpen: Story = {
   args: {
     isSmall: smallSelectData.isSmall,
-    label: smallSelectData.label,
     placeholder: smallSelectData.placeholder,
     values: smallSelectData.values,
   },
-  render: ({ isSmall, label, placeholder, values }) => {
-    const [displayValue, setDisplayValue] = useState('');
+  render: ({ isSmall, placeholder, values }) => {
+    const [selectValue, setSelectValue] = useState('');
 
     const onValueChange = (value: string) => {
-      setDisplayValue(value);
+      setSelectValue(value);
     };
 
     return (
       <>
         <Select
           isSmall={isSmall}
-          label={label}
           onValueChange={onValueChange}
           open
           placeholder={placeholder}
+          value={selectValue}
           values={values}
         />
-        <Typography.Body1>{displayValue}</Typography.Body1>
+        <Typography.Body1>{selectValue}</Typography.Body1>
       </>
     );
   },

@@ -7,20 +7,18 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from '@/entities/auth/api/types';
-import { flashcardsApi } from '@/shared/api/flashcardsApi';
+import { flashcardsApi } from '@/shared/api/flashcards-api';
 
 export const authApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
       login: builder.mutation<LoginResponse, LoginRequest>({
         invalidatesTags: ['Me'],
-        query: args => {
-          return {
-            body: args,
-            method: 'POST',
-            url: '/v1/auth/login',
-          };
-        },
+        query: body => ({
+          body,
+          method: 'POST',
+          url: '/v1/auth/login',
+        }),
       }),
       logout: builder.mutation<void, void>({
         invalidatesTags: ['Me'],

@@ -4,6 +4,10 @@ import { Select } from '../Select';
 import { PagintionButtons } from './PagintionButtons';
 import { ArrowButton } from './PagintionButtons/ArrowButton';
 
+const COUNTS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const VARIANTS_ITEMS_PER_PAGE = Array.from(COUNTS, value => ({ id: value, value: String(value) }));
+
 type Props = {
   currentPage: number;
   itemsPerPage: number;
@@ -38,18 +42,7 @@ export const Pagination = (props: Props) => {
           label={itemsPerPage}
           onValueChange={onItemsPerPageChange}
           placeholder={String(itemsPerPage)}
-          values={[
-            { id: 1, value: '10' },
-            { id: 2, value: '20' },
-            { id: 3, value: '30' },
-            { id: 4, value: '40' },
-            { id: 5, value: '50' },
-            { id: 6, value: '60' },
-            { id: 7, value: '70' },
-            { id: 8, value: '80' },
-            { id: 9, value: '90' },
-            { id: 10, value: '100' },
-          ]}
+          values={VARIANTS_ITEMS_PER_PAGE}
         />{' '}
         on page
       </>

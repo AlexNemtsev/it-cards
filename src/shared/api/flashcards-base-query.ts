@@ -36,7 +36,7 @@ export const baseQueryWithReauth: BaseQueryFn<
       const release = await mutex.acquire();
 
       try {
-        const refreshToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
 
         const refreshResult = (await baseQuery(
           {
@@ -49,8 +49,6 @@ export const baseQueryWithReauth: BaseQueryFn<
           api,
           extraOptions
         )) as any;
-
-        console.log(refreshResult.data);
 
         if (refreshResult.data) {
           localStorage.setItem('accessToken', refreshResult.data.accessToken.trim());

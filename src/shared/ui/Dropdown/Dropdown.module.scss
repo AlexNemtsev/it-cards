@@ -1,3 +1,41 @@
+.name {
+  border-bottom: 1px dashed;
+  transition: color 0.7s;
+}
+
+.triggerButton {
+  all: unset;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 2px;
+
+  font-family: inherit;
+
+  border: none;
+  border-radius: 50%;
+
+  svg {
+    fill: none;
+  }
+
+  &:hover {
+    .name {
+      color: var(--color-accent-100);
+    }
+
+    .avatar {
+      border: 2px solid var(--color-accent-100);
+    }
+  }
+}
+
 .dropdownMenuContent {
   will-change: transform, opacity;
 
@@ -31,31 +69,6 @@
 
   polygon {
     display: none;
-  }
-}
-
-.iconButton {
-  all: unset;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 2px;
-
-  font-family: inherit;
-
-  background-color: transparent;
-  border: none;
-  border-radius: 100%;
-
-  &:hover {
-    background-color: var(--color-dark-100);
-  }
-
-  &:focus {
-    background-color: var(--color-dark-100);
-    outline: none;
   }
 }
 

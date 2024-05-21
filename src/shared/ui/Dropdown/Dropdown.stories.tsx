@@ -1,20 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Burger } from '@/shared/assets/icons/Burger/Burger';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
-import { DropdownMenuAvatar } from '@/shared/assets/icons/DropdownMenuAvatar';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Learn } from '@/shared/assets/icons/Learn/Learn';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';
 import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
+import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
+import { Avatar } from '@/shared/ui/Avatar';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
+import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
 import { Typography } from '@/shared/ui/Typography';
 
 import DropdownProfileInfoStyles from './DropdownProfileInfo/DropdownProfileInfo.module.scss';
 
 import { Dropdown } from './Dropdown';
+
 const meta = {
   component: Dropdown,
   tags: ['autodocs'],
@@ -30,22 +32,27 @@ export const DropdownWithBurger: Story = {
     children: (
       <>
         <DropdownItem>
-          <Learn />
-          <Typography.Caption>Learn</Typography.Caption>
+          <DropdownLink>
+            <Learn />
+            <Typography.Caption>Learn</Typography.Caption>
+          </DropdownLink>
         </DropdownItem>
         <DropdownItemDivider />
         <DropdownItem>
-          <Edit />
-          <Typography.Caption>Edit</Typography.Caption>
+          <DropdownLink>
+            <Edit />
+            <Typography.Caption>Edit</Typography.Caption>
+          </DropdownLink>
         </DropdownItem>
         <DropdownItemDivider />
         <DropdownItem>
-          <Delete />
-          <Typography.Caption>Delete</Typography.Caption>
+          <DropdownLink>
+            <Delete />
+            <Typography.Caption>Delete</Typography.Caption>
+          </DropdownLink>
         </DropdownItem>
       </>
     ),
-    icon: <Burger />,
   },
 };
 export const DropdownWithAvatar: Story = {
@@ -53,7 +60,7 @@ export const DropdownWithAvatar: Story = {
     children: (
       <>
         <DropdownProfileInfo>
-          <DropdownMenuAvatar />
+          <Avatar />
           <div>
             <Typography.Subtitle2>Ivan</Typography.Subtitle2>
             <Typography.Caption className={DropdownProfileInfoStyles.email}>
@@ -63,16 +70,21 @@ export const DropdownWithAvatar: Story = {
         </DropdownProfileInfo>
         <DropdownItemDivider />
         <DropdownItem>
-          <Profile />
-          <Typography.Caption>My Profile</Typography.Caption>
+          <DropdownLink>
+            <Profile />
+            <Typography.Caption>My Profile</Typography.Caption>
+          </DropdownLink>
         </DropdownItem>
         <DropdownItemDivider />
         <DropdownItem>
-          <SignOut />
-          <Typography.Caption>Sign Out</Typography.Caption>
+          <DropdownLink>
+            <SignOut />
+            <Typography.Caption>Sign Out</Typography.Caption>
+          </DropdownLink>
         </DropdownItem>
       </>
     ),
-    icon: <DropdownMenuAvatar />,
+    img: avatar,
+    name: 'Ivan',
   },
 };

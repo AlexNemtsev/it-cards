@@ -1,1 +1,0 @@
-export { DropdownMenuAvatar } from './DropdownMenuAvatar';

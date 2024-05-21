@@ -1,5 +1,6 @@
 .header {
   position: fixed;
+  z-index: 1;
 
   display: flex;
   align-items: center;
@@ -16,5 +17,5 @@
 .main {
   display: flex;
   justify-content: center;
-  padding-top: var(--header-height);
+  padding: var(--header-height) 24px 0;
 }

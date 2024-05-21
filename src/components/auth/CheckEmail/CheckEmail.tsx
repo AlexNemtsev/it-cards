@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import { CheckEmailIcon } from '@/shared/assets/icons/CheckEmail/CheckEmailIcon';
+import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
@@ -6,11 +9,10 @@ import { Typography } from '@/shared/ui/Typography';
 import s from './CheckEmail.module.scss';
 
 type Props = {
-  backToSignIn: () => void;
-  email: string;
+  email?: string;
 };
 export const CheckEmail = (props: Props) => {
-  const { backToSignIn, email } = props;
+  const { email } = props;
 
   return (
     <Card className={s.card}>
@@ -20,7 +22,7 @@ export const CheckEmail = (props: Props) => {
         We’ve sent an Email with instructions to {email}
       </Typography.Body2>
 
-      <Button className={s.send} fullWidth onClick={backToSignIn}>
+      <Button as={Link} className={s.send} fullWidth to={Routes.LOGIN}>
         Back to Sign In
       </Button>
     </Card>

@@ -17,7 +17,6 @@ export const authApi = flashcardsApi.injectEndpoints({
         async onQueryStarted(_, { queryFulfilled }) {
           const { data } = await queryFulfilled;
 
-          console.log(data);
           if (!data) {
             return;
           }
@@ -33,10 +32,19 @@ export const authApi = flashcardsApi.injectEndpoints({
       }),
       logout: builder.mutation<void, void>({
         invalidatesTags: ['Me'],
-        query: () => ({
-          method: 'POST',
-          url: '/v1/auth/logout',
-        }),
+        async onQueryStarted(_, {}) {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+        },
+        query: () => {
+          // localStorage.removeItem('accessToken');
+          // localStorage.removeItem('refreshToken');
+
+          return {
+            method: 'POST',
+            url: '/v1/auth/logout',
+          };
+        },
       }),
       me: builder.query<MeResponse, void>({
         providesTags: ['Me'],

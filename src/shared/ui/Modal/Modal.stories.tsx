@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Modal } from '.';
+import { Button } from '../Button';
+import { Typography } from '../Typography';
 import { ModalButton } from './ModalButton';
 
 const meta = {
@@ -14,7 +16,8 @@ type Story = StoryObj<typeof meta>;
 export const BaseModal: Story = {
   args: {
     children: <div>children</div>,
-    title: 'Modal',
+    title: <Typography.H3>Title</Typography.H3>,
+    trigger: <Button>Trigger</Button>,
   },
 };
 
@@ -22,7 +25,8 @@ export const BaseModalOpen: Story = {
   args: {
     children: <div>children</div>,
     open: true,
-    title: 'Modal',
+    title: <Typography.H3>Title</Typography.H3>,
+    trigger: <Button>Trigger</Button>,
   },
 };
 
@@ -51,12 +55,15 @@ const ChildrenModalButtons = () => {
 export const ModalWithButtons: Story = {
   args: {
     children: <ChildrenModalButtons />,
-    title: 'Modal',
+    title: <Typography.H3>Title</Typography.H3>,
+    trigger: <Button>Trigger</Button>,
   },
-  render: ({ children, title }) => {
+  render: ({ children, title, trigger }) => {
     return (
       <>
-        <Modal title={title}>{children}</Modal>
+        <Modal title={title} trigger={trigger}>
+          {children}
+        </Modal>
       </>
     );
   },

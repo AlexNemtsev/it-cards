@@ -1,3 +1,4 @@
+import { router } from '@/app/router';
 import {
   LoginRequest,
   LoginResponse,
@@ -8,6 +9,7 @@ import {
   SignUpResponse,
 } from '@/entities/auth/api/types';
 import { flashcardsApi } from '@/shared/api/flashcards-api';
+import { Routes } from '@/shared/constants/routes';
 
 export const authApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
@@ -23,6 +25,7 @@ export const authApi = flashcardsApi.injectEndpoints({
 
           localStorage.setItem('accessToken', data.accessToken);
           localStorage.setItem('refreshToken', data.refreshToken);
+          router.navigate(Routes.LOGIN);
         },
         query: body => ({
           body,

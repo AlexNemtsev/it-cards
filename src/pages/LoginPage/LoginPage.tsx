@@ -8,10 +8,10 @@ import { errorNotification } from '@/shared/lib/notifications';
 import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 
 export const LoginPage = () => {
-  const { data } = useMeQuery();
+  const { isSuccess } = useMeQuery();
   const [login] = useLoginMutation();
 
-  if (data) {
+  if (isSuccess) {
     return <Navigate to={Routes.MAIN} />;
   }
 

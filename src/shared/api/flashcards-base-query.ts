@@ -1,5 +1,4 @@
 import { router } from '@/app/router';
-import { Routes } from '@/shared/constants/routes';
 import {
   BaseQueryFn,
   FetchArgs,
@@ -7,6 +6,12 @@ import {
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
+import { z } from 'zod';
+
+const refreshTokenResponseSchema = z.object({
+  accessToken: z.string(),
+  refreshToken: z.string(),
+});
 
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
@@ -15,9 +20,12 @@ const baseQuery = fetchBaseQuery({
     const token = localStorage.getItem('accessToken');
 
     if (headers.get('Authorization')) {
+      console.log(headers);
+
       return headers;
     }
     if (token) {
+      console.log('if token');
       headers.set('Authorization', `Bearer ${token}`);
     }
   },
@@ -38,7 +46,7 @@ export const baseQueryWithReauth: BaseQueryFn<
       try {
         const refreshToken = localStorage.getItem('refreshToken');
 
-        const refreshResult = (await baseQuery(
+        const refreshResult = await baseQuery(
           {
             headers: {
               Authorization: `Bearer ${refreshToken}`,
@@ -48,15 +56,18 @@ export const baseQueryWithReauth: BaseQueryFn<
           },
           api,
           extraOptions
-        )) as any;
+        );
 
         if (refreshResult.data) {
-          localStorage.setItem('accessToken', refreshResult.data.accessToken.trim());
-          localStorage.setItem('refreshToken', refreshResult.data.refreshToken.trim());
+          const refreshResultParsed = refreshTokenResponseSchema.parse(refreshResult.data);
 
+          localStorage.setItem('accessToken', refreshResultParsed.accessToken.trim());
+          localStorage.setItem('refreshToken', refreshResultParsed.refreshToken.trim());
+
+          // retry the initial query
           result = await baseQuery(args, api, extraOptions);
         } else {
-          router.navigate(Routes.LOGIN);
+          router.navigate('/login');
         }
       } finally {
         release();

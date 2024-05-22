@@ -33,22 +33,34 @@ export const authApi = flashcardsApi.injectEndpoints({
           url: '/v1/auth/login',
         }),
       }),
+      // logout: builder.mutation<void, void>({
+      //   invalidatesTags: ['Me'],
+      //   async onQueryStarted(_, {}) {
+      //     localStorage.removeItem('accessToken');
+      //     localStorage.removeItem('refreshToken');
+      //   },
+      //   query: () => {
+      //     // localStorage.removeItem('accessToken');
+      //     // localStorage.removeItem('refreshToken');
+      //
+      //     return {
+      //       method: 'POST',
+      //       url: '/v1/auth/logout',
+      //     };
+      //   },
+      // }),
+      // me: builder.query<MeResponse, void>({
+      //   providesTags: ['Me'],
+      //   query: () => '/v1/auth/me',
+      // }),
       logout: builder.mutation<void, void>({
         invalidatesTags: ['Me'],
-        async onQueryStarted(_, {}) {
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-        },
-        query: () => {
-          // localStorage.removeItem('accessToken');
-          // localStorage.removeItem('refreshToken');
-
-          return {
-            method: 'POST',
-            url: '/v1/auth/logout',
-          };
-        },
+        query: () => ({
+          method: 'POST',
+          url: '/v1/auth/logout',
+        }),
       }),
+
       me: builder.query<MeResponse, void>({
         providesTags: ['Me'],
         query: () => '/v1/auth/me',

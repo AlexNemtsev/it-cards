@@ -6,19 +6,6 @@ import { Typography } from '../Typography';
 import { Select } from './Select';
 
 const selectData: ComponentPropsWithoutRef<typeof Select> = {
-  label: 'Select-box',
-  placeholder: 'Select-box',
-  values: [
-    { id: 1, value: 'apple' },
-    { id: 2, value: 'pea' },
-    { id: 3, value: 'coconut' },
-    { id: 4, value: 'banana' },
-  ],
-};
-
-const smallSelectData: ComponentPropsWithoutRef<typeof Select> = {
-  isSmall: true,
-  label: '100',
   placeholder: '100',
   values: [
     { id: 1, value: '10' },
@@ -44,11 +31,10 @@ type Story = StoryObj<typeof meta>;
 
 export const BaseSelect: Story = {
   args: {
-    label: selectData.label,
     placeholder: selectData.placeholder,
     values: selectData.values,
   },
-  render: ({ label, placeholder, values }) => {
+  render: ({ placeholder, values }) => {
     const [displayValue, setDisplayValue] = useState('');
 
     const onValueChange = (value: string) => {
@@ -57,12 +43,7 @@ export const BaseSelect: Story = {
 
     return (
       <>
-        <Select
-          label={label}
-          onValueChange={onValueChange}
-          placeholder={placeholder}
-          values={values}
-        />
+        <Select onValueChange={onValueChange} placeholder={placeholder} values={values} />
         <Typography.Body1>{displayValue}</Typography.Body1>
       </>
     );
@@ -71,7 +52,6 @@ export const BaseSelect: Story = {
 
 export const SelectOpen: Story = {
   args: {
-    label: selectData.label,
     open: true,
     placeholder: selectData.placeholder,
     values: selectData.values,
@@ -81,67 +61,7 @@ export const SelectOpen: Story = {
 export const SelectDisabled: Story = {
   args: {
     disabled: true,
-    label: selectData.label,
     placeholder: selectData.placeholder,
     values: selectData.values,
-  },
-};
-
-export const SmallSelect: Story = {
-  args: {
-    isSmall: smallSelectData.isSmall,
-    label: smallSelectData.label,
-    placeholder: smallSelectData.placeholder,
-    values: smallSelectData.values,
-  },
-  render: ({ isSmall, label, placeholder, values }) => {
-    const [displayValue, setDisplayValue] = useState('');
-
-    const onValueChange = (value: string) => {
-      setDisplayValue(value);
-    };
-
-    return (
-      <>
-        <Select
-          isSmall={isSmall}
-          label={label}
-          onValueChange={onValueChange}
-          placeholder={placeholder}
-          values={values}
-        />
-        <Typography.Body1>{displayValue}</Typography.Body1>
-      </>
-    );
-  },
-};
-
-export const SmallSelectOpen: Story = {
-  args: {
-    isSmall: smallSelectData.isSmall,
-    label: smallSelectData.label,
-    placeholder: smallSelectData.placeholder,
-    values: smallSelectData.values,
-  },
-  render: ({ isSmall, label, placeholder, values }) => {
-    const [displayValue, setDisplayValue] = useState('');
-
-    const onValueChange = (value: string) => {
-      setDisplayValue(value);
-    };
-
-    return (
-      <>
-        <Select
-          isSmall={isSmall}
-          label={label}
-          onValueChange={onValueChange}
-          open
-          placeholder={placeholder}
-          values={values}
-        />
-        <Typography.Body1>{displayValue}</Typography.Body1>
-      </>
-    );
   },
 };

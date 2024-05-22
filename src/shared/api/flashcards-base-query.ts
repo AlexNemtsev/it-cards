@@ -20,12 +20,9 @@ const baseQuery = fetchBaseQuery({
     const token = localStorage.getItem('accessToken');
 
     if (headers.get('Authorization')) {
-      console.log(headers);
-
       return headers;
     }
     if (token) {
-      console.log('if token');
       headers.set('Authorization', `Bearer ${token}`);
     }
   },

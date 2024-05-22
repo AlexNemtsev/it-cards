@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Pagination } from './Pagination';
 
-const VALUES: string[] = ['10', '20', '30', '50', '100'];
+const VALUES = ['10', '20', '30', '50', '100'];
 
 const meta = {
   component: Pagination,

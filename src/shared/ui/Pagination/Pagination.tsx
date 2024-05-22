@@ -34,21 +34,15 @@ export const Pagination = (props: Props) => {
         totalPages={totalPages}
       />
       <ArrowButton disabled={currentPage >= totalPages} onClick={toNextPageHandler} />
-      <>
-        show
-        <Select
-          onValueChange={onItemsPerPageChange}
-          placeholder={itemsPerPage}
-          value={itemsPerPage}
-        >
-          {values.map(value => (
-            <SelectItem key={value} value={value}>
-              {value}
-            </SelectItem>
-          ))}
-        </Select>
-        on page
-      </>
+      show
+      <Select onValueChange={onItemsPerPageChange} placeholder={itemsPerPage} value={itemsPerPage}>
+        {values.map(value => (
+          <SelectItem key={value} value={value}>
+            {value}
+          </SelectItem>
+        ))}
+      </Select>
+      on page
     </div>
   );
 };

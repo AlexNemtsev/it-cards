@@ -38,8 +38,8 @@ export const Pagination = (props: Props) => {
         show
         <Select
           onValueChange={onItemsPerPageChange}
-          placeholder={String(itemsPerPage)}
-          value={String(itemsPerPage)}
+          placeholder={itemsPerPage}
+          value={itemsPerPage}
         >
           {values.map(value => (
             <SelectItem key={value} value={value}>

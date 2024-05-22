@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
+import { Typography } from '@/shared/ui/Typography';
 import {
   Content,
   Icon,
@@ -17,22 +18,19 @@ import clsx from 'clsx';
 
 import s from './Select.module.scss';
 
-import { Typography } from '../Typography';
-import { SelectItem } from './SelectItem';
-import { SelectItemValue } from './SelectItemValue';
-
 type Props = {
   placeholder: string;
-  values: SelectItemValue[];
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Select = (props: Props) => {
-  const { disabled, placeholder, values, ...restProps } = props;
+  const { children, disabled, placeholder, value, ...restProps } = props;
 
   return (
-    <Root disabled={disabled} {...restProps}>
+    <Root disabled={disabled} value={value} {...restProps}>
       <Trigger className={clsx(s.selectTrigger)}>
-        <Value placeholder={<Typography.Body2>{placeholder}</Typography.Body2>} />
+        <Value placeholder={<Typography.Body2>{placeholder}</Typography.Body2>}>
+          <Typography.Body2>{value}</Typography.Body2>
+        </Value>
         <Icon className={s.selectIcon}>
           <ChevronDownIcon />
         </Icon>
@@ -42,13 +40,7 @@ export const Select = (props: Props) => {
           <ScrollUpButton className={s.selectScrollButton}>
             <ChevronUpIcon />
           </ScrollUpButton>
-          <Viewport className={s.selectViewport}>
-            {values.map(item => (
-              <SelectItem key={item.id} value={item.value}>
-                {item.value}
-              </SelectItem>
-            ))}
-          </Viewport>
+          <Viewport className={s.selectViewport}>{children}</Viewport>
           <ScrollDownButton className={s.selectScrollButton}>
             <ChevronDownIcon />
           </ScrollDownButton>

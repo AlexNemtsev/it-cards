@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { Pagination } from './Pagination';
 
+const VALUES: string[] = ['10', '20', '30', '50', '100'];
+
 const meta = {
   component: Pagination,
   tags: ['autodocs'],
@@ -16,18 +18,18 @@ type Story = StoryObj<typeof Pagination>;
 export const Pagination7: Story = {
   args: {
     currentPage: 1,
-    itemsPerPage: 10,
+    itemsPerPage: '10',
     totalPages: 7,
   },
   render: ({ currentPage, itemsPerPage, totalPages }) => {
     const [displayValue, setDisplayValue] = useState(currentPage);
-    const [itemsPerPageState, setItemsPerPageState] = useState(itemsPerPage);
+    const [itemsPerPageState, setItemsPerPageState] = useState<string>(itemsPerPage);
     const onValueChange = (currentPage: number) => {
       setDisplayValue(currentPage);
     };
 
     const getItemsPerPage = (count: string) => {
-      setItemsPerPageState(Number(count));
+      setItemsPerPageState(count);
     };
 
     return (
@@ -36,10 +38,11 @@ export const Pagination7: Story = {
         <p>itemsPerPage:{itemsPerPageState}</p>
         <Pagination
           currentPage={displayValue}
-          itemsPerPage={itemsPerPage}
+          itemsPerPage={itemsPerPageState}
           onItemsPerPageChange={getItemsPerPage}
           onValueChange={onValueChange}
           totalPages={totalPages}
+          values={VALUES}
         />
       </>
     );
@@ -48,7 +51,7 @@ export const Pagination7: Story = {
 export const Pagination12: Story = {
   args: {
     currentPage: 1,
-    itemsPerPage: 10,
+    itemsPerPage: '10',
     totalPages: 12,
   },
   render: ({ currentPage, itemsPerPage, totalPages }) => {
@@ -59,7 +62,7 @@ export const Pagination12: Story = {
     };
 
     const getItemsPerPage = (count: string) => {
-      setItemsPerPageState(Number(count));
+      setItemsPerPageState(count);
     };
 
     return (
@@ -72,6 +75,7 @@ export const Pagination12: Story = {
           onItemsPerPageChange={getItemsPerPage}
           onValueChange={onValueChange}
           totalPages={totalPages}
+          values={VALUES}
         />
       </>
     );

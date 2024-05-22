@@ -6,6 +6,7 @@ import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
+import { PageContainer } from '@/shared/ui/PageContainer';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
 
@@ -34,7 +35,7 @@ export const DeckPage = () => {
   console.log(cards);
 
   return (
-    <div className={s.container}>
+    <PageContainer className={s.container}>
       <BackToLink to="/decks">Back to Decks List</BackToLink>
       <div className={s.deckTitle}>
         <Typography.H1>{deck?.name}</Typography.H1>
@@ -42,6 +43,6 @@ export const DeckPage = () => {
       </div>
       <Input placeholder="Input search" type="search" />
       <Pagination {...pagination} />
-    </div>
+    </PageContainer>
   );
 };

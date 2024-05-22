@@ -8,7 +8,7 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from '@/entities/auth/api/types';
-import { flashcardsApi } from '@/shared/api/flashcards-api';
+import { flashcardsApi } from '@/shared/api/flashcardsApi';
 import { Routes } from '@/shared/constants/routes';
 
 export const authApi = flashcardsApi.injectEndpoints({

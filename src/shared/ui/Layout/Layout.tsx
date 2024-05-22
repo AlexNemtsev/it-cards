@@ -11,7 +11,7 @@ import { Button } from '@/shared/ui/Button';
 import s from './Layout.module.scss';
 
 export const Layout = () => {
-  const { data, isSuccess } = useMeQuery();
+  const { isSuccess } = useMeQuery();
 
   const [logout] = useLogoutMutation();
 

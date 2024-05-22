@@ -1,16 +1,20 @@
-import { MeResponse } from '@/entities/auth/api/types';
+import { Link } from 'react-router-dom';
+
+import { useLogoutMutation } from '@/entities/auth/api/auth';
+import { BaseErrorResponse, MeResponse } from '@/entities/auth/api/types';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';
 import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
 import { Routes } from '@/shared/constants/routes';
+import { errorNotification } from '@/shared/lib/notifications';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
-import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
 import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
 
+import s from './UserMenu.module.scss';
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
 
 type Props = {
@@ -18,8 +22,20 @@ type Props = {
 };
 
 export const UserMenu = ({ data }: Props) => {
+  const [logout] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logout();
+    } catch (e) {
+      const error = e as BaseErrorResponse;
+
+      errorNotification(error.data.message || 'Some error occurred');
+    }
+  };
+
   return (
-    <Dropdown trigger={<Trigger img={data.avatar} name={data.name} />}>
+    <Dropdown className={s.q} trigger={<Trigger img={data.avatar} name={data.name} />}>
       <DropdownProfileInfo>
         <Avatar img={data && data.avatar} />
         <div>
@@ -33,19 +49,19 @@ export const UserMenu = ({ data }: Props) => {
       <DropdownItemDivider />
 
       <DropdownItem>
-        <DropdownLink to={Routes.PROFILE}>
+        <Link className={s.item} to={Routes.PROFILE}>
           <Profile />
           <Typography.Caption>My Profile</Typography.Caption>
-        </DropdownLink>
+        </Link>
       </DropdownItem>
 
       <DropdownItemDivider />
 
       <DropdownItem>
-        <DropdownLink>
+        <button className={s.item} onClick={logoutHandler}>
           <SignOut />
           <Typography.Caption>Sign Out</Typography.Caption>
-        </DropdownLink>
+        </button>
       </DropdownItem>
     </Dropdown>
   );

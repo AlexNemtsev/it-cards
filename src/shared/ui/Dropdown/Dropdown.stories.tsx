@@ -10,7 +10,6 @@ import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
 import { Avatar } from '@/shared/ui/Avatar';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
-import { DropdownLink } from '@/shared/ui/Dropdown/DropdownLink';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
 import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
@@ -34,24 +33,18 @@ export const DropdownWithBurger: Story = {
     children: (
       <>
         <DropdownItem>
-          <DropdownLink>
-            <Learn />
-            <Typography.Caption>Learn</Typography.Caption>
-          </DropdownLink>
+          <Learn />
+          <Typography.Caption>Learn</Typography.Caption>
         </DropdownItem>
         <DropdownItemDivider />
         <DropdownItem>
-          <DropdownLink>
-            <Edit />
-            <Typography.Caption>Edit</Typography.Caption>
-          </DropdownLink>
+          <Edit />
+          <Typography.Caption>Edit</Typography.Caption>
         </DropdownItem>
         <DropdownItemDivider />
         <DropdownItem>
-          <DropdownLink>
-            <Delete />
-            <Typography.Caption>Delete</Typography.Caption>
-          </DropdownLink>
+          <Delete />
+          <Typography.Caption>Delete</Typography.Caption>
         </DropdownItem>
       </>
     ),
@@ -73,17 +66,13 @@ export const DropdownWithAvatar: Story = {
         </DropdownProfileInfo>
         <DropdownItemDivider />
         <DropdownItem>
-          <DropdownLink>
-            <Profile />
-            <Typography.Caption>My Profile</Typography.Caption>
-          </DropdownLink>
+          <Profile />
+          <Typography.Caption>My Profile</Typography.Caption>
         </DropdownItem>
         <DropdownItemDivider />
         <DropdownItem>
-          <DropdownLink>
-            <SignOut />
-            <Typography.Caption>Sign Out</Typography.Caption>
-          </DropdownLink>
+          <SignOut />
+          <Typography.Caption>Sign Out</Typography.Caption>
         </DropdownItem>
       </>
     ),

@@ -1,5 +1,6 @@
-import { RouteObject, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
+import { DeckPage } from '@/pages/DeckPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
 import { Routes } from '@/shared/constants/routes';
@@ -16,7 +17,11 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    children: [{ element: <MainPage />, path: Routes.MAIN }],
+    children: [
+      { element: <Navigate to={Routes.DECKS} />, path: Routes.MAIN },
+      { element: <MainPage />, path: Routes.DECKS },
+      { element: <DeckPage />, path: `${Routes.DECKS}/:${Routes.DECK_ID}` },
+    ],
     element: <Layout />,
   },
 ];

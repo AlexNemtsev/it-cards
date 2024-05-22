@@ -1,9 +1,12 @@
-import { useGetDecksQuery } from '@/entities/deck/model/api';
+import { Link } from 'react-router-dom';
+
+import { Routes } from '@/shared/constants/routes';
 
 export const MainPage = () => {
-  const result = useGetDecksQuery();
-
-  console.log(result);
-
-  return <div>MainPage</div>;
+  return (
+    <>
+      <div>MainPage</div>
+      <Link to={`${Routes.DECKS}/cluilc8ul042tys2fu2ofqxay`}>Колода</Link>
+    </>
+  );
 };

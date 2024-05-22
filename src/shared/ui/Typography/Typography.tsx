@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 import s from './Typography.module.scss';
 
 type Props<T extends ElementType> = {
-  as?: ElementType;
+  as?: T;
   children?: ReactNode;
 } & ComponentPropsWithoutRef<T>;
 

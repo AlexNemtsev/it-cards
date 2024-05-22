@@ -1,9 +1,14 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { useMeQuery } from '@/entities/auth/api/auth';
 import { Routes } from '@/shared/constants/routes';
 
 export const PrivateRoutes = () => {
-  const isAuthenticated = true;
+  const { data, isLoading } = useMeQuery();
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={Routes.LOGIN} />;
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  return data ? <Outlet /> : <Navigate to={Routes.LOGIN} />;
 };

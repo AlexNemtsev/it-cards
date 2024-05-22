@@ -1,12 +1,15 @@
-import { ComponentProps, ReactNode } from 'react';
+import { ComponentProps } from 'react';
+
+import clsx from 'clsx';
 
 import s from './DropdownProfileInfo.module.scss';
 
 type Props = {
-  children?: ReactNode;
-} & ComponentProps<'a'>;
+  className?: string;
+} & ComponentProps<'div'>;
 export const DropdownProfileInfo = (props: Props) => {
-  const { children } = props;
+  const { className, ...restProps } = props;
+  const classNames = clsx(s.dropdownProfileInfo, className);
 
-  return <div className={s.dropdownProfileInfo}>{children}</div>;
+  return <div className={classNames} {...restProps} />;
 };

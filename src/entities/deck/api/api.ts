@@ -1,4 +1,4 @@
-import { flashcardsApi } from '@/shared/api/flashcardsApi';
+import { flashcardsApi } from '@/shared/api/flashcards-api';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {

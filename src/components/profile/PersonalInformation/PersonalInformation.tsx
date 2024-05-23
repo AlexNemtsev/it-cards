@@ -17,7 +17,7 @@ import s from './PersonalInformation.module.scss';
 type Props = {
   avatar?: string;
   logout: () => void;
-  name: string;
+  name?: string;
   onSubmit: (data: FormValues) => void;
   setAvatar: (file: string) => void;
 };

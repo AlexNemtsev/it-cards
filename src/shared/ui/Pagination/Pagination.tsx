@@ -8,15 +8,21 @@ import { ArrowButton } from './PagintionButtons/ArrowButton';
 type Props = {
   currentPage: number;
   itemsPerPage: string;
+  itemsPerPageList: string[];
   onItemsPerPageChange: (count: string) => void;
   onValueChange: (currentPage: number) => void;
   totalPages: number;
-  values: string[];
 };
 
 export const Pagination = (props: Props) => {
-  const { currentPage, itemsPerPage, onItemsPerPageChange, onValueChange, totalPages, values } =
-    props;
+  const {
+    currentPage,
+    itemsPerPage,
+    itemsPerPageList,
+    onItemsPerPageChange,
+    onValueChange,
+    totalPages,
+  } = props;
 
   const toPrevPageHandler = () => {
     onValueChange(currentPage - 1);
@@ -36,7 +42,7 @@ export const Pagination = (props: Props) => {
       <ArrowButton disabled={currentPage >= totalPages} onClick={toNextPageHandler} />
       show
       <Select onValueChange={onItemsPerPageChange} placeholder={itemsPerPage} value={itemsPerPage}>
-        {values.map(value => (
+        {itemsPerPageList.map(value => (
           <SelectItem key={value} value={value}>
             {value}
           </SelectItem>

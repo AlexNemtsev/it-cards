@@ -22,7 +22,6 @@ export const authApi = flashcardsApi.injectEndpoints({
           if (!data) {
             return;
           }
-
           localStorage.setItem('accessToken', data.accessToken);
           localStorage.setItem('refreshToken', data.refreshToken);
           router.navigate(Routes.LOGIN);
@@ -35,10 +34,6 @@ export const authApi = flashcardsApi.injectEndpoints({
       }),
       logout: builder.mutation<void, void>({
         invalidatesTags: ['Me'],
-        // async onQueryStarted(_, {}) {
-        //   localStorage.removeItem('accessToken');
-        //   localStorage.removeItem('refreshToken');
-        // },
         query: () => {
           localStorage.removeItem('accessToken');
           localStorage.removeItem('refreshToken');

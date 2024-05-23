@@ -11,6 +11,13 @@ export const LoginPage = () => {
   const { isSuccess } = useMeQuery();
   const [login] = useLoginMutation();
 
+  // const [login, { data }] = useLoginMutation();
+  // const [me, { isSuccess }] = useLazyMeQuery();
+
+  // useEffect(() => {
+  //   me();
+  // }, [data]);
+
   if (isSuccess) {
     return <Navigate to={Routes.MAIN} />;
   }

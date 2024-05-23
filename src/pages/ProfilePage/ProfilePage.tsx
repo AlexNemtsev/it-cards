@@ -22,7 +22,7 @@ export const ProfilePage = () => {
     <PageContainer>
       <PersonalInformation
         logout={logoutHandler}
-        name={data && data.name}
+        name={data?.name ?? ''}
         onSubmit={() => {}}
         setAvatar={() => {}}
       />

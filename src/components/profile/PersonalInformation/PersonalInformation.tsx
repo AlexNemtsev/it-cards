@@ -17,12 +17,12 @@ import s from './PersonalInformation.module.scss';
 type Props = {
   avatar?: string;
   logout: () => void;
-  name?: string;
+  name: string;
   onSubmit: (data: FormValues) => void;
   setAvatar: (file: string) => void;
 };
 export const PersonalInformation = (props: Props) => {
-  const { avatar = unknownAvatar, logout, name, onSubmit, setAvatar } = props;
+  const { avatar = unknownAvatar, logout, name = '', onSubmit, setAvatar } = props;
 
   const [isEditMode, setIsEditMode] = useState(false);
 

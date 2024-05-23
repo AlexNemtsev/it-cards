@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import { useLogoutMutation } from '@/entities/auth/api/auth';
 import { BaseErrorResponse, MeResponse } from '@/entities/auth/api/types';
@@ -22,11 +22,14 @@ type Props = {
 };
 
 export const UserMenu = ({ data }: Props) => {
-  const [logout] = useLogoutMutation();
+  const [logout, { isSuccess }] = useLogoutMutation();
 
   const logoutHandler = async () => {
+    await logout();
     try {
-      await logout();
+      if (isSuccess) {
+        return <Navigate to={Routes.LOGIN} />;
+      }
     } catch (e) {
       const error = e as BaseErrorResponse;
 

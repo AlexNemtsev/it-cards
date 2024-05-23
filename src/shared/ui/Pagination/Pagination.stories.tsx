@@ -38,10 +38,10 @@ export const PaginationWith7Pages: Story = {
         <Pagination
           currentPage={displayValue}
           itemsPerPage={itemsPerPageState}
+          itemsPerPageList={VALUES}
           onItemsPerPageChange={getItemsPerPage}
           onValueChange={onValueChange}
           totalPages={totalPages}
-          values={VALUES}
         />
       </>
     );
@@ -71,10 +71,10 @@ export const PaginationWith12Pages: Story = {
         <Pagination
           currentPage={displayValue}
           itemsPerPage={itemsPerPageState}
+          itemsPerPageList={VALUES}
           onItemsPerPageChange={getItemsPerPage}
           onValueChange={onValueChange}
           totalPages={totalPages}
-          values={VALUES}
         />
       </>
     );

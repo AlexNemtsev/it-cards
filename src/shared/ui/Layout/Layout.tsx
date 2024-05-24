@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import { useLogoutMutation, useMeQuery } from '@/entities/auth/api/auth';
 import { BaseErrorResponse } from '@/entities/auth/api/types';
@@ -13,10 +13,13 @@ import s from './Layout.module.scss';
 export const Layout = () => {
   const [logout] = useLogoutMutation();
   const { isSuccess } = useMeQuery();
+  const navigate = useNavigate();
 
   const logoutHandler = async () => {
     try {
       await logout();
+      localStorage.removeItem('accessToken');
+      navigate(0);
     } catch (e) {
       const error = e as BaseErrorResponse;
 

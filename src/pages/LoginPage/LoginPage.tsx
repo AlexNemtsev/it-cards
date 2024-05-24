@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
 import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
@@ -10,14 +10,18 @@ import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 export const LoginPage = () => {
   const { data } = useMeQuery();
   const [login] = useLoginMutation();
+  const navigate = useNavigate();
 
   if (data) {
-    return <Navigate to={Routes.MAIN} />;
+    return navigate(Routes.MAIN);
   }
 
   const onSubmitHandler = async (data: LoginFormValues) => {
     try {
-      await login(data).unwrap();
+      const { accessToken } = await login(data).unwrap();
+
+      localStorage.setItem('accessToken', accessToken);
+      navigate(0);
     } catch (e) {
       const error = e as BaseErrorResponse;
 

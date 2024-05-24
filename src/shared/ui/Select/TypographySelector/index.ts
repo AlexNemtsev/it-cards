@@ -1,1 +1,0 @@
-export { TypographySelector } from './TypographySelector';

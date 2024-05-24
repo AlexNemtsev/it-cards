@@ -1,9 +1,18 @@
-import { baseQueryWithReauth } from '@/shared/api/flashcards-base-query';
-import { createApi } from '@reduxjs/toolkit/query/react';
+import { AccessTokenController } from '@/shared/api/accessTokenController';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+const accessTokenController = new AccessTokenController();
 
 export const flashcardsApi = createApi({
-  baseQuery: baseQueryWithReauth,
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://api.flashcards.andrii.es',
+    prepareHeaders: headers => {
+      const accessToken = accessTokenController.getToken() ?? '';
+
+      headers.set('Authorization', `Bearer ${accessToken}`);
+    },
+  }),
   endpoints: () => ({}),
   reducerPath: 'flashcardsApi',
-  tagTypes: ['Decks', 'Me', 'Deck'],
+  tagTypes: ['Me'],
 });

@@ -3,43 +3,22 @@ button {
   all: unset;
 }
 
-.selectWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-
-.label {
-  color: var(--color-dark-100);
-
-  &.disabled {
-    color: var(--color-dark-300);
-  }
-}
-
 .selectTrigger {
-  display: inline-flex;
+  display: flex;
   gap: 5px;
   align-items: center;
   justify-content: space-between;
 
   box-sizing: border-box;
-  width: 100%;
-  height: 36px;
-  padding: 6px 12px;
+  width: max-content;
+  height: 24px;
+  padding: 5px;
 
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);
   border: 1px solid var(--color-dark-300);
   border-radius: 2px;
-
-  fill: var(--color-light-100);
-
-  &.small {
-    height: 24px;
-    padding: 5px;
-  }
 
   &:hover {
     background-color: var(--color-dark-500);
@@ -56,16 +35,10 @@ button {
   }
 
   &:disabled {
-    fill: var(--color-dark-300);
-
     &:hover,
     &:focus {
       background-color: inherit;
       border: 1px solid var(--color-dark-300);
-    }
-
-    .selectIcon {
-      fill: var(--color-dark-300);
     }
 
     &[data-placeholder] {
@@ -81,39 +54,9 @@ button {
   border-radius: 2px;
 }
 
-.selectLabel {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 6px 12px;
-
-  color: var(--color-light-100);
-
-  border-bottom: 1px solid var(--color-dark-300);
-
-  &.small {
-    padding: 0 6px;
-  }
-}
-
 .selectScrollButton {
-  cursor: default;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  height: 25px;
-
-  color: var(--color-light-100);
-
-  background-color: var(--color-dark-900);
-}
-
-.selectLabelTypograpgy {
-  font-size: var(--font-size-m);
-  line-height: var(--font-size-xxl);
-  color: var(--color-light-100);
+  padding: 5px 0;
 }

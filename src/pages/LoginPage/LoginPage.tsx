@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
-import { useLoginMutation, useMeQuery } from '@/entities/auth/api/auth';
+import { useMeQuery } from '@/entities/auth/api/auth';
+import { useLogin } from '@/entities/auth/api/hooks';
 import { BaseErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
@@ -9,19 +10,15 @@ import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 
 export const LoginPage = () => {
   const { data } = useMeQuery();
-  const [login] = useLoginMutation();
-  const navigate = useNavigate();
+  const [login] = useLogin();
 
   if (data) {
-    return navigate(Routes.MAIN);
+    return <Navigate to={Routes.MAIN} />;
   }
 
   const onSubmitHandler = async (data: LoginFormValues) => {
     try {
-      const { accessToken } = await login(data).unwrap();
-
-      localStorage.setItem('accessToken', accessToken);
-      navigate(0);
+      login(data);
     } catch (e) {
       const error = e as BaseErrorResponse;
 

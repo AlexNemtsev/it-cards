@@ -1,10 +1,13 @@
+import { AccessTokenController } from '@/shared/api/accessTokenController';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+const accessTokenController = new AccessTokenController();
 
 export const flashcardsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.flashcards.andrii.es',
     prepareHeaders: headers => {
-      const accessToken = localStorage.getItem('accessToken') ?? '';
+      const accessToken = accessTokenController.getToken() ?? '';
 
       headers.set('Authorization', `Bearer ${accessToken}`);
     },

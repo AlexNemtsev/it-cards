@@ -55,10 +55,4 @@ export const authApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const {
-  useLoginMutation,
-  useLogoutMutation,
-  useMeQuery,
-  useRecoverPasswordMutation,
-  useSignUpMutation,
-} = authApi;
+export const { useMeQuery, useRecoverPasswordMutation, useSignUpMutation } = authApi;

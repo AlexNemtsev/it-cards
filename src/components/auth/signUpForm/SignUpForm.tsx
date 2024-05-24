@@ -1,14 +1,15 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
+import { SignUpFormSchema, SignUpFormValues } from '@/components/auth/signUpForm/SignUpFormShema';
 import { InputWithController } from '@/components/withControllers/InputWithController';
+import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import s from './SignUpForm.module.scss';
-
-import { SignUpFormSchema, SignUpFormValues } from './SignUpFormShema';
 
 type Props = {
   onSubmit: (data: Omit<SignUpFormValues, 'passwordConfirmation'>) => void;
@@ -61,7 +62,10 @@ export const SignUpForm = (props: Props) => {
         </Button>
       </form>
       <Typography.Body2 className={s.haveAccount}>Already have an account?</Typography.Body2>
-      <Typography.Subtitle1 className={s.signIn}>Sign In</Typography.Subtitle1>
+
+      <Typography.Subtitle1 as={Link} className={s.signIn} to={Routes.LOGIN}>
+        Sign In
+      </Typography.Subtitle1>
     </Card>
   );
 };

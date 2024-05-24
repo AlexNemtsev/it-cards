@@ -14,13 +14,13 @@ export type CheckboxProps = {
 
 export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   (props: CheckboxProps, ref) => {
-    const { checked, className, disabled, icon, id, label, ...restProps } = props;
+    const { className, disabled, icon, id, label, ...restProps } = props;
     const classNames = clsx(s.checkbox, disabled && s.disabled, className);
 
     return (
       <label className={classNames}>
         <div className={s.buttonWrapper}>
-          <Root {...restProps} defaultChecked={checked} disabled={disabled} ref={ref}>
+          <Root {...restProps} disabled={disabled} ref={ref}>
             <Indicator>{icon ? icon : <CheckedMark />}</Indicator>
           </Root>
         </div>

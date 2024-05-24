@@ -1,34 +1,27 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import { Cross } from '@/shared/assets/icons/Cross';
-import { Button } from '@/shared/ui/Button';
-import { Typography } from '@/shared/ui/Typography';
 import { Close, Content, Overlay, Portal, Root, Title, Trigger } from '@radix-ui/react-dialog';
 
 import s from './Modal.module.scss';
 
 type Props = {
   children: ReactNode;
-  title: string;
+  title: ReactNode;
+  trigger: ReactNode;
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Modal = (props: Props) => {
-  const { children, title, ...restProps } = props;
+  const { children, title, trigger, ...restProps } = props;
 
   return (
     <Root {...restProps}>
-      <Trigger asChild>
-        <Button>
-          <Typography.Subtitle2>{title}</Typography.Subtitle2>
-        </Button>
-      </Trigger>
+      <Trigger asChild>{trigger}</Trigger>
       <Portal>
         <Overlay className={s.overlay} />
         <Content className={s.content}>
           <div className={s.header}>
-            <Title className={s.title}>
-              <Typography.H3>{title}</Typography.H3>
-            </Title>
+            <Title className={s.title}>{title}</Title>
             <Close className={s.buttonClose}>
               <Cross height={25} width={25} />
             </Close>

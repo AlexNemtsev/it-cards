@@ -1,6 +1,5 @@
 import {
   ChangeEvent,
-  ComponentProps,
   ComponentPropsWithoutRef,
   ElementRef,
   forwardRef,
@@ -12,6 +11,7 @@ import { Cross } from '@/shared/assets/icons/Cross';
 import { Eye } from '@/shared/assets/icons/Eye/Eye';
 import { EyeOff } from '@/shared/assets/icons/EyeOff';
 import { Search } from '@/shared/assets/icons/Search';
+import { getInputType } from '@/shared/ui/Input/lib/getInputTypes';
 import { Typography } from '@/shared/ui/Typography';
 import { clsx } from 'clsx';
 
@@ -45,16 +45,16 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props: InputPr
   const generatedId = useId();
   const finalId = id ?? generatedId;
 
-  const [maskedPassword, setMaskedPassword] = useState(true);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const showPassword = () => {
-    setMaskedPassword(!maskedPassword);
+    setIsPasswordHidden(!isPasswordHidden);
   };
 
   const typePassword = type === 'password';
   const typeSearch = type === 'search';
 
-  const finalType = getFinalType(type, maskedPassword);
+  const finalType = getInputType(type, isPasswordHidden);
 
   const classNames = {
     container: clsx(s.container, disabled && s.disabled, error && s.error, containerClassName),
@@ -99,7 +99,9 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props: InputPr
         />
 
         {typePassword && (
-          <InputButton onClick={showPassword}>{maskedPassword ? <EyeOff /> : <Eye />}</InputButton>
+          <InputButton onClick={showPassword}>
+            {isPasswordHidden ? <EyeOff /> : <Eye />}
+          </InputButton>
         )}
 
         {typeSearch && !!inputProps.value && (
@@ -113,11 +115,3 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props: InputPr
     </div>
   );
 });
-
-function getFinalType(type: ComponentProps<'input'>['type'], showPassword: boolean) {
-  if ((type === 'password' && showPassword) || type === 'search') {
-    return 'text';
-  }
-
-  return type;
-}

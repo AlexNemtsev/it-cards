@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { useMeQuery } from '@/entities/auth/api/auth';
-import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/model/api';
+import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
@@ -195,7 +195,8 @@ export const DecksPage = () => {
             </Table>
             <Pagination
               currentPage={currentPage || 1}
-              itemsPerPage={itemsPerPage || 10}
+              itemsPerPage={String(itemsPerPage) || '10'}
+              itemsPerPageList={['10', '20', '30', '50', '100']}
               onItemsPerPageChange={getItemsPerPage}
               onValueChange={getCurrentPage}
               totalPages={decks?.pagination.totalPages || 1}

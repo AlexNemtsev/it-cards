@@ -15,7 +15,7 @@ const CreateNewPasswordScheme = z.object({
 
 export type FormValues = z.infer<typeof CreateNewPasswordScheme>;
 type Props = {
-  onSubmit: (data: FormValues) => void;
+  onSubmit?: (data: FormValues) => void;
 };
 export const CreateNewPassword = (props: Props) => {
   const { onSubmit } = props;
@@ -26,7 +26,7 @@ export const CreateNewPassword = (props: Props) => {
     resolver: zodResolver(CreateNewPasswordScheme),
   });
   const onSubmitHandler = (data: FormValues) => {
-    onSubmit(data);
+    onSubmit && onSubmit(data);
   };
 
   return (

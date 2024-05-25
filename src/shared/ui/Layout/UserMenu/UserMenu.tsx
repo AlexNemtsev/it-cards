@@ -1,6 +1,5 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { useLogoutMutation } from '@/entities/auth/api/auth';
 import { useLogout } from '@/entities/auth/api/hooks';
 import { BaseErrorResponse, MeResponse } from '@/entities/auth/api/types';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';

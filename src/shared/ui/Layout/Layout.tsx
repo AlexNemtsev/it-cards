@@ -8,22 +8,12 @@ import { LogOutIcon } from '@/shared/assets/icons/LogOutIcon';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
 import { Button } from '@/shared/ui/Button';
+import { UserMenu } from '@/shared/ui/Layout/UserMenu/UserMenu';
 
 import s from './Layout.module.scss';
 
 export const Layout = () => {
-  const [logout] = useLogout();
-  const { isSuccess } = useMeQuery();
-
-  const logoutHandler = async () => {
-    try {
-      logout();
-    } catch (e) {
-      const error = e as BaseErrorResponse;
-
-      errorNotification(error.data.message || 'Some error occurred');
-    }
-  };
+  const { data, isSuccess } = useMeQuery();
 
   return (
     <>
@@ -32,10 +22,7 @@ export const Layout = () => {
           <IncubatorLogo />
         </a>
         {isSuccess ? (
-          <Button onClick={logoutHandler} variant="secondary">
-            <LogOutIcon />
-            Logout
-          </Button>
+          <UserMenu data={data} />
         ) : (
           <Button as={Link} to={Routes.MAIN} variant="secondary">
             Sign in

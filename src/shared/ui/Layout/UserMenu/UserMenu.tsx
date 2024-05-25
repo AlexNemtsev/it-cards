@@ -1,6 +1,7 @@
 import { Link, Navigate } from 'react-router-dom';
 
 import { useLogoutMutation } from '@/entities/auth/api/auth';
+import { useLogout } from '@/entities/auth/api/hooks';
 import { BaseErrorResponse, MeResponse } from '@/entities/auth/api/types';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';
 import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
@@ -22,20 +23,30 @@ type Props = {
 };
 
 export const UserMenu = ({ data }: Props) => {
-  const [logout, { isSuccess }] = useLogoutMutation();
+  const [logout] = useLogout();
 
   const logoutHandler = async () => {
-    await logout();
     try {
-      if (isSuccess) {
-        return <Navigate to={Routes.LOGIN} />;
-      }
+      logout();
     } catch (e) {
       const error = e as BaseErrorResponse;
 
       errorNotification(error.data.message || 'Some error occurred');
     }
   };
+
+  // const logoutHandler = async () => {
+  //   await logout();
+  //   try {
+  //     if (isSuccess) {
+  //       return <Navigate to={Routes.LOGIN} />;
+  //     }
+  //   } catch (e) {
+  //     const error = e as BaseErrorResponse;
+  //
+  //     errorNotification(error.data.message || 'Some error occurred');
+  //   }
+  // };
 
   return (
     <Dropdown className={s.q} trigger={<Trigger img={data.avatar} name={data.name} />}>

@@ -1,4 +1,3 @@
-import { router } from '@/app/router';
 import {
   LoginRequest,
   LoginResponse,
@@ -9,23 +8,12 @@ import {
   SignUpResponse,
 } from '@/entities/auth/api/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
-import { Routes } from '@/shared/constants/routes';
 
 export const authApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
       login: builder.mutation<LoginResponse, LoginRequest>({
         invalidatesTags: ['Me'],
-        async onQueryStarted(_, { queryFulfilled }) {
-          const { data } = await queryFulfilled;
-
-          if (!data) {
-            return;
-          }
-          localStorage.setItem('accessToken', data.accessToken);
-          localStorage.setItem('refreshToken', data.refreshToken);
-          router.navigate(Routes.LOGIN);
-        },
         query: body => ({
           body,
           method: 'POST',
@@ -34,15 +22,10 @@ export const authApi = flashcardsApi.injectEndpoints({
       }),
       logout: builder.mutation<void, void>({
         invalidatesTags: ['Me'],
-        query: () => {
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-
-          return {
-            method: 'POST',
-            url: '/v1/auth/logout',
-          };
-        },
+        query: () => ({
+          method: 'POST',
+          url: '/v1/auth/logout',
+        }),
       }),
       me: builder.query<MeResponse, void>({
         providesTags: ['Me'],
@@ -58,13 +41,11 @@ export const authApi = flashcardsApi.injectEndpoints({
         },
       }),
       signUp: builder.mutation<SignUpResponse, SignUpRequest>({
-        query: args => {
-          return {
-            body: args,
-            method: 'POST',
-            url: '/v1/auth/sign-up',
-          };
-        },
+        query: args => ({
+          body: args,
+          method: 'POST',
+          url: '/v1/auth/sign-up',
+        }),
       }),
     };
   },

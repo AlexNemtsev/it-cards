@@ -1,7 +1,7 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
-import { useGetDeckQuery, useGetDecksQuery } from '@/entities/deck/api/deckApi';
+import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
@@ -30,8 +30,6 @@ export const DeckPage = () => {
     totalPages: 1,
   };
 
-  console.log(pagination);
-
   // console.log(deck);
 
   return (
@@ -41,14 +39,17 @@ export const DeckPage = () => {
         <Typography.H1>{deck?.name}</Typography.H1>
         <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
       </div>
-      <Input placeholder="Input search" type="search" />
+      <Input containerClassName={s.input} placeholder="Input search" type="search" />
       {cards && <CardsTable data={cards.items} />}
-      {/*<Pagination*/}
-      {/*  {...pagination}*/}
-      {/*  itemsPerPageList={[]}*/}
-      {/*  onItemsPerPageChange={() => {}}*/}
-      {/*  onValueChange={() => {}}*/}
-      {/*/>*/}
+      <Pagination
+        className={s.pagination}
+        currentPage={pagination.currentPage}
+        itemsPerPage={pagination.itemsPerPage.toString()}
+        itemsPerPageList={['10', '20', '30', '50', '100']}
+        onItemsPerPageChange={() => {}}
+        onValueChange={() => {}}
+        totalPages={pagination.totalPages}
+      />
     </PageContainer>
   );
 };

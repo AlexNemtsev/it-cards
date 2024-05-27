@@ -1,8 +1,18 @@
 .container {
   padding: var(--layout-padding);
+  padding-bottom: 144px;
 }
 
 .deckTitle {
   display: flex;
   justify-content: space-between;
+  margin: 32px 0 24px;
+}
+
+.input {
+  margin-bottom: 24px;
+}
+
+.pagination {
+  margin-top: 24px;
 }

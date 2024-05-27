@@ -24,7 +24,7 @@ export const authApi = flashcardsApi.injectEndpoints({
         invalidatesTags: ['Me'],
         query: () => ({
           method: 'POST',
-          url: '/v1/auth/logout',
+          url: '/v2/auth/logout',
         }),
       }),
       me: builder.query<MeResponse, void>({

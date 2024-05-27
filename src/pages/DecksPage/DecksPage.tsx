@@ -20,6 +20,13 @@ import { Typography } from '@/shared/ui/Typography';
 
 import s from './DecksPage.module.scss';
 
+import { Modal } from '../../shared/ui/Modal';
+import { NewDeckForm } from './NewDeckForm';
+import { NewDeckTitle } from './ui/NewDeckTitle';
+import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
+
+const VALUES = ['10', '20', '30', '50', '100'];
+
 const TabSwitcherStates = {
   ALL: 'All Cards',
   MY: 'My Cards',
@@ -128,7 +135,9 @@ export const DecksPage = () => {
     <section className={s.section}>
       <div className={s.header}>
         <Typography.H1>Decks List</Typography.H1>
-        <Button>Add new Deck</Button>
+        <Modal title={<NewDeckTitle />} trigger={<OpenNewDeckModalButton />}>
+          <NewDeckForm onSubmit={data => console.log(data)} />
+        </Modal>
       </div>
       <div className={s.filters}>
         <Input
@@ -196,14 +205,14 @@ export const DecksPage = () => {
             <Pagination
               currentPage={currentPage || 1}
               itemsPerPage={String(itemsPerPage) || '10'}
-              itemsPerPageList={['10', '20', '30', '50', '100']}
+              itemsPerPageList={VALUES}
               onItemsPerPageChange={getItemsPerPage}
               onValueChange={getCurrentPage}
               totalPages={decks?.pagination.totalPages || 1}
             />
           </>
         ) : (
-          <div>Пустэча... Шукай ў iншым месце</div>
+          <div>Empty</div>
         )}
       </div>
     </section>

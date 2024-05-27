@@ -16,5 +16,5 @@ export const Rating = (props: Props) => {
     stars.push(i < rating ? <Star key={i} /> : <StarOutlined key={i} />);
   }
 
-  return <div className={s.stars}>{stars}</div>;
+  return <span className={s.stars}>{stars}</span>;
 };

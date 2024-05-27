@@ -9,6 +9,7 @@ import { Input } from '@/shared/ui/Input';
 import { PageContainer } from '@/shared/ui/PageContainer';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
+import { CardsTable } from '@/widgets/Deck/CardsTable';
 
 import s from './DeckPage.module.scss';
 
@@ -16,7 +17,7 @@ export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(searchParams.get('page'));
+  // console.log(searchParams.get('page'));
 
   const { data: decks } = useGetDecksQuery();
   const { data: deck } = useGetDeckQuery(deckId);
@@ -29,10 +30,9 @@ export const DeckPage = () => {
     totalPages: 1,
   };
 
-  console.log(decks);
+  // console.log(decks);
 
-  console.log(deck);
-  console.log(cards);
+  // console.log(deck);
 
   return (
     <PageContainer className={s.container}>
@@ -42,6 +42,7 @@ export const DeckPage = () => {
         <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
       </div>
       <Input placeholder="Input search" type="search" />
+      {cards && <CardsTable data={cards.items} />}
       <Pagination {...pagination} />
     </PageContainer>
   );

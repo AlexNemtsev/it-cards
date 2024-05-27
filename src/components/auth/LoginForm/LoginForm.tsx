@@ -40,7 +40,6 @@ export const LoginForm = (props: Props) => {
   return (
     <Card className={s.card}>
       <Typography.H1>Sign In</Typography.H1>
-      <h1>TEST GIT</h1>
       <form onSubmit={onSubmitLogIn}>
         <InputWithController
           containerClassName={s.input}

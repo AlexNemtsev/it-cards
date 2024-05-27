@@ -19,7 +19,7 @@ export const DeckPage = () => {
 
   // console.log(searchParams.get('page'));
 
-  const { data: decks } = useGetDecksQuery();
+  // const { data: decks } = useGetDecksQuery();
   const { data: deck } = useGetDeckQuery(deckId);
   const { data: cards } = useGetCardsQuery(deckId);
 
@@ -30,7 +30,7 @@ export const DeckPage = () => {
     totalPages: 1,
   };
 
-  // console.log(decks);
+  console.log(pagination);
 
   // console.log(deck);
 
@@ -43,7 +43,12 @@ export const DeckPage = () => {
       </div>
       <Input placeholder="Input search" type="search" />
       {cards && <CardsTable data={cards.items} />}
-      <Pagination {...pagination} />
+      {/*<Pagination*/}
+      {/*  {...pagination}*/}
+      {/*  itemsPerPageList={[]}*/}
+      {/*  onItemsPerPageChange={() => {}}*/}
+      {/*  onValueChange={() => {}}*/}
+      {/*/>*/}
     </PageContainer>
   );
 };

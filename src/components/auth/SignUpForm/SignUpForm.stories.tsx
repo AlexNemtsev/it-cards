@@ -30,7 +30,7 @@ export const Default: Story = {
     return (
       <>
         <SignUpForm onSubmit={onSubmit} />
-        {data?.email}, {data?.password}
+        {data?.email} {data?.password}
       </>
     );
   },

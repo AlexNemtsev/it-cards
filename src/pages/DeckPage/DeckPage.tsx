@@ -1,6 +1,7 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
+import { GetCardsArgs } from '@/entities/card/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { Routes } from '@/shared/constants/routes';
@@ -17,14 +18,20 @@ export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(searchParams);
+  // console.log(searchParams);
   // console.log(searchParams.get('page'));
-  searchParams.set('question', '%D0%96%D0%B8');
-  setSearchParams(searchParams);
+  // searchParams.set('question', '%D0%96%D0%B8');
+  searchParams.set('question', 'Жи');
+
+  console.log(searchParams.get('question'));
+
+  // setSearchParams(searchParams);
   // const { data: decks } = useGetDecksQuery();
   const { data: deck } = useGetDeckQuery(deckId);
-  //@ts-ignore
-  const { data: cards } = useGetCardsQuery(deckId, searchParams);
+
+  const argsForUseGetCardsQuery = { deckId, ...searchParams };
+
+  const { data: cards } = useGetCardsQuery(argsForUseGetCardsQuery);
 
   const pagination = cards?.pagination ?? {
     currentPage: 1,

@@ -20,7 +20,7 @@ type Props = {
   logout: () => void;
   name: string;
   onSubmit: (data: FormValues) => void;
-  setAvatar: (avatar: any) => void;
+  setAvatar: (avatar: object) => void;
 };
 export const PersonalInformation = (props: Props) => {
   const { avatar = unknownAvatar, email, logout, name = '', onSubmit, setAvatar } = props;
@@ -38,8 +38,6 @@ export const PersonalInformation = (props: Props) => {
 
       formData.append('avatar', e.target.files[0]);
       setAvatar(formData);
-
-      console.log(formData);
     }
   };
 

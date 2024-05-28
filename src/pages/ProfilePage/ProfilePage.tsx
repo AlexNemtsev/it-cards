@@ -12,7 +12,7 @@ export const ProfilePage = () => {
     await logout();
   };
 
-  const setAvatarHandler = (avatar: any) => {
+  const setAvatarHandler = (avatar: object) => {
     updateUserData(avatar);
   };
 

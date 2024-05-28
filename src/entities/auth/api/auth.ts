@@ -48,10 +48,8 @@ export const authApi = flashcardsApi.injectEndpoints({
       }),
       updateUserData: builder.mutation({
         invalidatesTags: ['Me'],
-        query: ({ name }) => ({
-          body: {
-            name,
-          },
+        query: body => ({
+          body,
           method: 'PATCH',
           url: '/v1/auth/me',
         }),

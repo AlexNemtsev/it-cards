@@ -12,13 +12,19 @@ export const ProfilePage = () => {
     await logout();
   };
 
+  const setAvatarHandler = (avatar: any) => {
+    updateUserData(avatar);
+  };
+
   return (
     <PageContainer>
       <PersonalInformation
+        avatar={data?.avatar}
+        email={data?.email ?? ''}
         logout={logoutHandler}
         name={data?.name ?? ''}
         onSubmit={updateUserData}
-        setAvatar={() => {}}
+        setAvatar={setAvatarHandler}
       />
     </PageContainer>
   );

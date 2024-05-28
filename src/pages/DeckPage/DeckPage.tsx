@@ -19,10 +19,12 @@ export const DeckPage = () => {
 
   console.log(searchParams);
   // console.log(searchParams.get('page'));
-
+  searchParams.set('question', '%D0%96%D0%B8');
+  setSearchParams(searchParams);
   // const { data: decks } = useGetDecksQuery();
   const { data: deck } = useGetDeckQuery(deckId);
-  const { data: cards } = useGetCardsQuery(deckId);
+  //@ts-ignore
+  const { data: cards } = useGetCardsQuery(deckId, searchParams);
 
   const pagination = cards?.pagination ?? {
     currentPage: 1,

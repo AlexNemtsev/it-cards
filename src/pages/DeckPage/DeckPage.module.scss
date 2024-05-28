@@ -6,10 +6,18 @@
 .deckTitle {
   display: flex;
   justify-content: space-between;
-  margin: 32px 0 24px;
+  margin: 32px 0 15px;
+}
+
+.cover {
+  width: 170px;
+  height: 107px;
+  margin-top: 15px;
+  object-fit: cover;
 }
 
 .input {
+  margin-top: 24px;
   margin-bottom: 24px;
 }
 

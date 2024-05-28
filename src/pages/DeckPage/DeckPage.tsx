@@ -17,6 +17,7 @@ export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  console.log(searchParams);
   // console.log(searchParams.get('page'));
 
   // const { data: decks } = useGetDecksQuery();
@@ -39,7 +40,8 @@ export const DeckPage = () => {
         <Typography.H1>{deck?.name}</Typography.H1>
         <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
       </div>
-      <Input containerClassName={s.input} placeholder="Input search" type="search" />
+      {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
+      <Input containerClassName={s.input} placeholder="Search by question" type="search" />
       {cards && <CardsTable data={cards.items} />}
       <Pagination
         className={s.pagination}

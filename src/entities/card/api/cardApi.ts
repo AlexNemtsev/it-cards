@@ -5,12 +5,9 @@ import { GetCardsArgs, PaginatedCardsWithGrade } from '../types';
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      getCards: builder.query<PaginatedCardsWithGrade, any>({
+      getCards: builder.query<PaginatedCardsWithGrade, GetCardsArgs>({
         query: args => {
           const { deckId, ...rest } = args;
-
-          console.log(deckId);
-          console.log(rest);
 
           return {
             params: rest,

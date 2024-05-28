@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
-import { GetCardsArgs } from '@/entities/card/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { Routes } from '@/shared/constants/routes';
@@ -18,20 +18,22 @@ export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [search, setSearch] = useState('');
+
   // console.log(searchParams);
   // console.log(searchParams.get('page'));
   // searchParams.set('question', '%D0%96%D0%B8');
-  searchParams.set('question', 'Жи');
-
-  console.log(searchParams.get('question'));
+  // searchParams.set('question', 'Жи');
+  //
+  // console.log(searchParams.get('question'));
 
   // setSearchParams(searchParams);
   // const { data: decks } = useGetDecksQuery();
   const { data: deck } = useGetDeckQuery(deckId);
 
-  const argsForUseGetCardsQuery = { deckId, ...searchParams };
+  // const argsForUseGetCardsQuery = { deckId, ...searchParams };
 
-  const { data: cards } = useGetCardsQuery(argsForUseGetCardsQuery);
+  const { data: cards } = useGetCardsQuery({ deckId, question: search });
 
   const pagination = cards?.pagination ?? {
     currentPage: 1,
@@ -50,7 +52,13 @@ export const DeckPage = () => {
         <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
-      <Input containerClassName={s.input} placeholder="Search by question" type="search" />
+      <Input
+        containerClassName={s.input}
+        onValueChange={setSearch}
+        placeholder="Search by question"
+        type="search"
+        value={search}
+      />
       {cards && <CardsTable data={cards.items} />}
       <Pagination
         className={s.pagination}

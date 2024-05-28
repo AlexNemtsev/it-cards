@@ -46,8 +46,23 @@ export const authApi = flashcardsApi.injectEndpoints({
           url: '/v1/auth/sign-up',
         }),
       }),
+      updateUserData: builder.mutation({
+        invalidatesTags: ['Me'],
+        query: ({ name }) => ({
+          body: {
+            name,
+          },
+          method: 'PATCH',
+          url: '/v1/auth/me',
+        }),
+      }),
     };
   },
 });
 
-export const { useMeQuery, useRecoverPasswordMutation, useSignUpMutation } = authApi;
+export const {
+  useMeQuery,
+  useRecoverPasswordMutation,
+  useSignUpMutation,
+  useUpdateUserDataMutation,
+} = authApi;

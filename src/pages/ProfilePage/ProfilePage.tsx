@@ -1,10 +1,11 @@
 import { PersonalInformation } from '@/components/profile/PersonalInformation';
-import { useMeQuery } from '@/entities/auth/api/auth';
+import { useMeQuery, useUpdateUserDataMutation } from '@/entities/auth/api/auth';
 import { useLogout } from '@/entities/auth/api/hooks';
 import { PageContainer } from '@/shared/ui/PageContainer';
 
 export const ProfilePage = () => {
   const [logout] = useLogout();
+  const [updateUserData] = useUpdateUserDataMutation();
   const { data } = useMeQuery();
 
   const logoutHandler = async () => {
@@ -16,7 +17,7 @@ export const ProfilePage = () => {
       <PersonalInformation
         logout={logoutHandler}
         name={data?.name ?? ''}
-        onSubmit={() => {}}
+        onSubmit={updateUserData}
         setAvatar={() => {}}
       />
     </PageContainer>

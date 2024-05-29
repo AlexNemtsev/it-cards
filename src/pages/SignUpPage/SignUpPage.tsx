@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 
 import { LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
-import { SignUpForm } from '@/components/auth/signUpForm';
-import { SignUpFormValues } from '@/components/auth/signUpForm/SignUpFormShema';
+import { SignUpForm } from '@/components/auth/SignUpForm';
+import { SignUpFormValues } from '@/components/auth/SignUpForm/SignUpFormShema';
 import { useLoginMutation, useMeQuery, useSignUpMutation } from '@/entities/auth/api/auth';
 import { SignUpErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
@@ -15,7 +15,7 @@ export const SignUpPage = () => {
   const [login] = useLoginMutation();
 
   if (useMeData) {
-    return <Navigate to={Routes.MAIN} />;
+    return <Navigate to={Routes.DECKS} />;
   }
   const onSubmitHandler = async (data: Omit<SignUpFormValues, 'passwordConfirmation'>) => {
     try {

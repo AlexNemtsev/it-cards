@@ -136,7 +136,7 @@ export const DecksPage = () => {
       <div className={s.header}>
         <Typography.H1>Decks List</Typography.H1>
         <Modal title={<NewDeckTitle />} trigger={<OpenNewDeckModalButton />}>
-          <NewDeckForm onSubmit={data => console.log(data)} />
+          <NewDeckForm onSubmit={data => alert(data)} />
         </Modal>
       </div>
       <div className={s.filters}>

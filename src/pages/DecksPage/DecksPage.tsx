@@ -27,13 +27,14 @@ const TabSwitcherStates = {
 
 export const DecksPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { data: minMaxCards } = useGetMinMaxCardsQuery();
+  const { data: me } = useMeQuery();
+
   const sort = `${searchParams.get('key') || 'updated'}-${searchParams.get('direction') || 'asc'}`;
   const currentPage = Number(searchParams.get('currentPage')) || 1;
   const search = searchParams.get('search') || '';
   const decksAuthor = searchParams.get('decksAuthor') || TabSwitcherStates.ALL;
   const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
-
-  const { data: minMaxCards } = useGetMinMaxCardsQuery();
 
   const minCards = minMaxCards?.min;
   const maxCards = minMaxCards?.max;
@@ -44,8 +45,6 @@ export const DecksPage = () => {
     rangeSelect?.[0] || minCards || 0,
     rangeSelect?.[1] || maxCards || 0,
   ];
-
-  const { data: me } = useMeQuery();
 
   const currentUserId = me?.id;
   const authorId = decksAuthor === TabSwitcherStates.MY ? currentUserId : undefined;

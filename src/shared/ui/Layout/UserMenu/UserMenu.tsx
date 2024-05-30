@@ -34,19 +34,6 @@ export const UserMenu = ({ data }: Props) => {
     }
   };
 
-  // const logoutHandler = async () => {
-  //   await logout();
-  //   try {
-  //     if (isSuccess) {
-  //       return <Navigate to={Routes.LOGIN} />;
-  //     }
-  //   } catch (e) {
-  //     const error = e as BaseErrorResponse;
-  //
-  //     errorNotification(error.data.message || 'Some error occurred');
-  //   }
-  // };
-
   return (
     <Dropdown className={s.q} trigger={<Trigger img={data.avatar} name={data.name} />}>
       <DropdownProfileInfo>

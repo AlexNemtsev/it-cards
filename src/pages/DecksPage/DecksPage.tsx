@@ -35,12 +35,15 @@ export const DecksPage = () => {
 
   const { data: minMaxCards } = useGetMinMaxCardsQuery();
 
-  const range: [number, number] = searchParams.has('range')
-    ? [
-        searchParams.get('range')?.split(',').map(Number)[0] || minMaxCards?.min || 0,
-        searchParams.get('range')?.split(',').map(Number)[1] || minMaxCards?.max || 0,
-      ]
-    : [minMaxCards?.min || 0, minMaxCards?.max || 0];
+  const minCards = minMaxCards?.min;
+  const maxCards = minMaxCards?.max;
+
+  const rangeSelect = searchParams.get('range')?.split(',').map(Number);
+
+  const range: [number, number] = [
+    rangeSelect?.[0] || minCards || 0,
+    rangeSelect?.[1] || maxCards || 0,
+  ];
 
   const { data: me } = useMeQuery();
 
@@ -149,8 +152,8 @@ export const DecksPage = () => {
           ]}
         />
         <Slider
-          max={minMaxCards?.max}
-          min={minMaxCards?.min}
+          max={maxCards}
+          min={minCards}
           onValueChange={getNumberOfCards}
           value={range}
           wrapperClassName={s.slider}

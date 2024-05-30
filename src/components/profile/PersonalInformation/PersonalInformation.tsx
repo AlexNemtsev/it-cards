@@ -20,10 +20,10 @@ type Props = {
   logout: () => void;
   name: string;
   onSubmit: (data: FormValues) => void;
-  setAvatar: (avatar: object) => void;
+  setAvatar: (avatar: unknown) => void;
 };
 export const PersonalInformation = (props: Props) => {
-  const { avatar = unknownAvatar, email, logout, name = '', onSubmit, setAvatar } = props;
+  const { avatar = unknownAvatar, email, logout, name, onSubmit, setAvatar } = props;
 
   const [isEditMode, setIsEditMode] = useState(false);
 

@@ -5,6 +5,7 @@ import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/ap
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
+import { formatDate } from '@/shared/lib/formDate';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Pagination } from '@/shared/ui/Pagination';
@@ -31,14 +32,6 @@ const TabSwitcherStates = {
   ALL: 'All Cards',
   MY: 'My Cards',
 };
-
-function formatDate(date: string | undefined) {
-  if (!date) {
-    return '';
-  }
-
-  return new Date(date).toLocaleDateString('ru-RU');
-}
 
 export const DecksPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();

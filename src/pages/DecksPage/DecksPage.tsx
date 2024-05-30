@@ -2,26 +2,18 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
-import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
-import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
-import { formatDate } from '@/shared/lib/formDate';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Slider } from '@/shared/ui/Slider';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
-import { Table } from '@/shared/ui/Table';
-import { TableBody } from '@/shared/ui/Table/TableBody';
-import { TableCell } from '@/shared/ui/Table/TableCell';
-import { TableHead } from '@/shared/ui/Table/TableHead';
-import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
-import { TableRow } from '@/shared/ui/Table/TableRow';
 import { Typography } from '@/shared/ui/Typography';
 
 import s from './DecksPage.module.scss';
 
 import { Modal } from '../../shared/ui/Modal';
+import { DecksTable } from '../../widgets/decks/DecksTable';
 import { NewDeckForm } from './NewDeckForm';
 import { NewDeckTitle } from './ui/NewDeckTitle';
 import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
@@ -171,30 +163,7 @@ export const DecksPage = () => {
       <div className="decks">
         {decks?.items.length ? (
           <>
-            <Table className={s.decks}>
-              <TableHead>
-                <TableRow>
-                  <TableHeadCell>Name</TableHeadCell>
-                  <TableHeadCell>Cards</TableHeadCell>
-                  <TableHeadCell className={s.updated} onClick={getSortedLastedUpdated}>
-                    Last Updated {sort ? <ChevronDownIcon /> : <ChevronUpIcon />}
-                  </TableHeadCell>
-                  <TableHeadCell>Created by</TableHeadCell>
-                  <TableHeadCell></TableHeadCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {decks?.items.map(item => (
-                  <TableRow key={item.id}>
-                    <TableCell>{item.name}</TableCell>
-                    <TableCell>{item.cardsCount}</TableCell>
-                    <TableCell>{formatDate(item.updated)}</TableCell>
-                    <TableCell>{formatDate(item.created)}</TableCell>
-                    <TableCell>tools</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <DecksTable decks={decks} getSortedLastedUpdated={getSortedLastedUpdated} sort={sort} />
             <Pagination
               currentPage={currentPage || 1}
               itemsPerPage={String(itemsPerPage) || '10'}

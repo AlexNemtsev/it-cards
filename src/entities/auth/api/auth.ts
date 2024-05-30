@@ -40,8 +40,8 @@ export const authApi = flashcardsApi.injectEndpoints({
         },
       }),
       signUp: builder.mutation<SignUpResponse, SignUpRequest>({
-        query: args => ({
-          body: args,
+        query: body => ({
+          body,
           method: 'POST',
           url: '/v1/auth/sign-up',
         }),

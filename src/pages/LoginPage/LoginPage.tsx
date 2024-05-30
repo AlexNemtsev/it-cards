@@ -12,7 +12,7 @@ export const LoginPage = () => {
   const [login] = useLoginMutation();
 
   if (data) {
-    return <Navigate to={Routes.MAIN} />;
+    return <Navigate to={Routes.DECKS} />;
   }
 
   const onSubmitHandler = async (data: LoginFormValues) => {

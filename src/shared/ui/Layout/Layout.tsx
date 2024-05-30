@@ -36,7 +36,7 @@ export const Layout = () => {
             Logout
           </Button>
         ) : (
-          <Button as={Link} to={Routes.MAIN} variant="secondary">
+          <Button as={Link} to={Routes.DECKS} variant="secondary">
             Sign in
           </Button>
         )}

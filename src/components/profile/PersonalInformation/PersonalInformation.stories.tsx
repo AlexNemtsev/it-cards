@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { FormValues } from '@/components/profile/PersonalInformation/EditNickNameForm/EditNickNameForm';
 import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
-import { HttpResponse, http } from 'msw';
+import { httpHandlers } from '@/shared/storyes/httpHandlers';
 
 import { PersonalInformation } from './PersonalInformation';
 
@@ -17,24 +17,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const httpHandlers = [
-  http.get('https://api.flashcards.andrii.es/v1/auth/me', () => {
-    return HttpResponse.json({
-      // avatar: 'stringAvatar',
-      // email: 'stringEmail',
-      // name: 'Petr',
-    });
-  }),
-];
-
-console.log(httpHandlers[0]);
-
 export const Opened: Story = {
   args: {
-    avatar: avatar,
-    email: 'qw@qw.qw123',
+    // avatar: avatar,
+    avatar:
+      'https://staging-it-incubator.s3.eu-central-1.amazonaws.com/flashcards/Image/8fe3aca5-d273-4122-b041-a4a2b9db8372_404.png',
+    email: 'blabla',
     logout: () => {},
-    name: 'nickname',
+    name: 'Ivan',
     onSubmit: () => {},
     setAvatar: () => {},
   },
@@ -44,7 +34,7 @@ export const Opened: Story = {
     },
   },
 };
-
+console.log(httpHandlers);
 export const ExampleWithAvatar: Story = {
   args: {
     avatar: avatar,

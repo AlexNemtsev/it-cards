@@ -2,25 +2,25 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
-import { Delete } from '@/shared/assets/icons/Delete/Delete';
-import { Button } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
+import { Modal } from '@/shared/ui/Modal';
 import { Pagination } from '@/shared/ui/Pagination';
-import { Slider } from '@/shared/ui/Slider';
-import { TabSwitcher } from '@/shared/ui/TabSwitcher';
 import { Typography } from '@/shared/ui/Typography';
+import { DecksFilters } from '@/widgets/decks/DecksFilters';
+import { DecksTable } from '@/widgets/decks/DecksTable';
 
 import s from './DecksPage.module.scss';
 
-import { Modal } from '../../shared/ui/Modal';
-import { DecksTable } from '../../widgets/decks/DecksTable';
 import { NewDeckForm } from './NewDeckForm';
 import { NewDeckTitle } from './ui/NewDeckTitle';
 import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
 
 const VALUES = ['10', '20', '30', '50', '100'];
 
-const TabSwitcherStates = {
+export type TabSwitcherStatesType = {
+  [key: string]: string;
+};
+
+const tabSwitcherStates: TabSwitcherStatesType = {
   ALL: 'All Cards',
   MY: 'My Cards',
 };
@@ -33,7 +33,7 @@ export const DecksPage = () => {
   const sort = `${searchParams.get('key') || 'updated'}-${searchParams.get('direction') || 'asc'}`;
   const currentPage = Number(searchParams.get('currentPage')) || 1;
   const search = searchParams.get('search') || '';
-  const decksAuthor = searchParams.get('decksAuthor') || TabSwitcherStates.ALL;
+  const decksAuthor = searchParams.get('decksAuthor') || tabSwitcherStates.ALL;
   const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
 
   const minCards = minMaxCards?.min;
@@ -47,7 +47,7 @@ export const DecksPage = () => {
   ];
 
   const currentUserId = me?.id;
-  const authorId = decksAuthor === TabSwitcherStates.MY ? currentUserId : undefined;
+  const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
 
   const {
     data: decks,
@@ -126,42 +126,18 @@ export const DecksPage = () => {
           <NewDeckForm onSubmit={data => alert(data)} />
         </Modal>
       </div>
-      <div className={s.filters}>
-        <Input
-          containerClassName={s.input}
-          onClearInput={clearValueSearch}
-          onValueChange={getValueSearch}
-          placeholder="Input search"
-          type="search"
-          value={search}
-        />
-        <TabSwitcher
-          className={s.tabs}
-          defaultValue={TabSwitcherStates.ALL}
-          onValueChange={getDecksAuthor}
-          tabOptions={[
-            {
-              label: TabSwitcherStates.MY,
-              value: TabSwitcherStates.MY,
-            },
-            {
-              label: TabSwitcherStates.ALL,
-              value: TabSwitcherStates.ALL,
-            },
-          ]}
-        />
-        <Slider
-          max={maxCards}
-          min={minCards}
-          onValueChange={getNumberOfCards}
-          value={range}
-          wrapperClassName={s.slider}
-        />
-        <Button className={s.button} onClick={clearFilters} variant="secondary">
-          <Delete />
-          Clear Filter
-        </Button>
-      </div>
+      <DecksFilters
+        clearFilters={clearFilters}
+        clearValueSearch={clearValueSearch}
+        getDecksAuthor={getDecksAuthor}
+        getNumberOfCards={getNumberOfCards}
+        getValueSearch={getValueSearch}
+        maxCards={maxCards}
+        minCards={minCards}
+        range={range}
+        search={search}
+        tabSwitcherStates={tabSwitcherStates}
+      />
       <div className="decks">
         {decks?.items.length ? (
           <>

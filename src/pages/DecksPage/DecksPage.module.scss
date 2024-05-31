@@ -13,24 +13,3 @@
   align-items: center;
   justify-content: space-between;
 }
-
-.filters {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.input {
-  min-width: 50px;
-  max-width: 299px;
-}
-
-.tabs {
-  flex-shrink: 0;
-}
-
-.button {
-  flex-shrink: 0;
-  width: max-content;
-}

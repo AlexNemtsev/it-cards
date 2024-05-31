@@ -4,8 +4,23 @@ import { useState } from 'react';
 
 import { FormValues } from '@/components/profile/PersonalInformation/EditNickNameForm/EditNickNameForm';
 import avatar from '@/shared/assets/img/avatar-for-dropmenu.png';
+import { HttpResponse, http } from 'msw';
 
 import { PersonalInformation } from './PersonalInformation';
+
+export const httpHandlers = [
+  http.get('https://api.flashcards.andrii.es/v1/auth/me', () => {
+    return HttpResponse.json({
+      avatar: 'string',
+      created: '2024-05-31T11:27:09.390Z',
+      email: 'string',
+      id: 'string',
+      isEmailVerified: true,
+      name: 'string',
+      updated: '2024-05-31T11:27:09.390Z',
+    });
+  }),
+];
 
 const meta = {
   component: PersonalInformation,
@@ -69,4 +84,20 @@ const PersonalInformationWrapper = (props: Props) => {
       setAvatar={setAva}
     />
   );
+};
+
+export const Opened: Story = {
+  args: {
+    avatar: avatar,
+    email: 'qw@qw.qw',
+    logout: () => {},
+    name: 'nickname',
+    onSubmit: () => {},
+    setAvatar: () => {},
+  },
+  parameters: {
+    msw: {
+      handlers: httpHandlers,
+    },
+  },
 };

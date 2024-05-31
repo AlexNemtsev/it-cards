@@ -8,20 +8,6 @@ import { HttpResponse, http } from 'msw';
 
 import { PersonalInformation } from './PersonalInformation';
 
-export const httpHandlers = [
-  http.get('https://api.flashcards.andrii.es/v1/auth/me', () => {
-    return HttpResponse.json({
-      avatar: 'string',
-      created: '2024-05-31T11:27:09.390Z',
-      email: 'string',
-      id: 'string',
-      isEmailVerified: true,
-      name: 'string',
-      updated: '2024-05-31T11:27:09.390Z',
-    });
-  }),
-];
-
 const meta = {
   component: PersonalInformation,
   tags: ['autodocs'],
@@ -30,6 +16,35 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+const httpHandlers = [
+  http.get('https://api.flashcards.andrii.es/v1/auth/me', () => {
+    return HttpResponse.json({
+      // avatar: 'stringAvatar',
+      // email: 'stringEmail',
+      // name: 'Petr',
+    });
+  }),
+];
+
+console.log(httpHandlers[0]);
+
+export const Opened: Story = {
+  args: {
+    avatar: avatar,
+    email: 'qw@qw.qw123',
+    logout: () => {},
+    name: 'nickname',
+    onSubmit: () => {},
+    setAvatar: () => {},
+  },
+  parameters: {
+    msw: {
+      handlers: httpHandlers,
+    },
+  },
+};
+
 export const ExampleWithAvatar: Story = {
   args: {
     avatar: avatar,
@@ -84,20 +99,4 @@ const PersonalInformationWrapper = (props: Props) => {
       setAvatar={setAva}
     />
   );
-};
-
-export const Opened: Story = {
-  args: {
-    avatar: avatar,
-    email: 'qw@qw.qw',
-    logout: () => {},
-    name: 'nickname',
-    onSubmit: () => {},
-    setAvatar: () => {},
-  },
-  parameters: {
-    msw: {
-      handlers: httpHandlers,
-    },
-  },
 };

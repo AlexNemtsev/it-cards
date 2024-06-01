@@ -8,6 +8,20 @@ import { httpHandlers } from '@/shared/storyes/httpHandlers';
 
 import { PersonalInformation } from './PersonalInformation';
 
+const avatarFile = new File([avatar], 'avatar.png');
+const formData = new FormData();
+
+formData.append('avatar', avatarFile);
+const avatarFromFile = formData.get('avatar');
+
+console.log('avatarFromFile=', avatarFromFile);
+const avatarUrl = URL.createObjectURL(avatarFile);
+
+console.log('avatarUrl', avatarUrl);
+const imgTag = `<img src="${avatarUrl}" alt="Avatar">`;
+
+console.log('imgTag=', imgTag);
+
 const meta = {
   component: PersonalInformation,
   tags: ['autodocs'],
@@ -19,9 +33,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Opened: Story = {
   args: {
-    // avatar: avatar,
-    avatar:
-      'https://staging-it-incubator.s3.eu-central-1.amazonaws.com/flashcards/Image/8fe3aca5-d273-4122-b041-a4a2b9db8372_404.png',
+    avatar: 'http://localhost:6006/3450e70c-df2e-449e-a092-44a32e4b0cf8',
+    // avatar:
+    //   'https://staging-it-incubator.s3.eu-central-1.amazonaws.com/flashcards/Image/8fe3aca5-d273-4122-b041-a4a2b9db8372_404.png',
     email: 'blabla',
     logout: () => {},
     name: 'Ivan',

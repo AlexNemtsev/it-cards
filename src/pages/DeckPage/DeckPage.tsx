@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
@@ -18,22 +17,22 @@ export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [search, setSearch] = useState('');
-
-  // console.log(searchParams);
-  // console.log(searchParams.get('page'));
-  // searchParams.set('question', '%D0%96%D0%B8');
-  // searchParams.set('question', 'Жи');
-  //
-  // console.log(searchParams.get('question'));
-
-  // setSearchParams(searchParams);
-  // const { data: decks } = useGetDecksQuery();
   const { data: deck } = useGetDeckQuery(deckId);
 
-  // const argsForUseGetCardsQuery = { deckId, ...searchParams };
+  const question = searchParams.get('question') || '';
+  const currentPage = Number(searchParams.get('currentPage')) || 1;
+  const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
+  const orderBy = `${searchParams.get('key') || 'updated'}-${
+    searchParams.get('direction') || 'asc'
+  }`;
 
-  const { data: cards } = useGetCardsQuery({ deckId, question: search });
+  const { data: cards } = useGetCardsQuery({
+    currentPage,
+    deckId,
+    itemsPerPage,
+    orderBy,
+    question,
+  });
 
   const pagination = cards?.pagination ?? {
     currentPage: 1,
@@ -42,7 +41,14 @@ export const DeckPage = () => {
     totalPages: 1,
   };
 
-  // console.log(deck);
+  const onValueChange = (value: string) => {
+    searchParams.set('question', value);
+    setSearchParams(searchParams);
+  };
+  const onClearInput = () => {
+    searchParams.set('question', '');
+    setSearchParams(searchParams);
+  };
 
   return (
     <PageContainer className={s.container}>
@@ -54,10 +60,11 @@ export const DeckPage = () => {
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
       <Input
         containerClassName={s.input}
-        onValueChange={setSearch}
+        onClearInput={onClearInput}
+        onValueChange={onValueChange}
         placeholder="Search by question"
         type="search"
-        value={search}
+        value={question}
       />
       {cards && <CardsTable data={cards.items} />}
       <Pagination

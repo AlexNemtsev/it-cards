@@ -41,13 +41,27 @@ export const DeckPage = () => {
     totalPages: 1,
   };
 
-  const onValueChange = (value: string) => {
-    searchParams.set('question', value);
+  const utilSetSearchParams = (key: string, value: string) => {
+    searchParams.set(key, value);
     setSearchParams(searchParams);
   };
-  const onClearInput = () => {
-    searchParams.set('question', '');
-    setSearchParams(searchParams);
+
+  const onInputChange = (value: string) => {
+    utilSetSearchParams('question', value);
+    utilSetSearchParams('currentPage', '1');
+  };
+  const onInputClear = () => {
+    utilSetSearchParams('question', '');
+    utilSetSearchParams('currentPage', '1');
+  };
+
+  const onPaginationChange = (value: number) => {
+    utilSetSearchParams('currentPage', value.toString());
+  };
+
+  const onItemsPerPageChange = (value: string) => {
+    utilSetSearchParams('itemsPerPage', value);
+    utilSetSearchParams('currentPage', '1');
   };
 
   return (
@@ -60,8 +74,8 @@ export const DeckPage = () => {
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
       <Input
         containerClassName={s.input}
-        onClearInput={onClearInput}
-        onValueChange={onValueChange}
+        onClearInput={onInputClear}
+        onValueChange={onInputChange}
         placeholder="Search by question"
         type="search"
         value={question}
@@ -72,8 +86,8 @@ export const DeckPage = () => {
         currentPage={pagination.currentPage}
         itemsPerPage={pagination.itemsPerPage.toString()}
         itemsPerPageList={['10', '20', '30', '50', '100']}
-        onItemsPerPageChange={() => {}}
-        onValueChange={() => {}}
+        onItemsPerPageChange={onItemsPerPageChange}
+        onValueChange={onPaginationChange}
         totalPages={pagination.totalPages}
       />
     </PageContainer>

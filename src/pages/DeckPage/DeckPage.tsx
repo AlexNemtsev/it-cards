@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { Routes } from '@/shared/constants/routes';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { PageContainer } from '@/shared/ui/PageContainer';
@@ -25,6 +27,7 @@ export const DeckPage = () => {
   const orderBy = `${searchParams.get('key') || 'updated'}-${
     searchParams.get('direction') || 'asc'
   }`;
+  const [search, setSearch] = useState(question);
 
   const { data: cards } = useGetCardsQuery({
     currentPage,
@@ -46,10 +49,15 @@ export const DeckPage = () => {
     setSearchParams(searchParams);
   };
 
-  const onInputChange = (value: string) => {
+  const debouncedInputChange = useDebounce((value: string) => {
     utilSetSearchParams('question', value);
     utilSetSearchParams('currentPage', '1');
+  }, 800);
+  const onInputChange = (search: string) => {
+    setSearch(search);
+    debouncedInputChange(search);
   };
+
   const onInputClear = () => {
     utilSetSearchParams('question', '');
     utilSetSearchParams('currentPage', '1');
@@ -78,7 +86,7 @@ export const DeckPage = () => {
         onValueChange={onInputChange}
         placeholder="Search by question"
         type="search"
-        value={question}
+        value={search}
       />
       {cards && <CardsTable data={cards.items} />}
       <Pagination

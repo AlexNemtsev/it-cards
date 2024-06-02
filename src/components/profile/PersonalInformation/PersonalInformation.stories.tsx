@@ -8,19 +8,17 @@ import { httpHandlers } from '@/shared/storyes/httpHandlers';
 
 import { PersonalInformation } from './PersonalInformation';
 
-const avatarFile = new File([avatar], 'avatar.png');
-const formData = new FormData();
-
-formData.append('avatar', avatarFile);
-const avatarFromFile = formData.get('avatar');
-
-console.log('avatarFromFile=', avatarFromFile);
-const avatarUrl = URL.createObjectURL(avatarFile);
-
-console.log('avatarUrl', avatarUrl);
-const imgTag = `<img src="${avatarUrl}" alt="Avatar">`;
-
-console.log('imgTag=', imgTag);
+// const avatarFile = new File([avatar], 'avatar.png');
+// const formData = new FormData();
+//
+// formData.append('avatar', avatarFile);
+// const avatarFromFile = formData.get('avatar');
+//
+// console.log('avatarFromFile=', avatarFromFile);
+// const avatarUrl = URL.createObjectURL(avatarFile);
+//
+// console.log('avatarUrl', avatarUrl);
+// const imgTag = `<img src="${avatarUrl}" alt="Avatar">`;
 
 const meta = {
   component: PersonalInformation,
@@ -33,12 +31,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Opened: Story = {
   args: {
-    avatar: 'http://localhost:6006/3450e70c-df2e-449e-a092-44a32e4b0cf8',
+    avatar,
     // avatar:
     //   'https://staging-it-incubator.s3.eu-central-1.amazonaws.com/flashcards/Image/8fe3aca5-d273-4122-b041-a4a2b9db8372_404.png',
-    email: 'blabla',
+    email: 'bla@bla.bla',
     logout: () => {},
-    name: 'Ivan',
+    name: 'Ivan I',
     onSubmit: () => {},
     setAvatar: () => {},
   },
@@ -47,12 +45,14 @@ export const Opened: Story = {
       handlers: httpHandlers,
     },
   },
+  render: args => {
+    return <PersonalInformationWrapper {...args} />;
+  },
 };
-console.log(httpHandlers);
 export const ExampleWithAvatar: Story = {
   args: {
     avatar: avatar,
-    email: 'qw@qw.qw',
+    email: 'qw@qw.qw1',
     logout: () => {},
     name: 'Ivan',
     onSubmit: () => {},
@@ -64,7 +64,7 @@ export const ExampleWithAvatar: Story = {
 };
 export const ExampleWithoutAvatar: Story = {
   args: {
-    email: 'qw@qw.qw',
+    email: 'qw@qw.qw2',
     logout: () => {},
     name: 'Petr',
     onSubmit: () => {},
@@ -77,11 +77,12 @@ export const ExampleWithoutAvatar: Story = {
 
 type Props = {
   avatar?: string;
+  email: string;
   name: string;
 };
 const PersonalInformationWrapper = (props: Props) => {
-  const { avatar, name } = props;
-  const [ava, setAva] = useState(avatar);
+  const { avatar, email, name } = props;
+  // const [ava, setAva] = useState(avatar);
   const [nickname, setNickname] = useState(name);
 
   const onSubmitHandler = (data: FormValues) => {
@@ -94,13 +95,12 @@ const PersonalInformationWrapper = (props: Props) => {
 
   return (
     <PersonalInformation
-      avatar={ava}
-      email="qw@qw.qw"
+      avatar={avatar}
+      email={email}
       logout={onLogoutHandler}
       name={nickname}
       onSubmit={onSubmitHandler}
-      //@ts-ignore
-      setAvatar={setAva}
+      setAvatar={() => {}}
     />
   );
 };

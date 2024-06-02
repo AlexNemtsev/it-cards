@@ -1,3 +1,35 @@
 .table {
   width: 100%;
 }
+
+.questionCell {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.questionImg {
+  display: inline;
+  width: 118px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.gradeCell {
+  display: flex;
+  gap: 20px;
+}
+
+.buttonsWrapper {
+  flex-shrink: 0;
+}
+
+.cardButton {
+  cursor: pointer;
+  height: 16px;
+  margin-left: 10px;
+
+  svg {
+    fill: currentcolor;
+  }
+}

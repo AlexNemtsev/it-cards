@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
+import MyDeckDropdownMenu from '@/pages/DeckPage/ui/MyDeckDropdownMenu/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Button } from '@/shared/ui/Button';
@@ -16,6 +17,10 @@ import { CardsTable } from '@/widgets/Deck/CardsTable';
 import s from './DeckPage.module.scss';
 
 export const DeckPage = () => {
+  // сравнение userId колоды и userId из Me позволяет определить, создана ли колода пользователем
+  // надо решить, передача пропсами или Me-запрос в компоненте
+  const isYourDeck = true;
+
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -77,7 +82,12 @@ export const DeckPage = () => {
       <BackToLink to="/decks">Back to Decks List</BackToLink>
       <div className={s.deckTitle}>
         <Typography.H1>{deck?.name}</Typography.H1>
-        <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
+        <MyDeckDropdownMenu />
+        {isYourDeck ? (
+          <Button onClick={() => {}}>Add New Card</Button>
+        ) : (
+          <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
+        )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
       <Input

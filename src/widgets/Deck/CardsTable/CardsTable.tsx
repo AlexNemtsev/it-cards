@@ -1,6 +1,11 @@
+import { useParams } from 'react-router-dom';
+
+import { useMeQuery } from '@/entities/auth/api/auth';
 import { PaginatedCardsWithGrade } from '@/entities/card/types';
+import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
+import { Routes } from '@/shared/constants/routes';
 import { Rating } from '@/shared/ui/Rating';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '@/shared/ui/Table';
 import { Typography } from '@/shared/ui/Typography';
@@ -13,9 +18,10 @@ type Props = {
 
 export const CardsTable = (props: Props) => {
   const { data } = props;
-  // сравнение userId колоды и userId из Me позволяет определить, создана ли колода пользователем
-  // надо решить, передача пропсами или Me-запрос в компоненте
-  const isYourDeck = true;
+  const { [Routes.DECK_ID]: deckId = '' } = useParams();
+  const { data: meData } = useMeQuery();
+  const { data: deck } = useGetDeckQuery(deckId);
+  const isYourDeck = meData?.id === deck?.userId;
 
   return (
     <Table className={s.table}>
@@ -62,7 +68,7 @@ export const CardsTable = (props: Props) => {
                   </Typography.Body2>
                 </TableCell>
                 <TableCell>
-                  <Typography.Body2 className={s.gradeCell}>
+                  <div className={s.gradeCell}>
                     <Rating rating={item.grade} />
                     {isYourDeck && (
                       <div className={s.buttonsWrapper}>
@@ -74,7 +80,7 @@ export const CardsTable = (props: Props) => {
                         </button>
                       </div>
                     )}
-                  </Typography.Body2>
+                  </div>
                 </TableCell>
               </TableRow>
             );

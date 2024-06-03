@@ -1,5 +1,6 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 
+import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { Search } from '@/entities/filters/ui/Search';
@@ -13,24 +14,16 @@ import { Typography } from '@/shared/ui/Typography';
 import { CardsTable } from '@/widgets/Deck/CardsTable';
 
 import s from './DeckPage.module.scss';
-
 export const DeckPage = () => {
-  // сравнение userId колоды и userId из Me позволяет определить, создана ли колода пользователем
-  // надо решить, передача пропсами или Me-запрос в компоненте
-  const isYourDeck = true;
-
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-
   const { data: deck } = useGetDeckQuery(deckId);
-
+  const { data: meData } = useMeQuery();
+  const isYourDeck = meData?.id === deck?.userId;
   const question = searchParams.get('question') || '';
   const currentPage = Number(searchParams.get('currentPage')) || 1;
   const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
-  const orderBy = `${searchParams.get('key') || 'updated'}-${
-    searchParams.get('direction') || 'asc'
-  }`;
-
+  const orderBy = `updated-${searchParams.get('direction') || 'asc'}`;
   const { data: cards } = useGetCardsQuery({
     currentPage,
     deckId,
@@ -38,14 +31,12 @@ export const DeckPage = () => {
     orderBy,
     question,
   });
-
   const pagination = cards?.pagination ?? {
     currentPage: 1,
     itemsPerPage: 0,
     totalItems: 0,
     totalPages: 1,
   };
-
   const utilSetSearchParams = (key: string, value: string) => {
     searchParams.set(key, value);
     setSearchParams(searchParams);
@@ -74,7 +65,7 @@ export const DeckPage = () => {
       <BackToLink to="/decks">Back to Decks List</BackToLink>
       <div className={s.deckTitle}>
         <Typography.H1>{deck?.name}</Typography.H1>
-        <MyDeckDropdownMenu />
+        {isYourDeck && <MyDeckDropdownMenu />}
         {isYourDeck ? (
           <Button onClick={() => {}}>Add New Card</Button>
         ) : (

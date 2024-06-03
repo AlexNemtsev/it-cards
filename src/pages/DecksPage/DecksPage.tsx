@@ -14,7 +14,7 @@ import { NewDeckForm } from './NewDeckForm';
 import { NewDeckTitle } from './ui/NewDeckTitle';
 import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
 
-const VALUES = ['10', '20', '30', '50', '100'];
+const VARIANTS_ITEMS_PER_PAGE = ['10', '20', '30', '50', '100'];
 
 export type TabSwitcherStatesType = {
   [key: string]: string;
@@ -146,7 +146,7 @@ export const DecksPage = () => {
               <Pagination
                 currentPage={currentPage || 1}
                 itemsPerPage={String(itemsPerPage) || '10'}
-                itemsPerPageList={VALUES}
+                itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
                 onItemsPerPageChange={getItemsPerPage}
                 onValueChange={getCurrentPage}
                 totalPages={decks?.pagination.totalPages || 1}

@@ -2,7 +2,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
-import Search from '@/entities/filters/ui/Search';
+import { Search } from '@/entities/filters/ui/Search';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import MyDeckDropdownMenu from '@/pages/DeckPage/ui/MyDeckDropdownMenu/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';

@@ -9,10 +9,9 @@ type SearchProps = {
   error?: string;
   label?: string;
   onClearInput?: () => void;
-  onValueChange?: (value: string) => void;
 } & ComponentPropsWithoutRef<'input'>;
 
-const Search = (props: SearchProps) => {
+export const Search = (props: SearchProps) => {
   const { changeSearchValue, ...restProps } = props;
   const [search, setSearch] = useState('');
 
@@ -26,5 +25,3 @@ const Search = (props: SearchProps) => {
 
   return <Input onValueChange={onInputChange} value={search} {...restProps} />;
 };
-
-export default Search;

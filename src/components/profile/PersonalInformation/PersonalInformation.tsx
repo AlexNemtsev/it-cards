@@ -6,7 +6,6 @@ import {
 } from '@/components/profile/PersonalInformation/EditNickNameForm/EditNickNameForm';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { LogOutIcon } from '@/shared/assets/icons/LogOutIcon';
-import unknownAvatar from '@/shared/assets/img/unknown-avatar.png';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
@@ -23,7 +22,7 @@ type Props = {
   setAvatar: (avatar: unknown) => void;
 };
 export const PersonalInformation = (props: Props) => {
-  const { avatar = unknownAvatar, email, logout, name, onSubmit, setAvatar } = props;
+  const { avatar, email, logout, name, onSubmit, setAvatar } = props;
 
   const [isEditMode, setIsEditMode] = useState(false);
 

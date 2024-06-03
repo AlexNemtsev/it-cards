@@ -4,7 +4,8 @@ import '@fontsource/roboto/700.css';
 
 import type { Preview } from '@storybook/react';
 import { decorators } from './decorators';
-
+import { initialize, mswLoader } from 'msw-storybook-addon';
+initialize();
 const preview: Preview = {
   decorators,
   parameters: {
@@ -29,6 +30,7 @@ const preview: Preview = {
       ],
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;

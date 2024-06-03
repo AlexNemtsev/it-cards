@@ -110,14 +110,6 @@ export const DecksPage = () => {
     setSearchParams(searchParams);
   };
 
-  if (isError) {
-    return <div>Error...</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <section className={s.section}>
       <div className={s.header}>
@@ -139,21 +131,30 @@ export const DecksPage = () => {
         tabSwitcherStates={tabSwitcherStates}
       />
       <div className="decks">
-        {decks?.items.length ? (
-          <>
-            <DecksTable decks={decks} getSortedLastedUpdated={getSortedLastedUpdated} sort={sort} />
-            <Pagination
-              currentPage={currentPage || 1}
-              itemsPerPage={String(itemsPerPage) || '10'}
-              itemsPerPageList={VALUES}
-              onItemsPerPageChange={getItemsPerPage}
-              onValueChange={getCurrentPage}
-              totalPages={decks?.pagination.totalPages || 1}
-            />
-          </>
+        {isError && <div>Error...</div>}
+        {isLoading ? (
+          <div>Loading...</div>
         ) : (
-          <div>Empty</div>
+          decks &&
+          decks.items.length > 0 && (
+            <>
+              <DecksTable
+                decks={decks}
+                getSortedLastedUpdated={getSortedLastedUpdated}
+                sort={sort}
+              />
+              <Pagination
+                currentPage={currentPage || 1}
+                itemsPerPage={String(itemsPerPage) || '10'}
+                itemsPerPageList={VALUES}
+                onItemsPerPageChange={getItemsPerPage}
+                onValueChange={getCurrentPage}
+                totalPages={decks?.pagination.totalPages || 1}
+              />
+            </>
+          )
         )}
+        {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
       </div>
     </section>
   );

@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
+import Search from '@/entities/filters/ui/Search';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import MyDeckDropdownMenu from '@/pages/DeckPage/ui/MyDeckDropdownMenu/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';
-import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Button } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
 import { PageContainer } from '@/shared/ui/PageContainer';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
@@ -32,7 +30,6 @@ export const DeckPage = () => {
   const orderBy = `${searchParams.get('key') || 'updated'}-${
     searchParams.get('direction') || 'asc'
   }`;
-  const [search, setSearch] = useState(question);
 
   const { data: cards } = useGetCardsQuery({
     currentPage,
@@ -54,15 +51,10 @@ export const DeckPage = () => {
     setSearchParams(searchParams);
   };
 
-  const debouncedInputChange = useDebounce((value: string) => {
+  const changeSearchValue = (value: string) => {
     utilSetSearchParams('question', value);
     utilSetSearchParams('currentPage', '1');
-  }, 800);
-  const onInputChange = (search: string) => {
-    setSearch(search);
-    debouncedInputChange(search);
   };
-
   const onInputClear = () => {
     utilSetSearchParams('question', '');
     utilSetSearchParams('currentPage', '1');
@@ -90,13 +82,13 @@ export const DeckPage = () => {
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
-      <Input
+
+      <Search
+        changeSearchValue={changeSearchValue}
         containerClassName={s.input}
         onClearInput={onInputClear}
-        onValueChange={onInputChange}
         placeholder="Search by question"
         type="search"
-        value={search}
       />
       {cards && <CardsTable data={cards.items} />}
       <Pagination

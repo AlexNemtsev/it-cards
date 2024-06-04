@@ -5,7 +5,6 @@ import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { Search } from '@/entities/filters/ui/Search';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
-import MyDeckDropdownMenu from '@/pages/DeckPage/ui/MyDeckDropdownMenu/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { PageContainer } from '@/shared/ui/PageContainer';
@@ -14,6 +13,7 @@ import { Typography } from '@/shared/ui/Typography';
 import { CardsTable } from '@/widgets/Deck/CardsTable';
 
 import s from './DeckPage.module.scss';
+
 export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -65,7 +65,7 @@ export const DeckPage = () => {
       <BackToLink to="/decks">Back to Decks List</BackToLink>
       <div className={s.deckTitle}>
         <Typography.H1>{deck?.name}</Typography.H1>
-        {isYourDeck && <MyDeckDropdownMenu />}
+        {isYourDeck && <span>Dropdown will be add later</span>}
         {isYourDeck ? (
           <Button onClick={() => {}}>Add New Card</Button>
         ) : (

@@ -4,11 +4,11 @@ import { useMeQuery } from '@/entities/auth/api/auth';
 import { Routes } from '@/shared/constants/routes';
 
 export const PrivateRoutes = () => {
-  const { data, isLoading } = useMeQuery();
+  const { isLoading, isSuccess } = useMeQuery();
 
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
 
-  return data ? <Outlet /> : <Navigate to={Routes.LOGIN} />;
+  return isSuccess ? <Outlet /> : <Navigate to={Routes.LOGIN} />;
 };

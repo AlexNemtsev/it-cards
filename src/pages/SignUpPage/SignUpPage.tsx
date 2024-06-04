@@ -36,7 +36,7 @@ export const SignUpPage = () => {
 
   return (
     <PageContainer>
-      <SignUpForm onSubmit={onSubmitHandler} />;
+      <SignUpForm onSubmit={onSubmitHandler} />
     </PageContainer>
   );
 };

@@ -14,13 +14,11 @@ export const authApi = flashcardsApi.injectEndpoints({
     return {
       login: builder.mutation<LoginResponse, LoginRequest>({
         invalidatesTags: ['Me'],
-        query: args => {
-          return {
-            body: args,
-            method: 'POST',
-            url: '/v1/auth/login',
-          };
-        },
+        query: body => ({
+          body,
+          method: 'POST',
+          url: '/v1/auth/login',
+        }),
       }),
       logout: builder.mutation<void, void>({
         query: () => ({
@@ -33,25 +31,36 @@ export const authApi = flashcardsApi.injectEndpoints({
         query: () => '/v1/auth/me',
       }),
       recoverPassword: builder.mutation<RecoverPasswordResponse, RecoverPasswordRequest>({
-        query: args => {
+        query: body => {
           return {
-            body: args,
+            body,
             method: 'POST',
             url: '/v1/auth/recover-password',
           };
         },
       }),
       signUp: builder.mutation<SignUpResponse, SignUpRequest>({
-        query: args => {
-          return {
-            body: args,
-            method: 'POST',
-            url: '/v1/auth/sign-up',
-          };
-        },
+        query: body => ({
+          body,
+          method: 'POST',
+          url: '/v1/auth/sign-up',
+        }),
+      }),
+      updateUserData: builder.mutation({
+        invalidatesTags: ['Me'],
+        query: body => ({
+          body,
+          method: 'PATCH',
+          url: '/v1/auth/me',
+        }),
       }),
     };
   },
 });
 
-export const { useMeQuery, useRecoverPasswordMutation, useSignUpMutation } = authApi;
+export const {
+  useMeQuery,
+  useRecoverPasswordMutation,
+  useSignUpMutation,
+  useUpdateUserDataMutation,
+} = authApi;

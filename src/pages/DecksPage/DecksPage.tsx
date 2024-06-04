@@ -127,7 +127,6 @@ export const DecksPage = () => {
         maxCards={maxCards}
         minCards={minCards}
         range={range}
-        search={search}
         tabSwitcherStates={tabSwitcherStates}
       />
       <div className="decks">

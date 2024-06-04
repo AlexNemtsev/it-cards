@@ -4,7 +4,7 @@ import { useMeQuery } from '@/entities/auth/api/auth';
 import { IncubatorLogo } from '@/shared/assets/icons/IncubatorLogo';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
-import { UserMenu } from '@/shared/ui/Layout/UserMenu';
+import { UserMenu } from '@/shared/ui/Layout/UserMenu/UserMenu';
 
 import s from './Layout.module.scss';
 
@@ -20,7 +20,7 @@ export const Layout = () => {
         {isSuccess ? (
           <UserMenu data={data} />
         ) : (
-          <Button as={Link} to={Routes.LOGIN} variant="secondary">
+          <Button as={Link} to={Routes.MAIN} variant="secondary">
             Sign in
           </Button>
         )}

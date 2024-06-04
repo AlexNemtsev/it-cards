@@ -17,6 +17,5 @@
 .main {
   display: flex;
   justify-content: center;
-  padding-top: var(--header-height);
-  padding-inline: 24px;
+  padding: var(--header-height) 24px 0;
 }

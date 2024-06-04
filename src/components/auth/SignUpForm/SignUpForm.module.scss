@@ -34,13 +34,15 @@
   display: block;
   width: max-content;
   margin: 0 auto;
+  color: var(--color-accent-500);
 
   &:focus-visible {
     border-radius: 2px;
     outline: 1px solid var(--color-info-500);
   }
 
-  &:visited {
+  &:visited,
+  &:active {
     color: var(--color-accent-500);
   }
 }

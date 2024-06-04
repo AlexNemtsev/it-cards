@@ -8,7 +8,7 @@ import { z } from 'zod';
 import s from './EditNickNameForm.module.scss';
 
 const PersonalInformationScheme = z.object({
-  nickname: z.string().min(1),
+  name: z.string().min(1),
 });
 
 export type FormValues = z.infer<typeof PersonalInformationScheme>;
@@ -18,7 +18,7 @@ type Props = {
 export const EditNickNameForm = ({ onSubmit }: Props) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      nickname: '',
+      name: '',
     },
     resolver: zodResolver(PersonalInformationScheme),
   });
@@ -30,7 +30,7 @@ export const EditNickNameForm = ({ onSubmit }: Props) => {
         containerClassName={s.input}
         control={control}
         label="Nickname"
-        name="nickname"
+        name="name"
       />
       <Button fullWidth type="submit">
         Save Changes

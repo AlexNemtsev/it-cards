@@ -4,6 +4,7 @@ import '@fontsource/roboto/700.css';
 
 import type { Preview } from '@storybook/react';
 import { decorators } from './decorators';
+
 const preview: Preview = {
   decorators,
   parameters: {

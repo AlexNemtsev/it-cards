@@ -23,7 +23,7 @@ type Props = {
 
 export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, handleSubmit, register } = useForm<NewDeckFormValues>({
+  const { control, handleSubmit, register, reset } = useForm<NewDeckFormValues>({
     defaultValues: {
       file: null,
       pack: '',
@@ -38,7 +38,7 @@ export const NewDeckForm = (props: Props) => {
   });
 
   return (
-    <form className={s.form} onSubmit={onSubmitNewDeck}>
+    <form className={s.form}>
       <InputWithController
         containerClassName={s.input}
         control={control}
@@ -64,10 +64,10 @@ export const NewDeckForm = (props: Props) => {
         name="private"
       />
       <div className={s.buttons}>
-        <Button className={s.cancelButton} type="reset" variant="secondary">
+        <Button className={s.cancelButton} onClick={() => reset()} type="reset" variant="secondary">
           Cancel
         </Button>
-        <Button className={s.newDeckButton} type="submit" variant="primary">
+        <Button className={s.newDeckButton} onClick={onSubmitNewDeck} type="submit">
           Add New Pack
         </Button>
       </div>

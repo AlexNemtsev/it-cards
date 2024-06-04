@@ -1,12 +1,11 @@
+import { Search } from '@/entities/filters/ui/Search';
+import { SelectCardsNumber } from '@/entities/filters/ui/SelectCardsNumber/SelectCardsNumber';
 import { TabSwitcherStatesType } from '@/pages/DecksPage/DecksPage';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
-import { Slider } from '@/shared/ui/Slider';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
 
 import s from './DecksFilters.module.scss';
-
-import { Search } from '../../../entities/filters/ui/Search';
 
 type Props = {
   clearFilters: () => void;
@@ -56,7 +55,12 @@ export const DecksFilters = (props: Props) => {
           },
         ]}
       />
-      <Slider max={maxCards} min={minCards} onValueChange={getNumberOfCards} value={range} />
+      <SelectCardsNumber
+        getNumberOfCards={getNumberOfCards}
+        max={maxCards}
+        min={minCards}
+        range={range}
+      />
       <Button className={s.button} onClick={clearFilters} variant="secondary">
         <Delete />
         Clear Filter

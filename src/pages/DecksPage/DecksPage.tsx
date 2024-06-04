@@ -2,17 +2,13 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
-import { Modal } from '@/shared/ui/Modal';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
+import { DecksModal } from '@/widgets/decks/DecksModal';
 import { DecksTable } from '@/widgets/decks/DecksTable';
 
 import s from './DecksPage.module.scss';
-
-import { NewDeckForm } from './NewDeckForm';
-import { NewDeckTitle } from './ui/NewDeckTitle';
-import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
 
 const VARIANTS_ITEMS_PER_PAGE = ['10', '20', '30', '50', '100'];
 
@@ -114,9 +110,7 @@ export const DecksPage = () => {
     <section className={s.section}>
       <div className={s.header}>
         <Typography.H1>Decks List</Typography.H1>
-        <Modal title={<NewDeckTitle />} trigger={<OpenNewDeckModalButton />}>
-          <NewDeckForm onSubmit={data => alert(data)} />
-        </Modal>
+        <DecksModal />
       </div>
       <DecksFilters
         clearFilters={clearFilters}

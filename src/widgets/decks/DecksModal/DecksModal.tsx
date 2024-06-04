@@ -7,7 +7,7 @@ import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
 export const DecksModal = () => {
   return (
     <Modal title={<NewDeckTitle />} trigger={<OpenNewDeckModalButton />}>
-      <NewDeckForm onSubmit={data => console.log(data)} />
+      <NewDeckForm onSubmit={data => alert(data)} />
     </Modal>
   );
 };

@@ -5,6 +5,7 @@ import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { Search } from '@/entities/filters/ui/Search';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
+import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { PageContainer } from '@/shared/ui/PageContainer';
@@ -70,8 +71,12 @@ export const DeckPage = () => {
     <PageContainer className={s.container}>
       <BackToLink to="/decks">Back to Decks List</BackToLink>
       <div className={s.deckTitle}>
-        <Typography.H1>{deck?.name}</Typography.H1>
-        {isYourDeck && <span>Dropdown will be add later</span>}
+        <div className={s.dropdownWrapper}>
+          <Typography.H1>{deck?.name}</Typography.H1>
+
+          {isYourDeck && <MyDeckDropdownMenu />}
+        </div>
+
         {isYourDeck ? (
           <Button onClick={() => {}}>Add New Card</Button>
         ) : (

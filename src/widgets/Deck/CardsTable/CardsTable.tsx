@@ -49,15 +49,19 @@ export const CardsTable = (props: Props) => {
           <TableHeadCell className={s.clickable} onClick={sortByQuestion}>
             <Typography.Subtitle2>
               Question
-              {isQuestionDesc && <ChevronDownIcon />}
-              {isQuestionAsc && <ChevronUpIcon />}
+              <span className={s.arrowContainer}>
+                {isQuestionDesc && <ChevronDownIcon />}
+                {isQuestionAsc && <ChevronUpIcon />}
+              </span>
             </Typography.Subtitle2>
           </TableHeadCell>
           <TableHeadCell className={s.clickable} onClick={sortByAnswer}>
             <Typography.Subtitle2>
               Answer
-              {isAnswerDesc && <ChevronDownIcon />}
-              {isAnswerAsc && <ChevronUpIcon />}
+              <span className={s.arrowContainer}>
+                {isAnswerDesc && <ChevronDownIcon />}
+                {isAnswerAsc && <ChevronUpIcon />}
+              </span>
             </Typography.Subtitle2>
           </TableHeadCell>
           <TableHeadCell className={s.clickable} onClick={sortByUpdated}>

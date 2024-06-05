@@ -23,9 +23,7 @@ export const DeckPage = () => {
   const question = searchParams.get('question') || '';
   const currentPage = Number(searchParams.get('currentPage')) || 1;
   const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
-  const orderBy = `${searchParams.get('sort') || 'updated'}-${
-    searchParams.get('direction') || 'desc'
-  }`;
+  const orderBy = searchParams.get('orderBy') || 'updated-desc';
 
   const { data: cards } = useGetCardsQuery({
     currentPage,
@@ -64,6 +62,10 @@ export const DeckPage = () => {
     utilSetSearchParams('currentPage', '1');
   };
 
+  const onOrderByChange = (orderBy: string) => {
+    utilSetSearchParams('orderBy', orderBy);
+  };
+
   return (
     <PageContainer className={s.container}>
       <BackToLink to="/decks">Back to Decks List</BackToLink>
@@ -85,7 +87,9 @@ export const DeckPage = () => {
         placeholder="Search by question"
         type="search"
       />
-      {cards && <CardsTable data={cards.items} />}
+      {cards && (
+        <CardsTable data={cards.items} orderByCallBack={onOrderByChange} orderByKey={orderBy} />
+      )}
       <Pagination
         className={s.pagination}
         currentPage={pagination.currentPage}

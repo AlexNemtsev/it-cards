@@ -23,7 +23,10 @@ export const DeckPage = () => {
   const question = searchParams.get('question') || '';
   const currentPage = Number(searchParams.get('currentPage')) || 1;
   const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
-  const orderBy = `updated-${searchParams.get('direction') || 'asc'}`;
+  const orderBy = `${searchParams.get('sort') || 'updated'}-${
+    searchParams.get('direction') || 'desc'
+  }`;
+
   const { data: cards } = useGetCardsQuery({
     currentPage,
     deckId,
@@ -31,6 +34,7 @@ export const DeckPage = () => {
     orderBy,
     question,
   });
+
   const pagination = cards?.pagination ?? {
     currentPage: 1,
     itemsPerPage: 0,

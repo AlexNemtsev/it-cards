@@ -4,6 +4,7 @@ import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { Search } from '@/entities/filters/ui/Search';
+import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';
@@ -33,7 +34,6 @@ export const DeckPage = () => {
     orderBy,
     question,
   });
-
   const pagination = cards?.pagination ?? {
     currentPage: 1,
     itemsPerPage: 0,
@@ -44,7 +44,6 @@ export const DeckPage = () => {
     searchParams.set(key, value);
     setSearchParams(searchParams);
   };
-
   const changeSearchValue = (value: string) => {
     utilSetSearchParams('question', value);
     utilSetSearchParams('currentPage', '1');
@@ -53,16 +52,13 @@ export const DeckPage = () => {
     utilSetSearchParams('question', '');
     utilSetSearchParams('currentPage', '1');
   };
-
   const onPaginationChange = (value: number) => {
     utilSetSearchParams('currentPage', value.toString());
   };
-
   const onItemsPerPageChange = (value: string) => {
     utilSetSearchParams('itemsPerPage', value);
     utilSetSearchParams('currentPage', '1');
   };
-
   const onOrderByChange = (orderBy: string) => {
     utilSetSearchParams('orderBy', orderBy);
   };
@@ -73,18 +69,15 @@ export const DeckPage = () => {
       <div className={s.deckTitle}>
         <div className={s.dropdownWrapper}>
           <Typography.H1>{deck?.name}</Typography.H1>
-
           {isYourDeck && <MyDeckDropdownMenu />}
         </div>
-
         {isYourDeck ? (
-          <Button onClick={() => {}}>Add New Card</Button>
+          <AddNewCardModal />
         ) : (
           <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
-
       <Search
         changeSearchValue={changeSearchValue}
         containerClassName={s.input}

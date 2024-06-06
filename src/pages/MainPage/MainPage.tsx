@@ -9,7 +9,7 @@ export const MainPage = () => {
       <Link to={`${Routes.DECKS}/clr3b62x2051uzk2vxpvfbrbm`}>Колода</Link>
 
       {/*for qw@qw.qw*/}
-      {/*<Link to={`${Routes.DECKS}/clx0bf4ar02hao501h8t541th`}>Колода</Link>*/}
+      {/*<Link to={`${Routes.DECKS}/clx34f5fp03puo501nv25lbzc`}>Колода</Link>*/}
     </>
   );
 };

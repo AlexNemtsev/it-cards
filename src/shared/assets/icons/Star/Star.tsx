@@ -3,7 +3,7 @@ export const Star = () => {
     <svg
       fill="currentColor"
       height="16"
-      viewBox="0 0 16 16"
+      viewBox="0 0 24 24"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -13,11 +13,6 @@ export const Star = () => {
           fill="currentColor"
         />
       </g>
-      <defs>
-        <clipPath id="clip0_5928_5119">
-          <rect fill="white" height="16" width="16" />
-        </clipPath>
-      </defs>
     </svg>
   );
 };

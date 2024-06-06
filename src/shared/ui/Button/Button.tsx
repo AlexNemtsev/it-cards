@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ElementType, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ElementType } from 'react';
 
 import { clsx } from 'clsx';
 
@@ -8,9 +8,9 @@ type Props<T extends ElementType = 'button'> = {
   as?: T;
   fullWidth?: boolean;
   variant?: 'primary' | 'secondary';
-} & ComponentPropsWithRef<T>;
+} & ComponentPropsWithoutRef<T>;
 
-export const Button = forwardRef<HTMLButtonElement, Props>((props: Props, ref) => {
+export const Button = <T extends ElementType = 'button'>(props: Props<T>) => {
   const {
     as: Component = 'button',
     children,
@@ -29,8 +29,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props: Props, ref) =
   );
 
   return (
-    <Component className={classNames} ref={ref} {...rest}>
+    <Component className={classNames} {...rest}>
       {children}
     </Component>
   );
-});
+};

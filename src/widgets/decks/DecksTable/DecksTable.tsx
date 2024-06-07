@@ -1,7 +1,8 @@
 import { getDecksResponse } from '@/entities/deck/api/types';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
-import { formatDate } from '@/shared/lib/formDate';
+import { formatDate } from '@/shared/lib/formatDate';
+import { isDateValid } from '@/shared/lib/isDateValid';
 import { Table } from '@/shared/ui/Table';
 import { TableBody } from '@/shared/ui/Table/TableBody';
 import { TableCell } from '@/shared/ui/Table/TableCell';
@@ -38,8 +39,8 @@ export const DecksTable = (props: Props) => {
           <TableRow key={item.id}>
             <TableCell>{item.name}</TableCell>
             <TableCell>{item.cardsCount}</TableCell>
-            <TableCell>{formatDate(item.updated)}</TableCell>
-            <TableCell>{formatDate(item.created)}</TableCell>
+            <TableCell>{isDateValid(item.updated) && formatDate(item.updated)}</TableCell>
+            <TableCell>{isDateValid(item.created) && formatDate(item.created)}</TableCell>
             <TableCell>tools</TableCell>
           </TableRow>
         ))}

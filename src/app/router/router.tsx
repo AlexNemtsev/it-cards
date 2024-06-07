@@ -41,7 +41,6 @@ const publicRoutes: RouteObject[] = [
 ];
 
 const privateRoutes: RouteObject[] = [
-  {
     children: [{ element: <DecksPage />, path: Routes.DECKS }],
     element: <Layout />,
   },

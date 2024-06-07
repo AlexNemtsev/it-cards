@@ -1,24 +1,31 @@
-import { useNavigate } from 'react-router-dom';
-
 import { PersonalInformation } from '@/components/profile/PersonalInformation';
-import { useLogoutMutation } from '@/entities/auth/api/auth';
-import { Routes } from '@/shared/constants/routes';
+import { useMeQuery, useUpdateUserDataMutation } from '@/entities/auth/api/auth';
+import { useLogout } from '@/entities/auth/api/hooks';
+import { PageContainer } from '@/shared/ui/PageContainer';
 
 export const ProfilePage = () => {
-  const [logout] = useLogoutMutation();
-  const navigate = useNavigate();
+  const [logout] = useLogout();
+  const [updateUserData] = useUpdateUserDataMutation();
+  const { data } = useMeQuery();
 
   const logoutHandler = async () => {
     await logout();
-    await navigate(Routes.LOGIN);
+  };
+
+  const setAvatarHandler = (avatar: unknown) => {
+    updateUserData(avatar);
   };
 
   return (
-    <PersonalInformation
-      logout={logoutHandler}
-      name="asd"
-      onSubmit={() => {}}
-      setAvatar={() => {}}
-    />
+    <PageContainer>
+      <PersonalInformation
+        avatar={data?.avatar}
+        email={data?.email ?? ''}
+        logout={logoutHandler}
+        name={data?.name ?? ''}
+        onSubmit={updateUserData}
+        setAvatar={setAvatarHandler}
+      />
+    </PageContainer>
   );
 };

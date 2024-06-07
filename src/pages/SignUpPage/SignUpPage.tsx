@@ -3,7 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
 import { SignUpForm } from '@/components/auth/SignUpForm';
 import { SignUpFormValues } from '@/components/auth/SignUpForm/SignUpFormShema';
-import { useLoginMutation, useMeQuery, useSignUpMutation } from '@/entities/auth/api/auth';
+import { useMeQuery, useSignUpMutation } from '@/entities/auth/api/auth';
+import { useLogin } from '@/entities/auth/api/hooks';
 import { SignUpErrorResponse } from '@/entities/auth/api/types';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification, successNotification } from '@/shared/lib/notifications';
@@ -12,7 +13,7 @@ import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 export const SignUpPage = () => {
   const { data: useMeData } = useMeQuery();
   const [signUp] = useSignUpMutation();
-  const [login] = useLoginMutation();
+  const [login] = useLogin();
 
   if (useMeData) {
     return <Navigate to={Routes.DECKS} />;
@@ -25,7 +26,7 @@ export const SignUpPage = () => {
 
       const dataForLogin: LoginFormValues = { rememberMe: false, ...data };
 
-      await login(dataForLogin).unwrap();
+      login(dataForLogin);
     } catch (e) {
       const signUpError = e as SignUpErrorResponse;
 
@@ -35,7 +36,7 @@ export const SignUpPage = () => {
 
   return (
     <PageContainer>
-      <SignUpForm onSubmit={onSubmitHandler} />;
+      <SignUpForm onSubmit={onSubmitHandler} />
     </PageContainer>
   );
 };

@@ -4,8 +4,8 @@ import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
+import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
-import { DecksModal } from '@/widgets/decks/DecksModal';
 import { DecksTable } from '@/widgets/decks/DecksTable';
 
 import s from './DecksPage.module.scss';
@@ -110,7 +110,7 @@ export const DecksPage = () => {
     <section className={s.section}>
       <div className={s.header}>
         <Typography.H1>Decks List</Typography.H1>
-        <DecksModal />
+        <AddNewDeckModal />
       </div>
       <DecksFilters
         clearFilters={clearFilters}

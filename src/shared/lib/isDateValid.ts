@@ -1,5 +1,5 @@
 export const isDateValid = (date?: string) => {
-  const isNumber = date ? Date.parse(date) : false;
+  const parsedDate = date ? Date.parse(date) : false;
 
-  return !Number.isNaN(isNumber);
+  return !Number.isNaN(parsedDate);
 };

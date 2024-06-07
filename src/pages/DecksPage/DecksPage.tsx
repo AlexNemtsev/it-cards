@@ -63,6 +63,7 @@ export const DecksPage = () => {
     setSearchParams({});
   };
 
+  console.log('fine');
   const getValueSearch = (value: string) => {
     searchParams.set('search', value);
     setSearchParams(searchParams);

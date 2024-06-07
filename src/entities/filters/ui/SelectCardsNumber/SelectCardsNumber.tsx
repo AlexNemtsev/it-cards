@@ -2,22 +2,23 @@ import { useEffect, useState } from 'react';
 
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Slider } from '@/shared/ui/Slider';
+import { RangeValue } from '@/shared/ui/Slider/Slider';
 
 type Props = {
-  getNumberOfCards: (value: [number, number]) => void;
-  max: number | undefined;
-  min: number | undefined;
-  range: [number, number];
+  getNumberOfCards: (value: RangeValue) => void;
+  max?: number;
+  min?: number;
+  range: RangeValue;
 };
 
 export const SelectCardsNumber = (props: Props) => {
   const { getNumberOfCards, max, min, range } = props;
-  const [cardsNumber, setCardsNumber] = useState<[number, number]>([0, 0]);
+  const [cardsNumber, setCardsNumber] = useState<RangeValue>([0, 0]);
 
-  const debouncedSliderChange = useDebounce((value: [number, number]) => {
+  const debouncedSliderChange = useDebounce((value: RangeValue) => {
     getNumberOfCards(value);
   }, 800);
-  const onValueChange = (value: [number, number]) => {
+  const onValueChange = (value: RangeValue) => {
     setCardsNumber(value);
     debouncedSliderChange(value);
   };

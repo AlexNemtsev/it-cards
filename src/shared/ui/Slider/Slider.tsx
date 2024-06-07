@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 import s from './Slider.module.scss';
 
-type RangeValue = [number, number];
+export type RangeValue = [number, number];
 
 type RedefinedProps = {
   onValueChange?: (value: RangeValue) => void;

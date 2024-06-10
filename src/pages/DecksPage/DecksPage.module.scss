@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 50px;
+
+  border: 1px solid white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

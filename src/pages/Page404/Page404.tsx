@@ -13,7 +13,7 @@ export const Page404 = () => {
     <PageContainer className={s.page404} mt={126}>
       <img alt="404" className={s.img} src={img404} />
       <Typography.Body1 className={s.text}>Sorry! Page not found!</Typography.Body1>
-      <Button as={Link} to={Routes.MAIN}>
+      <Button as={Link} to={Routes.DECKS}>
         Back to home page
       </Button>
     </PageContainer>

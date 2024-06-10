@@ -65,7 +65,7 @@ export const DeckPage = () => {
 
   return (
     <PageContainer className={s.container}>
-      <BackToLink to="/decks">Back to Decks List</BackToLink>
+      <BackToLink to={Routes.DECKS}>Back to Decks List</BackToLink>
       <div className={s.deckTitle}>
         <div className={s.dropdownWrapper}>
           <Typography.H1>{deck?.name}</Typography.H1>

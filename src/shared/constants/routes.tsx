@@ -5,7 +5,6 @@ export const Routes = {
   EDIT_PROFILE: '/edit-profile',
   FORGOT_PASSWORD: '/recover-password',
   LOGIN: '/login',
-  MAIN: '/',
   PROFILE: '/profile',
   SIGN_UP: '/sign-up',
 };

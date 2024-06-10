@@ -1,4 +1,4 @@
-import { RouteObject, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
 import { DecksPage } from '@/pages/DecksPage';
@@ -31,27 +31,36 @@ const publicRoutes: RouteObject[] = [
         element: <SignUpPage />,
         path: Routes.SIGN_UP,
       },
-      {
-        element: <ProfilePage />,
-        path: Routes.PROFILE,
-      },
     ],
     element: <Layout />,
-    path: Routes.DECKS,
   },
 ];
+
+// const privateRoutes: RouteObject[] = [
+//   {
+//     children: [
+//       { element: <DecksPage />, path: Routes.DECKS },
+//       { element: <ProfilePage />, path: Routes.PROFILE },
+//       {
+//         element: <Page404 />,
+//         errorElement: <Page404 />,
+//         path: '*',
+//       },
+//     ],
+//     element: <Layout />,
+//   },
+// ];
 
 const privateRoutes: RouteObject[] = [
   {
     children: [
+      { element: <Navigate to={Routes.DECKS} />, index: true },
       { element: <DecksPage />, path: Routes.DECKS },
-      {
-        element: <Page404 />,
-        errorElement: <Page404 />,
-        path: '*',
-      },
+      { element: <ProfilePage />, path: Routes.PROFILE },
+      { element: <Page404 />, path: '*' },
     ],
     element: <Layout />,
+    path: '/',
   },
 ];
 

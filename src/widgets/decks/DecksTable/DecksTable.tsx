@@ -1,6 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import { getDecksResponse } from '@/entities/deck/api/types';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
+import { Routes } from '@/shared/constants/routes';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
 import { Table } from '@/shared/ui/Table';
@@ -37,7 +40,9 @@ export const DecksTable = (props: Props) => {
       <TableBody>
         {decks.items.map(item => (
           <TableRow key={item.id}>
-            <TableCell>{item.name}</TableCell>
+            <TableCell>
+              <Link to={`${Routes.DECKS}/${item.id}`}> {item.name}</Link>
+            </TableCell>
             <TableCell>{item.cardsCount}</TableCell>
             <TableCell>{isDateValid(item.updated) && formatDate(item.updated)}</TableCell>
             <TableCell>{isDateValid(item.created) && formatDate(item.created)}</TableCell>

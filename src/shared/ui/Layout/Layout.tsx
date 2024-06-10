@@ -20,7 +20,7 @@ export const Layout = () => {
         {isSuccess ? (
           <UserMenu data={data} />
         ) : (
-          <Button as={Link} to={Routes.MAIN} variant="secondary">
+          <Button as={Link} to={Routes.DECKS} variant="secondary">
             Sign in
           </Button>
         )}

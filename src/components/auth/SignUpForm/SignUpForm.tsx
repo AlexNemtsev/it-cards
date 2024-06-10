@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
+import { SignUpFormSchema, SignUpFormValues } from '@/components/auth/SignUpForm/SignUpFormShema';
 import { InputWithController } from '@/components/withControllers/InputWithController';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
@@ -8,9 +9,7 @@ import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import s from './SignUpForm.module.scss';
-
-import { SignUpFormSchema, SignUpFormValues } from './SignUpFormShema';
+import s from '@/components/auth/SignUpForm/SignUpForm.module.scss';
 
 type Props = {
   onSubmit: (data: Omit<SignUpFormValues, 'passwordConfirmation'>) => void;

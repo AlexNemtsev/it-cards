@@ -1,10 +1,10 @@
-import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
+import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
-import { DeckPage } from '@/pages/DeckPage';
+import { DecksPage } from '@/pages/DecksPage';
 import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage/ForgotPasswordPage';
 import { LoginPage } from '@/pages/LoginPage';
-import { MainPage } from '@/pages/MainPage';
+import { Page404 } from '@/pages/Page404';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { SignUpPage } from '@/pages/SignUpPage';
 import { Routes } from '@/shared/constants/routes';
@@ -37,16 +37,19 @@ const publicRoutes: RouteObject[] = [
       },
     ],
     element: <Layout />,
-    path: Routes.MAIN,
+    path: Routes.DECKS,
   },
 ];
 
 const privateRoutes: RouteObject[] = [
   {
     children: [
-      { element: <Navigate to={Routes.DECKS} />, path: Routes.MAIN },
-      { element: <MainPage />, path: Routes.DECKS },
-      { element: <DeckPage />, path: `${Routes.DECKS}/:${Routes.DECK_ID}` },
+      { element: <DecksPage />, path: Routes.DECKS },
+      {
+        element: <Page404 />,
+        errorElement: <Page404 />,
+        path: '*',
+      },
     ],
     element: <Layout />,
   },

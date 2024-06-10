@@ -16,7 +16,7 @@ export const SignUpPage = () => {
   const [login] = useLogin();
 
   if (useMeData) {
-    return <Navigate to={Routes.MAIN} />;
+    return <Navigate to={Routes.DECKS} />;
   }
   const onSubmitHandler = async (data: Omit<SignUpFormValues, 'passwordConfirmation'>) => {
     try {

@@ -13,7 +13,7 @@ export const LoginPage = () => {
   const [login] = useLogin();
 
   if (data) {
-    return <Navigate to={Routes.MAIN} />;
+    return <Navigate to={Routes.DECKS} />;
   }
 
   const onSubmitHandler = async (data: LoginFormValues) => {

@@ -4,6 +4,7 @@ import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
 import { DecksPage } from '@/pages/DecksPage';
 import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage/ForgotPasswordPage';
 import { LoginPage } from '@/pages/LoginPage';
+import { Page404 } from '@/pages/Page404';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { SignUpPage } from '@/pages/SignUpPage';
 import { Routes } from '@/shared/constants/routes';
@@ -42,7 +43,14 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    children: [{ element: <DecksPage />, path: Routes.DECKS }],
+    children: [
+      { element: <DecksPage />, path: Routes.DECKS },
+      {
+        element: <Page404 />,
+        errorElement: <Page404 />,
+        path: '*',
+      },
+    ],
     element: <Layout />,
   },
 ];

@@ -41,7 +41,10 @@ export const DecksTable = (props: Props) => {
         {decks.items.map(item => (
           <TableRow key={item.id}>
             <TableCell>
-              <Link to={`${Routes.DECKS}/${item.id}`}> {item.name}</Link>
+              <Link className={s.linkToDeck} to={`${Routes.DECKS}/${item.id}`}>
+                {' '}
+                {item.name}
+              </Link>
             </TableCell>
             <TableCell>{item.cardsCount}</TableCell>
             <TableCell>{isDateValid(item.updated) && formatDate(item.updated)}</TableCell>

@@ -53,11 +53,6 @@ const privateRoutes: RouteObject[] = [
     ],
     element: <Layout />,
   },
-  {
-    element: <Page404 />,
-    errorElement: <Page404 />,
-    path: '*',
-  },
 ];
 
 export const router = createBrowserRouter([

@@ -2,13 +2,13 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import { useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
-import { Search } from '@/entities/filters/ui/Search';
 import { useMeQuery } from '@/entities/user/api';
 import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
+import { DebouncedInput } from '@/shared/ui/DebouncedInput';
 import { PageContainer } from '@/shared/ui/PageContainer';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
@@ -78,7 +78,7 @@ export const DeckPage = () => {
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
-      <Search
+      <DebouncedInput
         changeSearchValue={changeSearchValue}
         containerClassName={s.input}
         onClearInput={onInputClear}

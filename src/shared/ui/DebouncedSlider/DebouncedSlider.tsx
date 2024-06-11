@@ -11,7 +11,7 @@ type Props = {
   range: RangeValue;
 };
 
-export const SelectCardsNumber = (props: Props) => {
+export const DebouncedSlider = (props: Props) => {
   const { getNumberOfCards, max, min, range } = props;
   const [cardsNumber, setCardsNumber] = useState<RangeValue>([0, 0]);
 

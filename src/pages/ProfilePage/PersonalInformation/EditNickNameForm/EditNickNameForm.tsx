@@ -12,6 +12,7 @@ const PersonalInformationScheme = z.object({
 });
 
 export type FormValues = z.infer<typeof PersonalInformationScheme>;
+
 type Props = {
   onSubmit: (data: FormValues) => void;
 };

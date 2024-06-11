@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Trigger } from '@/app/Layout/UserMenu/Trigger';
 import { Burger } from '@/shared/assets/icons/Burger/Burger';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
@@ -11,7 +12,6 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
-import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
 
 import DropdownProfileInfoStyles from './DropdownProfileInfo/DropdownProfileInfo.module.scss';

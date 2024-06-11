@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import { Trigger } from '@/app/Layout/UserMenu/Trigger';
 import { useLogout } from '@/entities/auth/api/hooks';
 import { BaseErrorResponse, MeResponse } from '@/entities/auth/api/types';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';
@@ -11,7 +12,6 @@ import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
-import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
 
 import s from './UserMenu.module.scss';

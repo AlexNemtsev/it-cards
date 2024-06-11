@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import { useUpdateUserDataMutation } from '@/entities/auth/api/auth';
+import { useUpdateUserDataMutation } from '@/entities/user/api';
 import { Edit } from '@/shared/assets/icons/Edit';
 
 import s from './UploadAvatarButton.module.scss';

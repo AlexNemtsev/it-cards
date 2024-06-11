@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { useMeQuery } from '@/entities/auth/api/auth';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
+import { useMeQuery } from '@/entities/user/api';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
 import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useMeQuery, useUpdateUserDataMutation } from '@/entities/auth/api/auth';
+import { useMeQuery, useUpdateUserDataMutation } from '@/entities/user/api';
+import { Avatar } from '@/entities/user/ui/Avatar';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
-import { Avatar } from '@/shared/ui/Avatar';
 import { Card } from '@/shared/ui/Card';
 import { Typography } from '@/shared/ui/Typography';
 
@@ -27,7 +27,7 @@ export const PersonalInformation = () => {
     <Card className={s.card}>
       <Typography.H1 className={s.title}>Personal Information</Typography.H1>
       <div className={s.avatarWrapper}>
-        <Avatar img={data?.avatar} size={96} />
+        <Avatar size={96} />
         <UploadAvatarButton />
       </div>
       {isEditMode ? (

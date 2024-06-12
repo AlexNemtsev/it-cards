@@ -47,6 +47,8 @@ export const CardsTable = (props: Props) => {
   const isAnswerAsc = orderByKey === 'answer-asc';
   const isUpdatedDesc = orderByKey === 'updated-desc';
   const isUpdatedAsc = orderByKey === 'updated-asc';
+  const isGradeDesc = orderByKey === 'grade-desc';
+  const isGradeAsc = orderByKey === 'grade-asc';
 
   const { data: cards } = useGetCardsQuery({
     currentPage,
@@ -65,11 +67,17 @@ export const CardsTable = (props: Props) => {
   const sortByQuestion = () => {
     orderByCallBack(orderByKey === 'question-desc' ? 'question-asc' : 'question-desc');
   };
+
   const sortByAnswer = () => {
     orderByCallBack(orderByKey === 'answer-desc' ? 'answer-asc' : 'answer-desc');
   };
+
   const sortByUpdated = () => {
     orderByCallBack(isUpdatedDesc ? 'updated-asc' : 'updated-desc');
+  };
+
+  const sortByGrade = () => {
+    orderByCallBack(orderByKey === 'grade-desc' ? 'grade-asc' : 'grade-desc');
   };
 
   return (
@@ -104,8 +112,14 @@ export const CardsTable = (props: Props) => {
                 </span>
               </Typography.Subtitle2>
             </TableHeadCell>
-            <TableHeadCell>
-              <Typography.Subtitle2>Grade</Typography.Subtitle2>
+            <TableHeadCell className={s.clickable} onClick={sortByGrade}>
+              <Typography.Subtitle2>
+                Grade
+                <span className={s.arrowContainer}>
+                  {isGradeDesc && <ChevronDownIcon />}
+                  {isGradeAsc && <ChevronUpIcon />}
+                </span>
+              </Typography.Subtitle2>
             </TableHeadCell>
           </TableRow>
         </TableHead>

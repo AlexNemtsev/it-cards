@@ -1,10 +1,11 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
+import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { DebouncedInput } from '@/shared/ui/DebouncedInput';
@@ -16,42 +17,22 @@ import s from './DeckPage.module.scss';
 
 export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
   const { data: deck } = useGetDeckQuery(deckId);
   const { data: meData } = useMeQuery();
   const isYourDeck = meData?.id === deck?.userId;
-  const question = searchParams.get('question') || '';
-  const currentPage = Number(searchParams.get('currentPage')) || 1;
-  const itemsPerPage = Number(searchParams.get('itemsPerPage')) || 10;
-  const orderBy = searchParams.get('orderBy') || 'updated-desc';
 
-  const utilSetSearchParams = (key: string, value: string) => {
-    searchParams.set(key, value);
-    setSearchParams(searchParams);
-  };
-
-  const changeSearchValue = (value: string) => {
-    utilSetSearchParams('question', value);
-    utilSetSearchParams('currentPage', '1');
-  };
-
-  const onInputClear = () => {
-    utilSetSearchParams('question', '');
-    utilSetSearchParams('currentPage', '1');
-  };
-
-  const onPaginationChange = (value: number) => {
-    utilSetSearchParams('currentPage', value.toString());
-  };
-
-  const onItemsPerPageChange = (value: string) => {
-    utilSetSearchParams('itemsPerPage', value);
-    utilSetSearchParams('currentPage', '1');
-  };
-
-  const onOrderByChange = (orderBy: string) => {
-    utilSetSearchParams('orderBy', orderBy);
-  };
+  const {
+    changeSearchValue,
+    currentPage,
+    itemsPerPage,
+    onInputClear,
+    onItemsPerPageChange,
+    onOrderByChange,
+    onPaginationChange,
+    orderBy,
+    question,
+    setSearchParams,
+  } = useDeckPage();
 
   return (
     <PageContainer className={s.container}>

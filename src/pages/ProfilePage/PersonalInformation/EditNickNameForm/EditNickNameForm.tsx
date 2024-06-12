@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
-import { InputWithController } from '@/components/withControllers/InputWithController';
 import { Button } from '@/shared/ui/Button';
+import { InputWithController } from '@/shared/ui/InputWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 

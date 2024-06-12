@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 
-import { CheckboxWithController } from '@/components/withControllers/CheckboxWithController';
-import { InputWithController } from '@/components/withControllers/InputWithController';
 import { File } from '@/shared/assets/icons/File/File';
 import { Button } from '@/shared/ui/Button';
+import { CheckboxWithController } from '@/shared/ui/CheckboxWithController';
+import { InputWithController } from '@/shared/ui/InputWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 

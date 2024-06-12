@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { InputWithController } from '@/components/withControllers/InputWithController';
 import { useRecoverPasswordMutation } from '@/entities/auth/api/auth';
 import { BaseErrorResponse } from '@/entities/auth/api/types';
-import { CheckEmail } from '@/entities/ui/CheckEmail';
+import { CheckEmail } from '@/entities/auth/ui/CheckEmail';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
 import { Button } from '@/shared/ui/Button';

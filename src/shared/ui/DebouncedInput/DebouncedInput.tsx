@@ -11,7 +11,7 @@ type SearchProps = {
   onClearInput?: () => void;
 } & ComponentPropsWithoutRef<'input'>;
 
-export const Search = (props: SearchProps) => {
+export const DebouncedInput = (props: SearchProps) => {
   const { changeSearchValue, ...restProps } = props;
   const [search, setSearch] = useState('');
 

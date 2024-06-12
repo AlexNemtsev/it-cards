@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 import { Trigger } from '@/app/Layout/UserMenu/Trigger';
 import { useLogout } from '@/entities/auth/api/hooks';
-import { BaseErrorResponse, MeResponse } from '@/entities/auth/api/types';
+import { BaseErrorResponse, User } from '@/entities/auth/api/types';
+import { Avatar } from '@/entities/user/ui/Avatar';
 import { Profile } from '@/shared/assets/icons/Profile/Profile';
 import { SignOut } from '@/shared/assets/icons/SignOut/SignOut';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
-import { Avatar } from '@/shared/ui/Avatar';
 import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
@@ -18,7 +18,7 @@ import s from './UserMenu.module.scss';
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
 
 type Props = {
-  data: MeResponse;
+  data: User;
 };
 
 export const UserMenu = ({ data }: Props) => {
@@ -35,9 +35,9 @@ export const UserMenu = ({ data }: Props) => {
   };
 
   return (
-    <Dropdown className={s.q} trigger={<Trigger img={data.avatar} name={data.name} />}>
+    <Dropdown className={s.q} trigger={<Trigger name={data.name} />}>
       <DropdownProfileInfo>
-        <Avatar img={data && data.avatar} />
+        <Avatar />
         <div>
           <Typography.Subtitle2>{data.name}</Typography.Subtitle2>
           <Typography.Caption className={DropdownProfileInfoStyles.email}>

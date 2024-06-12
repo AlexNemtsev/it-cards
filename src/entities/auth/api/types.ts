@@ -6,7 +6,7 @@ export type LoginResponse = components['schemas']['LoginResponse'];
 export type SignUpRequest = components['schemas']['RegistrationRequest'];
 export type SignUpResponse = components['schemas']['User'];
 
-export type MeResponse = components['schemas']['User'];
+export type User = components['schemas']['User'];
 
 export type RecoverPasswordRequest = components['schemas']['RecoverPasswordRequest'];
 export type RecoverPasswordResponse = {

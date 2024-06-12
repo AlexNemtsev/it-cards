@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import { useMeQuery } from '@/entities/auth/api/auth';
 import { PaginatedCardsWithGrade } from '@/entities/card/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
+import { useMeQuery } from '@/entities/user/api';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';

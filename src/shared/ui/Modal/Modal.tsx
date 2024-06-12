@@ -21,7 +21,9 @@ export const Modal = (props: Props) => {
         <Overlay className={s.overlay} />
         <Content className={s.content}>
           <div className={s.header}>
-            <Title className={s.title}>{title}</Title>
+            <Title asChild className={s.title}>
+              {title}
+            </Title>
             <Close className={s.buttonClose}>
               <Cross height={25} width={25} />
             </Close>

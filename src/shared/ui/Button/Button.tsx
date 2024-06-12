@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react';
+import { ComponentPropsWithoutRef, ElementType, Ref, forwardRef } from 'react';
 
 import { clsx } from 'clsx';
 
@@ -10,27 +10,29 @@ type Props<T extends ElementType = 'button'> = {
   variant?: 'primary' | 'secondary';
 } & ComponentPropsWithoutRef<T>;
 
-export const Button = <T extends ElementType = 'button'>(props: Props<T>) => {
-  const {
-    as: Component = 'button',
-    children,
-    className,
-    disabled,
-    fullWidth,
-    variant = 'primary',
-    ...rest
-  } = props;
+export const Button = forwardRef(
+  <T extends ElementType = 'button'>(props: Props<T>, ref: Ref<any>) => {
+    const {
+      as: Component = 'button',
+      children,
+      className,
+      disabled,
+      fullWidth,
+      variant = 'primary',
+      ...rest
+    } = props;
 
-  const classNames = clsx(
-    s.button,
-    s[variant],
-    { [s.disabled]: disabled, [s.fullWidth]: fullWidth },
-    className
-  );
+    const classNames = clsx(
+      s.button,
+      s[variant],
+      { [s.disabled]: disabled, [s.fullWidth]: fullWidth },
+      className
+    );
 
-  return (
-    <Component className={classNames} {...rest}>
-      {children}
-    </Component>
-  );
-};
+    return (
+      <Component className={classNames} ref={ref} {...rest}>
+        {children}
+      </Component>
+    );
+  }
+);

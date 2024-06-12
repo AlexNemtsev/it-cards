@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
 
 import { LoginForm, LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
-import { useMeQuery } from '@/entities/auth/api/auth';
 import { useLogin } from '@/entities/auth/api/hooks';
 import { BaseErrorResponse } from '@/entities/auth/api/types';
+import { useMeQuery } from '@/entities/user/api';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
 import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';

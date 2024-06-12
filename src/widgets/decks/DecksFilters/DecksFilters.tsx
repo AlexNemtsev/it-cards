@@ -1,8 +1,8 @@
-import { Search } from '@/entities/filters/ui/Search';
-import { SelectCardsNumber } from '@/entities/filters/ui/SelectCardsNumber/SelectCardsNumber';
 import { TabSwitcherStatesType } from '@/pages/DecksPage/DecksPage';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
+import { DebouncedInput } from '@/shared/ui/DebouncedInput';
+import { DebouncedSlider } from '@/shared/ui/DebouncedSlider';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
 
 import s from './DecksFilters.module.scss';
@@ -34,7 +34,7 @@ export const DecksFilters = (props: Props) => {
 
   return (
     <div className={s.filters}>
-      <Search
+      <DebouncedInput
         changeSearchValue={getValueSearch}
         containerClassName={s.input}
         onClearInput={clearValueSearch}
@@ -55,7 +55,7 @@ export const DecksFilters = (props: Props) => {
           },
         ]}
       />
-      <SelectCardsNumber
+      <DebouncedSlider
         getNumberOfCards={getNumberOfCards}
         max={maxCards}
         min={minCards}

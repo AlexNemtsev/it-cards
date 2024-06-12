@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { InputWithController } from '@/components/withControllers/InputWithController';
 import { useRecoverPasswordMutation } from '@/entities/auth/api/auth';
 import { BaseErrorResponse } from '@/entities/auth/api/types';
 import { CheckEmail } from '@/entities/auth/ui/CheckEmail';
@@ -10,6 +9,7 @@ import { Routes } from '@/shared/constants/routes';
 import { errorNotification } from '@/shared/lib/notifications';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
+import { InputWithController } from '@/shared/ui/InputWithController';
 import { Typography } from '@/shared/ui/Typography';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';

@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { CheckboxWithController } from '@/components/withControllers/CheckboxWithController';
-import { InputWithController } from '@/components/withControllers/InputWithController';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
+import { CheckboxWithController } from '@/shared/ui/CheckboxWithController';
+import { InputWithController } from '@/shared/ui/InputWithController';
 import { Typography } from '@/shared/ui/Typography';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -40,7 +40,6 @@ export const LoginForm = (props: Props) => {
   return (
     <Card className={s.card}>
       <Typography.H1>Sign In</Typography.H1>
-
       <form onSubmit={onSubmitLogIn}>
         <InputWithController
           containerClassName={s.input}

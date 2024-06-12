@@ -1,7 +1,6 @@
 import {
   LoginRequest,
   LoginResponse,
-  MeResponse,
   RecoverPasswordRequest,
   RecoverPasswordResponse,
   SignUpRequest,
@@ -26,10 +25,6 @@ export const authApi = flashcardsApi.injectEndpoints({
           url: '/v2/auth/logout',
         }),
       }),
-      me: builder.query<MeResponse, void>({
-        providesTags: ['Me'],
-        query: () => '/v1/auth/me',
-      }),
       recoverPassword: builder.mutation<RecoverPasswordResponse, RecoverPasswordRequest>({
         query: body => {
           return {
@@ -46,21 +41,8 @@ export const authApi = flashcardsApi.injectEndpoints({
           url: '/v1/auth/sign-up',
         }),
       }),
-      updateUserData: builder.mutation({
-        invalidatesTags: ['Me'],
-        query: body => ({
-          body,
-          method: 'PATCH',
-          url: '/v1/auth/me',
-        }),
-      }),
     };
   },
 });
 
-export const {
-  useMeQuery,
-  useRecoverPasswordMutation,
-  useSignUpMutation,
-  useUpdateUserDataMutation,
-} = authApi;
+export const { useRecoverPasswordMutation, useSignUpMutation } = authApi;

@@ -1,0 +1,1 @@
+export { StarOutlined } from './StarOutlined';

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import { Trigger } from '@/app/Layout/UserMenu/Trigger';
 import { useLogout } from '@/entities/auth/api/hooks';
 import { BaseErrorResponse, User } from '@/entities/auth/api/types';
 import { Avatar } from '@/entities/user/ui/Avatar';
@@ -16,6 +15,8 @@ import { Typography } from '@/shared/ui/Typography';
 
 import s from './UserMenu.module.scss';
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
+
+import { Trigger } from './Trigger';
 
 type Props = {
   data: User;
@@ -35,7 +36,7 @@ export const UserMenu = ({ data }: Props) => {
   };
 
   return (
-    <Dropdown className={s.q} trigger={<Trigger name={data.name} />}>
+    <Dropdown trigger={<Trigger name={data.name} />}>
       <DropdownProfileInfo>
         <Avatar />
         <div>

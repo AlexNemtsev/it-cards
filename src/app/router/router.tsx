@@ -1,7 +1,7 @@
 import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from '@/app/Layout';
-import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
+import { CreateNewPasswordPage } from '@/pages/CreateNewPasswordPage';
 import { DeckPage } from '@/pages/DeckPage';
 import { DecksPage } from '@/pages/DecksPage';
 import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage/ForgotPasswordPage';
@@ -25,7 +25,7 @@ const publicRoutes: RouteObject[] = [
         path: Routes.FORGOT_PASSWORD,
       },
       {
-        element: <CreateNewPassword />,
+        element: <CreateNewPasswordPage />,
         path: Routes.CREATE_NEW_PASSWORD,
       },
       {

@@ -1,12 +1,12 @@
 import { Navigate } from 'react-router-dom';
 
-import { LoginFormValues } from '@/components/auth/LoginForm/LoginForm';
-import { SignUpForm } from '@/components/auth/SignUpForm';
-import { SignUpFormValues } from '@/components/auth/SignUpForm/SignUpFormShema';
 import { useSignUpMutation } from '@/entities/auth/api/auth';
 import { useLogin } from '@/entities/auth/api/hooks';
 import { SignUpErrorResponse } from '@/entities/auth/api/types';
 import { useMeQuery } from '@/entities/user/api';
+import { LoginFormValues } from '@/features/authForm/LoginForm/LoginForm';
+import { SignUpForm } from '@/features/authForm/SignUpForm';
+import { SignUpFormValues } from '@/features/authForm/SignUpForm/SignUpFormShema';
 import { Routes } from '@/shared/constants/routes';
 import { errorNotification, successNotification } from '@/shared/lib/notifications';
 import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';

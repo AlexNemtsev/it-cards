@@ -7,25 +7,25 @@ import { Typography } from '@/shared/ui/Typography';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import s from './CreateNewPassword.module.scss';
+import s from './CreateNewPasswordForm.module.scss';
 
-const CreateNewPasswordScheme = z.object({
+const CreateNewPasswordFormScheme = z.object({
   password: z.string().min(3).max(30),
 });
 
-export type FormValues = z.infer<typeof CreateNewPasswordScheme>;
+export type CreateNewPasswordFormValues = z.infer<typeof CreateNewPasswordFormScheme>;
 type Props = {
-  onSubmit?: (data: FormValues) => void;
+  onSubmit?: (data: CreateNewPasswordFormValues) => void;
 };
-export const CreateNewPassword = (props: Props) => {
+export const CreateNewPasswordForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, handleSubmit } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<CreateNewPasswordFormValues>({
     defaultValues: {
       password: '',
     },
-    resolver: zodResolver(CreateNewPasswordScheme),
+    resolver: zodResolver(CreateNewPasswordFormScheme),
   });
-  const onSubmitHandler = (data: FormValues) => {
+  const onSubmitHandler = (data: CreateNewPasswordFormValues) => {
     onSubmit && onSubmit(data);
   };
 

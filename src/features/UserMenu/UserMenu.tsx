@@ -16,7 +16,7 @@ import { Typography } from '@/shared/ui/Typography';
 import s from './UserMenu.module.scss';
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
 
-import { Trigger } from './Trigger';
+import { DropdownTrigger } from './DropdownTrigger';
 
 type Props = {
   data: User;
@@ -36,7 +36,7 @@ export const UserMenu = ({ data }: Props) => {
   };
 
   return (
-    <Dropdown trigger={<Trigger name={data.name} />}>
+    <Dropdown trigger={<DropdownTrigger name={data.name} />}>
       <DropdownProfileInfo>
         <Avatar />
         <div>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Avatar } from '@/entities/user/ui/Avatar';
-import { Trigger } from '@/features/UserMenu/Trigger';
+import { DropdownTrigger } from '@/features/UserMenu/DropdownTrigger';
 import { Burger } from '@/shared/assets/icons/Burger/Burger';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
@@ -76,6 +76,6 @@ export const DropdownWithAvatar: Story = {
         </DropdownItem>
       </>
     ),
-    trigger: <Trigger name="Ivan" />,
+    trigger: <DropdownTrigger name="Ivan" />,
   },
 };

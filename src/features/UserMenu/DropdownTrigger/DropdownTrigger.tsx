@@ -1,12 +1,12 @@
 import { Avatar } from '@/entities/user/ui/Avatar';
 import { Typography } from '@/shared/ui/Typography';
 
-import s from './Trigger.module.scss';
+import s from './DropdownTrigger.module.scss';
 
 type Props = {
   name: string;
 };
-export const Trigger = (props: Props) => {
+export const DropdownTrigger = (props: Props) => {
   const { name } = props;
 
   return (

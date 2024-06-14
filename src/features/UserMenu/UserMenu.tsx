@@ -27,7 +27,7 @@ export const UserMenu = ({ data }: Props) => {
 
   const logoutHandler = async () => {
     try {
-      logout();
+      await logout();
     } catch (e) {
       const error = e as BaseErrorResponse;
 

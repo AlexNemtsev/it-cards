@@ -60,7 +60,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             value={value}
           />
           {showButton && (
-            <button className={classNames.button} onClick={onClickHandler}>
+            <button className={classNames.button} onClick={onClickHandler} type="button">
               {showEye ? <SwitchingEye isOpen={showPassword} /> : <CheckedCross />}
             </button>
           )}

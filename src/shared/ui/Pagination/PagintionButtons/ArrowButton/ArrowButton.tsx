@@ -11,7 +11,7 @@ export const ArrowButton = (props: Props) => {
   const classNames = clsx(s.button, disabled && s.disabled, isPrev && s.prev, className);
 
   return (
-    <button className={classNames} {...restProps}>
+    <button className={classNames} type="button" {...restProps}>
       <Arrow />
     </button>
   );

@@ -59,7 +59,7 @@ export const UserMenu = ({ data }: Props) => {
       <DropdownItemDivider />
 
       <DropdownItem>
-        <button className={s.item} onClick={logoutHandler} type="button">
+        <button className={s.item} onClick={logoutHandler}>
           <SignOut />
           <Typography.Caption>Sign Out</Typography.Caption>
         </button>

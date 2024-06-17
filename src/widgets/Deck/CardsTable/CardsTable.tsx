@@ -154,10 +154,10 @@ export const CardsTable = (props: Props) => {
                       <Rating rating={item.grade} />
                       {isYourDeck && (
                         <div className={s.buttonsWrapper}>
-                          <button className={s.cardButton} type="button">
+                          <button className={s.cardButton}>
                             <Edit />
                           </button>
-                          <button className={s.cardButton} type="button">
+                          <button className={s.cardButton}>
                             <Delete />
                           </button>
                         </div>

@@ -36,7 +36,7 @@ export const PersonalInformation = () => {
         <div className={s.notEditModeWrapper}>
           <Typography.H2 className={s.name}>
             {data?.name}
-            <button className={s.editName} onClick={() => setIsEditMode(true)} type="button">
+            <button className={s.editName} onClick={() => setIsEditMode(true)}>
               <Edit />
             </button>
           </Typography.H2>

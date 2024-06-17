@@ -13,21 +13,21 @@ export const MyDeckDropdownMenu = () => {
   return (
     <Dropdown className={s.dropdown} trigger={<Burger />}>
       <DropdownItem>
-        <button className={s.dropdownItemButton} type="button">
+        <button className={s.dropdownItemButton}>
           <Learn />
           <Typography.Caption>Learn</Typography.Caption>
         </button>
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <button className={s.dropdownItemButton} type="button">
+        <button className={s.dropdownItemButton}>
           <Edit />
           <Typography.Caption>Edit</Typography.Caption>
         </button>
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <button className={s.dropdownItemButton} type="button">
+        <button className={s.dropdownItemButton}>
           <Delete />
           <Typography.Caption>Delete</Typography.Caption>
         </button>

@@ -10,6 +10,7 @@ module.exports = {
     },
   ],
   rules: {
-    'react/jsx-curly-brace-presence': ['error', {props: 'never'}]
+    'react/button-has-type': 'off',
+    'react/jsx-curly-brace-presence': ['error', {props: 'never'}],
   }
 }

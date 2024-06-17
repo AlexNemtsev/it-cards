@@ -2,7 +2,6 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
 import { useMeQuery } from '@/entities/user/api';
-import { Pagination } from '@/shared/ui/Pagination';
 import { Typography } from '@/shared/ui/Typography';
 import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
@@ -132,16 +131,14 @@ export const DecksPage = () => {
           decks.items.length > 0 && (
             <>
               <DecksTable
+                currentPage={currentPage || 1}
                 decks={decks}
                 getSortedLastedUpdated={getSortedLastedUpdated}
-                sort={sort}
-              />
-              <Pagination
-                currentPage={currentPage || 1}
                 itemsPerPage={String(itemsPerPage) || '10'}
                 itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
                 onItemsPerPageChange={getItemsPerPage}
                 onValueChange={getCurrentPage}
+                sort={sort}
                 totalPages={decks?.pagination.totalPages || 1}
               />
             </>

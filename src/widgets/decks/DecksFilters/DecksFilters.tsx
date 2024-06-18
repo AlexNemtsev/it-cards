@@ -39,6 +39,7 @@ export const DecksFilters = (props: Props) => {
         containerClassName={s.input}
         onClearInput={clearValueSearch}
         placeholder="Input search"
+        type="search"
       />
       <TabSwitcher
         className={s.tabs}

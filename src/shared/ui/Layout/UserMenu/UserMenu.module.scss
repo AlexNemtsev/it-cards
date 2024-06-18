@@ -1,0 +1,25 @@
+.item {
+  cursor: pointer;
+
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  width: 100%;
+  padding: 0;
+
+  text-decoration: none;
+
+  background-color: transparent;
+  border: none;
+
+  transition: 0.5s;
+
+  &:hover {
+    color: var(--color-accent-100);
+  }
+
+  svg {
+    fill: currentcolor;
+  }
+}

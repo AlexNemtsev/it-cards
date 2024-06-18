@@ -1,0 +1,121 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background: linear-gradient(
+    rgb(255 255 255 / 0%) 0%,
+    rgb(0 174 255 / 4%) 50%,
+    rgb(255 255 255 / 0%) 51%,
+    rgb(0 174 255 / 3%) 100%
+  );
+  box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+
+  -webkit-text-fill-color: var(--color-light-100);
+}
+
+.label {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--color-dark-100);
+}
+
+.field {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  color: var(--color-dark-100);
+
+  &:active {
+    color: var(--color-light-100);
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 6px 12px;
+
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+  outline: 1px solid var(--color-dark-300);
+
+  &.search {
+    padding: 6px 46px 6px 42px;
+  }
+
+  &.password {
+    padding: 6px 46px 6px 12px;
+  }
+
+  &:hover {
+    background-color: var(--color-dark-700);
+    outline: 1px solid var(--color-dark-100);
+  }
+
+  &:active {
+    color: var(--color-light-100);
+    outline: 1px solid var(--color-light-100);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--color-info-700);
+  }
+
+  &:disabled {
+    &::placeholder {
+      color: var(--color-dark-300);
+    }
+
+    &:hover,
+    &:active {
+      color: var(--color-dark-300);
+      background-color: var(--color-dark-900);
+      outline: 1px solid var(--color-dark-300);
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+
+  width: 100%;
+
+  &.disabled {
+    .field {
+      pointer-events: none;
+      cursor: auto;
+      color: var(--color-dark-300);
+    }
+
+    .label {
+      color: var(--color-dark-300);
+    }
+  }
+
+  &.error {
+    .field {
+      color: var(--color-danger-300);
+    }
+
+    .input {
+      color: var(--color-danger-300);
+      outline: 1px solid var(--color-danger-300);
+    }
+  }
+}
+
+.errorText {
+  padding: 2px 0;
+  color: var(--color-danger-300);
+}

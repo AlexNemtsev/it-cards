@@ -1,0 +1,74 @@
+@import '@/shared/scss/form-container-mixin';
+
+.card {
+  @include form-container;
+
+  padding: 33px 36px 25px;
+
+  h1 {
+    margin-bottom: 27px;
+    text-align: center;
+  }
+
+  .input {
+    &:first-of-type {
+      margin-bottom: 24px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 21px;
+    }
+  }
+}
+
+.checkbox {
+  margin-bottom: 12px;
+}
+
+.signIn {
+  margin-bottom: 20px;
+}
+
+.forgot {
+  display: block;
+
+  width: max-content;
+  margin-bottom: 60px;
+  margin-left: auto;
+
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  &:visited,
+  &:active {
+    color: var(--color-light-100);
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 1px solid var(--color-info-500);
+  }
+}
+
+.dontHaveAccount {
+  margin-bottom: 10px;
+  color: var(--color-light-900);
+  text-align: center;
+}
+
+.signUp {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+  color: var(--color-accent-500);
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 1px solid var(--color-info-500);
+  }
+
+  &:visited,
+  &:active {
+    color: var(--color-accent-500);
+  }
+}

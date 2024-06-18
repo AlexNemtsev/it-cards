@@ -1,5 +1,5 @@
 module.exports = {
-  extends: '@it-incubator/eslint-config',
+  extends: ['@it-incubator/eslint-config', 'plugin:storybook/recommended'],
   overrides: [
     {
       files: ['**/*.stories.tsx'],
@@ -10,6 +10,7 @@ module.exports = {
     },
   ],
   rules: {
-    'react/jsx-curly-brace-presence': 'off',
+    'react/button-has-type': 'off',
+    'react/jsx-curly-brace-presence': ['error', {props: 'never'}],
   }
 }

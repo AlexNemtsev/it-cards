@@ -1,0 +1,59 @@
+.table {
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: background-color 0.8s;
+
+  &:hover {
+    background-color: var(--color-dark-300);
+  }
+
+  p {
+    white-space: nowrap;
+  }
+
+  svg {
+    margin-left: 8px;
+  }
+}
+
+.arrowContainer {
+  display: inline-block;
+  width: 20px;
+}
+
+.questionCell {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.questionImg {
+  display: inline;
+  width: 118px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.gradeCell {
+  display: flex;
+  gap: 20px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.cardButton {
+  cursor: pointer;
+  height: 16px;
+  margin-left: 10px;
+
+  svg {
+    fill: currentcolor;
+  }
+}

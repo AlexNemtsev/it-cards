@@ -1,0 +1,74 @@
+.checkbox {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+
+  width: max-content;
+
+  .buttonWrapper {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    & button[data-state='checked'] {
+      border: none;
+    }
+
+    &:focus-within {
+      background-color: var(--color-dark-100);
+
+      & button[data-state='checked'] {
+        background-color: var(--color-dark-900);
+        border: none;
+      }
+    }
+  }
+
+  &:active {
+    .buttonWrapper {
+      background-color: var(--color-dark-100);
+
+      & button[data-state='checked'] {
+        background-color: var(--color-dark-900);
+        border: none;
+      }
+    }
+  }
+
+  button {
+    all: unset;
+
+    position: relative;
+
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid var(--color-light-900);
+    border-radius: 2px;
+    outline: none;
+
+    svg {
+      fill: var(--color-light-100);
+    }
+  }
+
+  &:hover {
+    .buttonWrapper {
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    color: var(--color-dark-100);
+  }
+}

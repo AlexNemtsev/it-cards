@@ -14,6 +14,7 @@ import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
 import { Typography } from '@/shared/ui/Typography';
 
 import s from './Dropdown.module.scss';
+import sb from './DropdownItemForStorybook.module.scss';
 import DropdownProfileInfoStyles from './DropdownProfileInfo/DropdownProfileInfo.module.scss';
 
 import { Dropdown } from './Dropdown';
@@ -32,17 +33,17 @@ export const DropdownWithBurger: Story = {
   args: {
     children: (
       <>
-        <DropdownItem className={s.dropdownItemForStorybook}>
+        <DropdownItem className={sb.dropdownItemForStorybook}>
           <Learn />
           <Typography.Caption>Learn</Typography.Caption>
         </DropdownItem>
         <DropdownItemDivider />
-        <DropdownItem className={s.dropdownItemForStorybook}>
+        <DropdownItem className={sb.dropdownItemForStorybook}>
           <Edit />
           <Typography.Caption>Edit</Typography.Caption>
         </DropdownItem>
         <DropdownItemDivider />
-        <DropdownItem className={s.dropdownItemForStorybook}>
+        <DropdownItem className={sb.dropdownItemForStorybook}>
           <Delete />
           <Typography.Caption>Delete</Typography.Caption>
         </DropdownItem>

@@ -1,0 +1,29 @@
+.subtitle {
+  margin-bottom: 12px;
+}
+
+.input {
+  margin-bottom: 12px;
+}
+
+.uploadButton {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 24px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+
+.content {
+  max-width: 542px;
+}

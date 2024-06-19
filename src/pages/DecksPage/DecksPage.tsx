@@ -23,7 +23,6 @@ const tabSwitcherStates: TabSwitcherStatesType = {
 export const DecksPage = () => {
   const { data: minMaxCards } = useGetMinMaxCardsQuery();
   const { data: me } = useMeQuery();
-
   const {
     clearFilters,
     clearSearchByName,
@@ -48,6 +47,8 @@ export const DecksPage = () => {
     decksNumberRange?.[0] || minCards || 0,
     decksNumberRange?.[1] || maxCards || 0,
   ];
+
+  console.log('decksAuthor', decksAuthor);
 
   const currentUserId = me?.id;
   const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
@@ -75,6 +76,7 @@ export const DecksPage = () => {
       <DecksFilters
         clearFilters={clearFilters}
         clearValueSearch={clearSearchByName}
+        decksAuthor={decksAuthor}
         getDecksAuthor={getDecksAuthor}
         getNumberOfCards={getDecksNumberRange}
         getValueSearch={getSearchByName}

@@ -10,6 +10,7 @@ import s from './DecksFilters.module.scss';
 type Props = {
   clearFilters: () => void;
   clearValueSearch: () => void;
+  decksAuthor: string;
   getDecksAuthor: (value: string) => void;
   getNumberOfCards: (value: [number, number]) => void;
   getValueSearch: (value: string) => void;
@@ -24,6 +25,7 @@ export const DecksFilters = (props: Props) => {
   const {
     clearFilters,
     clearValueSearch,
+    decksAuthor,
     getDecksAuthor,
     getNumberOfCards,
     getValueSearch,
@@ -58,6 +60,7 @@ export const DecksFilters = (props: Props) => {
             value: tabSwitcherStates.ALL,
           },
         ]}
+        value={decksAuthor}
       />
       <DebouncedSlider
         getNumberOfCards={getNumberOfCards}

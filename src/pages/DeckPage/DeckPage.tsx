@@ -52,9 +52,10 @@ export const DeckPage = () => {
       <DebouncedInput
         changeSearchValue={changeSearchValue}
         containerClassName={s.input}
-        onClearInput={onInputClear}
         placeholder="Search by question"
+        resetInput={onInputClear}
         type="search"
+        value={question}
       />
 
       <CardsTable

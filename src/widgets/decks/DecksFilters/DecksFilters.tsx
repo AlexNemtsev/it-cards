@@ -16,6 +16,7 @@ type Props = {
   maxCards: number | undefined;
   minCards: number | undefined;
   range: [number, number];
+  searchByName: string;
   tabSwitcherStates: TabSwitcherStatesType;
 };
 
@@ -29,6 +30,7 @@ export const DecksFilters = (props: Props) => {
     maxCards,
     minCards,
     range,
+    searchByName,
     tabSwitcherStates,
   } = props;
 
@@ -37,9 +39,10 @@ export const DecksFilters = (props: Props) => {
       <DebouncedInput
         changeSearchValue={getValueSearch}
         containerClassName={s.input}
-        onClearInput={clearValueSearch}
         placeholder="Input search"
+        resetInput={clearValueSearch}
         type="search"
+        value={searchByName}
       />
       <TabSwitcher
         className={s.tabs}

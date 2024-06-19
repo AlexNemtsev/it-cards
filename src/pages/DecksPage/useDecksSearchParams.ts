@@ -74,25 +74,6 @@ export const useDecksSearchParams = () => {
     setSearchParams({});
   };
 
-  // const changeSearchValue = (value: string) => {
-  //   utilSetSearchParams('question', value);
-  //   utilSetSearchParams('currentPage', '1');
-  // };
-
-  // const onInputClear = () => {
-  //   utilSetSearchParams('question', '');
-  //   utilSetSearchParams('currentPage', '1');
-  // };
-
-  // const onItemsPerPageChange = (value: string) => {
-  //   utilSetSearchParams('itemsPerPage', value);
-  //   utilSetSearchParams('currentPage', '1');
-  // };
-
-  // const onOrderByChange = (orderBy: string) => {
-  //   utilSetSearchParams('orderBy', orderBy);
-  // };
-
   return {
     clearFilters,
     clearSearchByName,
@@ -108,13 +89,5 @@ export const useDecksSearchParams = () => {
     itemsPerPage,
     orderDecksBy,
     searchByName,
-    // changeSearchValue,
-    // itemsPerPage,
-    // onInputClear,
-    // onItemsPerPageChange,
-    // onOrderByChange,
-    // orderBy,
-    // question,
-    // setSearchParams,
   };
 };

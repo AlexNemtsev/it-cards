@@ -1,8 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
+import { useCreateCardMutation, useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
+import {
+  AddNewCardFormValues,
+  AddNewCardModal,
+} from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
@@ -34,6 +37,14 @@ export const DeckPage = () => {
     setSearchParams,
   } = useDeckPage();
 
+  const [createCard] = useCreateCardMutation();
+
+  const onCreateCard = (data: any) => {
+    // const onCreateCard = (data: AddNewCardFormValues) => {
+    createCard(data);
+    console.log(123);
+  };
+
   return (
     <PageContainer className={s.container}>
       <BackToLink to={Routes.DECKS}>Back to Decks List</BackToLink>
@@ -43,7 +54,7 @@ export const DeckPage = () => {
           {isYourDeck && <MyDeckDropdownMenu />}
         </div>
         {isYourDeck ? (
-          <AddNewCardModal />
+          <AddNewCardModal onSubmit={onCreateCard} />
         ) : (
           <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
         )}

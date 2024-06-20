@@ -13,24 +13,28 @@ import { z } from 'zod';
 import s from './AddNewCardModal.module.scss';
 
 const AddNewCardScheme = z.object({
-  answer: z.string().min(1),
-  answerFile: z.union([z.instanceof(File), z.null()]).optional(),
-  question: z.string().min(1),
-  questionFile: z.union([z.instanceof(File), z.null()]).optional(),
+  answer: z.string().min(3),
+  answerImg: z.union([z.instanceof(File), z.null()]).optional(),
+  answerVideo: z.union([z.instanceof(File), z.null()]).optional(),
+  question: z.string().min(3),
+  questionImg: z.union([z.instanceof(File), z.null()]).optional(),
+  questionVideo: z.union([z.instanceof(File), z.null()]).optional(),
 });
 
-type FormValues = z.infer<typeof AddNewCardScheme>;
+export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 
 type Props = {
-  onSubmit: (data: FormValues) => void;
+  onSubmit: (data: AddNewCardFormValues) => void;
 };
 export const AddNewCardModal = ({ onSubmit }: Props) => {
-  const { control, handleSubmit } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
-      answerFile: null,
+      answerImg: null,
+      answerVideo: null,
       question: '',
-      questionFile: null,
+      questionImg: null,
+      questionVideo: null,
     },
     resolver: zodResolver(AddNewCardScheme),
   });
@@ -49,7 +53,7 @@ export const AddNewCardModal = ({ onSubmit }: Props) => {
           containerClassName={s.input}
           control={control}
           label="Question?"
-          name="answer"
+          name="question"
           placeholder="Your question"
         />
 

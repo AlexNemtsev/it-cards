@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
 } & ComponentPropsWithoutRef<typeof Button>;
 
-export const ModalButton = (props: Props) => {
+export const CloseModalButton = (props: Props) => {
   const { children, ...restProps } = props;
 
   return (

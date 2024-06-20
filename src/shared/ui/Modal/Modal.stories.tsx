@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Modal } from '.';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { ModalButton } from './ModalButton';
+import { ModalButton } from './CloseModalButton';
 
 const meta = {
   component: Modal,

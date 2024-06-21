@@ -1,5 +1,6 @@
 import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
+import { Layout } from '@/app/Layout';
 import { CreateNewPasswordPage } from '@/pages/CreateNewPasswordPage';
 import { DeckPage } from '@/pages/DeckPage';
 import { DecksPage } from '@/pages/DecksPage';

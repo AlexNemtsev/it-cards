@@ -14,11 +14,16 @@ import s from './AddNewCardModal.module.scss';
 
 const AddNewCardScheme = z.object({
   answer: z.string().min(3),
-  answerImg: z.union([z.instanceof(File), z.null()]).optional(),
-  answerVideo: z.union([z.instanceof(File), z.null()]).optional(),
+  // answerImg: z.union([z.instanceof(File), z.null()]).optional(),
+  // answerVideo: z.union([z.instanceof(File), z.null()]).optional(),
+  answerImg: z.string().optional(),
+  answerVideo: z.string().optional(),
   question: z.string().min(3),
-  questionImg: z.union([z.instanceof(File), z.null()]).optional(),
-  questionVideo: z.union([z.instanceof(File), z.null()]).optional(),
+  questionImg: z.string().optional(),
+  questionVideo: z.string().optional(),
+
+  // questionImg: z.union([z.instanceof(File), z.null()]).optional(),
+  // questionVideo: z.union([z.instanceof(File), z.null()]).optional(),
 });
 
 export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
@@ -30,11 +35,11 @@ export const AddNewCardModal = ({ onSubmit }: Props) => {
   const { control, handleSubmit } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
-      answerImg: null,
-      answerVideo: null,
+      answerImg: '',
+      answerVideo: '',
       question: '',
-      questionImg: null,
-      questionVideo: null,
+      questionImg: '',
+      questionVideo: '',
     },
     resolver: zodResolver(AddNewCardScheme),
   });

@@ -5,10 +5,9 @@ import { Card, CreateCardRequest, Deck } from '../types';
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createCard: builder.mutation<Card, CreateCardRequest>({
+      createCard: builder.mutation<CreateCardRequest, Card>({
         query: args => {
-          // const { id, ...rest } = args;
-          const { answer, question } = args;
+          const { answer, deckId, question } = args;
           const formData = new FormData();
 
           formData.append('answer', answer);
@@ -17,8 +16,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
           return {
             body: formData,
             method: 'POST',
-            url: `/v1/decks/clx34f5fp03puo501nv25lbzc/cards`,
-            // url: `/v1/decks/${id}/cards`,
+            url: `/v1/decks/${deckId}/cards`,
           };
         },
       }),

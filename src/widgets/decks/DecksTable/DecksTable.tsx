@@ -16,15 +16,22 @@ import { TableRow } from '@/shared/ui/Table/TableRow';
 
 import s from './DecksTable.module.scss';
 
+const orderVariants = {
+  cardsCount: 'cardsCount',
+  created: 'created',
+  name: 'name',
+  updated: 'updated',
+};
+
 type Props = {
   currentPage: number;
   decks: getDecksResponse;
-  getSortedLastedUpdated: () => void;
+  getOrderDecksBy: (value: string) => void;
   itemsPerPage: string;
   itemsPerPageList: string[];
   onItemsPerPageChange: (count: string) => void;
   onValueChange: (currentPage: number) => void;
-  sort: string;
+  sort?: string;
   totalPages: number;
 };
 
@@ -32,7 +39,7 @@ export const DecksTable = (props: Props) => {
   const {
     currentPage,
     decks,
-    getSortedLastedUpdated,
+    getOrderDecksBy,
     itemsPerPage,
     itemsPerPageList,
     onItemsPerPageChange,
@@ -41,17 +48,43 @@ export const DecksTable = (props: Props) => {
     totalPages,
   } = props;
 
+  const setOrderIcon = (value: string) => {
+    return sort === `${value}-asc` ? <ChevronDownIcon /> : <ChevronUpIcon />;
+  };
+
+  const sortByName = () => {
+    getOrderDecksBy(orderVariants.name);
+  };
+
+  const sortByCardsCount = () => {
+    getOrderDecksBy(orderVariants.cardsCount);
+  };
+
+  const sortByUpdated = () => {
+    getOrderDecksBy(orderVariants.updated);
+  };
+
+  const sortByCreated = () => {
+    getOrderDecksBy(orderVariants.created);
+  };
+
   return (
     <>
       <Table className={s.decks}>
         <TableHead>
           <TableRow>
-            <TableHeadCell>Name</TableHeadCell>
-            <TableHeadCell>Cards</TableHeadCell>
-            <TableHeadCell className={s.updated} onClick={getSortedLastedUpdated}>
-              Last Updated {sort ? <ChevronDownIcon /> : <ChevronUpIcon />}
+            <TableHeadCell onClick={sortByName}>
+              Name {setOrderIcon(orderVariants.name)}
             </TableHeadCell>
-            <TableHeadCell>Created by</TableHeadCell>
+            <TableHeadCell onClick={sortByCardsCount}>
+              Cards {setOrderIcon(orderVariants.cardsCount)}
+            </TableHeadCell>
+            <TableHeadCell onClick={sortByUpdated}>
+              Last Updated {setOrderIcon(orderVariants.updated)}
+            </TableHeadCell>
+            <TableHeadCell onClick={sortByCreated}>
+              Created by {setOrderIcon(orderVariants.created)}
+            </TableHeadCell>
             <TableHeadCell></TableHeadCell>
           </TableRow>
         </TableHead>

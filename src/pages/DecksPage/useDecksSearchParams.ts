@@ -61,13 +61,19 @@ export const useDecksSearchParams = () => {
     utilSetSearchParams('decksNumberRange', value.toString());
   };
 
-  const orderDecksBy = `${searchParams.get('key') || 'updated'}-${
-    searchParams.get('direction') || 'asc'
-  }`;
+  const orderDecksBy = searchParams.get('orderBy') || undefined;
 
-  const getOrderDecksBy = () => {
-    searchParams.set('direction', searchParams.get('direction') === 'desc' ? 'asc' : 'desc');
-    setSearchParams(searchParams);
+  const getOrderDecksBy = (value: string) => {
+    const getOrderByValue = (value: string) => {
+      return searchParams.get('orderBy')?.split('-')[1] === 'desc'
+        ? `${value}-asc`
+        : `${value}-desc`;
+    };
+
+    if (value) {
+      searchParams.set('orderBy', getOrderByValue(value));
+      setSearchParams(searchParams);
+    }
   };
 
   const clearFilters = () => {

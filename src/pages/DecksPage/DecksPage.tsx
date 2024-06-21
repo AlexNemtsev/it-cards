@@ -49,8 +49,6 @@ export const DecksPage = () => {
     decksNumberRange?.[1] || maxCards || 0,
   ];
 
-  console.log('decksAuthor', decksAuthor);
-
   const currentUserId = me?.id;
   const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
 
@@ -98,7 +96,7 @@ export const DecksPage = () => {
               <DecksTable
                 currentPage={currentPage || 1}
                 decks={decks}
-                getSortedLastedUpdated={getOrderDecksBy}
+                getOrderDecksBy={getOrderDecksBy}
                 itemsPerPage={String(itemsPerPage) || '10'}
                 itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
                 onItemsPerPageChange={getItemsPerPage}

@@ -1,31 +1,32 @@
+import {
+  Deck,
+  GetDecksArgs,
+  GetDecksResponse,
+  GetMinMaxCardsResponse,
+} from '@/entities/deck/api/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
-
-import { Card, CreateCardRequest, Deck } from '../types';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createCard: builder.mutation<CreateCardRequest, Card>({
-        query: args => {
-          const { answer, deckId, question } = args;
-          const formData = new FormData();
-
-          formData.append('answer', answer);
-          formData.append('question', question);
-
-          return {
-            body: formData,
-            method: 'POST',
-            url: `/v1/decks/${deckId}/cards`,
-          };
-        },
-      }),
-
       getDeck: builder.query<Deck, string>({
         query: id => `v1/decks/${id}`,
+      }),
+      getDecks: builder.query<GetDecksResponse, GetDecksArgs | void>({
+        providesTags: ['Decks'],
+        query: args => ({
+          params: args ?? undefined,
+          url: `v2/decks`,
+        }),
+      }),
+      getMinMaxCards: builder.query<GetMinMaxCardsResponse, void>({
+        providesTags: ['Decks'],
+        query: () => ({
+          url: `v2/decks/min-max-cards`,
+        }),
       }),
     };
   },
 });
 
-export const { useCreateCardMutation, useGetDeckQuery } = deckApi;
+export const { useGetDeckQuery, useGetDecksQuery, useGetMinMaxCardsQuery } = deckApi;

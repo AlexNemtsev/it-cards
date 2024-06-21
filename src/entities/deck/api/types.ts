@@ -22,7 +22,7 @@ export type Pagination = {
   totalPages: number;
 };
 
-export type getDecksResponse = {
+export type GetDecksResponse = {
   items: Deck[];
   pagination: Pagination;
 };
@@ -37,7 +37,7 @@ export type GetDecksArgs = {
   orderBy?: string;
 };
 
-export type getMinMaxCardsResponse = {
+export type GetMinMaxCardsResponse = {
   max: number;
   min: number;
 };

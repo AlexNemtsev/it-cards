@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import { useCreateCardMutation, useGetDeckQuery } from '@/entities/deck/api/deckApi';
+import { useCreateCardMutation } from '@/entities/card/api/cardApi';
+import { Card } from '@/entities/card/api/types';
+import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import {
-  AddNewCardFormValues,
-  AddNewCardModal,
-} from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
+import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
@@ -38,8 +37,9 @@ export const DeckPage = () => {
   } = useDeckPage();
 
   const [createCard] = useCreateCardMutation();
-  const onCreateCard = (data: AddNewCardFormValues) => {
-    const args: { deckId: string } & AddNewCardFormValues = { deckId, ...data };
+  const onCreateCard = (data: Card) => {
+    const args: { deckId: string } & Card = { ...data, deckId };
+    // const args: { deckId: string } & AddNewCardFormValues = { deckId, ...data };
 
     createCard(args);
   };

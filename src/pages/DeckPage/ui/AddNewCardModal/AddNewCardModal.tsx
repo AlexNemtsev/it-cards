@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { Card } from '@/entities/card/api/types';
 import { AddNewCardModalTitle } from '@/pages/DeckPage/ui/AddNewCardModal/ui/AddNewCardModalTitle';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';
@@ -15,41 +16,37 @@ import s from './AddNewCardModal.module.scss';
 
 const AddNewCardScheme = z.object({
   answer: z.string().min(3),
-  // answerImg: z.union([z.instanceof(File), z.null()]).optional(),
-  // answerVideo: z.union([z.instanceof(File), z.null()]).optional(),
-  answerImg: z.string().optional(),
-  answerVideo: z.string().optional(),
   question: z.string().min(3),
-  questionImg: z.string().optional(),
-  questionVideo: z.string().optional(),
-
-  // questionImg: z.union([z.instanceof(File), z.null()]).optional(),
-  // questionVideo: z.union([z.instanceof(File), z.null()]).optional(),
 });
 
 export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 
 type Props = {
-  onCreateCard: (data: AddNewCardFormValues) => void;
+  onCreateCard: (data: Card) => void;
 };
 export const AddNewCardModal = ({ onCreateCard }: Props) => {
   const { control, handleSubmit } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
-      answerImg: '',
-      answerVideo: '',
       question: '',
-      questionImg: '',
-      questionVideo: '',
     },
     resolver: zodResolver(AddNewCardScheme),
   });
 
   const [open, setOpen] = useState(false);
+  const [answerImg, setAnswerImg] = useState<File | null>(null);
 
   const onSubmitCreateCard = (data: AddNewCardFormValues) => {
-    onCreateCard(data);
+    onCreateCard({ ...data, answerImg });
     setOpen(false);
+  };
+
+  const uploadAnswerImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length) {
+      const file = e.target.files[0];
+
+      setAnswerImg(file);
+    }
   };
 
   return (
@@ -86,6 +83,8 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           name="answer"
           placeholder="Your answer"
         />
+
+        <input accept={'image/*'} onChange={uploadAnswerImageHandler} type="file" />
 
         <Button className={s.uploadButton} fullWidth type="button" variant="secondary">
           <FileIcon />

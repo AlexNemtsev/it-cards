@@ -4,3 +4,14 @@ export type PaginatedCardsWithGrade = components['schemas']['PaginatedCardsWithG
 export type GetCardsArgs = {
   deckId: string;
 } & operations['DecksController_findCardsInDeck']['parameters']['query'];
+
+export type Card = {
+  answer: string;
+  answerImg?: Nullable<File>;
+  question: string;
+  questionImg?: Nullable<File>;
+};
+
+type Nullable<T> = T | null;
+
+export type CreateCardRequest = components['schemas']['CreateCardRequest'];

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { AddNewCardModalTitle } from '@/pages/DeckPage/ui/AddNewCardModal/ui/AddNewCardModalTitle';
@@ -29,9 +30,9 @@ const AddNewCardScheme = z.object({
 export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 
 type Props = {
-  onSubmit: (data: AddNewCardFormValues) => void;
+  onCreateCard: (data: AddNewCardFormValues) => void;
 };
-export const AddNewCardModal = ({ onSubmit }: Props) => {
+export const AddNewCardModal = ({ onCreateCard }: Props) => {
   const { control, handleSubmit } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
@@ -44,13 +45,22 @@ export const AddNewCardModal = ({ onSubmit }: Props) => {
     resolver: zodResolver(AddNewCardScheme),
   });
 
+  const [open, setOpen] = useState(false);
+
+  const onSubmitCreateCard = (data: AddNewCardFormValues) => {
+    onCreateCard(data);
+    setOpen(false);
+  };
+
   return (
     <Modal
       className={s.content}
+      onOpenChange={setOpen}
+      open={open}
       title={<AddNewCardModalTitle />}
       trigger={<Button>Add New Card</Button>}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitCreateCard)}>
         <Typography.Subtitle2 className={s.subtitle}>Question:</Typography.Subtitle2>
 
         <InputWithController
@@ -62,7 +72,7 @@ export const AddNewCardModal = ({ onSubmit }: Props) => {
           placeholder="Your question"
         />
 
-        <Button className={s.uploadButton} fullWidth variant="secondary">
+        <Button className={s.uploadButton} fullWidth type="button" variant="secondary">
           <FileIcon />
           <Typography.Subtitle2>Change Image</Typography.Subtitle2>
         </Button>
@@ -77,7 +87,7 @@ export const AddNewCardModal = ({ onSubmit }: Props) => {
           placeholder="Your answer"
         />
 
-        <Button className={s.uploadButton} fullWidth variant="secondary">
+        <Button className={s.uploadButton} fullWidth type="button" variant="secondary">
           <FileIcon />
           <Typography.Subtitle2>Change Image</Typography.Subtitle2>
         </Button>
@@ -86,7 +96,11 @@ export const AddNewCardModal = ({ onSubmit }: Props) => {
           <Close asChild>
             <Button variant="secondary">Cancel </Button>
           </Close>
-          <Button type="submit"> Add New Card </Button>
+
+          <Button type="submit">
+            Add New Card
+            <Close asChild></Close>
+          </Button>
         </div>
       </form>
     </Modal>

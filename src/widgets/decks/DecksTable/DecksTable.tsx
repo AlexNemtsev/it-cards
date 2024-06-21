@@ -42,7 +42,6 @@ export const DecksTable = (props: Props) => {
           <TableRow key={item.id}>
             <TableCell>
               <Link className={s.linkToDeck} to={`${Routes.DECKS}/${item.id}`}>
-                {' '}
                 {item.name}
               </Link>
             </TableCell>

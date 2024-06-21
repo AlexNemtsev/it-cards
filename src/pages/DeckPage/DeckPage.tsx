@@ -53,7 +53,7 @@ export const DeckPage = () => {
           {isYourDeck && <MyDeckDropdownMenu />}
         </div>
         {isYourDeck ? (
-          <AddNewCardModal onSubmit={onCreateCard} />
+          <AddNewCardModal onCreateCard={onCreateCard} />
         ) : (
           <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
         )}

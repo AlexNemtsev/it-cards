@@ -9,8 +9,8 @@ import { Page404 } from '@/pages/Page404';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { SignUpPage } from '@/pages/SignUpPage';
 import { Routes } from '@/shared/constants/routes';
-import { Layout } from '@/shared/ui/Layout';
 
+import { Layout } from '../Layout/Layout';
 import { PrivateRoutes } from './PrivateRoutes';
 
 const publicRoutes: RouteObject[] = [

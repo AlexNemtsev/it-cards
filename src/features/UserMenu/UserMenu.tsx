@@ -11,11 +11,12 @@ import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { DropdownProfileInfo } from '@/shared/ui/Dropdown/DropdownProfileInfo';
-import { Trigger } from '@/shared/ui/Layout/UserMenu/Trigger';
 import { Typography } from '@/shared/ui/Typography';
 
 import s from './UserMenu.module.scss';
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
+
+import { DropdownTrigger } from './DropdownTrigger';
 
 type Props = {
   data: User;
@@ -26,7 +27,7 @@ export const UserMenu = ({ data }: Props) => {
 
   const logoutHandler = async () => {
     try {
-      logout();
+      await logout();
     } catch (e) {
       const error = e as BaseErrorResponse;
 
@@ -35,7 +36,7 @@ export const UserMenu = ({ data }: Props) => {
   };
 
   return (
-    <Dropdown className={s.q} trigger={<Trigger name={data.name} />}>
+    <Dropdown trigger={<DropdownTrigger name={data.name} />}>
       <DropdownProfileInfo>
         <Avatar />
         <div>

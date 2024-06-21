@@ -1,6 +1,7 @@
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
 import { useMeQuery } from '@/entities/user/api';
 import { useDebounce } from '@/shared/hooks/useDebounce';
+import { Spinner } from '@/shared/ui/Spinner';
 import { Typography } from '@/shared/ui/Typography';
 import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
@@ -88,7 +89,7 @@ export const DecksPage = () => {
       <div className="decks">
         {isError && <div>Error...</div>}
         {isLoading ? (
-          <div>Loading...</div>
+          <Spinner />
         ) : (
           decks &&
           decks.items.length > 0 && (

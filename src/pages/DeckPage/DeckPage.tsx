@@ -37,9 +37,9 @@ export const DeckPage = () => {
   } = useDeckPage();
 
   const [createCard] = useCreateCardMutation();
+
   const onCreateCard = (data: CreateCardRequest) => {
     const args: { deckId: string } & CreateCardRequest = { ...data, deckId };
-    // const args: { deckId: string } & AddNewCardFormValues = { deckId, ...data };
 
     createCard(args);
   };

@@ -30,27 +30,16 @@ export const deckApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
-      //
-      // deleteCard: builder.mutation<, { id: string }>({
-      //   invalidatesTags: ['GetCards'],
-      //   query: args => {
-      //     const { answer, answerImg, deckId, question } = args;
-      //     const formData = new FormData();
-      //
-      //     if (answerImg) {
-      //       formData.append('answerImg', answerImg);
-      //     }
-      //
-      //     formData.append('answer', answer);
-      //     formData.append('question', question);
-      //
-      //     return {
-      //       body: formData,
-      //       method: 'POST',
-      //       url: `/v1/decks/${deckId}/cards`,
-      //     };
-      //   },
-      // }),
+
+      deleteCard: builder.mutation<undefined, string>({
+        invalidatesTags: ['GetCards'],
+        query: id => {
+          return {
+            method: 'DELETE',
+            url: `/v1/cards/${id}`,
+          };
+        },
+      }),
 
       getCards: builder.query<PaginatedCardsWithGrade, GetCardsArgs>({
         providesTags: ['GetCards'],
@@ -67,4 +56,4 @@ export const deckApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const { useCreateCardMutation, useGetCardsQuery } = deckApi;
+export const { useCreateCardMutation, useDeleteCardMutation, useGetCardsQuery } = deckApi;

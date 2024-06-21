@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetCardsQuery } from '@/entities/card/api/cardApi';
+import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
@@ -40,6 +40,9 @@ export const CardsTable = (props: Props) => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const { data: meData } = useMeQuery();
   const { data: deck } = useGetDeckQuery(deckId);
+
+  const [deleteCard] = useDeleteCardMutation();
+
   const isYourDeck = meData?.id === deck?.userId;
   const isQuestionDesc = orderByKey === 'question-desc';
   const isQuestionAsc = orderByKey === 'question-asc';
@@ -78,6 +81,10 @@ export const CardsTable = (props: Props) => {
 
   const sortByGrade = () => {
     orderByCallBack(orderByKey === 'grade-desc' ? 'grade-asc' : 'grade-desc');
+  };
+
+  const onDeleteCard = (id: string) => {
+    deleteCard(id);
   };
 
   return (
@@ -157,7 +164,12 @@ export const CardsTable = (props: Props) => {
                           <button className={s.cardButton}>
                             <Edit />
                           </button>
-                          <button className={s.cardButton}>
+                          <button
+                            className={s.cardButton}
+                            onClick={() => {
+                              onDeleteCard(item.id);
+                            }}
+                          >
                             <Delete />
                           </button>
                         </div>

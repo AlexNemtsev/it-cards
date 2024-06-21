@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useCreateCardMutation } from '@/entities/card/api/cardApi';
-import { Card } from '@/entities/card/api/types';
+import { CreateCardRequest } from '@/entities/card/api/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
@@ -37,8 +37,8 @@ export const DeckPage = () => {
   } = useDeckPage();
 
   const [createCard] = useCreateCardMutation();
-  const onCreateCard = (data: Card) => {
-    const args: { deckId: string } & Card = { ...data, deckId };
+  const onCreateCard = (data: CreateCardRequest) => {
+    const args: { deckId: string } & CreateCardRequest = { ...data, deckId };
     // const args: { deckId: string } & AddNewCardFormValues = { deckId, ...data };
 
     createCard(args);

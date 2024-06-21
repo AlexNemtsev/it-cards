@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { getDecksResponse } from '@/entities/deck/api/types';
+import { GetDecksResponse } from '@/entities/deck/api/types';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
@@ -16,7 +16,7 @@ import { TableRow } from '@/shared/ui/Table/TableRow';
 import s from './DecksTable.module.scss';
 
 type Props = {
-  decks: getDecksResponse;
+  decks: GetDecksResponse;
   getSortedLastedUpdated: () => void;
   sort: string;
 };

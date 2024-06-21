@@ -5,7 +5,7 @@ export type GetCardsArgs = {
   deckId: string;
 } & operations['DecksController_findCardsInDeck']['parameters']['query'];
 
-export type Card = {
+export type CreateCardRequest = {
   answer: string;
   answerImg?: Nullable<File>;
   question: string;
@@ -14,4 +14,4 @@ export type Card = {
 
 type Nullable<T> = T | null;
 
-export type CreateCardRequest = components['schemas']['CreateCardRequest'];
+export type CreateCardResponse = components['schemas']['Card'];

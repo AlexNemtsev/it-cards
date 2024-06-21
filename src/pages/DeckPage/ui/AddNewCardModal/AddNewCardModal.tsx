@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Card } from '@/entities/card/api/types';
+import { CreateCardRequest } from '@/entities/card/api/types';
 import { AddNewCardModalTitle } from '@/pages/DeckPage/ui/AddNewCardModal/ui/AddNewCardModalTitle';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';
@@ -22,7 +22,7 @@ const AddNewCardScheme = z.object({
 export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 
 type Props = {
-  onCreateCard: (data: Card) => void;
+  onCreateCard: (data: CreateCardRequest) => void;
 };
 export const AddNewCardModal = ({ onCreateCard }: Props) => {
   const { control, handleSubmit } = useForm<AddNewCardFormValues>({

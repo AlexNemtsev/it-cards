@@ -1,5 +1,6 @@
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
 import { useMeQuery } from '@/entities/user/api';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Typography } from '@/shared/ui/Typography';
 import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
@@ -61,9 +62,9 @@ export const DecksPage = () => {
     authorId,
     currentPage,
     itemsPerPage,
-    maxCardsCount: range[1],
-    minCardsCount: range[0],
-    name: searchByName,
+    maxCardsCount: useDebounce(range[1], 800),
+    minCardsCount: useDebounce(range[0], 800),
+    name: useDebounce(searchByName, 800),
     orderBy: orderDecksBy,
   });
 

@@ -8,7 +8,7 @@ import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
-import { DebouncedInput } from '@/shared/ui/DebouncedInput';
+import { Input } from '@/shared/ui/Input';
 import { PageContainer } from '@/shared/ui/PageContainer';
 import { Typography } from '@/shared/ui/Typography';
 import { CardsTable } from '@/widgets/Deck/CardsTable';
@@ -49,11 +49,11 @@ export const DeckPage = () => {
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
-      <DebouncedInput
-        changeSearchValue={changeSearchValue}
+      <Input
         containerClassName={s.input}
+        onClearInput={onInputClear}
+        onValueChange={changeSearchValue}
         placeholder="Search by question"
-        resetInput={onInputClear}
         type="search"
         value={question}
       />

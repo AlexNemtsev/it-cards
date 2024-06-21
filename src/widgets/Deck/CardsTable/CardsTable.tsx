@@ -8,6 +8,7 @@ import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Routes } from '@/shared/constants/routes';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Rating } from '@/shared/ui/Rating';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '@/shared/ui/Table';
@@ -55,7 +56,7 @@ export const CardsTable = (props: Props) => {
     deckId,
     itemsPerPage,
     orderBy,
-    question,
+    question: useDebounce(question, 800),
   });
 
   const pagination = cards?.pagination ?? {

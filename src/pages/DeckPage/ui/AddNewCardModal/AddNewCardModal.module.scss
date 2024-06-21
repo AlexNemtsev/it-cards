@@ -1,3 +1,7 @@
+.content {
+  max-width: 542px;
+}
+
 .subtitle {
   margin-bottom: 12px;
 }
@@ -6,16 +10,12 @@
   margin-bottom: 12px;
 }
 
-.uploadButton {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+.imageContainer {
   margin-bottom: 24px;
+}
 
-  svg {
-    width: 16px;
-    height: 16px;
-  }
+.uploadButton {
+  margin-bottom: 24px;
 }
 
 .buttonWrapper {
@@ -24,6 +24,6 @@
   padding-top: 12px;
 }
 
-.content {
-  max-width: 542px;
+.uploadInput {
+  width: 0;
 }

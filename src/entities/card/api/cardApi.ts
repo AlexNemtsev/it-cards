@@ -13,11 +13,15 @@ export const deckApi = flashcardsApi.injectEndpoints({
       createCard: builder.mutation<CreateCardResponse, { deckId: string } & CreateCardRequest>({
         invalidatesTags: ['GetCards'],
         query: args => {
-          const { answer, answerImg, deckId, question } = args;
+          const { answer, answerImg, deckId, question, questionImg } = args;
           const formData = new FormData();
 
           if (answerImg) {
             formData.append('answerImg', answerImg);
+          }
+
+          if (questionImg) {
+            formData.append('questionImg', questionImg);
           }
 
           formData.append('answer', answer);
@@ -52,8 +56,38 @@ export const deckApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
+
+      updateCard: builder.mutation<CreateCardResponse, { id: string } & CreateCardRequest>({
+        invalidatesTags: ['GetCards'],
+        query: args => {
+          const { answer, answerImg, id, question, questionImg } = args;
+          const formData = new FormData();
+
+          if (answerImg) {
+            formData.append('answerImg', answerImg);
+          }
+
+          if (questionImg) {
+            formData.append('questionImg', questionImg);
+          }
+
+          formData.append('answer', answer);
+          formData.append('question', question);
+
+          return {
+            body: formData,
+            method: 'PATCH',
+            url: `/v1/cards/${id}`,
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useCreateCardMutation, useDeleteCardMutation, useGetCardsQuery } = deckApi;
+export const {
+  useCreateCardMutation,
+  useDeleteCardMutation,
+  useGetCardsQuery,
+  useUpdateCardMutation,
+} = deckApi;

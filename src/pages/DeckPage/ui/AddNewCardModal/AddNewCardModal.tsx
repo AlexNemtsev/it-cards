@@ -5,6 +5,7 @@ import { CreateCardRequest } from '@/entities/card/api/types';
 import { AddNewCardModalTitle } from '@/pages/DeckPage/ui/AddNewCardModal/ui/AddNewCardModalTitle';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';
+import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
 import { InputWithController } from '@/shared/ui/InputWithController';
 import { Modal } from '@/shared/ui/Modal';
 import { Typography } from '@/shared/ui/Typography';
@@ -25,7 +26,7 @@ type Props = {
   onCreateCard: (data: CreateCardRequest) => void;
 };
 export const AddNewCardModal = ({ onCreateCard }: Props) => {
-  const { control, handleSubmit } = useForm<AddNewCardFormValues>({
+  const { control, handleSubmit, reset } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
       question: '',
@@ -35,12 +36,22 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
 
   const [open, setOpen] = useState(false);
   const [answerImg, setAnswerImg] = useState<File | null>(null);
+  const [questionImg, setQuestionImg] = useState<File | null>(null);
 
   const onSubmitCreateCard = (data: AddNewCardFormValues) => {
-    onCreateCard({ ...data, answerImg });
+    onCreateCard({ ...data, answerImg, questionImg });
     setOpen(false);
+    setAnswerImg(null);
+    setQuestionImg(null);
+    reset();
   };
+  const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length) {
+      const file = e.target.files[0];
 
+      setQuestionImg(file);
+    }
+  };
   const uploadAnswerImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
@@ -69,7 +80,21 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your question"
         />
 
-        <Button className={s.uploadButton} fullWidth type="button" variant="secondary">
+        {questionImg && (
+          <ImageContainerWithDeleteButton
+            className={s.imageContainer}
+            clearCover={() => setQuestionImg(null)}
+            image={questionImg}
+          />
+        )}
+
+        <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
+          <input
+            accept="image/jpeg, image/png, image/gif"
+            className={s.uploadInput}
+            onChange={uploadQuestionImageHandler}
+            type="file"
+          />
           <FileIcon />
           <Typography.Subtitle2>Change Image</Typography.Subtitle2>
         </Button>
@@ -84,9 +109,21 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your answer"
         />
 
-        <input accept={'image/*'} onChange={uploadAnswerImageHandler} type="file" />
+        {answerImg && (
+          <ImageContainerWithDeleteButton
+            className={s.imageContainer}
+            clearCover={() => setAnswerImg(null)}
+            image={answerImg}
+          />
+        )}
 
-        <Button className={s.uploadButton} fullWidth type="button" variant="secondary">
+        <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
+          <input
+            accept="image/jpeg, image/png, image/gif"
+            className={s.uploadInput}
+            onChange={uploadAnswerImageHandler}
+            type="file"
+          />
           <FileIcon />
           <Typography.Subtitle2>Change Image</Typography.Subtitle2>
         </Button>

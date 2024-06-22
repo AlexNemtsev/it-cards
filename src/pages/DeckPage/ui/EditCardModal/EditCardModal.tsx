@@ -1,8 +1,10 @@
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useGetCardQuery, useUpdateCardMutation } from '@/entities/card/api/cardApi';
 import { CreateCardRequest } from '@/entities/card/api/types';
-import { AddNewCardModalTitle } from '@/pages/DeckPage/ui/AddNewCardModal/ui/AddNewCardModalTitle';
+import { EditCardModalTitle } from '@/pages/DeckPage/ui/EditCardModal/ui/EditCardModalTitle';
+import { Edit } from '@/shared/assets/icons/Edit';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
@@ -13,38 +15,34 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Close } from '@radix-ui/react-dialog';
 import { z } from 'zod';
 
-import s from './AddNewCardModal.module.scss';
+import s from './EditCardModal.module.scss';
 
-const AddNewCardScheme = z.object({
+const UpdateCardScheme = z.object({
   answer: z.string().min(3),
   question: z.string().min(3),
 });
 
-export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
+export type EditCardFormValues = z.infer<typeof UpdateCardScheme>;
 
 type Props = {
-  onCreateCard: (data: CreateCardRequest) => void;
+  cardId: string;
 };
-export const AddNewCardModal = ({ onCreateCard }: Props) => {
-  const { control, handleSubmit, reset } = useForm<AddNewCardFormValues>({
+export const EditCardModal = ({ cardId: id }: Props) => {
+  const [updateCard] = useUpdateCardMutation();
+  const { data: card } = useGetCardQuery(id);
+
+  const { control, handleSubmit, reset } = useForm<EditCardFormValues>({
     defaultValues: {
-      answer: '',
-      question: '',
+      answer: card?.answer,
+      question: card?.question,
     },
-    resolver: zodResolver(AddNewCardScheme),
+    resolver: zodResolver(UpdateCardScheme),
   });
 
   const [open, setOpen] = useState(false);
   const [answerImg, setAnswerImg] = useState<File | null>(null);
   const [questionImg, setQuestionImg] = useState<File | null>(null);
 
-  const onSubmitCreateCard = (data: AddNewCardFormValues) => {
-    onCreateCard({ ...data, answerImg, questionImg });
-    setOpen(false);
-    setAnswerImg(null);
-    setQuestionImg(null);
-    reset();
-  };
   const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
@@ -52,6 +50,7 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
       setQuestionImg(file);
     }
   };
+
   const uploadAnswerImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
@@ -60,15 +59,30 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
     }
   };
 
+  const onSubmitUpdateCard = (data: CreateCardRequest) => {
+    const args: { id: string } & CreateCardRequest = { ...data, id };
+
+    setOpen(false);
+    // setAnswerImg(null);
+    // setQuestionImg(null);
+    reset();
+
+    updateCard(args);
+  };
+
   return (
     <Modal
       className={s.content}
       onOpenChange={setOpen}
       open={open}
-      title={<AddNewCardModalTitle />}
-      trigger={<Button>Add New Card</Button>}
+      title={<EditCardModalTitle />}
+      trigger={
+        <button className={s.cardButton}>
+          <Edit />
+        </button>
+      }
     >
-      <form onSubmit={handleSubmit(onSubmitCreateCard)}>
+      <form onSubmit={handleSubmit(onSubmitUpdateCard)}>
         <Typography.Subtitle2 className={s.subtitle}>Question:</Typography.Subtitle2>
 
         <InputWithController
@@ -80,19 +94,13 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your question"
         />
 
-        <ImageContainerWithDeleteButton
-          className={s.imageContainer}
-          clearCover={() => setQuestionImg(null)}
-          image={questionImg}
-        />
-
-        {/*{questionImg && (*/}
-        {/*  <ImageContainerWithDeleteButton*/}
-        {/*    className={s.imageContainer}*/}
-        {/*    clearCover={() => setQuestionImg(null)}*/}
-        {/*    image={questionImg}*/}
-        {/*  />*/}
-        {/*)}*/}
+        {questionImg && (
+          <ImageContainerWithDeleteButton
+            className={s.imageContainer}
+            clearCover={() => setQuestionImg(null)}
+            image={questionImg}
+          />
+        )}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input
@@ -115,19 +123,13 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your answer"
         />
 
-        <ImageContainerWithDeleteButton
-          className={s.imageContainer}
-          clearCover={() => setAnswerImg(null)}
-          image={answerImg}
-        />
-
-        {/*{answerImg && (*/}
-        {/*  <ImageContainerWithDeleteButton*/}
-        {/*    className={s.imageContainer}*/}
-        {/*    clearCover={() => setAnswerImg(null)}*/}
-        {/*    image={answerImg}*/}
-        {/*  />*/}
-        {/*)}*/}
+        {answerImg && (
+          <ImageContainerWithDeleteButton
+            className={s.imageContainer}
+            clearCover={() => setAnswerImg(null)}
+            image={answerImg}
+          />
+        )}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input
@@ -146,7 +148,7 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           </Close>
 
           <Button type="submit">
-            Add New Card
+            Update Card
             <Close asChild></Close>
           </Button>
         </div>

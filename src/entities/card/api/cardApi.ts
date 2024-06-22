@@ -45,6 +45,14 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
+      getCard: builder.query<CreateCardResponse, string>({
+        query: id => {
+          return {
+            url: `v1/cards/${id}`,
+          };
+        },
+      }),
+
       getCards: builder.query<PaginatedCardsWithGrade, GetCardsArgs>({
         providesTags: ['GetCards'],
         query: args => {
@@ -88,6 +96,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
 export const {
   useCreateCardMutation,
   useDeleteCardMutation,
+  useGetCardQuery,
   useGetCardsQuery,
   useUpdateCardMutation,
 } = deckApi;

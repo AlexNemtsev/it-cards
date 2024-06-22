@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
+import { EditCardModal } from '@/pages/DeckPage/ui/EditCardModal';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
-import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Routes } from '@/shared/constants/routes';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Rating } from '@/shared/ui/Rating';
@@ -161,9 +161,7 @@ export const CardsTable = (props: Props) => {
                       <Rating rating={item.grade} />
                       {isYourDeck && (
                         <div className={s.buttonsWrapper}>
-                          <button className={s.cardButton}>
-                            <Edit />
-                          </button>
+                          <EditCardModal cardId={item.id} />
                           <button
                             className={s.cardButton}
                             onClick={() => {

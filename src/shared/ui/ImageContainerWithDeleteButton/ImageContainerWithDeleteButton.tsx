@@ -7,6 +7,7 @@ import s from './ImageContainerWithDeleteButton.module.scss';
 
 type Props = {
   clearCover: () => void;
+  // image: File | null;
   image: File | null;
 } & ComponentPropsWithoutRef<'div'>;
 
@@ -20,12 +21,12 @@ export const ImageContainerWithDeleteButton = (props: Props) => {
     newPreview = URL.createObjectURL(image);
   }
 
-  return (
+  return newPreview ? (
     <div {...restProps} className={classNames}>
       <img alt="image" className={s.cover} src={newPreview} />
       <button className={s.clearButton} onClick={clearCover}>
         <Cross />
       </button>
     </div>
-  );
+  ) : null;
 };

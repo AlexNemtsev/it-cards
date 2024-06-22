@@ -132,9 +132,9 @@ export const CardsTable = (props: Props) => {
         </TableHead>
         {cards?.items && (
           <TableBody>
-            {cards.items.map((item, index) => {
+            {cards.items.map(item => {
               return (
-                <TableRow key={index}>
+                <TableRow key={item.id}>
                   <TableCell>
                     <div className={s.questionCell}>
                       {item.questionImg && (

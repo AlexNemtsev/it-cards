@@ -55,7 +55,7 @@ export const DeckPage = () => {
         {isYourDeck ? (
           <AddNewCardModal onCreateCard={onCreateCard} />
         ) : (
-          <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
+          <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Deck</Button>
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}

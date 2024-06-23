@@ -40,13 +40,12 @@ export const EditCardModal = ({ card }: Props) => {
 
   const [open, setOpen] = useState(false);
   const [answerImg, setAnswerImg] = useState<File | null>(null);
-  const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
+  // const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
 
   const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
-      const file = e.target.files[0];
-
-      setQuestionImg(file);
+      // const file = e.target.files[0];
+      // setQuestionImg(file);
     }
   };
 
@@ -90,11 +89,11 @@ export const EditCardModal = ({ card }: Props) => {
         />
 
         {/*{questionImg && (*/}
-        <ImageContainerWithDeleteButton
-          className={s.imageContainer}
-          clearCover={() => setQuestionImg(null)}
-          image={questionImg}
-        />
+        {/*<ImageContainerWithDeleteButton*/}
+        {/*  className={s.imageContainer}*/}
+        {/*  clearCover={() => setQuestionImg(null)}*/}
+        {/*  image={questionImg}*/}
+        {/*/>*/}
         {/*)}*/}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">

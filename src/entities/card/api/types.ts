@@ -12,6 +12,6 @@ export type CreateCardRequest = {
   questionImg?: Nullable<File>;
 };
 
-type Nullable<T> = T | null;
+export type Nullable<T> = T | null;
 
-export type CreateCardResponse = components['schemas']['Card'];
+export type Card = components['schemas']['Card'];

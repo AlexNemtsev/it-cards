@@ -1,31 +1,14 @@
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
-import {
-  CreateCardRequest,
-  CreateCardResponse,
-  GetCardsArgs,
-  PaginatedCardsWithGrade,
-} from './types';
+import { Card, CreateCardRequest, GetCardsArgs, PaginatedCardsWithGrade } from './types';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createCard: builder.mutation<CreateCardResponse, { deckId: string } & CreateCardRequest>({
+      createCard: builder.mutation<Card, { deckId: string; formData: FormData }>({
         invalidatesTags: ['GetCards'],
         query: args => {
-          const { answer, answerImg, deckId, question, questionImg } = args;
-          const formData = new FormData();
-
-          if (answerImg) {
-            formData.append('answerImg', answerImg);
-          }
-
-          if (questionImg) {
-            formData.append('questionImg', questionImg);
-          }
-
-          formData.append('answer', answer);
-          formData.append('question', question);
+          const { deckId, formData } = args;
 
           return {
             body: formData,
@@ -45,7 +28,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
-      getCard: builder.query<CreateCardResponse, string>({
+      getCard: builder.query<Card, string>({
         query: id => {
           return {
             url: `v1/cards/${id}`,
@@ -65,7 +48,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
-      updateCard: builder.mutation<CreateCardResponse, { id: string } & CreateCardRequest>({
+      updateCard: builder.mutation<Card, { id: string } & CreateCardRequest>({
         invalidatesTags: ['GetCards'],
         query: args => {
           const { answer, answerImg, id, question, questionImg } = args;

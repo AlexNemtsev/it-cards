@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
+import { Nullable } from '@/entities/card/api/types';
 import { Cross } from '@/shared/assets/icons/Cross';
 import { clsx } from 'clsx';
 
@@ -7,8 +8,7 @@ import s from './ImageContainerWithDeleteButton.module.scss';
 
 type Props = {
   clearCover: () => void;
-  // image: File | null;
-  image: File | null;
+  image: Nullable<File>;
 } & ComponentPropsWithoutRef<'div'>;
 
 export const ImageContainerWithDeleteButton = (props: Props) => {
@@ -16,6 +16,10 @@ export const ImageContainerWithDeleteButton = (props: Props) => {
 
   let newPreview;
   const classNames = clsx(className, s.container);
+
+  // if (typeof image !== 'string') {
+  //   newPreview = URL.createObjectURL(image);
+  // }
 
   if (image) {
     newPreview = URL.createObjectURL(image);

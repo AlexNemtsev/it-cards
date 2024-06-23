@@ -39,7 +39,21 @@ export const DeckPage = () => {
   const [createCard] = useCreateCardMutation();
 
   const onCreateCard = (data: CreateCardRequest) => {
-    const args: { deckId: string } & CreateCardRequest = { ...data, deckId };
+    const { answer, answerImg, question, questionImg } = data;
+
+    const formData = new FormData();
+
+    if (answerImg) {
+      formData.append('answerImg', answerImg);
+    }
+
+    if (questionImg) {
+      formData.append('questionImg', questionImg);
+    }
+
+    formData.append('answer', answer);
+    formData.append('question', question);
+    const args: { deckId: string; formData: FormData } = { deckId, formData };
 
     createCard(args);
   };

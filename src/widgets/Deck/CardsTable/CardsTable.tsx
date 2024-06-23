@@ -161,7 +161,7 @@ export const CardsTable = (props: Props) => {
                       <Rating rating={item.grade} />
                       {isYourDeck && (
                         <div className={s.buttonsWrapper}>
-                          <EditCardModal cardId={item.id} />
+                          <EditCardModal card={item} />
                           <button
                             className={s.cardButton}
                             onClick={() => {

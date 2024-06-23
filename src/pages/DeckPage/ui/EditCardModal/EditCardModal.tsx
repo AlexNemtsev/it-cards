@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useGetCardQuery, useUpdateCardMutation } from '@/entities/card/api/cardApi';
-import { CreateCardRequest } from '@/entities/card/api/types';
+import { useUpdateCardMutation } from '@/entities/card/api/cardApi';
+import { Card, CreateCardRequest } from '@/entities/card/api/types';
 import { EditCardModalTitle } from '@/pages/DeckPage/ui/EditCardModal/ui/EditCardModalTitle';
 import { Edit } from '@/shared/assets/icons/Edit';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
@@ -25,11 +25,10 @@ const UpdateCardScheme = z.object({
 export type EditCardFormValues = z.infer<typeof UpdateCardScheme>;
 
 type Props = {
-  cardId: string;
+  card: Card;
 };
-export const EditCardModal = ({ cardId: id }: Props) => {
+export const EditCardModal = ({ card }: Props) => {
   const [updateCard] = useUpdateCardMutation();
-  const { data: card } = useGetCardQuery(id);
 
   const { control, handleSubmit, reset } = useForm<EditCardFormValues>({
     defaultValues: {
@@ -41,7 +40,7 @@ export const EditCardModal = ({ cardId: id }: Props) => {
 
   const [open, setOpen] = useState(false);
   const [answerImg, setAnswerImg] = useState<File | null>(null);
-  const [questionImg, setQuestionImg] = useState<File | null>(null);
+  const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
 
   const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -60,13 +59,10 @@ export const EditCardModal = ({ cardId: id }: Props) => {
   };
 
   const onSubmitUpdateCard = (data: CreateCardRequest) => {
-    const args: { id: string } & CreateCardRequest = { ...data, id };
+    const args: { id: string } & CreateCardRequest = { ...data, id: card.id };
 
     setOpen(false);
-    // setAnswerImg(null);
-    // setQuestionImg(null);
     reset();
-
     updateCard(args);
   };
 
@@ -84,7 +80,6 @@ export const EditCardModal = ({ cardId: id }: Props) => {
     >
       <form onSubmit={handleSubmit(onSubmitUpdateCard)}>
         <Typography.Subtitle2 className={s.subtitle}>Question:</Typography.Subtitle2>
-
         <InputWithController
           autoFocus
           containerClassName={s.input}
@@ -94,13 +89,13 @@ export const EditCardModal = ({ cardId: id }: Props) => {
           placeholder="Your question"
         />
 
-        {questionImg && (
-          <ImageContainerWithDeleteButton
-            className={s.imageContainer}
-            clearCover={() => setQuestionImg(null)}
-            image={questionImg}
-          />
-        )}
+        {/*{questionImg && (*/}
+        <ImageContainerWithDeleteButton
+          className={s.imageContainer}
+          clearCover={() => setQuestionImg(null)}
+          image={questionImg}
+        />
+        {/*)}*/}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input

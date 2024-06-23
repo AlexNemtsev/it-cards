@@ -80,19 +80,13 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your question"
         />
 
-        <ImageContainerWithDeleteButton
-          className={s.imageContainer}
-          clearCover={() => setQuestionImg(null)}
-          image={questionImg}
-        />
-
-        {/*{questionImg && (*/}
-        {/*  <ImageContainerWithDeleteButton*/}
-        {/*    className={s.imageContainer}*/}
-        {/*    clearCover={() => setQuestionImg(null)}*/}
-        {/*    image={questionImg}*/}
-        {/*  />*/}
-        {/*)}*/}
+        {questionImg && (
+          <ImageContainerWithDeleteButton
+            className={s.imageContainer}
+            clearCover={() => setQuestionImg(null)}
+            image={questionImg}
+          />
+        )}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input
@@ -115,11 +109,13 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your answer"
         />
 
+        {/*{answerImg && (*/}
         <ImageContainerWithDeleteButton
           className={s.imageContainer}
           clearCover={() => setAnswerImg(null)}
           image={answerImg}
         />
+        {/*)}*/}
 
         {/*{answerImg && (*/}
         {/*  <ImageContainerWithDeleteButton*/}

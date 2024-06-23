@@ -16,6 +16,11 @@
 
 .uploadButton {
   margin-bottom: 24px;
+
+  &:focus-within {
+    outline: 1px solid var(--color-info-500);
+    outline-offset: 1px;
+  }
 }
 
 .buttonWrapper {

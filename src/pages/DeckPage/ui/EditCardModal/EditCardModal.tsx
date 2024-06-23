@@ -77,6 +77,7 @@ export const EditCardModal = ({ card }: Props) => {
         </button>
       }
     >
+      <img alt="alt" src={card.questionImg} />
       <form onSubmit={handleSubmit(onSubmitUpdateCard)}>
         <Typography.Subtitle2 className={s.subtitle}>Question:</Typography.Subtitle2>
         <InputWithController

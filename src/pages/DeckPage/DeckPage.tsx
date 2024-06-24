@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
 
-import { useCreateCardMutation } from '@/entities/card/api/cardApi';
-import { CreateCardRequest } from '@/entities/card/api/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { AddNewCardModal } from '@/features/AddNewCardModal/AddNewCardModal';
@@ -36,28 +34,6 @@ export const DeckPage = () => {
     setSearchParams,
   } = useDeckPage();
 
-  const [createCard] = useCreateCardMutation();
-
-  const onCreateCard = (data: CreateCardRequest) => {
-    const { answer, answerImg, question, questionImg } = data;
-
-    const formData = new FormData();
-
-    if (answerImg) {
-      formData.append('answerImg', answerImg);
-    }
-
-    if (questionImg) {
-      formData.append('questionImg', questionImg);
-    }
-
-    formData.append('answer', answer);
-    formData.append('question', question);
-    const args: { deckId: string; formData: FormData } = { deckId, formData };
-
-    createCard(args);
-  };
-
   return (
     <PageContainer className={s.container}>
       <BackToLink to={Routes.DECKS}>Back to Decks List</BackToLink>
@@ -67,7 +43,7 @@ export const DeckPage = () => {
           {isYourDeck && <MyDeckDropdownMenu />}
         </div>
         {isYourDeck ? (
-          <AddNewCardModal onCreateCard={onCreateCard} />
+          <AddNewCardModal deckId={deckId} />
         ) : (
           <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Deck</Button>
         )}

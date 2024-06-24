@@ -1,8 +1,8 @@
-import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { CreateCardRequest } from '@/entities/card/api/types';
+import { useCreateCardMutation } from '@/entities/card/api/cardApi';
 import { AddNewCardModalTitle } from '@/features/AddNewCardModal/ui/AddNewCardModalTitle';
+import { useAddNewCardModal } from '@/features/AddNewCardModal/useAddNewCardModal';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
@@ -23,9 +23,20 @@ const AddNewCardScheme = z.object({
 export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 
 type Props = {
-  onCreateCard: (data: CreateCardRequest) => void;
+  deckId: string;
 };
-export const AddNewCardModal = ({ onCreateCard }: Props) => {
+export const AddNewCardModal = ({ deckId }: Props) => {
+  const {
+    answerImg,
+    open,
+    questionImg,
+    setAnswerImg,
+    setOpen,
+    setQuestionImg,
+    uploadAnswerImageHandler,
+    uploadQuestionImageHandler,
+  } = useAddNewCardModal();
+
   const { control, handleSubmit, reset } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
@@ -34,30 +45,31 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
     resolver: zodResolver(AddNewCardScheme),
   });
 
-  const [open, setOpen] = useState(false);
-  const [answerImg, setAnswerImg] = useState<File | null>(null);
-  const [questionImg, setQuestionImg] = useState<File | null>(null);
+  const [createCard] = useCreateCardMutation();
 
   const onSubmitCreateCard = (data: AddNewCardFormValues) => {
-    onCreateCard({ ...data, answerImg, questionImg });
+    const { answer, question } = data;
+
+    const formData = new FormData();
+
+    if (answerImg) {
+      formData.append('answerImg', answerImg);
+    }
+
+    if (questionImg) {
+      formData.append('questionImg', questionImg);
+    }
+
+    formData.append('answer', answer);
+    formData.append('question', question);
+    const args: { deckId: string; formData: FormData } = { deckId, formData };
+
+    createCard(args);
+
     setOpen(false);
     setAnswerImg(null);
     setQuestionImg(null);
     reset();
-  };
-  const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length) {
-      const file = e.target.files[0];
-
-      setQuestionImg(file);
-    }
-  };
-  const uploadAnswerImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length) {
-      const file = e.target.files[0];
-
-      setAnswerImg(file);
-    }
   };
 
   return (

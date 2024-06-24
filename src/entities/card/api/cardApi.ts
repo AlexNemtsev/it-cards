@@ -1,6 +1,6 @@
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
-import { Card, CreateCardRequest, GetCardsArgs, PaginatedCardsWithGrade } from './types';
+import { Card, GetCardsArgs, PaginatedCardsWithGrade } from './types';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
@@ -48,22 +48,10 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
-      updateCard: builder.mutation<Card, { id: string } & CreateCardRequest>({
+      updateCard: builder.mutation<Card, { formData: FormData; id: string }>({
         invalidatesTags: ['GetCards'],
         query: args => {
-          const { answer, answerImg, id, question, questionImg } = args;
-          const formData = new FormData();
-
-          if (answerImg) {
-            formData.append('answerImg', answerImg);
-          }
-
-          if (questionImg) {
-            formData.append('questionImg', questionImg);
-          }
-
-          formData.append('answer', answer);
-          formData.append('question', question);
+          const { formData, id } = args;
 
           return {
             body: formData,

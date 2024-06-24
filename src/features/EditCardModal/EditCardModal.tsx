@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useUpdateCardMutation } from '@/entities/card/api/cardApi';
-import { Card, CreateCardRequest } from '@/entities/card/api/types';
+import { Card } from '@/entities/card/api/types';
 import { EditCardModalTitle } from '@/features/EditCardModal/ui/EditCardModalTitle';
 import { Edit } from '@/shared/assets/icons/Edit';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
@@ -29,7 +29,6 @@ type Props = {
 };
 export const EditCardModal = ({ card }: Props) => {
   const [updateCard] = useUpdateCardMutation();
-  // const {data} = useUpdateCardMutation();
 
   const { control, handleSubmit } = useForm<EditCardFormValues>({
     defaultValues: {
@@ -38,7 +37,6 @@ export const EditCardModal = ({ card }: Props) => {
     },
     resolver: zodResolver(UpdateCardScheme),
   });
-
   const [open, setOpen] = useState(false);
   const [answerImg, setAnswerImg] = useState<File | null | string>(card.answerImg);
   const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
@@ -59,8 +57,22 @@ export const EditCardModal = ({ card }: Props) => {
     }
   };
 
-  const onSubmitUpdateCard = (data: CreateCardRequest) => {
-    const args: { id: string } & CreateCardRequest = { ...data, id: card.id };
+  const onSubmitUpdateCard = (data: EditCardFormValues) => {
+    const { answer, question } = data;
+
+    const formData = new FormData();
+
+    if (answerImg) {
+      formData.append('answerImg', answerImg);
+    }
+
+    if (questionImg) {
+      formData.append('questionImg', questionImg);
+    }
+
+    formData.append('answer', answer);
+    formData.append('question', question);
+    const args: { formData: FormData; id: string } = { formData, id: card.id };
 
     setOpen(false);
     updateCard(args);
@@ -121,16 +133,6 @@ export const EditCardModal = ({ card }: Props) => {
           clearCover={() => setAnswerImg(null)}
           image={answerImg}
         />
-
-        {/*{card.questionImg ? (*/}
-        {/*  <img alt="question" className={s.imageContainer} src={card.questionImg} />*/}
-        {/*) : (*/}
-        {/*  <ImageContainerWithDeleteButton*/}
-        {/*    className={s.imageContainer}*/}
-        {/*    clearCover={() => setAnswerImg(null)}*/}
-        {/*    image={answerImg}*/}
-        {/*  />*/}
-        {/*)}*/}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input

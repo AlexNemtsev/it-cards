@@ -19,7 +19,6 @@ export const ImageContainerWithDeleteButton = (props: Props) => {
 
   if (image && typeof image !== 'string') {
     newPreview = URL.createObjectURL(image);
-    console.log(newPreview);
   } else {
     newPreview = image;
   }

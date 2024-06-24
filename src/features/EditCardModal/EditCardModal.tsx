@@ -89,14 +89,6 @@ export const EditCardModal = ({ card }: Props) => {
           placeholder="Your question"
         />
 
-        {/*{questionImg && (*/}
-        {/*<ImageContainerWithDeleteButton*/}
-        {/*  className={s.imageContainer}*/}
-        {/*  clearCover={() => setQuestionImg(null)}*/}
-        {/*  image={questionImg}*/}
-        {/*/>*/}
-        {/*)}*/}
-
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input
             accept="image/jpeg, image/png, image/gif"
@@ -118,13 +110,11 @@ export const EditCardModal = ({ card }: Props) => {
           placeholder="Your answer"
         />
 
-        {answerImg && (
-          <ImageContainerWithDeleteButton
-            className={s.imageContainer}
-            clearCover={() => setAnswerImg(null)}
-            image={answerImg}
-          />
-        )}
+        <ImageContainerWithDeleteButton
+          className={s.imageContainer}
+          clearCover={() => setAnswerImg(null)}
+          image={answerImg}
+        />
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input

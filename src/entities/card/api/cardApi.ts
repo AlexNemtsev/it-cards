@@ -1,6 +1,6 @@
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
-import { Card, GetCardsArgs, PaginatedCardsWithGrade } from './types';
+import { Card, CreateCardQueryArgs, PaginatedCardsWithGrade } from './types';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
@@ -36,7 +36,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
-      getCards: builder.query<PaginatedCardsWithGrade, GetCardsArgs>({
+      getCards: builder.query<PaginatedCardsWithGrade, CreateCardQueryArgs>({
         providesTags: ['GetCards'],
         query: args => {
           const { deckId, ...rest } = args;

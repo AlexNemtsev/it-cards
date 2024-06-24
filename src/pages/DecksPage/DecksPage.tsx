@@ -1,7 +1,5 @@
-import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
+import { useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
 import { useMeQuery } from '@/entities/user/api';
-import { useDebounce } from '@/shared/hooks/useDebounce';
-import { Spinner } from '@/shared/ui/Spinner';
 import { Typography } from '@/shared/ui/Typography';
 import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
@@ -37,7 +35,6 @@ export const DecksPage = () => {
     getItemsPerPage,
     getOrderDecksBy,
     getSearchByName,
-    itemsPerPage,
     orderDecksBy,
     searchByName,
   } = useDecksSearchParams();
@@ -52,20 +49,6 @@ export const DecksPage = () => {
 
   const currentUserId = me?.id;
   const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
-
-  const {
-    data: decks,
-    isError,
-    isLoading,
-  } = useGetDecksQuery({
-    authorId,
-    currentPage,
-    itemsPerPage,
-    maxCardsCount: useDebounce(range[1], 800),
-    minCardsCount: useDebounce(range[0], 800),
-    name: useDebounce(searchByName, 800),
-    orderBy: orderDecksBy,
-  });
 
   return (
     <section className={s.section}>
@@ -87,28 +70,17 @@ export const DecksPage = () => {
         tabSwitcherStates={tabSwitcherStates}
       />
       <div className="decks">
-        {isError && <div>Error...</div>}
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          decks &&
-          decks.items.length > 0 && (
-            <>
-              <DecksTable
-                currentPage={currentPage || 1}
-                decks={decks}
-                getOrderDecksBy={getOrderDecksBy}
-                itemsPerPage={String(itemsPerPage) || '10'}
-                itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
-                onItemsPerPageChange={getItemsPerPage}
-                onValueChange={getCurrentPage}
-                sort={orderDecksBy}
-                totalPages={decks?.pagination.totalPages || 1}
-              />
-            </>
-          )
-        )}
-        {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
+        <DecksTable
+          authorId={authorId}
+          currentPage={currentPage || 1}
+          getOrderDecksBy={getOrderDecksBy}
+          itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
+          onItemsPerPageChange={getItemsPerPage}
+          onValueChange={getCurrentPage}
+          range={range}
+          sort={orderDecksBy}
+          totalPages={0}
+        />
       </div>
     </section>
   );

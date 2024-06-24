@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useCreateCardMutation } from '@/entities/card/api/cardApi';
 import { AddNewCardModalTitle } from '@/features/AddNewCardModal/ui/AddNewCardModalTitle';
 import { useAddNewCardModal } from '@/features/AddNewCardModal/useAddNewCardModal';
-import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
+import UploadButton from '@/pages/DeckPage/ui/UploadButton/UploadButton';
 import { Button } from '@/shared/ui/Button';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
 import { InputWithController } from '@/shared/ui/InputWithController';
@@ -100,16 +100,7 @@ export const AddNewCardModal = ({ deckId }: Props) => {
           />
         )}
 
-        <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
-          <input
-            accept="image/jpeg, image/png, image/gif"
-            className={s.uploadInput}
-            onChange={uploadQuestionImageHandler}
-            type="file"
-          />
-          <FileIcon />
-          <Typography.Subtitle2>Change Image</Typography.Subtitle2>
-        </Button>
+        <UploadButton className={s.uploadButton} onChange={uploadQuestionImageHandler} />
 
         <Typography.Subtitle2 className={s.subtitle}>Answer:</Typography.Subtitle2>
 
@@ -127,16 +118,7 @@ export const AddNewCardModal = ({ deckId }: Props) => {
           image={answerImg}
         />
 
-        <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
-          <input
-            accept="image/jpeg, image/png, image/gif"
-            className={s.uploadInput}
-            onChange={uploadAnswerImageHandler}
-            type="file"
-          />
-          <FileIcon />
-          <Typography.Subtitle2>Change Image</Typography.Subtitle2>
-        </Button>
+        <UploadButton className={s.uploadButton} onChange={uploadAnswerImageHandler} />
 
         <div className={s.buttonWrapper}>
           <Close asChild>

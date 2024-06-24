@@ -4,7 +4,7 @@ import { useCreateCardMutation } from '@/entities/card/api/cardApi';
 import { CreateCardRequest } from '@/entities/card/api/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
+import { AddNewCardModal } from '@/features/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';

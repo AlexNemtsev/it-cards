@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { CreateCardRequest } from '@/entities/card/api/types';
-import { AddNewCardModalTitle } from '@/pages/DeckPage/ui/AddNewCardModal/ui/AddNewCardModalTitle';
+import { AddNewCardModalTitle } from '@/features/AddNewCardModal/ui/AddNewCardModalTitle';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
@@ -109,21 +109,11 @@ export const AddNewCardModal = ({ onCreateCard }: Props) => {
           placeholder="Your answer"
         />
 
-        {/*{answerImg && (*/}
         <ImageContainerWithDeleteButton
           className={s.imageContainer}
           clearCover={() => setAnswerImg(null)}
           image={answerImg}
         />
-        {/*)}*/}
-
-        {/*{answerImg && (*/}
-        {/*  <ImageContainerWithDeleteButton*/}
-        {/*    className={s.imageContainer}*/}
-        {/*    clearCover={() => setAnswerImg(null)}*/}
-        {/*    image={answerImg}*/}
-        {/*  />*/}
-        {/*)}*/}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input

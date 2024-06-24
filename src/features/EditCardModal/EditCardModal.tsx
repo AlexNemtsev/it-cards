@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { useUpdateCardMutation } from '@/entities/card/api/cardApi';
 import { Card, CreateCardRequest } from '@/entities/card/api/types';
-import { EditCardModalTitle } from '@/pages/DeckPage/ui/EditCardModal/ui/EditCardModalTitle';
+import { EditCardModalTitle } from '@/features/EditCardModal/ui/EditCardModalTitle';
 import { Edit } from '@/shared/assets/icons/Edit';
 import { FileIcon } from '@/shared/assets/icons/FileIcon/FileIcon';
 import { Button } from '@/shared/ui/Button';

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import { EditCardModal } from '@/pages/DeckPage/ui/EditCardModal';
+import { EditCardModal } from '@/features/EditCardModal';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';

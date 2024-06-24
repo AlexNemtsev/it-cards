@@ -38,8 +38,11 @@ export const EditCardModal = ({ card }: Props) => {
     resolver: zodResolver(UpdateCardScheme),
   });
   const [open, setOpen] = useState(false);
-  const [answerImg, setAnswerImg] = useState<File | null | string>(card.answerImg);
-  const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
+  const [answerImg, setAnswerImg] = useState<File | null>(null);
+  const [questionImg, setQuestionImg] = useState<File | null>(null);
+
+  const showAnswerImgPreview = Boolean(card.answerImg && !answerImg);
+  const showQuestionImgPreview = Boolean(card.questionImg && !questionImg);
 
   const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -101,6 +104,9 @@ export const EditCardModal = ({ card }: Props) => {
           placeholder="Your question"
         />
 
+        {showQuestionImgPreview && (
+          <img alt="questionImg" className={s.cover} src={card.questionImg} />
+        )}
         <ImageContainerWithDeleteButton
           className={s.imageContainer}
           clearCover={() => setQuestionImg(null)}
@@ -127,6 +133,7 @@ export const EditCardModal = ({ card }: Props) => {
           name="answer"
           placeholder="Your answer"
         />
+        {showAnswerImgPreview && <img alt="answerImg" className={s.cover} src={card.answerImg} />}
 
         <ImageContainerWithDeleteButton
           className={s.imageContainer}

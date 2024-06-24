@@ -8,7 +8,7 @@ import s from './ImageContainerWithDeleteButton.module.scss';
 
 type Props = {
   clearCover: () => void;
-  image: Nullable<File> | string;
+  image: Nullable<File>;
 } & ComponentPropsWithoutRef<'div'>;
 
 export const ImageContainerWithDeleteButton = (props: Props) => {
@@ -17,15 +17,9 @@ export const ImageContainerWithDeleteButton = (props: Props) => {
   let newPreview;
   const classNames = clsx(className, s.container);
 
-  if (image && typeof image !== 'string') {
+  if (image) {
     newPreview = URL.createObjectURL(image);
-  } else {
-    newPreview = image;
   }
-
-  // if (image) {
-  //   newPreview = URL.createObjectURL(image);
-  // }
 
   return newPreview ? (
     <div {...restProps} className={classNames}>

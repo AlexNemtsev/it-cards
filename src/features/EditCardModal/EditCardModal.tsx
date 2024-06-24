@@ -40,13 +40,14 @@ export const EditCardModal = ({ card }: Props) => {
   });
 
   const [open, setOpen] = useState(false);
-  const [answerImg, setAnswerImg] = useState<File | null>(null);
-  // const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
+  const [answerImg, setAnswerImg] = useState<File | null | string>(card.answerImg);
+  const [questionImg, setQuestionImg] = useState<File | null | string>(card.questionImg);
 
   const uploadQuestionImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
-      // const file = e.target.files[0];
-      // setQuestionImg(file);
+      const file = e.target.files[0];
+
+      setQuestionImg(file);
     }
   };
 
@@ -77,7 +78,6 @@ export const EditCardModal = ({ card }: Props) => {
         </button>
       }
     >
-      {/*<img alt="alt" src={card.questionImg} />*/}
       <form onSubmit={handleSubmit(onSubmitUpdateCard)}>
         <Typography.Subtitle2 className={s.subtitle}>Question:</Typography.Subtitle2>
         <InputWithController
@@ -87,6 +87,12 @@ export const EditCardModal = ({ card }: Props) => {
           label="Question?"
           name="question"
           placeholder="Your question"
+        />
+
+        <ImageContainerWithDeleteButton
+          className={s.imageContainer}
+          clearCover={() => setQuestionImg(null)}
+          image={questionImg}
         />
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
@@ -115,6 +121,16 @@ export const EditCardModal = ({ card }: Props) => {
           clearCover={() => setAnswerImg(null)}
           image={answerImg}
         />
+
+        {/*{card.questionImg ? (*/}
+        {/*  <img alt="question" className={s.imageContainer} src={card.questionImg} />*/}
+        {/*) : (*/}
+        {/*  <ImageContainerWithDeleteButton*/}
+        {/*    className={s.imageContainer}*/}
+        {/*    clearCover={() => setAnswerImg(null)}*/}
+        {/*    image={answerImg}*/}
+        {/*  />*/}
+        {/*)}*/}
 
         <Button as="label" className={s.uploadButton} fullWidth variant="secondary">
           <input

@@ -29,8 +29,9 @@ type Props = {
 };
 export const EditCardModal = ({ card }: Props) => {
   const [updateCard] = useUpdateCardMutation();
+  // const {data} = useUpdateCardMutation();
 
-  const { control, handleSubmit, reset } = useForm<EditCardFormValues>({
+  const { control, handleSubmit } = useForm<EditCardFormValues>({
     defaultValues: {
       answer: card?.answer,
       question: card?.question,
@@ -61,7 +62,6 @@ export const EditCardModal = ({ card }: Props) => {
     const args: { id: string } & CreateCardRequest = { ...data, id: card.id };
 
     setOpen(false);
-    reset();
     updateCard(args);
   };
 
@@ -77,7 +77,7 @@ export const EditCardModal = ({ card }: Props) => {
         </button>
       }
     >
-      <img alt="alt" src={card.questionImg} />
+      {/*<img alt="alt" src={card.questionImg} />*/}
       <form onSubmit={handleSubmit(onSubmitUpdateCard)}>
         <Typography.Subtitle2 className={s.subtitle}>Question:</Typography.Subtitle2>
         <InputWithController

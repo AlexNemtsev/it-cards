@@ -83,7 +83,6 @@ export const EditCardModal = ({ card }: Props) => {
 
   return (
     <Modal
-      className={s.content}
       onOpenChange={setOpen}
       open={open}
       title={<EditCardModalTitle />}

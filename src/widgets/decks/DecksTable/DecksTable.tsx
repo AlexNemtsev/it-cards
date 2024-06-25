@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 
 import { useGetDecksQuery } from '@/entities/deck/api/api';
+import { useMeQuery } from '@/entities/user/api';
+import {
+  VARIANTS_ITEMS_PER_PAGE,
+  orderVariants,
+  tabSwitcherStates,
+} from '@/pages/DecksPage/consts';
 import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
@@ -19,39 +25,35 @@ import { TableRow } from '@/shared/ui/Table/TableRow';
 
 import s from './DecksTable.module.scss';
 
-const orderVariants = {
-  cardsCount: 'cardsCount',
-  created: 'created',
-  name: 'name',
-  updated: 'updated',
-};
-
 type Props = {
-  authorId?: string;
-  currentPage: number;
-  getOrderDecksBy: (value: string) => void;
-  itemsPerPageList: string[];
-  onItemsPerPageChange: (count: string) => void;
-  onValueChange: (currentPage: number) => void;
-  range: [number, number];
-  sort?: string;
-  totalPages: number;
+  maxCards?: number;
+  minCards?: number;
 };
 
 export const DecksTable = (props: Props) => {
-  const {
-    authorId,
-    currentPage,
-    getOrderDecksBy,
-    itemsPerPageList,
-    onItemsPerPageChange,
-    onValueChange,
-    range,
-    sort,
-    totalPages,
-  } = props;
+  const { maxCards, minCards } = props;
 
-  const { itemsPerPage, orderDecksBy, searchByName } = useDecksSearchParams();
+  const { data: me } = useMeQuery();
+
+  const {
+    currentPage,
+    decksAuthor,
+    decksNumberRange,
+    getCurrentPage,
+    getItemsPerPage,
+    getOrderDecksBy,
+    itemsPerPage,
+    orderDecksBy,
+    searchByName,
+  } = useDecksSearchParams();
+
+  const currentUserId = me?.id;
+  const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
+
+  const range: [number, number] = [
+    decksNumberRange?.[0] || minCards || 0,
+    decksNumberRange?.[1] || maxCards || 0,
+  ];
 
   const {
     data: decks,
@@ -68,7 +70,7 @@ export const DecksTable = (props: Props) => {
   });
 
   const setOrderIcon = (value: string) => {
-    return sort === `${value}-asc` ? <ChevronDownIcon /> : <ChevronUpIcon />;
+    return orderDecksBy === `${value}-asc` ? <ChevronDownIcon /> : <ChevronUpIcon />;
   };
 
   const sortByName = () => {
@@ -95,8 +97,7 @@ export const DecksTable = (props: Props) => {
       ) : (
         decks &&
         decks.items.length > 0 && (
-          <>
-            {' '}
+          <div className="decks">
             <Table className={s.decks}>
               <TableHead>
                 <TableRow>
@@ -120,7 +121,6 @@ export const DecksTable = (props: Props) => {
                   <TableRow key={item.id}>
                     <TableCell>
                       <Link className={s.linkToDeck} to={`${Routes.DECKS}/${item.id}`}>
-                        {' '}
                         {item.name}
                       </Link>
                     </TableCell>
@@ -135,13 +135,13 @@ export const DecksTable = (props: Props) => {
             <Pagination
               currentPage={currentPage || 1}
               itemsPerPage={String(itemsPerPage) || '10'}
-              itemsPerPageList={itemsPerPageList}
-              onItemsPerPageChange={onItemsPerPageChange}
-              onValueChange={onValueChange}
-              totalPages={totalPages}
+              itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
+              onItemsPerPageChange={getItemsPerPage}
+              onValueChange={getCurrentPage}
+              totalPages={decks.pagination.totalPages}
             />
             {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
-          </>
+          </div>
         )
       )}
     </>

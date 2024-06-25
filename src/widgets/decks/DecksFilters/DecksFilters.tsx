@@ -1,4 +1,5 @@
-import { TabSwitcherStatesType } from '@/pages/DecksPage/DecksPage';
+import { tabOptions, tabSwitcherStates } from '@/pages/DecksPage/consts';
+import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
@@ -8,40 +9,35 @@ import { TabSwitcher } from '@/shared/ui/TabSwitcher';
 import s from './DecksFilters.module.scss';
 
 type Props = {
-  clearFilters: () => void;
-  clearValueSearch: () => void;
-  decksAuthor: string;
-  getDecksAuthor: (value: string) => void;
-  getNumberOfCards: (value: [number, number]) => void;
-  getValueSearch: (value: string) => void;
-  maxCards: number | undefined;
-  minCards: number | undefined;
-  range: [number, number];
-  searchByName: string;
-  tabSwitcherStates: TabSwitcherStatesType;
+  maxCards?: number;
+  minCards?: number;
 };
 
 export const DecksFilters = (props: Props) => {
+  const { maxCards, minCards } = props;
+
   const {
     clearFilters,
-    clearValueSearch,
+    clearSearchByName,
     decksAuthor,
+    decksNumberRange,
     getDecksAuthor,
-    getNumberOfCards,
-    getValueSearch,
-    maxCards,
-    minCards,
-    range,
+    getDecksNumberRange,
+    getSearchByName,
     searchByName,
-    tabSwitcherStates,
-  } = props;
+  } = useDecksSearchParams();
+
+  const range: [number, number] = [
+    decksNumberRange?.[0] || minCards || 0,
+    decksNumberRange?.[1] || maxCards || 0,
+  ];
 
   return (
     <div className={s.filters}>
       <Input
         containerClassName={s.input}
-        onClearInput={clearValueSearch}
-        onValueChange={getValueSearch}
+        onClearInput={clearSearchByName}
+        onValueChange={getSearchByName}
         placeholder="Input search"
         type="search"
         value={searchByName}
@@ -50,19 +46,10 @@ export const DecksFilters = (props: Props) => {
         className={s.tabs}
         defaultValue={tabSwitcherStates.ALL}
         onValueChange={getDecksAuthor}
-        tabOptions={[
-          {
-            label: tabSwitcherStates.MY,
-            value: tabSwitcherStates.MY,
-          },
-          {
-            label: tabSwitcherStates.ALL,
-            value: tabSwitcherStates.ALL,
-          },
-        ]}
+        tabOptions={tabOptions}
         value={decksAuthor}
       />
-      <Slider max={maxCards} min={minCards} onValueChange={getNumberOfCards} value={range} />
+      <Slider max={maxCards} min={minCards} onValueChange={getDecksNumberRange} value={range} />
       <Button className={s.button} onClick={clearFilters} variant="secondary">
         <Delete />
         Clear Filter

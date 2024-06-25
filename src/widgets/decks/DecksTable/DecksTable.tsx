@@ -138,7 +138,7 @@ export const DecksTable = (props: Props) => {
               itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
               onItemsPerPageChange={getItemsPerPage}
               onValueChange={getCurrentPage}
-              totalPages={decks.pagination.totalPages}
+              totalPages={decks.pagination.totalPages || 1}
             />
             {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
           </div>

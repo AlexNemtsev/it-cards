@@ -33,6 +33,8 @@ type Props = {
 export const DecksTable = (props: Props) => {
   const { maxCards, minCards } = props;
 
+  console.log(minCards, maxCards);
+
   const { data: me } = useMeQuery();
 
   const {

@@ -6,19 +6,27 @@ import { DecksTable } from '@/widgets/decks/DecksTable';
 
 import s from './DecksPage.module.scss';
 
+import { Spinner } from '../../shared/ui/Spinner';
+
 export const DecksPage = () => {
-  const { data: minMaxCards } = useGetMinMaxCardsQuery();
+  const { data: minMaxCards, isLoading } = useGetMinMaxCardsQuery();
   const minCards = minMaxCards?.min;
   const maxCards = minMaxCards?.max;
 
   return (
-    <section className={s.section}>
-      <div className={s.header}>
-        <Typography.H1>Decks List</Typography.H1>
-        <AddNewDeckModal />
-      </div>
-      <DecksFilters maxCards={maxCards} minCards={minCards} />
-      <DecksTable maxCards={maxCards} minCards={minCards} />
-    </section>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <section className={s.section}>
+          <div className={s.header}>
+            <Typography.H1>Decks List</Typography.H1>
+            <AddNewDeckModal />
+          </div>
+          <DecksFilters maxCards={maxCards} minCards={minCards} />
+          <DecksTable maxCards={maxCards} minCards={minCards} />
+        </section>
+      )}
+    </>
   );
 };

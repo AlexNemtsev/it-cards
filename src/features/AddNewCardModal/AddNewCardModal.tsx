@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useCreateCardMutation } from '@/entities/card/api/cardApi';
 import { AddNewCardModalTitle } from '@/features/AddNewCardModal/ui/AddNewCardModalTitle';
 import { useAddNewCardModal } from '@/features/AddNewCardModal/useAddNewCardModal';
-import UploadButton from '@/pages/DeckPage/ui/UploadButton/UploadButton';
+import { UploadButton } from '@/pages/DeckPage/ui/UploadButton/UploadButton';
 import { Button } from '@/shared/ui/Button';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
 import { InputWithController } from '@/shared/ui/InputWithController';
@@ -26,16 +26,8 @@ type Props = {
   deckId: string;
 };
 export const AddNewCardModal = ({ deckId }: Props) => {
-  const {
-    answerImg,
-    open,
-    questionImg,
-    setAnswerImg,
-    setOpen,
-    setQuestionImg,
-    uploadAnswerImageHandler,
-    uploadQuestionImageHandler,
-  } = useAddNewCardModal();
+  const { answerImg, open, questionImg, setAnswerImg, setOpen, setQuestionImg } =
+    useAddNewCardModal();
 
   const { control, handleSubmit, reset } = useForm<AddNewCardFormValues>({
     defaultValues: {
@@ -100,7 +92,7 @@ export const AddNewCardModal = ({ deckId }: Props) => {
           />
         )}
 
-        <UploadButton className={s.uploadButton} onChange={uploadQuestionImageHandler} />
+        <UploadButton className={s.uploadButton} setImage={setQuestionImg} />
 
         <Typography.Subtitle2 className={s.subtitle}>Answer:</Typography.Subtitle2>
 
@@ -118,7 +110,7 @@ export const AddNewCardModal = ({ deckId }: Props) => {
           image={answerImg}
         />
 
-        <UploadButton className={s.uploadButton} onChange={uploadAnswerImageHandler} />
+        <UploadButton className={s.uploadButton} setImage={setAnswerImg} />
 
         <div className={s.buttonWrapper}>
           <Close asChild>

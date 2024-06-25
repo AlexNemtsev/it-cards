@@ -9,18 +9,26 @@ import s from './UploadButton.module.scss';
 
 type Props = {
   className?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  setImage: (file: File) => void;
 };
 
-const UploadButton = ({ className, onChange }: Props) => {
+export const UploadButton = ({ className, setImage }: Props) => {
   const classNames = clsx(s.uploadButton, className);
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length) {
+      const file = e.target.files[0];
+
+      setImage(file);
+    }
+  };
 
   return (
     <Button as="label" className={classNames} fullWidth variant="secondary">
       <input
         accept="image/jpeg, image/png, image/gif"
         className={s.input}
-        onChange={onChange}
+        onChange={onChangeHandler}
         type="file"
       />
       <FileIcon />
@@ -28,5 +36,3 @@ const UploadButton = ({ className, onChange }: Props) => {
     </Button>
   );
 };
-
-export default UploadButton;

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Card } from '@/entities/card/api/types';
 import { EditCardModalTitle } from '@/features/EditCardModal/ui/EditCardModalTitle';
 import { useEditCardModal } from '@/features/EditCardModal/useEditCardModal';
-import UploadButton from '@/pages/DeckPage/ui/UploadButton/UploadButton';
+import { UploadButton } from '@/pages/DeckPage/ui/UploadButton/UploadButton';
 import { Edit } from '@/shared/assets/icons/Edit';
 import { Button } from '@/shared/ui/Button';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
@@ -37,8 +37,6 @@ export const EditCardModal = ({ card }: Props) => {
     setQuestionImg,
     showAnswerImgPreview,
     showQuestionImgPreview,
-    uploadAnswerImageHandler,
-    uploadQuestionImageHandler,
   } = useEditCardModal(card);
 
   const { control, handleSubmit } = useForm<EditCardFormValues>({
@@ -80,7 +78,7 @@ export const EditCardModal = ({ card }: Props) => {
           image={questionImg}
         />
 
-        <UploadButton className={s.uploadButton} onChange={uploadQuestionImageHandler} />
+        <UploadButton className={s.uploadButton} setImage={setQuestionImg} />
 
         <Typography.Subtitle2 className={s.subtitle}>Answer:</Typography.Subtitle2>
 
@@ -99,7 +97,7 @@ export const EditCardModal = ({ card }: Props) => {
           image={answerImg}
         />
 
-        <UploadButton className={s.uploadButton} onChange={uploadAnswerImageHandler} />
+        <UploadButton className={s.uploadButton} setImage={setAnswerImg} />
 
         <div className={s.buttonWrapper}>
           <Close asChild>

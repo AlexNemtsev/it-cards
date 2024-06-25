@@ -26,7 +26,9 @@ export type EditCardFormValues = z.infer<typeof UpdateCardScheme>;
 type Props = {
   card: Card;
 };
-export const EditCardModal = ({ card }: Props) => {
+export const EditCardModal = (props: Props) => {
+  const { card } = props;
+
   const {
     answerImg,
     onSubmitUpdateCard,

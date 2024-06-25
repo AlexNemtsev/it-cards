@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import { useCreateCardMutation } from '@/entities/card/api/cardApi';
+import { CreateCardQueryArgs } from '@/entities/card/api/types';
 import { AddNewCardModalTitle } from '@/features/AddNewCardModal/ui/AddNewCardModalTitle';
 import { useAddNewCardModal } from '@/features/AddNewCardModal/useAddNewCardModal';
 import { UploadButton } from '@/pages/DeckPage/ui/UploadButton/UploadButton';
@@ -25,7 +26,8 @@ export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 type Props = {
   deckId: string;
 };
-export const AddNewCardModal = ({ deckId }: Props) => {
+export const AddNewCardModal = (props: Props) => {
+  const { deckId } = props;
   const { answerImg, open, questionImg, setAnswerImg, setOpen, setQuestionImg } =
     useAddNewCardModal();
 
@@ -54,7 +56,7 @@ export const AddNewCardModal = ({ deckId }: Props) => {
 
     formData.append('answer', answer);
     formData.append('question', question);
-    const args: { deckId: string; formData: FormData } = { deckId, formData };
+    const args: CreateCardQueryArgs = { deckId, formData };
 
     createCard(args);
 

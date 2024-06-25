@@ -1,6 +1,6 @@
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
-import { Card, CreateCardQueryArgs, PaginatedCardsWithGrade } from './types';
+import { Card, GetCardQueryArgs, PaginatedCardsWithGrade, UpdateCardQueryArgs } from './types';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
@@ -36,7 +36,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
-      getCards: builder.query<PaginatedCardsWithGrade, CreateCardQueryArgs>({
+      getCards: builder.query<PaginatedCardsWithGrade, GetCardQueryArgs>({
         providesTags: ['GetCards'],
         query: args => {
           const { deckId, ...rest } = args;
@@ -48,7 +48,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
-      updateCard: builder.mutation<Card, { formData: FormData; id: string }>({
+      updateCard: builder.mutation<Card, UpdateCardQueryArgs>({
         invalidatesTags: ['GetCards'],
         query: args => {
           const { formData, id } = args;

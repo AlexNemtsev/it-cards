@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useUpdateCardMutation } from '@/entities/card/api/cardApi';
-import { Card } from '@/entities/card/api/types';
+import { Card, UpdateCardQueryArgs } from '@/entities/card/api/types';
 import { EditCardFormValues } from '@/features/EditCardModal/EditCardModal';
 
 export const useEditCardModal = (card: Card) => {
@@ -29,7 +29,7 @@ export const useEditCardModal = (card: Card) => {
 
     formData.append('answer', answer);
     formData.append('question', question);
-    const args: { formData: FormData; id: string } = { formData, id: card.id };
+    const args: UpdateCardQueryArgs = { formData, id: card.id };
 
     setOpen(false);
     updateCard(args);

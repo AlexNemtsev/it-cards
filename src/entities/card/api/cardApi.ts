@@ -5,6 +5,7 @@ import {
   CreateCardQueryArgs,
   GetCardQueryArgs,
   PaginatedCardsWithGrade,
+  RandomCard,
   UpdateCardQueryArgs,
 } from '../types';
 
@@ -54,6 +55,20 @@ export const deckApi = flashcardsApi.injectEndpoints({
         },
       }),
 
+      getRandomCard: builder.query<RandomCard, string>({
+        providesTags: ['GetCards'],
+
+        query: deckId => {
+          // const { deckId } = args;
+          // const { deckId, id } = args;
+
+          return {
+            // params: { id },
+            url: `v1/decks/${deckId}/learn`,
+          };
+        },
+      }),
+
       updateCard: builder.mutation<Card, UpdateCardQueryArgs>({
         invalidatesTags: ['GetCards'],
         query: args => {
@@ -75,5 +90,6 @@ export const {
   useDeleteCardMutation,
   useGetCardQuery,
   useGetCardsQuery,
+  useGetRandomCardQuery,
   useUpdateCardMutation,
 } = deckApi;

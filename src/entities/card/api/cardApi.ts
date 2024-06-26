@@ -1,11 +1,17 @@
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
-import { Card, GetCardQueryArgs, PaginatedCardsWithGrade, UpdateCardQueryArgs } from '../types';
+import {
+  Card,
+  CreateCardQueryArgs,
+  GetCardQueryArgs,
+  PaginatedCardsWithGrade,
+  UpdateCardQueryArgs,
+} from '../types';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createCard: builder.mutation<Card, { deckId: string; formData: FormData }>({
+      createCard: builder.mutation<Card, CreateCardQueryArgs>({
         invalidatesTags: ['GetCards'],
         query: args => {
           const { deckId, formData } = args;

@@ -14,7 +14,7 @@ type Props = {
 } & ComponentPropsWithoutRef<typeof Root>;
 
 export const Modal = (props: Props) => {
-  const { children, className = '', title, trigger, ...restProps } = props;
+  const { children, className, title, trigger, ...restProps } = props;
 
   return (
     <Root {...restProps}>

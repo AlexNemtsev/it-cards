@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import { useCreateCardMutation } from '@/entities/card/api/cardApi';
-import { CreateCardQueryArgs } from '@/entities/card/api/types';
+import { CreateCardQueryArgs } from '@/entities/card/types';
 import { AddNewCardModalTitle } from '@/features/AddNewCardModal/ui/AddNewCardModalTitle';
 import { useAddNewCardModal } from '@/features/AddNewCardModal/useAddNewCardModal';
 import { UploadButton } from '@/pages/DeckPage/ui/UploadButton/UploadButton';

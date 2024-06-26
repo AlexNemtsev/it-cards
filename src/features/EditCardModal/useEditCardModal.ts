@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useUpdateCardMutation } from '@/entities/card/api/cardApi';
-import { Card, UpdateCardQueryArgs } from '@/entities/card/api/types';
+import { Card, UpdateCardQueryArgs } from '@/entities/card/types';
 import { EditCardFormValues } from '@/features/EditCardModal/EditCardModal';
 
 export const useEditCardModal = (card: Card) => {

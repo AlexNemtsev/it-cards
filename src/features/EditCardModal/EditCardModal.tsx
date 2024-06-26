@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { Card } from '@/entities/card/api/types';
+import { Card } from '@/entities/card/types';
 import { EditCardModalTitle } from '@/features/EditCardModal/ui/EditCardModalTitle';
 import { useEditCardModal } from '@/features/EditCardModal/useEditCardModal';
 import { UploadButton } from '@/pages/DeckPage/ui/UploadButton/UploadButton';

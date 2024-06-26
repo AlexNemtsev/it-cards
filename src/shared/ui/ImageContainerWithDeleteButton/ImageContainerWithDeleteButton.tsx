@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-import { Nullable } from '@/entities/card/api/types';
+import { Nullable } from '@/entities/card/types';
 import { Cross } from '@/shared/assets/icons/Cross';
 import { clsx } from 'clsx';
 

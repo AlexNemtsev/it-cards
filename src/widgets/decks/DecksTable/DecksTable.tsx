@@ -70,7 +70,9 @@ export const DecksTable = (props: Props) => {
   });
 
   const setOrderIcon = (value: string) => {
-    return orderDecksBy === `${value}-asc` ? <ChevronDownIcon /> : <ChevronUpIcon />;
+    if (orderDecksBy?.split('-')[0] === value) {
+      return orderDecksBy === `${value}-asc` ? <ChevronDownIcon /> : <ChevronUpIcon />;
+    }
   };
 
   const sortByName = () => {
@@ -101,19 +103,22 @@ export const DecksTable = (props: Props) => {
             <Table className={s.decks}>
               <TableHead>
                 <TableRow>
-                  <TableHeadCell onClick={sortByName}>
-                    Name {setOrderIcon(orderVariants.name)}
+                  <TableHeadCell className={s.head} onClick={sortByName}>
+                    <span className={s.headName}>Name</span> {setOrderIcon(orderVariants.name)}
                   </TableHeadCell>
-                  <TableHeadCell onClick={sortByCardsCount}>
-                    Cards {setOrderIcon(orderVariants.cardsCount)}
+                  <TableHeadCell className={s.head} onClick={sortByCardsCount}>
+                    <span className={s.headName}>Cards</span>{' '}
+                    {setOrderIcon(orderVariants.cardsCount)}
                   </TableHeadCell>
-                  <TableHeadCell onClick={sortByUpdated}>
-                    Last Updated {setOrderIcon(orderVariants.updated)}
+                  <TableHeadCell className={s.head} onClick={sortByUpdated}>
+                    <span className={s.headName}>Last Updated</span>{' '}
+                    {setOrderIcon(orderVariants.updated)}
                   </TableHeadCell>
-                  <TableHeadCell onClick={sortByCreated}>
-                    Created by {setOrderIcon(orderVariants.created)}
+                  <TableHeadCell className={s.head} onClick={sortByCreated}>
+                    <span className={s.headName}>Created by</span>{' '}
+                    {setOrderIcon(orderVariants.created)}
                   </TableHeadCell>
-                  <TableHeadCell></TableHeadCell>
+                  <TableHeadCell className={s.head}></TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>

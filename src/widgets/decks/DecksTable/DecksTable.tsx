@@ -7,7 +7,6 @@ import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
 import { tabSwitcherStates } from '@/shared/constants/tabSwitcherStates';
-import { useDebounce } from '@/shared/hooks/useDebounce';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
 import { Pagination } from '@/shared/ui/Pagination';
@@ -30,6 +29,8 @@ type Props = {
 
 export const DecksTable = (props: Props) => {
   const { maxCards, minCards } = props;
+
+  console.log('DecksTable render');
 
   const { data: me } = useMeQuery();
 
@@ -61,9 +62,9 @@ export const DecksTable = (props: Props) => {
     authorId,
     currentPage,
     itemsPerPage,
-    maxCardsCount: useDebounce(range[1], 800),
-    minCardsCount: useDebounce(range[0], 800),
-    name: useDebounce(searchByName, 800),
+    maxCardsCount: range[1],
+    minCardsCount: range[0],
+    name: searchByName,
     orderBy: orderDecksBy,
   });
 

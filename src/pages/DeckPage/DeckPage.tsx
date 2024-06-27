@@ -15,6 +15,8 @@ import { CardsTable } from '@/widgets/Deck/CardsTable';
 
 import s from './DeckPage.module.scss';
 
+import { DebouncedInput } from '../../shared/ui/DebouncedInput';
+
 export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const { data: deck } = useGetDeckQuery(deckId);
@@ -49,11 +51,11 @@ export const DeckPage = () => {
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
-      <Input
+      <DebouncedInput
+        changeSearchValue={changeSearchValue}
         containerClassName={s.input}
-        onClearInput={onInputClear}
-        onValueChange={changeSearchValue}
         placeholder="Search by question"
+        resetInput={onInputClear}
         type="search"
         value={question}
       />

@@ -2,8 +2,8 @@ import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { tabSwitcherStates } from '@/shared/constants/tabSwitcherStates';
 import { Button } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
-import { Slider } from '@/shared/ui/Slider';
+import { DebouncedInput } from '@/shared/ui/DebouncedInput';
+import { DebouncedSlider } from '@/shared/ui/DebouncedSlider';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
 
 import s from './DecksFilters.module.scss';
@@ -36,11 +36,11 @@ export const DecksFilters = (props: Props) => {
 
   return (
     <div className={s.filters}>
-      <Input
+      <DebouncedInput
+        changeSearchValue={getSearchByName}
         containerClassName={s.input}
-        onClearInput={clearSearchByName}
-        onValueChange={getSearchByName}
         placeholder="Input search"
+        resetInput={clearSearchByName}
         type="search"
         value={searchByName}
       />
@@ -51,7 +51,12 @@ export const DecksFilters = (props: Props) => {
         tabOptions={tabOptions}
         value={decksAuthor}
       />
-      <Slider max={maxCards} min={minCards} onValueChange={getDecksNumberRange} value={range} />
+      <DebouncedSlider
+        getNumberOfCards={getDecksNumberRange}
+        max={maxCards}
+        min={minCards}
+        range={range}
+      />
       <Button className={s.button} onClick={clearFilters} variant="secondary">
         <Delete />
         Clear Filter

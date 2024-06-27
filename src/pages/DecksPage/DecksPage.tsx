@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
+import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Spinner } from '@/shared/ui/Spinner';

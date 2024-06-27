@@ -8,14 +8,12 @@ import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
+import { DebouncedInput } from '@/shared/ui/DebouncedInput';
 import { PageContainer } from '@/shared/ui/PageContainer';
 import { Typography } from '@/shared/ui/Typography';
 import { CardsTable } from '@/widgets/Deck/CardsTable';
 
 import s from './DeckPage.module.scss';
-
-import { DebouncedInput } from '../../shared/ui/DebouncedInput';
 
 export const DeckPage = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();

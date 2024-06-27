@@ -1,12 +1,14 @@
-import { tabOptions, tabSwitcherStates } from '@/pages/DecksPage/consts';
 import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
+import { tabSwitcherStates } from '@/shared/constants/tabSwitcherStates';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Slider } from '@/shared/ui/Slider';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
 
 import s from './DecksFilters.module.scss';
+
+import { tabOptions } from './model/constants';
 
 type Props = {
   maxCards?: number;

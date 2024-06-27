@@ -2,15 +2,11 @@ import { Link } from 'react-router-dom';
 
 import { useGetDecksQuery } from '@/entities/deck/api/api';
 import { useMeQuery } from '@/entities/user/api';
-import {
-  VARIANTS_ITEMS_PER_PAGE,
-  orderVariants,
-  tabSwitcherStates,
-} from '@/pages/DecksPage/consts';
 import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
+import { tabSwitcherStates } from '@/shared/constants/tabSwitcherStates';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
@@ -24,6 +20,8 @@ import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
 import { TableRow } from '@/shared/ui/Table/TableRow';
 
 import s from './DecksTable.module.scss';
+
+import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from './model/constants';
 
 type Props = {
   maxCards?: number;

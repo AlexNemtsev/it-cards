@@ -6,7 +6,6 @@ import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
-import { tabSwitcherStates } from '@/shared/constants/tabSwitcherStates';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
 import { Pagination } from '@/shared/ui/Pagination';
@@ -17,10 +16,11 @@ import { TableCell } from '@/shared/ui/Table/TableCell';
 import { TableHead } from '@/shared/ui/Table/TableHead';
 import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
 import { TableRow } from '@/shared/ui/Table/TableRow';
+import { Typography } from '@/shared/ui/Typography';
+import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/constants';
 
 import s from './DecksTable.module.scss';
 
-import { Typography } from '../../../shared/ui/Typography';
 import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from './model/constants';
 
 type Props = {

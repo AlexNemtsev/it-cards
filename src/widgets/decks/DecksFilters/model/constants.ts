@@ -1,4 +1,9 @@
-import { tabSwitcherStates } from '@/shared/constants/tabSwitcherStates';
+export type TabSwitcherStatesType = Record<string, string>;
+
+export const tabSwitcherStates: TabSwitcherStatesType = {
+  ALL: 'All Cards',
+  MY: 'My Cards',
+};
 
 export const tabOptions = [
   {

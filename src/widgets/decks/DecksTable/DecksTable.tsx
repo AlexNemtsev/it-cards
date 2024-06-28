@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useGetDecksQuery } from '@/entities/deck/api/api';
+import { useGetDecksQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';

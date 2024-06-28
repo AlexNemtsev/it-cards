@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import { AddNewCardModal } from '@/pages/DeckPage/ui/AddNewCardModal/AddNewCardModal';
+import { AddNewCardModal } from '@/features/AddNewCardModal/AddNewCardModal';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { MyDeckDropdownMenu } from '@/pages/DeckPage/ui/MyDeckDropdownMenu';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
@@ -43,9 +43,9 @@ export const DeckPage = () => {
           {isYourDeck && <MyDeckDropdownMenu />}
         </div>
         {isYourDeck ? (
-          <AddNewCardModal />
+          <AddNewCardModal deckId={deckId} />
         ) : (
-          <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Pack</Button>
+          <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Deck</Button>
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}

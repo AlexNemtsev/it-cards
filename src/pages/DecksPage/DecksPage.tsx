@@ -1,4 +1,4 @@
-import { useGetMinMaxCardsQuery } from '@/entities/deck/api/api';
+import { useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { DecksHeader } from '@/pages/DecksPage/ui/DecksHeader';
 import { Spinner } from '@/shared/ui/Spinner';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';

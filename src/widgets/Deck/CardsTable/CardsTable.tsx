@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetCardsQuery } from '@/entities/card/api/cardApi';
+import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
+import { EditCardModal } from '@/features/EditCardModal';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
-import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Routes } from '@/shared/constants/routes';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Rating } from '@/shared/ui/Rating';
@@ -40,6 +40,9 @@ export const CardsTable = (props: Props) => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const { data: meData } = useMeQuery();
   const { data: deck } = useGetDeckQuery(deckId);
+
+  const [deleteCard] = useDeleteCardMutation();
+
   const isYourDeck = meData?.id === deck?.userId;
   const isQuestionDesc = orderByKey === 'question-desc';
   const isQuestionAsc = orderByKey === 'question-asc';
@@ -78,6 +81,10 @@ export const CardsTable = (props: Props) => {
 
   const sortByGrade = () => {
     orderByCallBack(orderByKey === 'grade-desc' ? 'grade-asc' : 'grade-desc');
+  };
+
+  const onDeleteCard = (id: string) => {
+    deleteCard(id);
   };
 
   return (
@@ -125,9 +132,9 @@ export const CardsTable = (props: Props) => {
         </TableHead>
         {cards?.items && (
           <TableBody>
-            {cards.items.map((item, index) => {
+            {cards.items.map(item => {
               return (
-                <TableRow key={index}>
+                <TableRow key={item.id}>
                   <TableCell>
                     <div className={s.questionCell}>
                       {item.questionImg && (
@@ -154,10 +161,13 @@ export const CardsTable = (props: Props) => {
                       <Rating rating={item.grade} />
                       {isYourDeck && (
                         <div className={s.buttonsWrapper}>
-                          <button className={s.cardButton}>
-                            <Edit />
-                          </button>
-                          <button className={s.cardButton}>
+                          <EditCardModal card={item} />
+                          <button
+                            className={s.cardButton}
+                            onClick={() => {
+                              onDeleteCard(item.id);
+                            }}
+                          >
                             <Delete />
                           </button>
                         </div>

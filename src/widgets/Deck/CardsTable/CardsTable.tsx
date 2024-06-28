@@ -58,7 +58,7 @@ export const CardsTable = (props: Props) => {
     deckId,
     itemsPerPage,
     orderBy,
-    question: question,
+    question,
   });
 
   const pagination = cards?.pagination ?? {

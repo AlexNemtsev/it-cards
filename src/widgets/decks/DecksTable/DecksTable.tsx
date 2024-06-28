@@ -20,6 +20,7 @@ import { TableRow } from '@/shared/ui/Table/TableRow';
 
 import s from './DecksTable.module.scss';
 
+import { Typography } from '../../../shared/ui/Typography';
 import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from './model/constants';
 
 type Props = {
@@ -121,15 +122,20 @@ export const DecksTable = (props: Props) => {
               <TableBody>
                 {decks.items.map(item => (
                   <TableRow key={item.id}>
-                    <TableCell>
+                    <TableCell className={s.tableCell}>
                       <Link className={s.linkToDeck} to={`${Routes.DECKS}/${item.id}`}>
-                        {item.name}
+                        {item.cover && <img alt="cover" className={s.cover} src={item.cover} />}
+                        <Typography.Body2 className={s.name}>{item.name}</Typography.Body2>
                       </Link>
                     </TableCell>
-                    <TableCell>{item.cardsCount}</TableCell>
-                    <TableCell>{isDateValid(item.updated) && formatDate(item.updated)}</TableCell>
-                    <TableCell>{isDateValid(item.created) && formatDate(item.created)}</TableCell>
-                    <TableCell>tools</TableCell>
+                    <TableCell className={s.tableCell}>{item.cardsCount}</TableCell>
+                    <TableCell className={s.tableCell}>
+                      {isDateValid(item.updated) && formatDate(item.updated)}
+                    </TableCell>
+                    <TableCell className={s.tableCell}>
+                      {isDateValid(item.created) && formatDate(item.created)}
+                    </TableCell>
+                    <TableCell className={s.tableCell}>tools</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -16,27 +16,27 @@ import s from './LearnToDeck.module.scss';
 
 export const LearnToDeck = () => {
   const [isAnswerShowing, setIsAnswerShowing] = useState(false);
-  const [toRateCard, { data: toRateCardData }] = useToRateCardMutation();
+  const [toRateCard, { data: toRateCardData, status }] = useToRateCardMutation();
 
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
 
   const { data: deck } = useGetDeckQuery(deckId);
-  const { currentData: getCardData } = useGetRandomCardQuery(deckId);
+  const { data: getCardData } = useGetRandomCardQuery(deckId);
 
-  let card = toRateCardData || getCardData;
+  const card = status === 'uninitialized' ? getCardData : toRateCardData;
 
   const showAnswerHandler = () => {
     setIsAnswerShowing(true);
   };
 
-  const nextQuestion = async (grade: string) => {
+  const nextQuestion = (grade: string) => {
     const args: ToRateCardQueryArgs = {
       cardId: card!.id,
       deckId,
       grade: +grade,
     };
 
-    card = await toRateCard(args).unwrap();
+    toRateCard(args);
     setIsAnswerShowing(false);
   };
 

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Button } from '@/shared/ui/Button';
 import { RadioGroup } from '@/shared/ui/Radiogroup';
 import { Typography } from '@/shared/ui/Typography';
@@ -7,12 +9,20 @@ import s from '@/pages/LearnToDeck/LearnToDeck.module.scss';
 type Props = {
   answer: string;
   image: string;
+  nextQuestion: (grade: string) => void;
 };
 
 export const ShowingAnswer = (props: Props) => {
-  const { answer, image } = props;
+  const { answer, image, nextQuestion } = props;
+  const START_GRADE = '2';
+  const [grade, setGrade] = useState(START_GRADE);
+  const nextQuestionHandler = () => {
+    nextQuestion(grade);
+  };
 
-  const nextQuestionHandler = () => {};
+  const radioGroupHandler = (value: string) => {
+    setGrade(value);
+  };
 
   return (
     <>
@@ -26,7 +36,8 @@ export const ShowingAnswer = (props: Props) => {
 
       <RadioGroup
         className={s.radioGroup}
-        defaultValue="2"
+        defaultValue={START_GRADE}
+        onValueChange={radioGroupHandler}
         options={[
           { label: 'Did not know', value: '1' },
           { label: 'Forgot', value: '2' },

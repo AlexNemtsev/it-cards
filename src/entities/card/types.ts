@@ -12,6 +12,5 @@ export type Card = components['schemas']['Card'];
 
 export type CreateCardQueryArgs = { deckId: string; formData: FormData };
 export type UpdateCardQueryArgs = { formData: FormData; id: string };
-// export type GetRandomCardQueryArgs = { deckId: string; id?: string };
-// export type GetRandomCardQueryArgs = { deckId: string; id?: string };
+export type ToRateCardQueryArgs = { cardId: string; deckId: string; grade: number };
 export type RandomCard = components['schemas']['CardWithGrade'];

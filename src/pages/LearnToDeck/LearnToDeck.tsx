@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetRandomCardQuery } from '@/entities/card/api/cardApi';
+import { useGetRandomCardQuery, useToRateCardMutation } from '@/entities/card/api/cardApi';
+import { ToRateCardQueryArgs } from '@/entities/card/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
 import { ShowingAnswer } from '@/pages/LearnToDeck/ShowingAnswer/ShowingAnswer';
@@ -14,15 +15,34 @@ import { Typography } from '@/shared/ui/Typography';
 import s from './LearnToDeck.module.scss';
 
 export const LearnToDeck = () => {
+  const [isAnswerShowing, setIsAnswerShowing] = useState(false);
+  const [toRateCard, { data: toRateCardData, isLoading }] = useToRateCardMutation();
+
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
 
-  const { data: deck } = useGetDeckQuery(deckId);
-  const { data: card } = useGetRandomCardQuery(deckId);
+  const { currentData: deck } = useGetDeckQuery(deckId);
+  const { currentData: getCardData } = useGetRandomCardQuery(deckId);
+  let card;
 
-  const [isAnswerShowing, setIsAnswerShowing] = useState(false);
+  if (isLoading) {
+    card = toRateCardData;
+  } else {
+    card = getCardData;
+  }
 
   const showAnswerHandler = () => {
     setIsAnswerShowing(true);
+  };
+
+  const nextQuestion = async (grade: string) => {
+    const args: ToRateCardQueryArgs = {
+      cardId: card!.id,
+      deckId,
+      grade: +grade,
+    };
+
+    card = await toRateCard(args).unwrap();
+    setIsAnswerShowing(false);
   };
 
   return (
@@ -46,7 +66,11 @@ export const LearnToDeck = () => {
         </Typography.Subtitle1>
 
         {isAnswerShowing && (
-          <ShowingAnswer answer={card?.answer || ''} image={card?.answerImg || ''} />
+          <ShowingAnswer
+            answer={card?.answer || ''}
+            image={card?.answerImg || ''}
+            nextQuestion={nextQuestion}
+          />
         )}
 
         {!isAnswerShowing && (

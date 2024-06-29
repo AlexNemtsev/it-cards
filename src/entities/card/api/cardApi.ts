@@ -63,7 +63,6 @@ export const deckApi = flashcardsApi.injectEndpoints({
           // const { deckId, id } = args;
 
           return {
-            // params: { id },
             url: `v1/decks/${deckId}/learn`,
           };
         },

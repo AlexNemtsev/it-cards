@@ -16,19 +16,14 @@ import s from './LearnToDeck.module.scss';
 
 export const LearnToDeck = () => {
   const [isAnswerShowing, setIsAnswerShowing] = useState(false);
-  const [toRateCard, { data: toRateCardData, isLoading }] = useToRateCardMutation();
+  const [toRateCard, { data: toRateCardData }] = useToRateCardMutation();
 
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
 
-  const { currentData: deck } = useGetDeckQuery(deckId);
+  const { data: deck } = useGetDeckQuery(deckId);
   const { currentData: getCardData } = useGetRandomCardQuery(deckId);
-  let card;
 
-  if (isLoading) {
-    card = toRateCardData;
-  } else {
-    card = getCardData;
-  }
+  let card = toRateCardData || getCardData;
 
   const showAnswerHandler = () => {
     setIsAnswerShowing(true);

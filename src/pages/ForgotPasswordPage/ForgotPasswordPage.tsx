@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useRecoverPasswordMutation } from '@/entities/auth/api/auth';
-import { BaseErrorResponse } from '@/entities/auth/api/types';
+import { BaseErrorResponse, RecoverPasswordRequest } from '@/entities/auth/api/types';
 import { CheckEmail } from '@/entities/auth/ui/CheckEmail';
 import {
   ForgotPasswordForm,
@@ -13,9 +13,20 @@ import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 export const ForgotPasswordPage = () => {
   const [recoverPasswordMutation] = useRecoverPasswordMutation();
   const [email, setEmail] = useState('');
+
+  const baseUrl = window.location.origin;
+  const html = `<h1>Hi, ##name##!</h1><p>Click <a href=${baseUrl}/recover-password/##token##>here</a> to recover your password</p>`;
+
   const postRecoverPassword = async (data: ForgotPasswordFormValues) => {
     try {
-      await recoverPasswordMutation(data).unwrap();
+      const args: RecoverPasswordRequest = {
+        email: data.email,
+        html,
+        subject: 'it-cards recover password ',
+      };
+
+      await recoverPasswordMutation(args).unwrap();
+
       setEmail(data.email);
     } catch (e) {
       const error = e as BaseErrorResponse;

@@ -9,11 +9,16 @@ export type SignUpResponse = components['schemas']['User'];
 export type User = components['schemas']['User'];
 
 export type RecoverPasswordRequest = components['schemas']['RecoverPasswordRequest'];
-export type RecoverPasswordResponse = {
+export type RecoverResetPasswordResponse = {
   message: string;
   path: string;
   statusCode: number;
   timestamp: string;
+};
+
+export type ResetPasswordRequestArgs = {
+  password: string;
+  token: string;
 };
 
 export type BaseErrorResponse = {

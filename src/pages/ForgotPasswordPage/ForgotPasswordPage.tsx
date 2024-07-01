@@ -17,7 +17,6 @@ export const ForgotPasswordPage = () => {
   const baseUrl = window.location.origin;
   const html = `<h1>Hi, ##name##!</h1><p>Click <a href=${baseUrl}/recover-password/##token##>here</a> to recover your password</p>`;
 
-  console.log(123);
   const postRecoverPassword = async (data: ForgotPasswordFormValues) => {
     try {
       const args: RecoverPasswordRequest = {

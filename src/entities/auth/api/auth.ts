@@ -3,7 +3,6 @@ import {
   LoginResponse,
   RecoverPasswordRequest,
   RecoverResetPasswordResponse,
-  ResetPasswordRequest,
   ResetPasswordRequestArgs,
   SignUpRequest,
   SignUpResponse,

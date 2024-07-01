@@ -1,6 +1,5 @@
 import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
-import { Layout } from '@/app/Layout';
 import { CreateNewPasswordPage } from '@/pages/CreateNewPasswordPage';
 import { DeckPage } from '@/pages/DeckPage';
 import { DecksPage } from '@/pages/DecksPage';
@@ -11,6 +10,7 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { SignUpPage } from '@/pages/SignUpPage';
 import { Routes } from '@/shared/constants/routes';
 
+import { Layout } from '../Layout/Layout';
 import { PrivateRoutes } from './PrivateRoutes';
 
 const publicRoutes: RouteObject[] = [

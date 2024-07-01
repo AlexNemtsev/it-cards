@@ -14,12 +14,14 @@ const PersonalInformationScheme = z.object({
 export type FormValues = z.infer<typeof PersonalInformationScheme>;
 
 type Props = {
+  name: string;
   onSubmit: (data: FormValues) => void;
 };
-export const EditNickNameForm = ({ onSubmit }: Props) => {
+export const EditNickNameForm = (props: Props) => {
+  const { name, onSubmit } = props;
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      name: '',
+      name,
     },
     resolver: zodResolver(PersonalInformationScheme),
   });

@@ -31,7 +31,7 @@ export const PersonalInformation = () => {
         <UploadAvatarButton />
       </div>
       {isEditMode ? (
-        <EditNickNameForm onSubmit={onSubmitPersonalInformation} />
+        <EditNickNameForm name={data?.name || ''} onSubmit={onSubmitPersonalInformation} />
       ) : (
         <div className={s.notEditModeWrapper}>
           <Typography.H2 className={s.name}>

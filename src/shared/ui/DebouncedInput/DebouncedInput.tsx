@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { ComponentPropsWithoutRef, useEffect, useState } from 'react';
 
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Input } from '@/shared/ui/Input';
@@ -8,20 +8,40 @@ type SearchProps = {
   containerClassName?: string;
   error?: string;
   label?: string;
-  onClearInput?: () => void;
+  resetInput?: () => void;
+  value: string;
 } & ComponentPropsWithoutRef<'input'>;
 
 export const DebouncedInput = (props: SearchProps) => {
-  const { changeSearchValue, ...restProps } = props;
+  const { changeSearchValue, resetInput, value, ...restProps } = props;
   const [search, setSearch] = useState('');
 
   const debouncedInputChange = useDebounce((value: string) => {
     changeSearchValue(value);
   }, 800);
+
   const onInputChange = (search: string) => {
     setSearch(search);
     debouncedInputChange(search);
   };
 
-  return <Input onValueChange={onInputChange} value={search} {...restProps} />;
+  const onClearInput = () => {
+    if (resetInput) {
+      resetInput();
+    }
+    setSearch('');
+  };
+
+  useEffect(() => {
+    setSearch(value);
+  }, [value]);
+
+  return (
+    <Input
+      onClearInput={restProps.type === 'search' ? onClearInput : undefined}
+      onValueChange={onInputChange}
+      value={search}
+      {...restProps}
+    />
+  );
 };

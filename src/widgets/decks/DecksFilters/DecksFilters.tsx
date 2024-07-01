@@ -1,62 +1,58 @@
-import { TabSwitcherStatesType } from '@/pages/DecksPage/DecksPage';
+import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
 import { DebouncedInput } from '@/shared/ui/DebouncedInput';
 import { DebouncedSlider } from '@/shared/ui/DebouncedSlider';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
+import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/constants';
 
 import s from './DecksFilters.module.scss';
 
+import { tabOptions } from './model/constants';
+
 type Props = {
-  clearFilters: () => void;
-  clearValueSearch: () => void;
-  getDecksAuthor: (value: string) => void;
-  getNumberOfCards: (value: [number, number]) => void;
-  getValueSearch: (value: string) => void;
-  maxCards: number | undefined;
-  minCards: number | undefined;
-  range: [number, number];
-  tabSwitcherStates: TabSwitcherStatesType;
+  maxCards?: number;
+  minCards?: number;
 };
 
 export const DecksFilters = (props: Props) => {
+  const { maxCards, minCards } = props;
+
   const {
     clearFilters,
-    clearValueSearch,
+    clearSearchByName,
+    decksAuthor,
+    decksNumberRange,
     getDecksAuthor,
-    getNumberOfCards,
-    getValueSearch,
-    maxCards,
-    minCards,
-    range,
-    tabSwitcherStates,
-  } = props;
+    getDecksNumberRange,
+    getSearchByName,
+    searchByName,
+  } = useDecksSearchParams();
+
+  const range: [number, number] = [
+    decksNumberRange?.[0] || minCards || 0,
+    decksNumberRange?.[1] || maxCards || 0,
+  ];
 
   return (
     <div className={s.filters}>
       <DebouncedInput
-        changeSearchValue={getValueSearch}
+        changeSearchValue={getSearchByName}
         containerClassName={s.input}
-        onClearInput={clearValueSearch}
         placeholder="Input search"
+        resetInput={clearSearchByName}
+        type="search"
+        value={searchByName}
       />
       <TabSwitcher
         className={s.tabs}
         defaultValue={tabSwitcherStates.ALL}
         onValueChange={getDecksAuthor}
-        tabOptions={[
-          {
-            label: tabSwitcherStates.MY,
-            value: tabSwitcherStates.MY,
-          },
-          {
-            label: tabSwitcherStates.ALL,
-            value: tabSwitcherStates.ALL,
-          },
-        ]}
+        tabOptions={tabOptions}
+        value={decksAuthor}
       />
       <DebouncedSlider
-        getNumberOfCards={getNumberOfCards}
+        getNumberOfCards={getDecksNumberRange}
         max={maxCards}
         min={minCards}
         range={range}

@@ -29,6 +29,10 @@ const publicRoutes: RouteObject[] = [
         path: Routes.CREATE_NEW_PASSWORD,
       },
       {
+        element: <CreateNewPasswordPage />,
+        path: `${Routes.CREATE_NEW_PASSWORD}/:token`,
+      },
+      {
         element: <SignUpPage />,
         path: Routes.SIGN_UP,
       },

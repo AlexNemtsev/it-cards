@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
@@ -31,12 +31,13 @@ export const DeckPage = () => {
     onPaginationChange,
     orderBy,
     question,
-    setSearchParams,
   } = useDeckPage();
 
   return (
     <PageContainer className={s.container}>
-      <BackToLink to={Routes.DECKS}>Back to Decks List</BackToLink>
+      <BackToLink className={s.backToLink} to={Routes.DECKS}>
+        Back to Decks List
+      </BackToLink>
       <div className={s.deckTitle}>
         <div className={s.dropdownWrapper}>
           <Typography.H1>{deck?.name}</Typography.H1>
@@ -45,7 +46,9 @@ export const DeckPage = () => {
         {isYourDeck ? (
           <AddNewCardModal deckId={deckId} />
         ) : (
-          <Button onClick={() => setSearchParams({ page: '1' })}>Learn to Deck</Button>
+          <Button as={Link} to={`${Routes.DECKS}/${deckId}/learn`}>
+            Learn to Deck
+          </Button>
         )}
       </div>
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}

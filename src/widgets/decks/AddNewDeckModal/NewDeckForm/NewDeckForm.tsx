@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 
-import { File } from '@/shared/assets/icons/File/File';
-import { Button } from '@/shared/ui/Button';
 import { CheckboxWithController } from '@/shared/ui/CheckboxWithController';
 import { InputWithController } from '@/shared/ui/InputWithController';
+import { CloseModalButton } from '@/shared/ui/Modal';
+import { UploadButtonWithController } from '@/shared/ui/UploadButtonWithController/UploadButtonWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -18,14 +18,14 @@ export const NewDeckFormSchema = z.object({
 export type NewDeckFormValues = z.infer<typeof NewDeckFormSchema>;
 
 type Props = {
-  onSubmit: (data: Omit<NewDeckFormValues, 'passwordConfirmation'>) => void;
+  onSubmit: (data: NewDeckFormValues) => void;
 };
 
 export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, handleSubmit, register, reset } = useForm<NewDeckFormValues>({
+  const { control, handleSubmit, reset } = useForm<NewDeckFormValues>({
     defaultValues: {
-      file: null,
+      file: '',
       pack: '',
       private: true,
     },
@@ -33,9 +33,7 @@ export const NewDeckForm = (props: Props) => {
     resolver: zodResolver(NewDeckFormSchema),
   });
 
-  const onSubmitNewDeck = handleSubmit(data => {
-    onSubmit(data);
-  });
+  const onSubmitNewDeck = handleSubmit(onSubmit);
 
   return (
     <form className={s.form}>
@@ -45,17 +43,7 @@ export const NewDeckForm = (props: Props) => {
         label="Name pack"
         name="pack"
       />
-      <label className={s.uploadButton}>
-        <input
-          accept="image/jpeg, image/png, image/gif"
-          className={s.uploadInput}
-          {...register('file')}
-          type="file"
-        />
-        <span className={s.file}>
-          <File /> Upload Image
-        </span>
-      </label>
+      <UploadButtonWithController control={control} name="file" />
       <CheckboxWithController
         className={s.checkbox}
         control={control}
@@ -64,12 +52,21 @@ export const NewDeckForm = (props: Props) => {
         name="private"
       />
       <div className={s.buttons}>
-        <Button className={s.cancelButton} onClick={() => reset()} type="reset" variant="secondary">
+        <CloseModalButton
+          className={s.cancelButton}
+          onClick={() => reset()}
+          type="reset"
+          variant="secondary"
+        >
           Cancel
-        </Button>
-        <Button className={s.newDeckButton} onClick={onSubmitNewDeck} type="submit">
+        </CloseModalButton>
+        <CloseModalButton
+          className={s.newDeckButton}
+          onClick={() => onSubmitNewDeck()}
+          type="submit"
+        >
           Add New Pack
-        </Button>
+        </CloseModalButton>
       </div>
     </form>
   );

@@ -41,3 +41,20 @@ export type GetMinMaxCardsResponse = {
   max: number;
   min: number;
 };
+
+export type CreateDeck = {
+  cardsCount: number;
+  cover: string;
+  created: string;
+  id: string;
+  isPrivate: true;
+  name: string;
+  updated: string;
+  userId: string;
+};
+
+export type CreateDeckArgs = {
+  cover?: File | null;
+  isPrivate: boolean;
+  name: string;
+};

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { File } from '@/shared/assets/icons/File/File';
 import { CheckboxWithController } from '@/shared/ui/CheckboxWithController';
 import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
 import { InputWithController } from '@/shared/ui/InputWithController';
 import { ModalButton } from '@/shared/ui/Modal/ModalButton';
+import { UploadButtonWithController } from '@/shared/ui/UploadButtonWithController/UploadButtonWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -26,9 +26,9 @@ type Props = {
 export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
   const [cover, setCover] = useState<File | null>(null);
-  const { control, handleSubmit, register, reset } = useForm<NewDeckFormValues>({
+  const { control, handleSubmit, reset } = useForm<NewDeckFormValues>({
     defaultValues: {
-      file: null,
+      file: '',
       pack: '',
       private: true,
     },
@@ -36,7 +36,9 @@ export const NewDeckForm = (props: Props) => {
     resolver: zodResolver(NewDeckFormSchema),
   });
 
-  const onSubmitNewDeck = handleSubmit(onSubmit);
+  const onSubmitNewDeck = handleSubmit(data => {
+    onSubmit(data);
+  });
 
   return (
     <form className={s.form}>
@@ -48,16 +50,11 @@ export const NewDeckForm = (props: Props) => {
       />
       {cover && <ImageContainerWithDeleteButton clearCover={() => setCover(null)} image={cover} />}
       <label className={s.uploadButton}>
-        <input
-          accept="image/jpeg, image/png, image/gif"
-          className={s.uploadInput}
-          {...register('file')}
-          onChange={e => setCover(e.target.files?.[0] ?? null)}
-          type="file"
+        <UploadButtonWithController
+          control={control}
+          name="file"
+          setImage={(data: File) => setCover(data)}
         />
-        <span className={s.file}>
-          <File /> Upload Image
-        </span>
       </label>
       <CheckboxWithController
         className={s.checkbox}

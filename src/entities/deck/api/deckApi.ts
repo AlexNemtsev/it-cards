@@ -17,7 +17,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
           const formData = new FormData();
 
           if (file) {
-            formData.append('cover', file[0]);
+            formData.append('cover', file);
           }
 
           formData.append('name', pack);

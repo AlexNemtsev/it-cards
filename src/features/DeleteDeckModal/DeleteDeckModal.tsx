@@ -1,8 +1,6 @@
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
-import { Button } from '@/shared/ui/Button';
-import { Modal } from '@/shared/ui/Modal';
+import { CloseModalButton, Modal } from '@/shared/ui/Modal';
 import { Typography } from '@/shared/ui/Typography';
-import { Close } from '@radix-ui/react-dialog';
 
 import s from '@/pages/DeckPage/ui/MyDeckDropdownMenu/MyDeckDropdownMenu.module.scss';
 
@@ -21,14 +19,8 @@ export const DeleteDeckModal = () => {
         </button>
       }
     >
-      <Close asChild>
-        <Button variant="secondary">Cancel </Button>
-      </Close>
-
-      <Button onClick={deleteDeckHandler}>
-        Удалить
-        <Close asChild></Close>
-      </Button>
+      <CloseModalButton>Cancel</CloseModalButton>
+      <CloseModalButton onClick={deleteDeckHandler}>Удалить</CloseModalButton>
     </Modal>
   );
 };

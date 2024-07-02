@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { CheckboxWithController } from '@/shared/ui/CheckboxWithController';
-import { ImageContainerWithDeleteButton } from '@/shared/ui/ImageContainerWithDeleteButton/ImageContainerWithDeleteButton';
 import { InputWithController } from '@/shared/ui/InputWithController';
 import { ModalButton } from '@/shared/ui/Modal/ModalButton';
 import { UploadButtonWithController } from '@/shared/ui/UploadButtonWithController/UploadButtonWithController';
@@ -25,7 +23,6 @@ type Props = {
 
 export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
-  const [cover, setCover] = useState<File | null>(null);
   const { control, handleSubmit, reset } = useForm<NewDeckFormValues>({
     defaultValues: {
       file: '',
@@ -46,14 +43,7 @@ export const NewDeckForm = (props: Props) => {
         label="Name pack"
         name="pack"
       />
-      {cover && <ImageContainerWithDeleteButton clearCover={() => setCover(null)} image={cover} />}
-      <label className={s.uploadButton}>
-        <UploadButtonWithController
-          control={control}
-          name="file"
-          setImage={(data: File) => setCover(data)}
-        />
-      </label>
+      <UploadButtonWithController control={control} name="file" />
       <CheckboxWithController
         className={s.checkbox}
         control={control}

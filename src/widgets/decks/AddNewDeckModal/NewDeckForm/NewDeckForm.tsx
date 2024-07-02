@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import { CheckboxWithController } from '@/shared/ui/CheckboxWithController';
 import { InputWithController } from '@/shared/ui/InputWithController';
-import { ModalButton } from '@/shared/ui/Modal/ModalButton';
+import { CloseModalButton } from '@/shared/ui/Modal';
 import { UploadButtonWithController } from '@/shared/ui/UploadButtonWithController/UploadButtonWithController';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -52,17 +52,21 @@ export const NewDeckForm = (props: Props) => {
         name="private"
       />
       <div className={s.buttons}>
-        <ModalButton
+        <CloseModalButton
           className={s.cancelButton}
           onClick={() => reset()}
           type="reset"
           variant="secondary"
         >
           Cancel
-        </ModalButton>
-        <ModalButton className={s.newDeckButton} onClick={() => onSubmitNewDeck()} type="submit">
+        </CloseModalButton>
+        <CloseModalButton
+          className={s.newDeckButton}
+          onClick={() => onSubmitNewDeck()}
+          type="submit"
+        >
           Add New Pack
-        </ModalButton>
+        </CloseModalButton>
       </div>
     </form>
   );

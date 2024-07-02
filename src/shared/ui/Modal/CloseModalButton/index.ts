@@ -1,1 +1,1 @@
-export { CloseModalButton as ModalButton } from './CloseModalButton';
+export { CloseModalButton } from './CloseModalButton';

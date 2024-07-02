@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Modal } from '.';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { ModalButton } from './CloseModalButton';
+import { CloseModalButton } from './CloseModalButton';
 
 const meta = {
   component: Modal,
@@ -42,12 +42,12 @@ const ChildrenModalButtons = () => {
 
   return (
     <div style={styles}>
-      <ModalButton onClick={resetForm} type="reset" variant="secondary">
+      <CloseModalButton onClick={resetForm} type="reset" variant="secondary">
         Cancel
-      </ModalButton>
-      <ModalButton onClick={addNewCard} type="submit">
+      </CloseModalButton>
+      <CloseModalButton onClick={addNewCard} type="submit">
         Add new Card
-      </ModalButton>
+      </CloseModalButton>
     </div>
   );
 };

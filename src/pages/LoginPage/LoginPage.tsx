@@ -1,11 +1,9 @@
 import { Navigate } from 'react-router-dom';
 
 import { useLogin } from '@/entities/auth/api/hooks';
-import { BaseErrorResponse } from '@/entities/auth/api/types';
 import { useMeQuery } from '@/entities/user/api';
 import { LoginForm, LoginFormValues } from '@/features/authForm/LoginForm/LoginForm';
 import { Routes } from '@/shared/constants/routes';
-import { errorNotification } from '@/shared/lib/notifications';
 import { PageContainer } from '@/shared/ui/PageContainer/PageContainer';
 
 export const LoginPage = () => {
@@ -15,15 +13,8 @@ export const LoginPage = () => {
   if (data) {
     return <Navigate to={Routes.DECKS} />;
   }
-
   const onSubmitHandler = async (data: LoginFormValues) => {
-    try {
-      login(data);
-    } catch (e) {
-      const error = e as BaseErrorResponse;
-
-      errorNotification(error.data.message || 'Some error occurred');
-    }
+    login(data);
   };
 
   return (

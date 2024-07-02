@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 
+import { DeleteDeckModal } from '@/features/DeleteDeckModal/DeleteDeckModal';
 import { Burger } from '@/shared/assets/icons/Burger/Burger';
-import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Learn } from '@/shared/assets/icons/Learn/Learn';
 import { Routes } from '@/shared/constants/routes';
@@ -15,6 +15,10 @@ import s from './MyDeckDropdownMenu.module.scss';
 export const MyDeckDropdownMenu = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
 
+  const editDeckHandler = () => {
+    alert('Показать модалку редактирования колоды');
+  };
+
   return (
     <Dropdown className={s.dropdown} trigger={<Burger />}>
       <DropdownItem>
@@ -25,17 +29,14 @@ export const MyDeckDropdownMenu = () => {
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <button className={s.dropdownItemButton}>
+        <button className={s.dropdownItemButton} onClick={editDeckHandler}>
           <Edit />
           <Typography.Caption>Edit</Typography.Caption>
         </button>
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <button className={s.dropdownItemButton}>
-          <Delete />
-          <Typography.Caption>Delete</Typography.Caption>
-        </button>
+        <DeleteDeckModal />
       </DropdownItem>
     </Dropdown>
   );

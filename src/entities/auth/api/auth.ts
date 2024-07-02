@@ -2,7 +2,8 @@ import {
   LoginRequest,
   LoginResponse,
   RecoverPasswordRequest,
-  RecoverPasswordResponse,
+  RecoverResetPasswordResponse,
+  ResetPasswordRequestArgs,
   SignUpRequest,
   SignUpResponse,
 } from '@/entities/auth/api/types';
@@ -19,13 +20,15 @@ export const authApi = flashcardsApi.injectEndpoints({
           url: '/v1/auth/login',
         }),
       }),
+
       logout: builder.mutation<void, void>({
         query: () => ({
           method: 'POST',
           url: '/v2/auth/logout',
         }),
       }),
-      recoverPassword: builder.mutation<RecoverPasswordResponse, RecoverPasswordRequest>({
+
+      recoverPassword: builder.mutation<RecoverResetPasswordResponse, RecoverPasswordRequest>({
         query: body => {
           return {
             body,
@@ -34,6 +37,19 @@ export const authApi = flashcardsApi.injectEndpoints({
           };
         },
       }),
+
+      resetPassword: builder.mutation<RecoverResetPasswordResponse, ResetPasswordRequestArgs>({
+        query: args => {
+          const { token, ...body } = args;
+
+          return {
+            body,
+            method: 'POST',
+            url: `/v1/auth/reset-password/${token}`,
+          };
+        },
+      }),
+
       signUp: builder.mutation<SignUpResponse, SignUpRequest>({
         query: body => ({
           body,
@@ -45,4 +61,4 @@ export const authApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const { useRecoverPasswordMutation, useSignUpMutation } = authApi;
+export const { useRecoverPasswordMutation, useResetPasswordMutation, useSignUpMutation } = authApi;

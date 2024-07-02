@@ -36,9 +36,7 @@ export const NewDeckForm = (props: Props) => {
     resolver: zodResolver(NewDeckFormSchema),
   });
 
-  const onSubmitNewDeck = handleSubmit(data => {
-    onSubmit(data);
-  });
+  const onSubmitNewDeck = handleSubmit(onSubmit);
 
   return (
     <form className={s.form}>

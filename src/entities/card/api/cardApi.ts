@@ -1,3 +1,4 @@
+import { convertNewCardDataToFormData } from '@/entities/card/lib/convertNewCardDataToFormData';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
 import {
@@ -16,7 +17,8 @@ export const deckApi = flashcardsApi.injectEndpoints({
       createCard: builder.mutation<Card, CreateCardQueryArgs>({
         invalidatesTags: ['GetCards'],
         query: args => {
-          const { deckId, formData } = args;
+          const { data, deckId } = args;
+          const formData = convertNewCardDataToFormData(data);
 
           return {
             body: formData,

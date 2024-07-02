@@ -9,7 +9,7 @@ import s from './UploadButton.module.scss';
 
 export type UploadButtonProps = {
   className?: string;
-  onChange: (file: File) => void;
+  onChange?: (file: File) => void;
   setImage: (file: File) => void;
 } & ComponentPropsWithoutRef<'input'>;
 

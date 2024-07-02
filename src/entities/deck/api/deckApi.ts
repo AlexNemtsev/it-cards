@@ -5,6 +5,7 @@ import {
   GetDecksResponse,
   GetMinMaxCardsResponse,
 } from '@/entities/deck/api/types';
+import { convertDataToFormData } from '@/entities/deck/lib/convertDataToFormData';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 import { NewDeckFormValues } from '@/widgets/decks/AddNewDeckModal/NewDeckForm/NewDeckForm';
 
@@ -13,15 +14,8 @@ export const deckApi = flashcardsApi.injectEndpoints({
     return {
       createDeck: builder.mutation<CreateDeck, NewDeckFormValues>({
         invalidatesTags: ['Decks'],
-        query: ({ file, pack, private: isPrivate }) => {
-          const formData = new FormData();
-
-          if (file) {
-            formData.append('cover', file);
-          }
-
-          formData.append('name', pack);
-          formData.append('isPrivate', `${isPrivate}`);
+        query: data => {
+          const formData = convertDataToFormData(data);
 
           return {
             body: formData,

@@ -1,6 +1,10 @@
-import { NewDeckFormValues } from '@/widgets/decks/AddNewDeckModal/NewDeckForm/NewDeckForm';
+type args = {
+  file?: File;
+  pack: string;
+  private?: boolean;
+};
 
-export const convertDataToFormData = ({ file, pack, private: isPrivate }: NewDeckFormValues) => {
+export const convertDataToFormData = ({ file, pack, private: isPrivate }: args) => {
   const formData = new FormData();
 
   if (file) {

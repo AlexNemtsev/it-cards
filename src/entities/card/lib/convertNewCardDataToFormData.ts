@@ -1,6 +1,11 @@
-import { AddNewCardFormValues } from '@/features/AddNewCardModal/NewCardForm/NewCardForm';
+type args = {
+  answer: string;
+  answerImg?: File;
+  question: string;
+  questionImg?: File;
+};
 
-export const convertNewCardDataToFormData = (data: AddNewCardFormValues) => {
+export const convertNewCardDataToFormData = (data: args) => {
   const { answer, answerImg, question, questionImg } = data;
 
   const formData = new FormData();

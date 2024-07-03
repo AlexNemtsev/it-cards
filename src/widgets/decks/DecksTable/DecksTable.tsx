@@ -18,6 +18,7 @@ import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
 import { TableRow } from '@/shared/ui/Table/TableRow';
 import { Typography } from '@/shared/ui/Typography';
 import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/constants';
+import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
 
 import s from './DecksTable.module.scss';
 
@@ -135,7 +136,9 @@ export const DecksTable = (props: Props) => {
                     <TableCell className={s.tableCell}>
                       {isDateValid(item.created) && formatDate(item.created)}
                     </TableCell>
-                    <TableCell className={s.tableCell}>tools</TableCell>
+                    <TableCell className={s.tableCell}>
+                      {authorId && <DeleteDeckModal id={item.id} />}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

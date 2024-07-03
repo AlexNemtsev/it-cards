@@ -14,7 +14,7 @@ export const deckApi = flashcardsApi.injectEndpoints({
         invalidatesTags: ['Decks'],
         query: id => ({
           method: 'DELETE',
-          url: `v2/decks/${id}`,
+          url: `v1/decks/${id}`,
         }),
       }),
       getDeck: builder.query<Deck, string>({
@@ -37,4 +37,5 @@ export const deckApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const { useGetDeckQuery, useGetDecksQuery, useGetMinMaxCardsQuery } = deckApi;
+export const { useDeleteDeckMutation, useGetDeckQuery, useGetDecksQuery, useGetMinMaxCardsQuery } =
+  deckApi;

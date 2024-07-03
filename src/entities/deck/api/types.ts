@@ -49,6 +49,15 @@ export type GetDecksArgs = {
   orderBy?: string;
 };
 
+export type UpdateDeckArgs = {
+  data: {
+    cover: string;
+    isPrivate: string;
+    name: string;
+  };
+  id: string;
+};
+
 export type GetMinMaxCardsResponse = {
   max: number;
   min: number;

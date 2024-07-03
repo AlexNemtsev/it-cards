@@ -4,6 +4,7 @@ import {
   GetDecksArgs,
   GetDecksResponse,
   GetMinMaxCardsResponse,
+  UpdateDeckArgs,
 } from '@/entities/deck/api/types';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 
@@ -32,6 +33,20 @@ export const deckApi = flashcardsApi.injectEndpoints({
         query: () => ({
           url: `v2/decks/min-max-cards`,
         }),
+      }),
+      updateDeck: builder.mutation<Deck, UpdateDeckArgs>({
+        invalidatesTags: ['Decks'],
+        query: args => {
+          const { data, id } = args;
+
+          const formData = data;
+
+          return {
+            body: formData,
+            method: 'PATCH',
+            url: `/v1/decks/${id}`,
+          };
+        },
       }),
     };
   },

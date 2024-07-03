@@ -1,5 +1,6 @@
 import {
   Deck,
+  DeletedDeck,
   GetDecksArgs,
   GetDecksResponse,
   GetMinMaxCardsResponse,
@@ -9,6 +10,13 @@ import { flashcardsApi } from '@/shared/api/flashcardsApi';
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
+      deleteDeck: builder.mutation<DeletedDeck, string>({
+        invalidatesTags: ['Decks'],
+        query: id => ({
+          method: 'DELETE',
+          url: `v2/decks/${id}`,
+        }),
+      }),
       getDeck: builder.query<Deck, string>({
         query: id => `v1/decks/${id}`,
       }),

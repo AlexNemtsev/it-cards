@@ -15,6 +15,18 @@ export type Deck = {
   userId: string;
 };
 
+export type DeletedDeck = {
+  author: Author;
+  cardsCount: number;
+  cover: string;
+  created: string;
+  id: string;
+  isPrivate: boolean;
+  name: string;
+  updated: string;
+  userId: string;
+};
+
 export type Pagination = {
   currentPage: number;
   itemsPerPage: number;

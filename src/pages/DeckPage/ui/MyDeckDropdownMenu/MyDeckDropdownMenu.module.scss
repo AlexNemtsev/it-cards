@@ -5,7 +5,20 @@
 
 .dropdownItemButton {
   cursor: pointer;
+
   display: flex;
   gap: 4px;
   align-items: center;
+
+  color: inherit;
+
+  transition: 0.5s;
+
+  &:hover {
+    color: var(--color-accent-100);
+  }
+
+  svg {
+    fill: currentcolor;
+  }
 }

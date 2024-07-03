@@ -1,6 +1,6 @@
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 
-import { UploadButton, UploadButtonProps } from '@/pages/DeckPage/ui/UploadButton/UploadButton';
+import { UploadButton, UploadButtonProps } from '@/shared/ui/UploadButton/UploadButton';
 
 type Props<T extends FieldValues> = Omit<UploadButtonProps, 'onChange' | 'value'> &
   UseControllerProps<T>;

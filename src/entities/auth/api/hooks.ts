@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { AccessTokenController } from '@/shared/api/accessTokenController';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
 import { Routes } from '@/shared/constants/routes';
+import { errorNotification } from '@/shared/lib/notifications';
 
 import { authApi } from './auth';
-import { LoginRequest } from './types';
+import { BaseErrorResponse, LoginRequest } from './types';
 
 const accessTokenController = new AccessTokenController();
 
@@ -32,10 +33,16 @@ export const useLogin = () => {
   const dispatch = useDispatch();
 
   const login = async (data: LoginRequest) => {
-    const { accessToken } = await triggerLogin(data).unwrap();
+    try {
+      const { accessToken } = await triggerLogin(data).unwrap();
 
-    accessTokenController.setToken(accessToken);
-    dispatch(flashcardsApi.internalActions.resetApiState());
+      accessTokenController.setToken(accessToken);
+      dispatch(flashcardsApi.internalActions.resetApiState());
+    } catch (e) {
+      const error = e as BaseErrorResponse;
+
+      errorNotification(error.data.message || 'Some error occurred');
+    }
   };
 
   return [login, loginResult] as const;

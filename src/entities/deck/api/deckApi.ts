@@ -1,5 +1,4 @@
 import {
-  CreateDeck,
   Deck,
   GetDecksArgs,
   GetDecksResponse,
@@ -12,7 +11,7 @@ import { NewDeckFormValues } from '@/widgets/decks/AddNewDeckModal/NewDeckForm/N
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<CreateDeck, NewDeckFormValues>({
+      createDeck: builder.mutation<Deck, NewDeckFormValues>({
         invalidatesTags: ['Decks'],
         query: data => {
           const formData = convertDataToFormData(data);

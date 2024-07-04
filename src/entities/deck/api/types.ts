@@ -4,7 +4,6 @@ export type Author = {
 };
 
 export type Deck = {
-  author: Author;
   cardsCount: number;
   cover: string;
   created: string;
@@ -40,17 +39,6 @@ export type GetDecksArgs = {
 export type GetMinMaxCardsResponse = {
   max: number;
   min: number;
-};
-
-export type CreateDeck = {
-  cardsCount: number;
-  cover: string;
-  created: string;
-  id: string;
-  isPrivate: true;
-  name: string;
-  updated: string;
-  userId: string;
 };
 
 export type CreateDeckArgs = {

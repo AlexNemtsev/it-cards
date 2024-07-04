@@ -19,6 +19,7 @@ import { TableRow } from '@/shared/ui/Table/TableRow';
 import { Typography } from '@/shared/ui/Typography';
 import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/constants';
 import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
+import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
 
 import s from './DecksTable.module.scss';
 
@@ -138,6 +139,7 @@ export const DecksTable = (props: Props) => {
                     </TableCell>
                     <TableCell className={s.tableCell}>
                       {authorId && <DeleteDeckModal id={item.id} />}
+                      {authorId && <EditDeckModal id={item.id} />}
                     </TableCell>
                   </TableRow>
                 ))}

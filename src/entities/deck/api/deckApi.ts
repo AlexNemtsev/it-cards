@@ -6,11 +6,25 @@ import {
   GetMinMaxCardsResponse,
   UpdateDeckArgs,
 } from '@/entities/deck/api/types';
+import { convertDataToFormData } from '@/entities/deck/lib/convertDataToFormData';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
+import { NewDeckFormValues } from '@/widgets/decks/AddNewDeckModal/NewDeckForm/NewDeckForm';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
+      createDeck: builder.mutation<Deck, NewDeckFormValues>({
+        invalidatesTags: ['Decks'],
+        query: data => {
+          const formData = convertDataToFormData(data);
+
+          return {
+            body: formData,
+            method: 'POST',
+            url: `v1/decks`,
+          };
+        },
+      }),
       deleteDeck: builder.mutation<DeletedDeck, string>({
         invalidatesTags: ['Decks'],
         query: id => ({
@@ -52,5 +66,10 @@ export const deckApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const { useDeleteDeckMutation, useGetDeckQuery, useGetDecksQuery, useGetMinMaxCardsQuery } =
-  deckApi;
+export const {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDeckQuery,
+  useGetDecksQuery,
+  useGetMinMaxCardsQuery,
+} = deckApi;

@@ -18,16 +18,19 @@ export const EditDeckFormSchema = z.object({
 export type EditDeckFormValues = z.infer<typeof EditDeckFormSchema>;
 
 type Props = {
+  defaultCover: string;
+  defaultIsPrivate: boolean;
+  defaultName: string;
   onSubmit: (data: EditDeckFormValues) => void;
 };
 
 export const EditDeckForm = (props: Props) => {
-  const { onSubmit } = props;
+  const { defaultCover, defaultIsPrivate, defaultName, onSubmit } = props;
   const { control, handleSubmit, reset } = useForm<EditDeckFormValues>({
     defaultValues: {
       cover: '',
-      isPrivate: true,
-      name: '',
+      isPrivate: defaultIsPrivate || true,
+      name: defaultName || '',
     },
     mode: 'onSubmit',
     resolver: zodResolver(EditDeckFormSchema),
@@ -43,11 +46,10 @@ export const EditDeckForm = (props: Props) => {
         label="Name pack"
         name="name"
       />
-      <UploadButtonWithController control={control} name="cover" />
+      <UploadButtonWithController control={control} defaultCover={defaultCover} name="cover" />
       <CheckboxWithController
         className={s.checkbox}
         control={control}
-        defaultChecked
         label="Private pack"
         name="isPrivate"
       />

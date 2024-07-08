@@ -39,7 +39,6 @@ export const deckApi = flashcardsApi.injectEndpoints({
         invalidatesTags: ['Decks'],
         query: args => {
           const { data, id } = args;
-
           const formData = convertEditFormDataToFormData(data);
 
           return {

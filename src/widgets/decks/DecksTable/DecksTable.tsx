@@ -139,7 +139,14 @@ export const DecksTable = (props: Props) => {
                     </TableCell>
                     <TableCell className={s.tableCell}>
                       {authorId && <DeleteDeckModal id={item.id} />}
-                      {authorId && <EditDeckModal id={item.id} />}
+                      {authorId && (
+                        <EditDeckModal
+                          cover={item.cover}
+                          id={item.id}
+                          isPrivate={item.isPrivate}
+                          name={item.name}
+                        />
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}

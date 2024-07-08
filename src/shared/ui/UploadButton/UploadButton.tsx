@@ -10,15 +10,19 @@ import s from './UploadButton.module.scss';
 
 export type UploadButtonProps = {
   className?: string;
+  defaultCover?: string;
   onChange?: (file: File) => void;
   setImage?: (file: File) => void;
 } & ComponentPropsWithoutRef<'input'>;
 
 export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
   (props: UploadButtonProps, ref) => {
-    const { className, onChange, setImage, value, ...rest } = props;
+    const { className, defaultCover, onChange, setImage, value, ...rest } = props;
     const classNames = clsx(s.uploadButton, className);
-    const [cover, setCover] = useState<File | null>(null);
+    const defaultCoverImage = defaultCover || null;
+    const [cover, setCover] = useState<File | null | string>(defaultCoverImage);
+
+    console.log(cover);
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length) {

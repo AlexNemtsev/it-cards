@@ -6,11 +6,14 @@ import { EditDeckForm } from '@/widgets/decks/EditDeckModal/EditDeckForm';
 import { EditDeckTitle } from '@/widgets/decks/EditDeckModal/ui/EditDeckTitle';
 
 type Props = {
+  cover: string;
   id: string;
+  isPrivate: boolean;
+  name: string;
 };
 
 export const EditDeckModal = (props: Props) => {
-  const { id } = props;
+  const { cover, id, isPrivate, name } = props;
 
   const [editDeck] = useEditDeckMutation();
 
@@ -23,7 +26,12 @@ export const EditDeckModal = (props: Props) => {
         </ToolsButton>
       }
     >
-      <EditDeckForm onSubmit={data => editDeck({ data, id })} />
+      <EditDeckForm
+        defaultCover={cover}
+        defaultIsPrivate={isPrivate}
+        defaultName={name}
+        onSubmit={data => editDeck({ data, id })}
+      />
     </Modal>
   );
 };

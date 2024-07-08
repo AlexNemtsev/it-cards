@@ -10,35 +10,43 @@ import s from './UploadButton.module.scss';
 
 export type UploadButtonProps = {
   className?: string;
+  clear: () => void;
   defaultCover?: string;
-  onChange?: (file: File) => void;
+  onChange?: (file: File | string) => void;
   setImage?: (file: File) => void;
 } & ComponentPropsWithoutRef<'input'>;
 
 export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
   (props: UploadButtonProps, ref) => {
-    const { className, defaultCover, onChange, setImage, value, ...rest } = props;
+    const { className, clear, defaultCover, onChange, setImage, value, ...rest } = props;
     const classNames = clsx(s.uploadButton, className);
-    const defaultCoverImage = defaultCover || null;
-    const [cover, setCover] = useState<File | null | string>(defaultCoverImage);
+    const [cover, setCover] = useState<File | string | undefined>(defaultCover);
 
-    console.log(cover);
+    console.log('cover', cover);
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      console.log('click');
       if (e.target.files && e.target.files.length) {
+        console.log(e.target.files[0]);
         const file = e.target.files[0];
 
         setCover(file);
         setImage?.(file);
         onChange?.(file);
+      } else {
+        clear();
+        setCover(undefined);
       }
+    };
+
+    const deleteCover = () => {
+      clear();
+      setCover(undefined);
     };
 
     return (
       <>
-        {cover && (
-          <ImageContainerWithDeleteButton clearCover={() => setCover(null)} image={cover} />
-        )}
+        {cover && <ImageContainerWithDeleteButton clearCover={deleteCover} image={cover} />}
         <label className={s.uploadButtonLabel}>
           <Button as="label" className={classNames} fullWidth variant="secondary">
             <input

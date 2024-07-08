@@ -26,7 +26,7 @@ type Props = {
 
 export const EditDeckForm = (props: Props) => {
   const { defaultCover, defaultIsPrivate, defaultName, onSubmit } = props;
-  const { control, handleSubmit, reset } = useForm<EditDeckFormValues>({
+  const { control, getValues, handleSubmit, reset } = useForm<EditDeckFormValues>({
     defaultValues: {
       cover: '',
       isPrivate: defaultIsPrivate || true,
@@ -46,7 +46,13 @@ export const EditDeckForm = (props: Props) => {
         label="Name pack"
         name="name"
       />
-      <UploadButtonWithController control={control} defaultCover={defaultCover} name="cover" />
+
+      <UploadButtonWithController
+        clear={() => reset({ ...getValues(), cover: '' })}
+        control={control}
+        defaultCover={defaultCover}
+        name="cover"
+      />
       <CheckboxWithController
         className={s.checkbox}
         control={control}

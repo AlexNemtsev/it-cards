@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 
-import { DeleteDeckModal } from '@/features/DeleteDeckModal/DeleteDeckModal';
 import { Burger } from '@/shared/assets/icons/Burger/Burger';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Learn } from '@/shared/assets/icons/Learn/Learn';
@@ -9,6 +8,7 @@ import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { Typography } from '@/shared/ui/Typography';
+import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
 
 import s from './MyDeckDropdownMenu.module.scss';
 
@@ -36,7 +36,7 @@ export const MyDeckDropdownMenu = () => {
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <DeleteDeckModal />
+        <DeleteDeckModal id={deckId} />
       </DropdownItem>
     </Dropdown>
   );

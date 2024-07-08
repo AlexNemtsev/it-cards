@@ -1,6 +1,8 @@
+import { useEditDeckMutation } from '@/entities/deck/api/deckApi';
 import { Edit } from '@/shared/assets/icons/Edit';
 import { Modal } from '@/shared/ui/Modal';
 import { ToolsButton } from '@/widgets/Deck/CardsTable/ui/ToolsButton';
+import { EditDeckForm } from '@/widgets/decks/EditDeckModal/EditDeckForm';
 import { EditDeckTitle } from '@/widgets/decks/EditDeckModal/ui/EditDeckTitle';
 
 type Props = {
@@ -10,8 +12,7 @@ type Props = {
 export const EditDeckModal = (props: Props) => {
   const { id } = props;
 
-  // const [deleteDeck] = useDeleteDeckMutation();
-  console.log(id);
+  const [editDeck] = useEditDeckMutation();
 
   return (
     <Modal
@@ -22,7 +23,7 @@ export const EditDeckModal = (props: Props) => {
         </ToolsButton>
       }
     >
-      Edit Deck Form
+      <EditDeckForm onSubmit={data => editDeck({ data, id })} />
     </Modal>
   );
 };

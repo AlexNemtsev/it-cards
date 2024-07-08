@@ -50,9 +50,9 @@ export type GetDecksArgs = {
 
 export type UpdateDeckArgs = {
   data: {
-    cover: string;
-    isPrivate: string;
-    name: string;
+    cover?: File;
+    isPrivate?: boolean;
+    name?: string;
   };
   id: string;
 };

@@ -156,10 +156,10 @@ export const DecksTable = () => {
               onValueChange={getCurrentPage}
               totalPages={decks.pagination.totalPages || 1}
             />
-            {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
           </div>
         )
       )}
+      {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
     </>
   );
 };

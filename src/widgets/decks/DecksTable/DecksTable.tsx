@@ -134,14 +134,16 @@ export const DecksTable = () => {
                       {isDateValid(item.created) && formatDate(item.created)}
                     </TableCell>
                     <TableCell className={s.tableCell}>
-                      {authorId && <DeleteDeckModal id={item.id} />}
                       {authorId && (
-                        <EditDeckModal
-                          cover={item.cover}
-                          id={item.id}
-                          isPrivate={item.isPrivate}
-                          name={item.name}
-                        />
+                        <>
+                          <DeleteDeckModal id={item.id} />
+                          <EditDeckModal
+                            cover={item.cover}
+                            id={item.id}
+                            isPrivate={item.isPrivate}
+                            name={item.name}
+                          />
+                        </>
                       )}
                     </TableCell>
                   </TableRow>

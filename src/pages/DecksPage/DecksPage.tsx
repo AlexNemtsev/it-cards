@@ -1,5 +1,6 @@
 import { useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { DecksHeader } from '@/pages/DecksPage/ui/DecksHeader';
+import { PageContainer } from '@/shared/ui/PageContainer';
 import { Spinner } from '@/shared/ui/Spinner';
 import { DecksFilters } from '@/widgets/decks/DecksFilters';
 import { DecksTable } from '@/widgets/decks/DecksTable';
@@ -12,7 +13,7 @@ export const DecksPage = () => {
   const maxCards = minMaxCards?.max;
 
   return (
-    <>
+    <PageContainer className={s.container}>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -22,6 +23,6 @@ export const DecksPage = () => {
           <DecksTable maxCards={maxCards} minCards={minCards} />
         </section>
       )}
-    </>
+    </PageContainer>
   );
 };

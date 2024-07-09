@@ -7,7 +7,6 @@ import { EditCardModal } from '@/features/EditCardModal';
 import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
-import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Routes } from '@/shared/constants/routes';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
@@ -17,6 +16,7 @@ import { Spinner } from '@/shared/ui/Spinner';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '@/shared/ui/Table';
 import { Typography } from '@/shared/ui/Typography';
 import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from '@/widgets/Deck/CardsTable/model/constants';
+import { DeleteCardButton } from '@/widgets/Deck/DeleteCardButton';
 
 import s from './CardsTable.module.scss';
 
@@ -156,14 +156,11 @@ export const CardsTable = () => {
                           {isYourDeck && (
                             <div className={s.buttonsWrapper}>
                               <EditCardModal card={item} />
-                              <button
-                                className={s.cardButton}
-                                onClick={() => {
+                              <DeleteCardButton
+                                onDeleteCard={() => {
                                   onDeleteCard(item.id);
                                 }}
-                              >
-                                <Delete />
-                              </button>
+                              ></DeleteCardButton>
                             </div>
                           )}
                         </div>

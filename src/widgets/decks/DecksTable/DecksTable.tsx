@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useGetDecksQuery } from '@/entities/deck/api/deckApi';
+import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
@@ -25,15 +25,9 @@ import s from './DecksTable.module.scss';
 
 import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from './model/constants';
 
-type Props = {
-  maxCards?: number;
-  minCards?: number;
-};
-
-export const DecksTable = (props: Props) => {
-  const { maxCards, minCards } = props;
-
-  const { data: me } = useMeQuery();
+export const DecksTable = () => {
+  const { data: minMaxCards } = useGetMinMaxCardsQuery();
+  const { data: currentUser } = useMeQuery();
 
   const {
     currentPage,
@@ -47,27 +41,29 @@ export const DecksTable = (props: Props) => {
     searchByName,
   } = useDecksSearchParams();
 
-  const currentUserId = me?.id;
-  const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
+  const authorId = decksAuthor === tabSwitcherStates.MY ? currentUser?.id : undefined;
 
   const range: [number, number] = [
-    decksNumberRange?.[0] || minCards || 0,
-    decksNumberRange?.[1] || maxCards || 0,
+    decksNumberRange?.[0] || minMaxCards?.min || 0,
+    decksNumberRange?.[1] || minMaxCards?.max || 0,
   ];
 
   const {
     data: decks,
     isError,
     isLoading,
-  } = useGetDecksQuery({
-    authorId,
-    currentPage,
-    itemsPerPage,
-    maxCardsCount: range[1],
-    minCardsCount: range[0],
-    name: searchByName,
-    orderBy: orderDecksBy,
-  });
+  } = useGetDecksQuery(
+    {
+      authorId,
+      currentPage,
+      itemsPerPage,
+      maxCardsCount: range[1],
+      minCardsCount: range[0],
+      name: searchByName,
+      orderBy: orderDecksBy,
+    },
+    { skip: !minMaxCards?.max }
+  );
 
   const setOrderIcon = (value: string) => {
     if (orderDecksBy?.split('-')[0] === value) {

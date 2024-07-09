@@ -21,17 +21,7 @@ export const DeckPage = () => {
   const { data: meData } = useMeQuery();
   const isYourDeck = meData?.id === deck?.userId;
 
-  const {
-    changeSearchValue,
-    currentPage,
-    itemsPerPage,
-    onInputClear,
-    onItemsPerPageChange,
-    onOrderByChange,
-    onPaginationChange,
-    orderBy,
-    question,
-  } = useDeckPage();
+  const { changeSearchValue, onInputClear, question } = useDeckPage();
 
   return (
     <PageContainer className={s.container}>
@@ -70,16 +60,7 @@ export const DeckPage = () => {
         value={question}
       />
 
-      <CardsTable
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        onItemsPerPageChange={onItemsPerPageChange}
-        onPaginationChange={onPaginationChange}
-        orderBy={orderBy}
-        orderByCallBack={onOrderByChange}
-        orderByKey={orderBy}
-        question={question}
-      />
+      <CardsTable />
     </PageContainer>
   );
 };

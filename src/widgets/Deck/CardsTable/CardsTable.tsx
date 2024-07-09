@@ -4,6 +4,7 @@ import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/car
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { EditCardModal } from '@/features/EditCardModal';
+import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
@@ -15,43 +16,32 @@ import { Typography } from '@/shared/ui/Typography';
 
 import s from './CardsTable.module.scss';
 
-type Props = {
-  currentPage: number;
-  itemsPerPage: number;
-  onItemsPerPageChange: (value: string) => void;
-  onPaginationChange: (value: number) => void;
-  orderBy: string;
-  orderByCallBack: (sortBy: string) => void;
-  orderByKey: string;
-  question: string;
-};
-
-export const CardsTable = (props: Props) => {
-  const {
-    currentPage,
-    itemsPerPage,
-    onItemsPerPageChange,
-    onPaginationChange,
-    orderBy,
-    orderByCallBack,
-    orderByKey,
-    question,
-  } = props;
+export const CardsTable = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const { data: meData } = useMeQuery();
   const { data: deck } = useGetDeckQuery(deckId);
 
   const [deleteCard] = useDeleteCardMutation();
 
+  const {
+    currentPage,
+    itemsPerPage,
+    onItemsPerPageChange,
+    onOrderByChange,
+    onPaginationChange,
+    orderBy,
+    question,
+  } = useDeckPage();
+
   const isYourDeck = meData?.id === deck?.userId;
-  const isQuestionDesc = orderByKey === 'question-desc';
-  const isQuestionAsc = orderByKey === 'question-asc';
-  const isAnswerDesc = orderByKey === 'answer-desc';
-  const isAnswerAsc = orderByKey === 'answer-asc';
-  const isUpdatedDesc = orderByKey === 'updated-desc';
-  const isUpdatedAsc = orderByKey === 'updated-asc';
-  const isGradeDesc = orderByKey === 'grade-desc';
-  const isGradeAsc = orderByKey === 'grade-asc';
+  const isQuestionDesc = orderBy === 'question-desc';
+  const isQuestionAsc = orderBy === 'question-asc';
+  const isAnswerDesc = orderBy === 'answer-desc';
+  const isAnswerAsc = orderBy === 'answer-asc';
+  const isUpdatedDesc = orderBy === 'updated-desc';
+  const isUpdatedAsc = orderBy === 'updated-asc';
+  const isGradeDesc = orderBy === 'grade-desc';
+  const isGradeAsc = orderBy === 'grade-asc';
 
   const { data: cards } = useGetCardsQuery({
     currentPage,
@@ -68,19 +58,19 @@ export const CardsTable = (props: Props) => {
   };
 
   const sortByQuestion = () => {
-    orderByCallBack(orderByKey === 'question-desc' ? 'question-asc' : 'question-desc');
+    onOrderByChange(orderBy === 'question-desc' ? 'question-asc' : 'question-desc');
   };
 
   const sortByAnswer = () => {
-    orderByCallBack(orderByKey === 'answer-desc' ? 'answer-asc' : 'answer-desc');
+    onOrderByChange(orderBy === 'answer-desc' ? 'answer-asc' : 'answer-desc');
   };
 
   const sortByUpdated = () => {
-    orderByCallBack(isUpdatedDesc ? 'updated-asc' : 'updated-desc');
+    onOrderByChange(isUpdatedDesc ? 'updated-asc' : 'updated-desc');
   };
 
   const sortByGrade = () => {
-    orderByCallBack(orderByKey === 'grade-desc' ? 'grade-asc' : 'grade-desc');
+    onOrderByChange(orderBy === 'grade-desc' ? 'grade-asc' : 'grade-desc');
   };
 
   const onDeleteCard = (id: string) => {

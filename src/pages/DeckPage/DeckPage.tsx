@@ -38,19 +38,28 @@ export const DeckPage = () => {
       <BackToLink className={s.backToLink} to={Routes.DECKS}>
         Back to Decks List
       </BackToLink>
-      <div className={s.deckTitle}>
-        <div className={s.dropdownWrapper}>
-          <Typography.H1>{deck?.name}</Typography.H1>
-          {isYourDeck && <MyDeckDropdownMenu />}
+      {deck && (
+        <div className={s.deckTitle}>
+          <div className={s.dropdownWrapper}>
+            <Typography.H1>{deck?.name}</Typography.H1>
+            {isYourDeck && (
+              <MyDeckDropdownMenu
+                cover={deck.cover}
+                id={deck.id}
+                isPrivate={deck.isPrivate}
+                name={deck.name}
+              />
+            )}
+          </div>
+          {isYourDeck ? (
+            <AddNewCardModal deckId={deck.id} />
+          ) : (
+            <Button as={Link} to={`${Routes.DECKS}/${deck.id}/learn`}>
+              Learn to Deck
+            </Button>
+          )}
         </div>
-        {isYourDeck ? (
-          <AddNewCardModal deckId={deckId} />
-        ) : (
-          <Button as={Link} to={`${Routes.DECKS}/${deckId}/learn`}>
-            Learn to Deck
-          </Button>
-        )}
-      </div>
+      )}
       {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
       <DebouncedInput
         changeSearchValue={changeSearchValue}

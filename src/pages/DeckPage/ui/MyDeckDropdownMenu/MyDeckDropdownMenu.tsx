@@ -1,7 +1,6 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Burger } from '@/shared/assets/icons/Burger/Burger';
-import { Edit } from '@/shared/assets/icons/Edit/Edit';
 import { Learn } from '@/shared/assets/icons/Learn/Learn';
 import { Routes } from '@/shared/constants/routes';
 import { Dropdown } from '@/shared/ui/Dropdown';
@@ -9,34 +8,35 @@ import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
 import { Typography } from '@/shared/ui/Typography';
 import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
+import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
 
 import s from './MyDeckDropdownMenu.module.scss';
 
-export const MyDeckDropdownMenu = () => {
-  const { [Routes.DECK_ID]: deckId = '' } = useParams();
+type Props = {
+  cover: string;
+  id: string;
+  isPrivate: boolean;
+  name: string;
+};
 
-  const editDeckHandler = () => {
-    alert('Показать модалку редактирования колоды');
-  };
+export const MyDeckDropdownMenu = (props: Props) => {
+  const { cover, id, isPrivate, name } = props;
 
   return (
     <Dropdown className={s.dropdown} trigger={<Burger />}>
       <DropdownItem>
-        <Link className={s.dropdownItemButton} to={`${Routes.DECKS}/${deckId}/learn`}>
+        <Link className={s.dropdownItemButton} to={`${Routes.DECKS}/${id}/learn`}>
           <Learn />
           <Typography.Caption>Learn</Typography.Caption>
         </Link>
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <button className={s.dropdownItemButton} onClick={editDeckHandler}>
-          <Edit />
-          <Typography.Caption>Edit</Typography.Caption>
-        </button>
+        <EditDeckModal cover={cover} id={id} isPrivate={isPrivate} name={name} />
       </DropdownItem>
       <DropdownItemDivider />
       <DropdownItem>
-        <DeleteDeckModal id={deckId} />
+        <DeleteDeckModal id={id} />
       </DropdownItem>
     </Dropdown>
   );

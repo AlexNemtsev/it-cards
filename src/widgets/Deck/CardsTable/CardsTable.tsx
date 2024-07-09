@@ -9,6 +9,8 @@ import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Routes } from '@/shared/constants/routes';
+import { formatDate } from '@/shared/lib/formatDate';
+import { isDateValid } from '@/shared/lib/isDateValid';
 import { Pagination } from '@/shared/ui/Pagination';
 import { Rating } from '@/shared/ui/Rating';
 import { Spinner } from '@/shared/ui/Spinner';
@@ -145,7 +147,7 @@ export const CardsTable = () => {
                       </TableCell>
                       <TableCell>
                         <Typography.Body2>
-                          {new Date(item.updated).toLocaleDateString('ru-RU')}
+                          {isDateValid(item.updated) && formatDate(item.updated)}
                         </Typography.Body2>
                       </TableCell>
                       <TableCell>

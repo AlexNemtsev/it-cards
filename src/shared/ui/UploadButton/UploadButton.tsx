@@ -22,12 +22,8 @@ export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
     const classNames = clsx(s.uploadButton, className);
     const [cover, setCover] = useState<File | string | undefined>(defaultCover);
 
-    console.log('cover', cover);
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      console.log('click');
       if (e.target.files && e.target.files.length) {
-        console.log(e.target.files[0]);
         const file = e.target.files[0];
 
         setCover(file);

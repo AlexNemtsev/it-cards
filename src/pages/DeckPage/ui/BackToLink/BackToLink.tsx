@@ -15,11 +15,9 @@ export const BackToLink = (props: Props) => {
   const classNames = clsx(s.link, className);
 
   return (
-    <Typography.Body2>
-      <Link {...restProps} className={classNames}>
-        <ArrowBack />
-        {children}
-      </Link>
-    </Typography.Body2>
+    <Link {...restProps} className={classNames}>
+      <ArrowBack />
+      <Typography.Body2>{children}</Typography.Body2>
+    </Link>
   );
 };

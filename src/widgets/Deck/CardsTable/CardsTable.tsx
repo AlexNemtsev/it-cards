@@ -13,15 +13,18 @@ import { Pagination } from '@/shared/ui/Pagination';
 import { Rating } from '@/shared/ui/Rating';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '@/shared/ui/Table';
 import { Typography } from '@/shared/ui/Typography';
+import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from '@/widgets/Deck/CardsTable/model/constants';
 
 import s from './CardsTable.module.scss';
 
 export const CardsTable = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
-  const { data: meData } = useMeQuery();
   const { data: deck } = useGetDeckQuery(deckId);
+  const { data: meData } = useMeQuery();
 
   const [deleteCard] = useDeleteCardMutation();
+
+  const isYourDeck = meData?.id === deck?.userId;
 
   const {
     currentPage,
@@ -32,16 +35,6 @@ export const CardsTable = () => {
     orderBy,
     question,
   } = useDeckPage();
-
-  const isYourDeck = meData?.id === deck?.userId;
-  const isQuestionDesc = orderBy === 'question-desc';
-  const isQuestionAsc = orderBy === 'question-asc';
-  const isAnswerDesc = orderBy === 'answer-desc';
-  const isAnswerAsc = orderBy === 'answer-asc';
-  const isUpdatedDesc = orderBy === 'updated-desc';
-  const isUpdatedAsc = orderBy === 'updated-asc';
-  const isGradeDesc = orderBy === 'grade-desc';
-  const isGradeAsc = orderBy === 'grade-asc';
 
   const { data: cards } = useGetCardsQuery({
     currentPage,
@@ -57,20 +50,26 @@ export const CardsTable = () => {
     totalPages: 1,
   };
 
+  const setOrderIcon = (value: string) => {
+    if (orderBy?.split('-')[0] === value) {
+      return orderBy === `${value}-asc` ? <ChevronDownIcon /> : <ChevronUpIcon />;
+    }
+  };
+
   const sortByQuestion = () => {
-    onOrderByChange(orderBy === 'question-desc' ? 'question-asc' : 'question-desc');
+    onOrderByChange(orderVariants.question);
   };
 
   const sortByAnswer = () => {
-    onOrderByChange(orderBy === 'answer-desc' ? 'answer-asc' : 'answer-desc');
+    onOrderByChange(orderVariants.answer);
   };
 
   const sortByUpdated = () => {
-    onOrderByChange(isUpdatedDesc ? 'updated-asc' : 'updated-desc');
+    onOrderByChange(orderVariants.updated);
   };
 
   const sortByGrade = () => {
-    onOrderByChange(orderBy === 'grade-desc' ? 'grade-asc' : 'grade-desc');
+    onOrderByChange(orderVariants.grade);
   };
 
   const onDeleteCard = (id: string) => {
@@ -85,37 +84,25 @@ export const CardsTable = () => {
             <TableHeadCell className={s.clickable} onClick={sortByQuestion}>
               <Typography.Subtitle2>
                 Question
-                <span className={s.arrowContainer}>
-                  {isQuestionDesc && <ChevronDownIcon />}
-                  {isQuestionAsc && <ChevronUpIcon />}
-                </span>
+                <span className={s.arrowContainer}>{setOrderIcon(orderVariants.question)}</span>
               </Typography.Subtitle2>
             </TableHeadCell>
             <TableHeadCell className={s.clickable} onClick={sortByAnswer}>
               <Typography.Subtitle2>
                 Answer
-                <span className={s.arrowContainer}>
-                  {isAnswerDesc && <ChevronDownIcon />}
-                  {isAnswerAsc && <ChevronUpIcon />}
-                </span>
+                <span className={s.arrowContainer}>{setOrderIcon(orderVariants.answer)}</span>
               </Typography.Subtitle2>
             </TableHeadCell>
             <TableHeadCell className={s.clickable} onClick={sortByUpdated}>
               <Typography.Subtitle2>
                 Last Updated
-                <span className={s.arrowContainer}>
-                  {isUpdatedDesc && <ChevronDownIcon />}
-                  {isUpdatedAsc && <ChevronUpIcon />}
-                </span>
+                <span className={s.arrowContainer}>{setOrderIcon(orderVariants.updated)}</span>
               </Typography.Subtitle2>
             </TableHeadCell>
             <TableHeadCell className={s.clickable} onClick={sortByGrade}>
               <Typography.Subtitle2>
                 Grade
-                <span className={s.arrowContainer}>
-                  {isGradeDesc && <ChevronDownIcon />}
-                  {isGradeAsc && <ChevronUpIcon />}
-                </span>
+                <span className={s.arrowContainer}>{setOrderIcon(orderVariants.grade)}</span>
               </Typography.Subtitle2>
             </TableHeadCell>
           </TableRow>
@@ -174,7 +161,7 @@ export const CardsTable = () => {
         className={s.pagination}
         currentPage={pagination.currentPage}
         itemsPerPage={pagination.itemsPerPage.toString()}
-        itemsPerPageList={['10', '20', '30', '50', '100']}
+        itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
         onItemsPerPageChange={onItemsPerPageChange}
         onValueChange={onPaginationChange}
         totalPages={pagination.totalPages}

@@ -32,8 +32,17 @@ export const useDeckPage = () => {
     utilSetSearchParams('currentPage', '1');
   };
 
-  const onOrderByChange = (orderBy: string) => {
-    utilSetSearchParams('orderBy', orderBy);
+  const onOrderByChange = (value: string) => {
+    const getOrderByValue = (value: string) => {
+      return searchParams.get('orderBy')?.split('-')[1] === 'desc'
+        ? `${value}-asc`
+        : `${value}-desc`;
+    };
+
+    if (value) {
+      searchParams.set('orderBy', getOrderByValue(value));
+      setSearchParams(searchParams);
+    }
   };
 
   return {

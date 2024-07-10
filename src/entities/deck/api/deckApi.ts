@@ -1,11 +1,11 @@
 import {
+  CreateDecksArgs,
   Deck,
   DeletedDeck,
   GetDecksArgs,
   GetDecksResponse,
   GetMinMaxCardsResponse,
   UpdateDeckArgs,
-  createDecksArgs,
 } from '@/entities/deck/api/types';
 import { convertDataToFormData } from '@/entities/deck/lib/convertDataToFormData';
 import { convertEditFormDataToFormData } from '@/entities/deck/lib/convertEditFormDataToFormData';
@@ -14,7 +14,7 @@ import { flashcardsApi } from '@/shared/api/flashcardsApi';
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<Deck, createDecksArgs>({
+      createDeck: builder.mutation<Deck, CreateDecksArgs>({
         invalidatesTags: ['Decks'],
         query: data => {
           const formData = convertDataToFormData(data);

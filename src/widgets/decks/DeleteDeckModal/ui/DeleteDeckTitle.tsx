@@ -1,3 +1,3 @@
 export const DeleteDeckTitle = () => {
-  return <div>Are you sure you want to delete the deck?</div>;
+  return <p>Do you really want to remove Deck?</p>;
 };

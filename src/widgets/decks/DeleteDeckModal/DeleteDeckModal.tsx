@@ -25,7 +25,7 @@ export const DeleteDeckModal = (props: Props) => {
     >
       <div className={s.buttons}>
         <CloseModalButton variant="secondary">Cancel</CloseModalButton>
-        <CloseModalButton onClick={() => deleteDeck(id)}>Yes</CloseModalButton>
+        <CloseModalButton onClick={() => deleteDeck(id)}>Delete Deck</CloseModalButton>
       </div>
     </Modal>
   );

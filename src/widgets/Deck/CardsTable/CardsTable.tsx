@@ -15,7 +15,7 @@ import { Rating } from '@/shared/ui/Rating';
 import { Spinner } from '@/shared/ui/Spinner';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '@/shared/ui/Table';
 import { Typography } from '@/shared/ui/Typography';
-import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from '@/widgets/Deck/CardsTable/model/constants';
+import { ITEMS_PER_PAGE_VARIANTS, orderVariants } from '@/widgets/Deck/CardsTable/model/constants';
 import { DeleteCardButton } from '@/widgets/Deck/DeleteCardButton';
 
 import s from './CardsTable.module.scss';
@@ -174,7 +174,7 @@ export const CardsTable = () => {
               className={s.pagination}
               currentPage={pagination.currentPage}
               itemsPerPage={pagination.itemsPerPage.toString()}
-              itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
+              itemsPerPageList={ITEMS_PER_PAGE_VARIANTS}
               onItemsPerPageChange={onItemsPerPageChange}
               onValueChange={onPaginationChange}
               totalPages={pagination.totalPages}

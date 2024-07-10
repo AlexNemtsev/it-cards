@@ -23,7 +23,7 @@ import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
 
 import s from './DecksTable.module.scss';
 
-import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from './model/constants';
+import { ITEMS_PER_PAGE_VARIANTS, orderVariants } from './model/constants';
 
 export const DecksTable = () => {
   const { data: minMaxCards } = useGetMinMaxCardsQuery();
@@ -153,7 +153,7 @@ export const DecksTable = () => {
             <Pagination
               currentPage={currentPage || 1}
               itemsPerPage={String(itemsPerPage) || '10'}
-              itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
+              itemsPerPageList={ITEMS_PER_PAGE_VARIANTS}
               onItemsPerPageChange={getItemsPerPage}
               onValueChange={getCurrentPage}
               totalPages={decks.pagination.totalPages || 1}

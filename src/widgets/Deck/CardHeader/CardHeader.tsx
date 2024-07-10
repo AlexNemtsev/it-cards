@@ -14,7 +14,7 @@ export const CardHeader = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const { data: deck } = useGetDeckQuery(deckId);
   const { data: meData } = useMeQuery();
-  const isYourDeck = meData?.id === deck?.userId;
+  const currentUserDeck = meData?.id === deck?.userId;
 
   return (
     <>
@@ -22,7 +22,7 @@ export const CardHeader = () => {
         <div className={s.deckTitle}>
           <div className={s.dropdownWrapper}>
             <Typography.H1>{deck?.name}</Typography.H1>
-            {isYourDeck && (
+            {currentUserDeck && (
               <MyDeckDropdownMenu
                 cover={deck.cover}
                 id={deck.id}
@@ -31,7 +31,7 @@ export const CardHeader = () => {
               />
             )}
           </div>
-          {isYourDeck ? (
+          {currentUserDeck ? (
             <AddNewCardModal deckId={deck.id} />
           ) : (
             <Button as={Link} to={`${Routes.DECKS}/${deck.id}/learn`}>

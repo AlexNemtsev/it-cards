@@ -27,7 +27,7 @@ export const CardsTable = () => {
 
   const [deleteCard] = useDeleteCardMutation();
 
-  const isYourDeck = meData?.id === deck?.userId;
+  const currentUserDeck = meData?.id === deck?.userId;
 
   const {
     currentPage,
@@ -153,7 +153,7 @@ export const CardsTable = () => {
                       <TableCell>
                         <div className={s.gradeCell}>
                           <Rating rating={item.grade} />
-                          {isYourDeck && (
+                          {currentUserDeck && (
                             <div className={s.buttonsWrapper}>
                               <EditCardModal card={item} />
                               <DeleteCardButton

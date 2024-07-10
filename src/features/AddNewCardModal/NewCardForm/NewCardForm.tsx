@@ -24,7 +24,7 @@ type Props = {
 
 export const NewCardForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, getValues, handleSubmit, reset } = useForm<AddNewCardFormValues>({
+  const { control, handleSubmit, reset, resetField } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
       answerImg: undefined,
@@ -48,7 +48,7 @@ export const NewCardForm = (props: Props) => {
         placeholder="Your question"
       />
       <UploadButtonWithController
-        clear={() => reset({ ...getValues(), questionImg: undefined })}
+        clear={() => resetField('questionImg')}
         control={control}
         name="questionImg"
       />
@@ -63,7 +63,7 @@ export const NewCardForm = (props: Props) => {
         placeholder="Your answer"
       />
       <UploadButtonWithController
-        clear={() => reset({ ...getValues(), answerImg: undefined })}
+        clear={() => resetField('answerImg')}
         control={control}
         name="answerImg"
       />

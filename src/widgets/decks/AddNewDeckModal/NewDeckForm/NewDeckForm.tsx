@@ -23,7 +23,7 @@ type Props = {
 
 export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, getValues, handleSubmit, reset } = useForm<NewDeckFormValues>({
+  const { control, handleSubmit, reset, resetField } = useForm<NewDeckFormValues>({
     defaultValues: {
       file: undefined,
       pack: '',
@@ -43,11 +43,7 @@ export const NewDeckForm = (props: Props) => {
         label="Name pack"
         name="pack"
       />
-      <UploadButtonWithController
-        clear={() => reset({ ...getValues(), file: undefined })}
-        control={control}
-        name="file"
-      />
+      <UploadButtonWithController clear={() => resetField('file')} control={control} name="file" />
       <CheckboxWithController
         className={s.checkbox}
         control={control}

@@ -27,7 +27,7 @@ type Props = {
 export const EditCardForm = (props: Props) => {
   const { card, onSubmit } = props;
 
-  const { control, getValues, handleSubmit, reset } = useForm<EditCardFormValues>({
+  const { control, handleSubmit, reset, resetField } = useForm<EditCardFormValues>({
     defaultValues: {
       answer: card?.answer,
       answerImg: '',
@@ -55,7 +55,7 @@ export const EditCardForm = (props: Props) => {
 
       <UploadButtonWithController
         className={s.uploadButton}
-        clear={() => reset({ ...getValues(), questionImg: '' })}
+        clear={() => resetField('questionImg')}
         control={control}
         defaultCover={card.questionImg}
         name="questionImg"
@@ -73,7 +73,7 @@ export const EditCardForm = (props: Props) => {
 
       <UploadButtonWithController
         className={s.uploadButton}
-        clear={() => reset({ ...getValues(), answerImg: '' })}
+        clear={() => resetField('answerImg')}
         control={control}
         defaultCover={card.answerImg}
         name="answerImg"

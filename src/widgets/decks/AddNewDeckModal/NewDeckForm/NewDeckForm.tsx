@@ -10,7 +10,7 @@ import { z } from 'zod';
 import s from './NewDeckForm.module.scss';
 
 export const NewDeckFormSchema = z.object({
-  file: z.any().optional(),
+  file: z.instanceof(File).optional(),
   pack: z.string(),
   private: z.boolean().optional(),
 });
@@ -25,7 +25,7 @@ export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
   const { control, getValues, handleSubmit, reset } = useForm<NewDeckFormValues>({
     defaultValues: {
-      file: '',
+      file: undefined,
       pack: '',
       private: true,
     },
@@ -44,7 +44,7 @@ export const NewDeckForm = (props: Props) => {
         name="pack"
       />
       <UploadButtonWithController
-        clear={() => reset({ ...getValues(), file: '' })}
+        clear={() => reset({ ...getValues(), file: undefined })}
         control={control}
         name="file"
       />

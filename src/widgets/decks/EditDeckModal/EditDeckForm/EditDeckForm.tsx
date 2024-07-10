@@ -10,7 +10,7 @@ import { z } from 'zod';
 import s from './EditDeckForm.module.scss';
 
 export const EditDeckFormSchema = z.object({
-  cover: z.any().optional(),
+  cover: z.instanceof(File).optional(),
   isPrivate: z.boolean().optional(),
   name: z.string(),
 });
@@ -28,7 +28,7 @@ export const EditDeckForm = (props: Props) => {
   const { defaultCover, defaultIsPrivate, defaultName, onSubmit } = props;
   const { control, getValues, handleSubmit, reset } = useForm<EditDeckFormValues>({
     defaultValues: {
-      cover: '',
+      cover: undefined,
       isPrivate: defaultIsPrivate || true,
       name: defaultName || '',
     },
@@ -48,7 +48,7 @@ export const EditDeckForm = (props: Props) => {
       />
 
       <UploadButtonWithController
-        clear={() => reset({ ...getValues(), cover: '' })}
+        clear={() => reset({ ...getValues(), cover: undefined })}
         control={control}
         defaultCover={defaultCover}
         name="cover"

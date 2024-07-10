@@ -13,9 +13,9 @@ export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
 
 const AddNewCardScheme = z.object({
   answer: z.string().min(3),
-  answerImg: z.any().optional(),
+  answerImg: z.instanceof(File).optional(),
   question: z.string().min(3),
-  questionImg: z.any().optional(),
+  questionImg: z.instanceof(File).optional(),
 });
 
 type Props = {
@@ -27,9 +27,9 @@ export const NewCardForm = (props: Props) => {
   const { control, getValues, handleSubmit, reset } = useForm<AddNewCardFormValues>({
     defaultValues: {
       answer: '',
-      answerImg: '',
+      answerImg: undefined,
       question: '',
-      questionImg: '',
+      questionImg: undefined,
     },
     resolver: zodResolver(AddNewCardScheme),
   });
@@ -48,7 +48,7 @@ export const NewCardForm = (props: Props) => {
         placeholder="Your question"
       />
       <UploadButtonWithController
-        clear={() => reset({ ...getValues(), questionImg: '' })}
+        clear={() => reset({ ...getValues(), questionImg: undefined })}
         control={control}
         name="questionImg"
       />
@@ -63,7 +63,7 @@ export const NewCardForm = (props: Props) => {
         placeholder="Your answer"
       />
       <UploadButtonWithController
-        clear={() => reset({ ...getValues(), answerImg: '' })}
+        clear={() => reset({ ...getValues(), answerImg: undefined })}
         control={control}
         name="answerImg"
       />

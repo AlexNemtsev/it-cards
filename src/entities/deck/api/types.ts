@@ -68,8 +68,8 @@ export type CreateDeckArgs = {
   name: string;
 };
 
-export type CreateDecksArgs = { file?: any; pack: string; private?: boolean | undefined };
+export type CreateDecksArgs = { file?: File; pack: string; private?: boolean };
 export type UpdateDecksArgs = {
-  data: { file?: any; pack: string; private?: boolean | undefined };
+  data: { file?: File; pack: string; private?: boolean };
   id: string;
 };

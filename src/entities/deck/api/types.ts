@@ -1,3 +1,5 @@
+import { operations } from '@/shared/api/schema';
+
 export type Author = {
   id: string;
   name: string;
@@ -14,17 +16,19 @@ export type Deck = {
   userId: string;
 };
 
-export type DeletedDeck = {
-  author: Author;
-  cardsCount: number;
-  cover: string;
-  created: string;
-  id: string;
-  isPrivate: boolean;
-  name: string;
-  updated: string;
-  userId: string;
-};
+// export type DeletedDeck = {
+//   author: Author;
+//   cardsCount: number;
+//   cover: string;
+//   created: string;
+//   id: string;
+//   isPrivate: boolean;
+//   name: string;
+//   updated: string;
+//   userId: string;
+// };
+
+export type DeletedDeck = operations['DecksController_remove']['parameters']['path'];
 
 export type Pagination = {
   currentPage: number;

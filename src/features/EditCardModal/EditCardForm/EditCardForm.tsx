@@ -30,14 +30,16 @@ export const EditCardForm = (props: Props) => {
   const { control, getValues, handleSubmit, reset } = useForm<EditCardFormValues>({
     defaultValues: {
       answer: card?.answer,
-      answerImg: card.answerImg || '',
+      answerImg: '',
       question: card?.question,
-      questionImg: card.questionImg || '',
+      questionImg: '',
     },
     resolver: zodResolver(UpdateCardScheme),
   });
 
-  const onSubmitUpdateCard = handleSubmit(onSubmit);
+  const onSubmitUpdateCard = handleSubmit(data => {
+    onSubmit(data);
+  });
 
   return (
     <form>

@@ -13,12 +13,11 @@ export type UploadButtonProps = {
   clear: () => void;
   defaultCover?: string;
   onChange?: (file: File | string) => void;
-  setImage?: (file: File) => void;
 } & ComponentPropsWithoutRef<'input'>;
 
 export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
   (props: UploadButtonProps, ref) => {
-    const { className, clear, defaultCover, onChange, setImage, value, ...rest } = props;
+    const { className, clear, defaultCover, onChange, value, ...rest } = props;
     const classNames = clsx(s.uploadButton, className);
     const [cover, setCover] = useState<File | string | undefined>(defaultCover);
 
@@ -27,7 +26,6 @@ export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
         const file = e.target.files[0];
 
         setCover(file);
-        setImage?.(file);
         onChange?.(file);
       } else {
         clear();

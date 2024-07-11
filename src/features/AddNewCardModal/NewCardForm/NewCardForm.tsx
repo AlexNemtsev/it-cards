@@ -51,6 +51,7 @@ export const NewCardForm = (props: Props) => {
         clear={() => resetField('questionImg')}
         control={control}
         name="questionImg"
+        title="Upload image "
       />
 
       <Typography.Subtitle2 className={s.subtitle}>Answer:</Typography.Subtitle2>
@@ -66,6 +67,7 @@ export const NewCardForm = (props: Props) => {
         clear={() => resetField('answerImg')}
         control={control}
         name="answerImg"
+        title="Upload image "
       />
 
       <div className={s.buttonWrapper}>

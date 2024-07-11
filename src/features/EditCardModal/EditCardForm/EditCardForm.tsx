@@ -57,8 +57,9 @@ export const EditCardForm = (props: Props) => {
         className={s.uploadButton}
         clear={() => resetField('questionImg')}
         control={control}
-        defaultCover={card.questionImg}
         name="questionImg"
+        previewFromServer={card.questionImg}
+        title="Change image"
       />
 
       <Typography.Subtitle2 className={s.subtitle}>Answer:</Typography.Subtitle2>
@@ -75,8 +76,9 @@ export const EditCardForm = (props: Props) => {
         className={s.uploadButton}
         clear={() => resetField('answerImg')}
         control={control}
-        defaultCover={card.answerImg}
         name="answerImg"
+        previewFromServer={card.answerImg}
+        title="Change image"
       />
 
       <div className={s.buttonWrapper}>

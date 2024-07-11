@@ -27,10 +27,10 @@ export const EditDeckModal = (props: Props) => {
       }
     >
       <EditDeckForm
-        defaultCover={cover}
         defaultIsPrivate={isPrivate}
         defaultName={name}
         onSubmit={data => editDeck({ data, id })}
+        previewFromServer={cover}
       />
     </Modal>
   );

@@ -43,7 +43,12 @@ export const NewDeckForm = (props: Props) => {
         label="Name pack"
         name="pack"
       />
-      <UploadButtonWithController clear={() => resetField('file')} control={control} name="file" />
+      <UploadButtonWithController
+        clear={() => resetField('file')}
+        control={control}
+        name="file"
+        title="Upload image"
+      />
       <CheckboxWithController
         className={s.checkbox}
         control={control}

@@ -18,14 +18,14 @@ export const EditDeckFormSchema = z.object({
 export type EditDeckFormValues = z.infer<typeof EditDeckFormSchema>;
 
 type Props = {
-  defaultCover: string;
   defaultIsPrivate: boolean;
   defaultName: string;
   onSubmit: (data: EditDeckFormValues) => void;
+  previewFromServer: string;
 };
 
 export const EditDeckForm = (props: Props) => {
-  const { defaultCover, defaultIsPrivate, defaultName, onSubmit } = props;
+  const { defaultIsPrivate, defaultName, onSubmit, previewFromServer } = props;
   const { control, handleSubmit, reset, resetField } = useForm<EditDeckFormValues>({
     defaultValues: {
       cover: undefined,
@@ -50,8 +50,9 @@ export const EditDeckForm = (props: Props) => {
       <UploadButtonWithController
         clear={() => resetField('cover')}
         control={control}
-        defaultCover={defaultCover}
         name="cover"
+        previewFromServer={previewFromServer}
+        title="Change image"
       />
       <CheckboxWithController
         className={s.checkbox}

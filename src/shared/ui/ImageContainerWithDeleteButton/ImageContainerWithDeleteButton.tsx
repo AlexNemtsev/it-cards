@@ -13,14 +13,14 @@ type Props = {
 export const ImageContainerWithDeleteButton = (props: Props) => {
   const { className, clearCover, image, ...restProps } = props;
 
-  let newPreview;
   const classNames = clsx(className, s.container);
 
-  if (typeof image !== 'string') {
-    newPreview = URL.createObjectURL(image as File);
-  }
+  let newPreview;
+
   if (typeof image === 'string') {
     newPreview = image;
+  } else {
+    newPreview = URL.createObjectURL(image as File);
   }
 
   return newPreview ? (

@@ -182,7 +182,9 @@ export const CardsTable = () => {
           </>
         )
       )}
-      {!isLoading && cards?.items.length === 0 && <div>Empty</div>}
+      {!isLoading && cards?.items.length === 0 && (
+        <div>This pack is empty.Add new card to fill this pack</div>
+      )}
     </>
   );
 };

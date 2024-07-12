@@ -19,28 +19,30 @@ export const CardHeader = () => {
   return (
     <>
       {deck && (
-        <div className={s.deckTitle}>
-          <div className={s.dropdownWrapper}>
-            <Typography.H1>{deck?.name}</Typography.H1>
-            {currentUserDeck && (
-              <MyDeckDropdownMenu
-                cover={deck.cover}
-                id={deck.id}
-                isPrivate={deck.isPrivate}
-                name={deck.name}
-              />
+        <>
+          <div className={s.deckTitle}>
+            <div className={s.dropdownWrapper}>
+              <Typography.H1>{deck?.name}</Typography.H1>
+              {currentUserDeck && (
+                <MyDeckDropdownMenu
+                  cover={deck.cover}
+                  id={deck.id}
+                  isPrivate={deck.isPrivate}
+                  name={deck.name}
+                />
+              )}
+            </div>
+            {currentUserDeck ? (
+              <AddNewCardModal deckId={deck.id} />
+            ) : (
+              <Button as={Link} to={`${Routes.DECKS}/${deck.id}/learn`}>
+                Learn to Deck
+              </Button>
             )}
           </div>
-          {currentUserDeck ? (
-            <AddNewCardModal deckId={deck.id} />
-          ) : (
-            <Button as={Link} to={`${Routes.DECKS}/${deck.id}/learn`}>
-              Learn to Deck
-            </Button>
-          )}
-        </div>
+          {deck.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
+        </>
       )}
-      {deck?.cover && <img alt="cover" className={s.cover} src={deck.cover} />}
     </>
   );
 };

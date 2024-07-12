@@ -17,13 +17,13 @@ import { TableHead } from '@/shared/ui/Table/TableHead';
 import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
 import { TableRow } from '@/shared/ui/Table/TableRow';
 import { Typography } from '@/shared/ui/Typography';
-import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/constants';
+import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/decksFiltersConstants';
 import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
 import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
 
 import s from './DecksTable.module.scss';
 
-import { ITEMS_PER_PAGE_VARIANTS, orderVariants } from './model/constants';
+import { ITEMS_PER_PAGE_VARIANTS, orderVariants } from './model/decksTableConstants';
 
 export const DecksTable = () => {
   const { data: minMaxCards } = useGetMinMaxCardsQuery();

@@ -12,9 +12,9 @@ import s from './EditCardForm.module.scss';
 
 const UpdateCardScheme = z.object({
   answer: z.string().min(3),
-  answerImg: z.any().optional(),
+  answerImg: z.instanceof(File).optional(),
   question: z.string().min(3),
-  questionImg: z.any().optional(),
+  questionImg: z.instanceof(File).optional(),
 });
 
 export type EditCardFormValues = z.infer<typeof UpdateCardScheme>;
@@ -30,9 +30,9 @@ export const EditCardForm = (props: Props) => {
   const { control, handleSubmit, reset, resetField } = useForm<EditCardFormValues>({
     defaultValues: {
       answer: card?.answer,
-      answerImg: '',
+      answerImg: undefined,
       question: card?.question,
-      questionImg: '',
+      questionImg: undefined,
     },
     resolver: zodResolver(UpdateCardScheme),
   });

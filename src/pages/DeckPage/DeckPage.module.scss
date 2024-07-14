@@ -1,6 +1,10 @@
 .container {
   padding: var(--layout-padding);
   padding-bottom: 144px;
+
+  @media (width <= 1200px) {
+    background: red;
+  }
 }
 
 .backToLink {

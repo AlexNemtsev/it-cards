@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useGetDecksQuery } from '@/entities/deck/api/deckApi';
+import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
@@ -17,21 +17,17 @@ import { TableHead } from '@/shared/ui/Table/TableHead';
 import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
 import { TableRow } from '@/shared/ui/Table/TableRow';
 import { Typography } from '@/shared/ui/Typography';
-import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/constants';
+import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/decksFiltersConstants';
+import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
+import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
 
 import s from './DecksTable.module.scss';
 
-import { VARIANTS_ITEMS_PER_PAGE, orderVariants } from './model/constants';
+import { ITEMS_PER_PAGE_VARIANTS, orderVariants } from './model/decksTableConstants';
 
-type Props = {
-  maxCards?: number;
-  minCards?: number;
-};
-
-export const DecksTable = (props: Props) => {
-  const { maxCards, minCards } = props;
-
-  const { data: me } = useMeQuery();
+export const DecksTable = () => {
+  const { data: minMaxCards } = useGetMinMaxCardsQuery();
+  const { data: currentUser } = useMeQuery();
 
   const {
     currentPage,
@@ -45,27 +41,29 @@ export const DecksTable = (props: Props) => {
     searchByName,
   } = useDecksSearchParams();
 
-  const currentUserId = me?.id;
-  const authorId = decksAuthor === tabSwitcherStates.MY ? currentUserId : undefined;
+  const authorId = decksAuthor === tabSwitcherStates.MY ? currentUser?.id : undefined;
 
   const range: [number, number] = [
-    decksNumberRange?.[0] || minCards || 0,
-    decksNumberRange?.[1] || maxCards || 0,
+    decksNumberRange?.[0] || minMaxCards?.min || 0,
+    decksNumberRange?.[1] || minMaxCards?.max || 0,
   ];
 
   const {
     data: decks,
     isError,
     isLoading,
-  } = useGetDecksQuery({
-    authorId,
-    currentPage,
-    itemsPerPage,
-    maxCardsCount: range[1],
-    minCardsCount: range[0],
-    name: searchByName,
-    orderBy: orderDecksBy,
-  });
+  } = useGetDecksQuery(
+    {
+      authorId,
+      currentPage,
+      itemsPerPage,
+      maxCardsCount: range[1],
+      minCardsCount: range[0],
+      name: searchByName,
+      orderBy: orderDecksBy,
+    },
+    { skip: !minMaxCards?.max }
+  );
 
   const setOrderIcon = (value: string) => {
     if (orderDecksBy?.split('-')[0] === value) {
@@ -135,7 +133,19 @@ export const DecksTable = (props: Props) => {
                     <TableCell className={s.tableCell}>
                       {isDateValid(item.created) && formatDate(item.created)}
                     </TableCell>
-                    <TableCell className={s.tableCell}>tools</TableCell>
+                    <TableCell className={s.tableCell}>
+                      {authorId && (
+                        <>
+                          <DeleteDeckModal id={item.id} />
+                          <EditDeckModal
+                            cover={item.cover}
+                            id={item.id}
+                            isPrivate={item.isPrivate}
+                            name={item.name}
+                          />
+                        </>
+                      )}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -143,15 +153,15 @@ export const DecksTable = (props: Props) => {
             <Pagination
               currentPage={currentPage || 1}
               itemsPerPage={String(itemsPerPage) || '10'}
-              itemsPerPageList={VARIANTS_ITEMS_PER_PAGE}
+              itemsPerPageList={ITEMS_PER_PAGE_VARIANTS}
               onItemsPerPageChange={getItemsPerPage}
               onValueChange={getCurrentPage}
               totalPages={decks.pagination.totalPages || 1}
             />
-            {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
           </div>
         )
       )}
+      {!isLoading && decks?.items.length === 0 && <div>Empty</div>}
     </>
   );
 };

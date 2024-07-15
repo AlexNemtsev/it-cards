@@ -10,7 +10,7 @@ import { z } from 'zod';
 import s from './NewDeckForm.module.scss';
 
 export const NewDeckFormSchema = z.object({
-  file: z.any().optional(),
+  file: z.instanceof(File).optional(),
   pack: z.string(),
   private: z.boolean().optional(),
 });
@@ -23,9 +23,9 @@ type Props = {
 
 export const NewDeckForm = (props: Props) => {
   const { onSubmit } = props;
-  const { control, handleSubmit, reset } = useForm<NewDeckFormValues>({
+  const { control, handleSubmit, reset, resetField } = useForm<NewDeckFormValues>({
     defaultValues: {
-      file: '',
+      file: undefined,
       pack: '',
       private: true,
     },
@@ -43,7 +43,12 @@ export const NewDeckForm = (props: Props) => {
         label="Name pack"
         name="pack"
       />
-      <UploadButtonWithController control={control} name="file" />
+      <UploadButtonWithController
+        clear={() => resetField('file')}
+        control={control}
+        name="file"
+        title="Upload image"
+      />
       <CheckboxWithController
         className={s.checkbox}
         control={control}

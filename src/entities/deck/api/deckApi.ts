@@ -1,17 +1,20 @@
 import {
+  CreateDecksArgs,
   Deck,
+  DeletedDeck,
   GetDecksArgs,
   GetDecksResponse,
   GetMinMaxCardsResponse,
+  UpdateDeckArgs,
 } from '@/entities/deck/api/types';
 import { convertDataToFormData } from '@/entities/deck/lib/convertDataToFormData';
+import { convertEditFormDataToFormData } from '@/entities/deck/lib/convertEditFormDataToFormData';
 import { flashcardsApi } from '@/shared/api/flashcardsApi';
-import { NewDeckFormValues } from '@/widgets/decks/AddNewDeckModal/NewDeckForm/NewDeckForm';
 
 export const deckApi = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<Deck, NewDeckFormValues>({
+      createDeck: builder.mutation<Deck, CreateDecksArgs>({
         invalidatesTags: ['Decks'],
         query: data => {
           const formData = convertDataToFormData(data);
@@ -20,6 +23,26 @@ export const deckApi = flashcardsApi.injectEndpoints({
             body: formData,
             method: 'POST',
             url: `v1/decks`,
+          };
+        },
+      }),
+      deleteDeck: builder.mutation<DeletedDeck, string>({
+        invalidatesTags: ['Decks'],
+        query: id => ({
+          method: 'DELETE',
+          url: `v1/decks/${id}`,
+        }),
+      }),
+      editDeck: builder.mutation<Deck, UpdateDeckArgs>({
+        invalidatesTags: ['Decks'],
+        query: args => {
+          const { data, id } = args;
+          const formData = convertEditFormDataToFormData(data);
+
+          return {
+            body: formData,
+            method: 'PATCH',
+            url: `/v1/decks/${id}`,
           };
         },
       }),
@@ -43,5 +66,11 @@ export const deckApi = flashcardsApi.injectEndpoints({
   },
 });
 
-export const { useCreateDeckMutation, useGetDeckQuery, useGetDecksQuery, useGetMinMaxCardsQuery } =
-  deckApi;
+export const {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useEditDeckMutation,
+  useGetDeckQuery,
+  useGetDecksQuery,
+  useGetMinMaxCardsQuery,
+} = deckApi;

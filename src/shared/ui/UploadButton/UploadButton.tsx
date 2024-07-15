@@ -10,31 +10,40 @@ import s from './UploadButton.module.scss';
 
 export type UploadButtonProps = {
   className?: string;
-  onChange?: (file: File) => void;
-  setImage?: (file: File) => void;
+  clear: () => void;
+  onChange?: (file: File | undefined) => void;
+  previewFromServer?: string;
+  title: string;
 } & ComponentPropsWithoutRef<'input'>;
 
 export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
   (props: UploadButtonProps, ref) => {
-    const { className, onChange, setImage, value, ...rest } = props;
+    const { className, clear, onChange, previewFromServer, title, value, ...rest } = props;
     const classNames = clsx(s.uploadButton, className);
-    const [cover, setCover] = useState<File | null>(null);
+    const [preview, setPreview] = useState<File | string | undefined>(previewFromServer);
+
+    const currentTitle = title === 'Change image' && previewFromServer ? title : 'Upload image';
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length) {
         const file = e.target.files[0];
 
-        setCover(file);
-        setImage?.(file);
+        setPreview(file);
         onChange?.(file);
       }
+      if (!preview && !e.target.files) {
+        clear();
+      }
+    };
+
+    const deleteCover = () => {
+      clear();
+      setPreview(undefined);
     };
 
     return (
       <>
-        {cover && (
-          <ImageContainerWithDeleteButton clearCover={() => setCover(null)} image={cover} />
-        )}
+        {preview && <ImageContainerWithDeleteButton clearCover={deleteCover} image={preview} />}
         <label className={s.uploadButtonLabel}>
           <Button as="label" className={classNames} fullWidth variant="secondary">
             <input
@@ -46,7 +55,7 @@ export const UploadButton = forwardRef<ElementRef<'input'>, UploadButtonProps>(
               type="file"
             />
             <FileIcon />
-            <Typography.Subtitle2>Change Image</Typography.Subtitle2>
+            <Typography.Subtitle2>{currentTitle}</Typography.Subtitle2>
           </Button>
         </label>
       </>

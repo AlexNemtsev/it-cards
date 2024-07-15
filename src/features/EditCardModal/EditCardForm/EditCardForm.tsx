@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 
+import { Card } from '@/entities/card/types';
 import { InputWithController } from '@/shared/ui/InputWithController';
 import { CloseModalButton } from '@/shared/ui/Modal';
 import { Typography } from '@/shared/ui/Typography';
@@ -7,34 +8,38 @@ import { UploadButtonWithController } from '@/shared/ui/UploadButtonWithControll
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import s from './NewCardForm.module.scss';
+import s from './EditCardForm.module.scss';
 
-export type AddNewCardFormValues = z.infer<typeof AddNewCardScheme>;
-
-const AddNewCardScheme = z.object({
+const UpdateCardScheme = z.object({
   answer: z.string().min(3),
   answerImg: z.instanceof(File).optional(),
   question: z.string().min(3),
   questionImg: z.instanceof(File).optional(),
 });
 
+export type EditCardFormValues = z.infer<typeof UpdateCardScheme>;
+
 type Props = {
-  onSubmit: (data: AddNewCardFormValues) => void;
+  card: Card;
+  onSubmit: (data: EditCardFormValues) => void;
 };
 
-export const NewCardForm = (props: Props) => {
-  const { onSubmit } = props;
-  const { control, handleSubmit, reset, resetField } = useForm<AddNewCardFormValues>({
+export const EditCardForm = (props: Props) => {
+  const { card, onSubmit } = props;
+
+  const { control, handleSubmit, reset, resetField } = useForm<EditCardFormValues>({
     defaultValues: {
-      answer: '',
+      answer: card?.answer,
       answerImg: undefined,
-      question: '',
+      question: card?.question,
       questionImg: undefined,
     },
-    resolver: zodResolver(AddNewCardScheme),
+    resolver: zodResolver(UpdateCardScheme),
   });
 
-  const onSubmitNewCard = handleSubmit(onSubmit);
+  const onSubmitUpdateCard = handleSubmit(data => {
+    onSubmit(data);
+  });
 
   return (
     <form>
@@ -47,11 +52,14 @@ export const NewCardForm = (props: Props) => {
         name="question"
         placeholder="Your question"
       />
+
       <UploadButtonWithController
+        className={s.uploadButton}
         clear={() => resetField('questionImg')}
         control={control}
         name="questionImg"
-        title="Upload image "
+        previewFromServer={card.questionImg}
+        title="Change image"
       />
 
       <Typography.Subtitle2 className={s.subtitle}>Answer:</Typography.Subtitle2>
@@ -63,19 +71,26 @@ export const NewCardForm = (props: Props) => {
         name="answer"
         placeholder="Your answer"
       />
+
       <UploadButtonWithController
+        className={s.uploadButton}
         clear={() => resetField('answerImg')}
         control={control}
         name="answerImg"
-        title="Upload image "
+        previewFromServer={card.answerImg}
+        title="Change image"
       />
 
       <div className={s.buttonWrapper}>
         <CloseModalButton onClick={() => reset()} type="reset" variant="secondary">
           Cancel
         </CloseModalButton>
-        <CloseModalButton onClick={() => onSubmitNewCard()} type="submit">
-          Add New Card
+        <CloseModalButton
+          className={s.newDeckButton}
+          onClick={() => onSubmitUpdateCard()}
+          type="submit"
+        >
+          Update Card
         </CloseModalButton>
       </div>
     </form>

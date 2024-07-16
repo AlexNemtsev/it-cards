@@ -1,70 +1,71 @@
-import { TabSwitcherStatesType } from '@/pages/DecksPage/DecksPage';
+import { useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
+import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
 import { DebouncedInput } from '@/shared/ui/DebouncedInput';
 import { DebouncedSlider } from '@/shared/ui/DebouncedSlider';
+import { Spinner } from '@/shared/ui/Spinner';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
+import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/decksFiltersConstants';
 
 import s from './DecksFilters.module.scss';
 
-type Props = {
-  clearFilters: () => void;
-  clearValueSearch: () => void;
-  getDecksAuthor: (value: string) => void;
-  getNumberOfCards: (value: [number, number]) => void;
-  getValueSearch: (value: string) => void;
-  maxCards: number | undefined;
-  minCards: number | undefined;
-  range: [number, number];
-  tabSwitcherStates: TabSwitcherStatesType;
-};
+import { tabOptions } from './model/decksFiltersConstants';
 
-export const DecksFilters = (props: Props) => {
+export const DecksFilters = () => {
+  const { data: minMaxCards, isLoading } = useGetMinMaxCardsQuery();
+  const minCards = minMaxCards?.min;
+  const maxCards = minMaxCards?.max;
+
   const {
     clearFilters,
-    clearValueSearch,
+    clearSearchByName,
+    decksAuthor,
+    decksNumberRange,
     getDecksAuthor,
-    getNumberOfCards,
-    getValueSearch,
-    maxCards,
-    minCards,
-    range,
-    tabSwitcherStates,
-  } = props;
+    getDecksNumberRange,
+    getSearchByName,
+    searchByName,
+  } = useDecksSearchParams();
+
+  const range: [number, number] = [
+    decksNumberRange?.[0] || minCards || 0,
+    decksNumberRange?.[1] || maxCards || 0,
+  ];
 
   return (
-    <div className={s.filters}>
-      <DebouncedInput
-        changeSearchValue={getValueSearch}
-        containerClassName={s.input}
-        onClearInput={clearValueSearch}
-        placeholder="Input search"
-      />
-      <TabSwitcher
-        className={s.tabs}
-        defaultValue={tabSwitcherStates.ALL}
-        onValueChange={getDecksAuthor}
-        tabOptions={[
-          {
-            label: tabSwitcherStates.MY,
-            value: tabSwitcherStates.MY,
-          },
-          {
-            label: tabSwitcherStates.ALL,
-            value: tabSwitcherStates.ALL,
-          },
-        ]}
-      />
-      <DebouncedSlider
-        getNumberOfCards={getNumberOfCards}
-        max={maxCards}
-        min={minCards}
-        range={range}
-      />
-      <Button className={s.button} onClick={clearFilters} variant="secondary">
-        <Delete />
-        Clear Filter
-      </Button>
-    </div>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className={s.filters}>
+          <DebouncedInput
+            changeSearchValue={getSearchByName}
+            containerClassName={s.input}
+            placeholder="Input search"
+            resetInput={clearSearchByName}
+            type="search"
+            value={searchByName}
+          />
+          <TabSwitcher
+            className={s.tabs}
+            defaultValue={tabSwitcherStates.ALL}
+            onValueChange={getDecksAuthor}
+            tabOptions={tabOptions}
+            value={decksAuthor}
+          />
+          <DebouncedSlider
+            getNumberOfCards={getDecksNumberRange}
+            max={maxCards}
+            min={minCards}
+            range={range}
+          />
+          <Button className={s.button} onClick={clearFilters} variant="secondary">
+            <Delete />
+            Clear Filter
+          </Button>
+        </div>
+      )}
+    </>
   );
 };

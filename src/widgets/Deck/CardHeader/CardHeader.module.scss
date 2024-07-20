@@ -1,7 +1,13 @@
 .deckTitle {
   display: flex;
+  gap: 15px;
   justify-content: space-between;
   margin-bottom: 15px;
+
+  @media (width <= 600px) {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
 }
 
 .dropdownWrapper {
@@ -15,4 +21,9 @@
   height: 107px;
   margin-top: 15px;
   object-fit: cover;
+
+  @media (width <= 600px) {
+    width: 100%;
+    height: unset;
+  }
 }

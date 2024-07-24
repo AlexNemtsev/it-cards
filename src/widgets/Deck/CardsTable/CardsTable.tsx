@@ -1,6 +1,6 @@
-import { useMediaQuery } from 'react-responsive';
 import { useParams } from 'react-router-dom';
 
+import { breakpoints } from '@/app/styles/breakpoints';
 import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/cardApi';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
@@ -9,6 +9,7 @@ import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
 import { Pagination } from '@/shared/ui/Pagination';
@@ -88,8 +89,6 @@ export const CardsTable = () => {
 
   const sortBy = ['Question', 'Answer', 'Last Updated', 'Grade'];
 
-  const isTablet = useMediaQuery({ maxWidth: 960 });
-
   const onValueChange = (value: string) => {
     switch (value) {
       case 'Question': {
@@ -110,6 +109,8 @@ export const CardsTable = () => {
       }
     }
   };
+
+  const isTablet = useMediaQuery(`(max-width: ${breakpoints.tablet})`);
 
   return (
     <>
@@ -139,27 +140,21 @@ export const CardsTable = () => {
                   {cards.items.map(item => (
                     <div className={s.mobileCard} key={item.id}>
                       <Typography.Subtitle2>Question</Typography.Subtitle2>
-
                       {item.questionImg && (
                         <img alt="img" className={s.questionImg} src={item.questionImg} />
                       )}
                       <Typography.Body2>{item.question}</Typography.Body2>
-
                       <div className={s.divider}></div>
 
                       <Typography.Subtitle2>Answer</Typography.Subtitle2>
-
                       {item.answerImg && (
                         <img alt="img" className={s.questionImg} src={item.answerImg} />
                       )}
                       <Typography.Body2>{item.answer}</Typography.Body2>
-
                       <div className={s.divider}></div>
 
                       <Typography.Subtitle2>Grade</Typography.Subtitle2>
-
                       <Rating rating={item.grade} />
-
                       <div className={s.divider}></div>
 
                       <div className={s.buttons}>
@@ -266,7 +261,6 @@ export const CardsTable = () => {
                 </TableBody>
               </Table>
             )}
-
             <Pagination
               className={s.pagination}
               currentPage={pagination.currentPage}

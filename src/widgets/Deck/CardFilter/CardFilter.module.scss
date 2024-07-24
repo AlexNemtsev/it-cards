@@ -1,9 +1,13 @@
+@import '@/app/styles/mixins';
+
 .input {
   width: 100%;
   margin-top: 24px;
   margin-bottom: 24px;
+}
 
-  @media (width <= 960px) {
+@include tablet {
+  .input {
     margin-top: 15px;
     margin-bottom: 15px;
   }

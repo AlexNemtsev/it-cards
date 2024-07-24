@@ -1,0 +1,7 @@
+$tablet: 1200;
+
+@mixin tablet {
+  @media (max-width: #{$tablet}px) {
+    @content;
+  }
+}

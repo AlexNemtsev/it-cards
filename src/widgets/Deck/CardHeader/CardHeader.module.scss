@@ -1,3 +1,5 @@
+@import '@/app/styles/mixins';
+
 .deckTitle {
   display: flex;
   gap: 15px;
@@ -21,8 +23,10 @@
   height: 107px;
   margin-top: 15px;
   object-fit: cover;
+}
 
-  @media (width <= 600px) {
+@include mobile {
+  .cover {
     width: 100%;
     height: unset;
   }

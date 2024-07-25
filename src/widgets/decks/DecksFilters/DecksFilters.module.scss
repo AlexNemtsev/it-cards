@@ -3,11 +3,17 @@
   gap: 24px;
   align-items: center;
   justify-content: space-between;
+
+  @media (width <= 1104px) {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: start;
+  }
 }
 
 .input {
+  width: 100%;
   min-width: 50px;
-  max-width: 299px;
 }
 
 .tabs {

@@ -1,6 +1,10 @@
 :root {
   --header-height: 60px;
   --layout-padding: 0 136px;
+
+  @media (width <= 1024px) {
+    --layout-padding: 0 16px;
+  }
 }
 
 html {

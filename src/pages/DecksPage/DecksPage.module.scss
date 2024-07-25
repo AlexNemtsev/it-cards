@@ -5,4 +5,8 @@
 
   padding: var(--layout-padding);
   padding-bottom: 144px;
+
+  @media (width <= 1104px) {
+    gap: 26px;
+  }
 }

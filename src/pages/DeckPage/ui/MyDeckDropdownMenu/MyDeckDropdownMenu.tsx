@@ -6,7 +6,6 @@ import { Routes } from '@/shared/constants/routes';
 import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
-import { Typography } from '@/shared/ui/Typography';
 import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
 import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
 
@@ -27,15 +26,14 @@ export const MyDeckDropdownMenu = (props: Props) => {
       <DropdownItem>
         <Link className={s.dropdownItemButton} to={`${Routes.DECKS}/${id}/learn`}>
           <Learn />
-          <Typography.Caption>Learn</Typography.Caption>
         </Link>
       </DropdownItem>
       <DropdownItemDivider />
-      <DropdownItem>
+      <DropdownItem className={s.dropdownItemButton}>
         <EditDeckModal cover={cover} id={id} isPrivate={isPrivate} name={name} />
       </DropdownItem>
       <DropdownItemDivider />
-      <DropdownItem>
+      <DropdownItem className={s.dropdownItemButton}>
         <DeleteDeckModal id={id} />
       </DropdownItem>
     </Dropdown>

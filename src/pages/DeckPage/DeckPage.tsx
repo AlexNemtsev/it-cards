@@ -13,6 +13,7 @@ export const DeckPage = () => {
       <BackToLink className={s.backToLink} to={Routes.DECKS}>
         Back to Decks List
       </BackToLink>
+
       <CardHeader />
       <CardFilter />
       <CardsTable />

@@ -1,4 +1,4 @@
-export const IncubatorLogo = () => {
+export const IncubatorLogoBig = () => {
   return (
     <svg
       fill="none"

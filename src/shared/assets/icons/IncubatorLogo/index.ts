@@ -1,1 +1,0 @@
-export { IncubatorLogo } from './IncubatorLogo';

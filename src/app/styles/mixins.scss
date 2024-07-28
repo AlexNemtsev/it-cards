@@ -1,5 +1,18 @@
-$tablet: 1200;
-$mobile: 1200;
+// 1200 пикселей – десктопы,
+// 992 пикселя – ноутбуки,
+// 768 пикселей – планшеты,
+// 480 пикселей – смартфоны,
+// 320 пикселей – минимальное значение ширины экрана.
+
+$laptop: 992;
+$tablet: 768;
+$mobile: 480;
+
+@mixin laptop {
+  @media (max-width: #{$tablet}px) {
+    @content;
+  }
+}
 
 @mixin tablet {
   @media (max-width: #{$tablet}px) {

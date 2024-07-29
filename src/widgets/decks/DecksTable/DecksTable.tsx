@@ -120,20 +120,16 @@ export const DecksTable = () => {
               <TableBody>
                 {decks.items.map(item => (
                   <TableRow key={item.id}>
-                    <TableCell className={s.tableCell}>
+                    <TableCell>
                       <Link className={s.linkToDeck} to={`${Routes.DECKS}/${item.id}`}>
                         {item.cover && <img alt="cover" className={s.cover} src={item.cover} />}
                         <Typography.Body2 className={s.name}>{item.name}</Typography.Body2>
                       </Link>
                     </TableCell>
-                    <TableCell className={s.tableCell}>{item.cardsCount}</TableCell>
-                    <TableCell className={s.tableCell}>
-                      {isDateValid(item.updated) && formatDate(item.updated)}
-                    </TableCell>
-                    <TableCell className={s.tableCell}>
-                      {isDateValid(item.created) && formatDate(item.created)}
-                    </TableCell>
-                    <TableCell className={s.tableCell}>
+                    <TableCell>{item.cardsCount}</TableCell>
+                    <TableCell>{isDateValid(item.updated) && formatDate(item.updated)}</TableCell>
+                    <TableCell>{isDateValid(item.created) && formatDate(item.created)}</TableCell>
+                    <TableCell>
                       {authorId && (
                         <>
                           <DeleteDeckModal id={item.id} />

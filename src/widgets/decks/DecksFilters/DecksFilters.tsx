@@ -41,7 +41,8 @@ export const DecksFilters = () => {
         <div className={s.filters}>
           <DebouncedInput
             changeSearchValue={getSearchByName}
-            containerClassName={s.input}
+            className={s.input}
+            containerClassName={s.inputContainer}
             placeholder="Input search"
             resetInput={clearSearchByName}
             type="search"

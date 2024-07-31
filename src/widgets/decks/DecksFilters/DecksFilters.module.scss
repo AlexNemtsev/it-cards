@@ -13,8 +13,13 @@
   }
 }
 
-.input {
+.inputContainer {
+  width: 100%;
   min-width: 175px;
+}
+
+.input {
+  padding: 6px 12px;
 }
 
 .tabs {

@@ -64,7 +64,12 @@ export const Slider = (props: Props) => {
 
   return (
     <div className={classNames.sliderWrapper}>
-      <Input className={s.sliderInput} onChange={onLeftValueChange} value={value[0]} />
+      <Input
+        className={s.sliderInput}
+        containerClassName={s.sliderInputContainer}
+        onChange={onLeftValueChange}
+        value={value[0]}
+      />
       <Root
         {...restProps}
         className={s.sliderRoot}
@@ -79,7 +84,12 @@ export const Slider = (props: Props) => {
         <Thumb className={s.sliderThumb} />
         <Thumb className={s.sliderThumb} />
       </Root>
-      <Input className={s.sliderInput} onChange={onRightValueChange} value={value[1]} />
+      <Input
+        className={s.sliderInput}
+        containerClassName={s.sliderInputContainer}
+        onChange={onRightValueChange}
+        value={value[1]}
+      />
     </div>
   );
 };

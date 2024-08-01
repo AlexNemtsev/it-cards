@@ -9,10 +9,11 @@ type Props = {
   max?: number;
   min?: number;
   range: RangeValue;
+  wrapperClassName?: string;
 };
 
 export const DebouncedSlider = (props: Props) => {
-  const { getNumberOfCards, max, min, range } = props;
+  const { getNumberOfCards, max, min, range, ...rest } = props;
   const [cardsNumber, setCardsNumber] = useState<RangeValue>([0, 0]);
 
   const debouncedSliderChange = useDebounce((value: RangeValue) => {
@@ -27,5 +28,5 @@ export const DebouncedSlider = (props: Props) => {
     setCardsNumber(range);
   }, [range]);
 
-  return <Slider max={max} min={min} onValueChange={onValueChange} value={cardsNumber} />;
+  return <Slider max={max} min={min} onValueChange={onValueChange} value={cardsNumber} {...rest} />;
 };

@@ -60,6 +60,7 @@ export const DecksFilters = () => {
             max={maxCards}
             min={minCards}
             range={range}
+            wrapperClassName={s.slider}
           />
           <Button className={s.button} onClick={clearFilters} variant="secondary">
             <Delete />

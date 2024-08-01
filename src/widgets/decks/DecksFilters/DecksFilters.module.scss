@@ -2,19 +2,20 @@
 
 .filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
-  align-items: center;
-  justify-content: space-between;
 
-  @media (width <= 1165px) {
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: start;
-  }
+  // grid-template-areas: 'search tabs slider clear';
+
+  // @media (width <= 1165px) {
+  //   flex-wrap: wrap;
+  //   gap: 20px;
+  //   justify-content: start;
+  // }
 }
 
 .inputContainer {
-  width: 100%;
+  flex: 1;
   min-width: 175px;
 }
 
@@ -23,17 +24,13 @@
 }
 
 .tabs {
-  @include mobile {
-    max-width: 100%;
-  }
+  flex: 0 0 max-content;
+}
 
-  max-width: 230px;
+.slider {
+  max-width: 251px;
 }
 
 .button {
-  @include mobile {
-    width: 100%;
-  }
-
   min-width: max-content;
 }

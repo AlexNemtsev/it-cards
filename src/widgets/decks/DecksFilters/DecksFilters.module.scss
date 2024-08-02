@@ -1,11 +1,11 @@
 @import '@/app/styles/mixins';
 
 .filters {
-  display: flex;
+  display: grid;
+  grid-template-areas: 'search tabs slider clear';
+  grid-template-columns: 1fr max-content minmax(251px, max-content) max-content;
   flex-wrap: wrap;
   gap: 24px;
-
-  // grid-template-areas: 'search tabs slider clear';
 
   // @media (width <= 1165px) {
   //   flex-wrap: wrap;
@@ -15,22 +15,22 @@
 }
 
 .inputContainer {
-  flex: 1;
+  grid-area: 'search';
   min-width: 175px;
 }
 
-.input {
-  padding: 6px 12px;
-}
-
 .tabs {
-  flex: 0 0 max-content;
+  grid-area: 'tabs';
+  min-width: max-content;
 }
 
 .slider {
+  grid-area: 'slider';
+  min-width: max-content;
   max-width: 251px;
 }
 
 .button {
+  grid-area: 'clear';
   min-width: max-content;
 }

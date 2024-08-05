@@ -1,36 +1,51 @@
 @import '@/app/styles/mixins';
 
+// .filters {
+//   display: grid;
+//   grid-template-columns: 1fr max-content minmax(251px, max-content) max-content;
+//   grid-template-areas: 'search tabs slider clearFilter';
+//   flex-wrap: wrap;
+//   gap: 24px;
+//   @media (max-width: 1159px) {
+//     border: 1px solid red;
+//     grid-template-columns: 1fr 1fr 1fr 1fr;
+//     grid-template-rows: 1fr 1fr;
+//     grid-template-areas: 'search search search search' 'tabs slider clearFilter';
+//   }
+// }
+
 .filters {
   display: grid;
-  grid-template-areas: 'search tabs slider clear';
-  grid-template-columns: 1fr max-content minmax(251px, max-content) max-content;
-  flex-wrap: wrap;
-  gap: 24px;
-
-  // @media (width <= 1165px) {
-  //   flex-wrap: wrap;
-  //   gap: 20px;
-  //   justify-content: start;
-  // }
+  grid-template-areas:
+    'search search search search'
+    'tabs ... ... ... '
+    'slider ... ... ...'
+    'clearFilter ... ... ...';
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 20px;
 }
 
 .inputContainer {
-  grid-area: 'search';
-  min-width: 175px;
+  grid-area: search;
+
+  // min-width: 175px;
 }
 
 .tabs {
-  grid-area: 'tabs';
-  min-width: max-content;
+  grid-area: tabs;
+
+  // min-width: max-content;
 }
 
 .slider {
-  grid-area: 'slider';
-  min-width: max-content;
-  max-width: 251px;
+  grid-area: slider;
+
+  // min-width: max-content;
+  // max-width: 251px;
 }
 
 .button {
-  grid-area: 'clear';
-  min-width: max-content;
+  grid-area: clearFilter;
+
+  // min-width: max-content;
 }

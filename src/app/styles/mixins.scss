@@ -9,7 +9,7 @@ $tablet: 768;
 $mobile: 480;
 
 @mixin laptop {
-  @media (max-width: #{$tablet}px) {
+  @media (max-width: #{$laptop}px) {
     @content;
   }
 }

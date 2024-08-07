@@ -58,7 +58,7 @@
   text-decoration: none;
 }
 
-.mobile {
+.mobileDeck {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-dark-500);
@@ -73,12 +73,12 @@
   padding: 18px;
 }
 
-.mobileTools {
+.mobileDecksTools {
   display: flex;
   border-top: 1px solid var(--color-dark-500);
 }
 
-.tool {
+.decksTool {
   display: flex;
   flex: 1;
   align-items: center;

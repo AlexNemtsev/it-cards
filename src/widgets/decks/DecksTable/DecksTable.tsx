@@ -11,6 +11,8 @@ import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import { formatDate } from '@/shared/lib/formatDate';
 import { isDateValid } from '@/shared/lib/isDateValid';
 import { Pagination } from '@/shared/ui/Pagination';
+import { Select } from '@/shared/ui/Select/Select';
+import { SelectItem } from '@/shared/ui/Select/SelectItem/SelectItem';
 import { Spinner } from '@/shared/ui/Spinner';
 import { Table } from '@/shared/ui/Table';
 import { TableBody } from '@/shared/ui/Table/TableBody';
@@ -73,20 +75,15 @@ export const DecksTable = () => {
     }
   };
 
-  const sortByName = () => {
-    getOrderDecksBy(orderVariants.name);
+  const sortBy: { [key: string]: () => void } = {
+    cardsCount: () => getOrderDecksBy(orderVariants.cardsCount),
+    created: () => getOrderDecksBy(orderVariants.created),
+    name: () => getOrderDecksBy(orderVariants.name),
+    updated: () => getOrderDecksBy(orderVariants.updated),
   };
 
-  const sortByCardsCount = () => {
-    getOrderDecksBy(orderVariants.cardsCount);
-  };
-
-  const sortByUpdated = () => {
-    getOrderDecksBy(orderVariants.updated);
-  };
-
-  const sortByCreated = () => {
-    getOrderDecksBy(orderVariants.created);
+  const setOrderDecksBy = (value: string) => {
+    sortBy[value?.split('-')[0]]();
   };
 
   const isTablet = useMediaQuery(`(max-width: ${breakpoints.tablet})`);
@@ -101,66 +98,80 @@ export const DecksTable = () => {
         decks.items.length > 0 && (
           <>
             {isTablet ? (
-              <div className={s.mobileDecks}>
-                {decks.items.map(item => (
-                  <div className={s.mobileDeck} key={item.id}>
-                    <Link className={s.mobileLinkToDeck} to={`${Routes.DECKS}/${item.id}`}>
-                      <div className={s.row}>
-                        <div className={s.name}>name</div>
-                        <div className={s.packName}>{item.name}</div>
-                      </div>
-                      <div className={s.row}>
-                        <div className={s.cards}>Cards</div>
-                        <div className={s.cardsCount}>{item.cardsCount}</div>
-                      </div>
-                      <div className={s.row}>
-                        <div className={s.lastUpdated}>Last Updated</div>
-                        <div className={s.lastUpdatedDate}>
-                          {isDateValid(item.updated) && formatDate(item.updated)}
+              <>
+                <Select
+                  className={s.select}
+                  onValueChange={setOrderDecksBy}
+                  placeholder="Sort by"
+                  value={orderDecksBy || 'name-asc'}
+                >
+                  {Object.keys(orderVariants).map(sort => (
+                    <SelectItem key={sort} value={sort}>
+                      {sort}
+                    </SelectItem>
+                  ))}
+                </Select>
+                <div className={s.mobileDecks}>
+                  {decks.items.map(item => (
+                    <div className={s.mobileDeck} key={item.id}>
+                      <Link className={s.mobileLinkToDeck} to={`${Routes.DECKS}/${item.id}`}>
+                        <div className={s.row}>
+                          <div className={s.name}>name</div>
+                          <div className={s.packName}>{item.name}</div>
                         </div>
-                      </div>
-                      <div className={s.row}>
-                        <div className={s.createdBy}>Created</div>
-                        <div className={s.createdByName}>
-                          {isDateValid(item.created) && formatDate(item.created)}
+                        <div className={s.row}>
+                          <div className={s.cards}>Cards</div>
+                          <div className={s.cardsCount}>{item.cardsCount}</div>
                         </div>
-                      </div>
-                    </Link>
-                    {authorId && (
-                      <div className={s.mobileDecksTools}>
-                        <div className={s.decksTool}>
-                          <DeleteDeckModal id={item.id} />
+                        <div className={s.row}>
+                          <div className={s.lastUpdated}>Last Updated</div>
+                          <div className={s.lastUpdatedDate}>
+                            {isDateValid(item.updated) && formatDate(item.updated)}
+                          </div>
                         </div>
-                        <div className={s.decksTool}>
-                          <EditDeckModal
-                            cover={item.cover}
-                            id={item.id}
-                            isPrivate={item.isPrivate}
-                            name={item.name}
-                          />
+                        <div className={s.row}>
+                          <div className={s.createdBy}>Created</div>
+                          <div className={s.createdByName}>
+                            {isDateValid(item.created) && formatDate(item.created)}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+                      </Link>
+                      {authorId && (
+                        <div className={s.mobileDecksTools}>
+                          <div className={s.decksTool}>
+                            <DeleteDeckModal id={item.id} />
+                          </div>
+                          <div className={s.decksTool}>
+                            <EditDeckModal
+                              cover={item.cover}
+                              id={item.id}
+                              isPrivate={item.isPrivate}
+                              name={item.name}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
             ) : (
               <div className="decks">
                 <Table className={s.decks}>
                   <TableHead>
                     <TableRow>
-                      <TableHeadCell className={s.head} onClick={sortByName}>
+                      <TableHeadCell className={s.head} onClick={sortBy.name}>
                         <span className={s.headName}>Name</span> {setOrderIcon(orderVariants.name)}
                       </TableHeadCell>
-                      <TableHeadCell className={s.head} onClick={sortByCardsCount}>
+                      <TableHeadCell className={s.head} onClick={sortBy.cardsCount}>
                         <span className={s.headName}>Cards</span>{' '}
                         {setOrderIcon(orderVariants.cardsCount)}
                       </TableHeadCell>
-                      <TableHeadCell className={s.head} onClick={sortByUpdated}>
+                      <TableHeadCell className={s.head} onClick={sortBy.updated}>
                         <span className={s.headName}>Last Updated</span>{' '}
                         {setOrderIcon(orderVariants.updated)}
                       </TableHeadCell>
-                      <TableHeadCell className={s.head} onClick={sortByCreated}>
+                      <TableHeadCell className={s.head} onClick={sortBy.created}>
                         <span className={s.headName}>Created by</span>{' '}
                         {setOrderIcon(orderVariants.created)}
                       </TableHeadCell>

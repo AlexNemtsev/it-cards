@@ -1,18 +1,6 @@
 @import '@/app/styles/mixins';
 
-// .filters {
-//   display: grid;
-//   grid-template-columns: 1fr max-content minmax(251px, max-content) max-content;
-//   grid-template-areas: 'search tabs slider clearFilter';
-//   gap: 24px;
-//   @media (max-width: 1159px) {
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-//     grid-template-areas: 'search search search search' 'tabs slider clearFilter';
-//   }
-// }
-
 .filters {
-
   @include laptop {
     grid-template-areas:
       'search search search search'
@@ -30,7 +18,14 @@
     grid-template-areas:
       'search search search search'
       'tabs slider clearFilter .';
-    grid-template-columns: max-content minmax(251px, max-content) max-content 1fr;
+  }
+
+  @media (width <= 1088px) {
+    grid-template-areas:
+      'search search search search'
+      'tabs slider . .'
+      'clearFilter . . .';
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (width <= 580px) {
@@ -54,16 +49,19 @@
 }
 
 .slider {
-  grid-area: slider;
-  min-width: max-content;
-  max-width: 251px;
-
-  @media (width <= 580px) {
+  @include mobile {
     max-width: 100%;
   }
+
+  grid-area: slider;
+  min-width: 251px;
 }
 
 .button {
+  @include mobile {
+    max-width: 100%;
+  }
+
   grid-area: clearFilter;
-  min-width: max-content;
+  max-width: max-content;
 }

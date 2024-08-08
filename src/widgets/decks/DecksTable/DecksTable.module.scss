@@ -63,8 +63,6 @@
   flex-direction: column;
   border: 1px solid var(--color-dark-500);
   border-radius: 4px;
-
-  // text-decoration: none;
 }
 
 .row {
@@ -91,4 +89,11 @@
   &:last-of-type {
     border-right: none;
   }
+}
+
+.select {
+  width: 100%;
+  height: 36px;
+  margin-bottom: 15px;
+  padding: 6px 12px;
 }

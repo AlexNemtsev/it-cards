@@ -32,6 +32,7 @@ import { ITEMS_PER_PAGE_VARIANTS, orderVariants } from './model/decksTableConsta
 export const DecksTable = () => {
   const { data: minMaxCards } = useGetMinMaxCardsQuery();
   const { data: currentUser } = useMeQuery();
+  const isTablet = useMediaQuery(`(max-width: ${breakpoints.tablet})`);
 
   const {
     currentPage,
@@ -39,6 +40,7 @@ export const DecksTable = () => {
     decksNumberRange,
     getCurrentPage,
     getItemsPerPage,
+    getMobileOrderDecksBy,
     getOrderDecksBy,
     itemsPerPage,
     orderDecksBy,
@@ -76,17 +78,25 @@ export const DecksTable = () => {
   };
 
   const sortBy: { [key: string]: () => void } = {
-    cardsCount: () => getOrderDecksBy(orderVariants.cardsCount),
-    created: () => getOrderDecksBy(orderVariants.created),
-    name: () => getOrderDecksBy(orderVariants.name),
-    updated: () => getOrderDecksBy(orderVariants.updated),
+    cardsCount: () =>
+      isTablet
+        ? getMobileOrderDecksBy(orderVariants.cardsCount)
+        : getOrderDecksBy(orderVariants.cardsCount),
+    created: () =>
+      isTablet
+        ? getMobileOrderDecksBy(orderVariants.created)
+        : getOrderDecksBy(orderVariants.created),
+    name: () =>
+      isTablet ? getMobileOrderDecksBy(orderVariants.name) : getOrderDecksBy(orderVariants.name),
+    updated: () =>
+      isTablet
+        ? getMobileOrderDecksBy(orderVariants.updated)
+        : getOrderDecksBy(orderVariants.updated),
   };
 
   const setOrderDecksBy = (value: string) => {
     sortBy[value?.split('-')[0]]();
   };
-
-  const isTablet = useMediaQuery(`(max-width: ${breakpoints.tablet})`);
 
   return (
     <>
@@ -103,7 +113,7 @@ export const DecksTable = () => {
                   className={s.select}
                   onValueChange={setOrderDecksBy}
                   placeholder="Sort by"
-                  value={orderDecksBy || 'name-asc'}
+                  value={orderDecksBy?.split('-')[0] || 'Sort by'}
                 >
                   {Object.keys(orderVariants).map(sort => (
                     <SelectItem key={sort} value={sort}>
@@ -116,7 +126,10 @@ export const DecksTable = () => {
                     <div className={s.mobileDeck} key={item.id}>
                       <Link className={s.mobileLinkToDeck} to={`${Routes.DECKS}/${item.id}`}>
                         <div className={s.row}>
-                          <div className={s.name}>name</div>
+                          <div className={s.name}>
+                            {item.cover && <img alt="cover" className={s.cover} src={item.cover} />}
+                            <Typography.Body2 className={s.name}>{item.name}</Typography.Body2>
+                          </div>
                           <div className={s.packName}>{item.name}</div>
                         </div>
                         <div className={s.row}>

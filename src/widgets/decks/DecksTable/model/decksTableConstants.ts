@@ -13,3 +13,19 @@ export const orderVariants: OrderVariants = {
   name: 'name',
   updated: 'updated',
 };
+
+type SortByVAriants = {
+  cardsCount: string;
+  created: string;
+  name: string;
+  sortBy: string;
+  updated: string;
+};
+
+export const sortByVAriants: SortByVAriants = {
+  cardsCount: 'Cards count',
+  created: 'Created',
+  name: 'Name',
+  sortBy: 'Sort by',
+  updated: 'Updated',
+};

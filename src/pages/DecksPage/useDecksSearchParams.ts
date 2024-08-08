@@ -76,6 +76,13 @@ export const useDecksSearchParams = () => {
     }
   };
 
+  const getMobileOrderDecksBy = (value: string) => {
+    if (value) {
+      searchParams.set('orderBy', `${value}-asc`);
+      setSearchParams(searchParams);
+    }
+  };
+
   const clearFilters = () => {
     setSearchParams({});
   };
@@ -90,6 +97,7 @@ export const useDecksSearchParams = () => {
     getDecksAuthor,
     getDecksNumberRange,
     getItemsPerPage,
+    getMobileOrderDecksBy,
     getOrderDecksBy,
     getSearchByName,
     itemsPerPage,

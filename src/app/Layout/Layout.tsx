@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 
-import { IncubatorLogo } from '@/app/Layout/ui/IncubatorLogo/IncubatorLogo';
+import { IncubatorLogo } from '@/app/Layout/ui/IncubatorLogo';
 import { useMeQuery } from '@/entities/user/api';
 import { UserMenu } from '@/features/UserMenu/UserMenu';
 import { Routes } from '@/shared/constants/routes';

@@ -166,6 +166,14 @@ export const DecksTable = () => {
                       )}
                     </div>
                   ))}
+                  <Pagination
+                    currentPage={currentPage || 1}
+                    itemsPerPage={String(itemsPerPage) || '10'}
+                    itemsPerPageList={ITEMS_PER_PAGE_VARIANTS}
+                    onItemsPerPageChange={getItemsPerPage}
+                    onValueChange={getCurrentPage}
+                    totalPages={decks.pagination.totalPages || 1}
+                  />
                 </div>
               </>
             ) : (
@@ -224,14 +232,6 @@ export const DecksTable = () => {
                     ))}
                   </TableBody>
                 </Table>
-                <Pagination
-                  currentPage={currentPage || 1}
-                  itemsPerPage={String(itemsPerPage) || '10'}
-                  itemsPerPageList={ITEMS_PER_PAGE_VARIANTS}
-                  onItemsPerPageChange={getItemsPerPage}
-                  onValueChange={getCurrentPage}
-                  totalPages={decks.pagination.totalPages || 1}
-                />
               </div>
             )}
           </>

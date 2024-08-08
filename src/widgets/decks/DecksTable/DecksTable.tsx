@@ -113,7 +113,7 @@ export const DecksTable = () => {
                   className={s.select}
                   onValueChange={setOrderDecksBy}
                   placeholder="Sort by"
-                  value={orderDecksBy?.split('-')[0] || 'Sort by'}
+                  value={orderDecksBy?.split('-')[0] || undefined}
                 >
                   {Object.keys(orderVariants).map(sort => (
                     <SelectItem key={sort} value={sort}>

@@ -40,8 +40,8 @@ export const DecksTable = () => {
     decksNumberRange,
     getCurrentPage,
     getItemsPerPage,
-    getMobileOrderDecksBy,
     getOrderDecksBy,
+    getOrderDecksByForTablet,
     itemsPerPage,
     orderDecksBy,
     searchByName,
@@ -80,17 +80,17 @@ export const DecksTable = () => {
   const sortBy: { [key: string]: () => void } = {
     cardsCount: () =>
       isTablet
-        ? getMobileOrderDecksBy(orderVariants.cardsCount)
+        ? getOrderDecksByForTablet(orderVariants.cardsCount)
         : getOrderDecksBy(orderVariants.cardsCount),
     created: () =>
       isTablet
-        ? getMobileOrderDecksBy(orderVariants.created)
+        ? getOrderDecksByForTablet(orderVariants.created)
         : getOrderDecksBy(orderVariants.created),
     name: () =>
-      isTablet ? getMobileOrderDecksBy(orderVariants.name) : getOrderDecksBy(orderVariants.name),
+      isTablet ? getOrderDecksByForTablet(orderVariants.name) : getOrderDecksBy(orderVariants.name),
     updated: () =>
       isTablet
-        ? getMobileOrderDecksBy(orderVariants.updated)
+        ? getOrderDecksByForTablet(orderVariants.updated)
         : getOrderDecksBy(orderVariants.updated),
   };
 

@@ -76,7 +76,7 @@ export const useDecksSearchParams = () => {
     }
   };
 
-  const getMobileOrderDecksBy = (value: string) => {
+  const getOrderDecksByForTablet = (value: string) => {
     if (value) {
       searchParams.set('orderBy', `${value}-asc`);
       setSearchParams(searchParams);
@@ -97,8 +97,8 @@ export const useDecksSearchParams = () => {
     getDecksAuthor,
     getDecksNumberRange,
     getItemsPerPage,
-    getMobileOrderDecksBy,
     getOrderDecksBy,
+    getOrderDecksByForTablet,
     getSearchByName,
     itemsPerPage,
     orderDecksBy,

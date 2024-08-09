@@ -7,10 +7,6 @@
   @include laptop {
     --layout-padding: 0 17px;
   }
-
-  @include mobile {
-    --layout-padding: 0 16px;
-  }
 }
 
 @include tablet {

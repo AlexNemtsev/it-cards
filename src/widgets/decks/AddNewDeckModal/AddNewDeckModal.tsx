@@ -3,7 +3,7 @@ import { Modal } from '@/shared/ui/Modal';
 
 import { NewDeckForm } from './NewDeckForm';
 import { NewDeckTitle } from './ui/NewDeckTitle';
-import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton/OpenNewDeckModalButton';
+import { OpenNewDeckModalButton } from './ui/OpenNewDeckModalButton';
 
 export const AddNewDeckModal = () => {
   const [createDeck] = useCreateDeckMutation();

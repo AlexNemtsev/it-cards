@@ -41,10 +41,10 @@ export const DecksTable = () => {
     getCurrentPage,
     getItemsPerPage,
     getOrderDecksBy,
-    getOrderDecksByForTablet,
     itemsPerPage,
     orderDecksBy,
     searchByName,
+    setSortDecksBy,
   } = useDecksSearchParams();
 
   const authorId = decksAuthor === tabSwitcherStates.MY ? currentUser?.id : undefined;
@@ -80,18 +80,14 @@ export const DecksTable = () => {
   const sortBy: { [key: string]: () => void } = {
     cardsCount: () =>
       isTablet
-        ? getOrderDecksByForTablet(orderVariants.cardsCount)
+        ? setSortDecksBy(orderVariants.cardsCount)
         : getOrderDecksBy(orderVariants.cardsCount),
     created: () =>
-      isTablet
-        ? getOrderDecksByForTablet(orderVariants.created)
-        : getOrderDecksBy(orderVariants.created),
+      isTablet ? setSortDecksBy(orderVariants.created) : getOrderDecksBy(orderVariants.created),
     name: () =>
-      isTablet ? getOrderDecksByForTablet(orderVariants.name) : getOrderDecksBy(orderVariants.name),
+      isTablet ? setSortDecksBy(orderVariants.name) : getOrderDecksBy(orderVariants.name),
     updated: () =>
-      isTablet
-        ? getOrderDecksByForTablet(orderVariants.updated)
-        : getOrderDecksBy(orderVariants.updated),
+      isTablet ? setSortDecksBy(orderVariants.updated) : getOrderDecksBy(orderVariants.updated),
   };
 
   const setOrderDecksBy = (value: string) => {

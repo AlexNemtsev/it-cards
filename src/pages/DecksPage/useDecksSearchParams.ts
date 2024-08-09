@@ -76,7 +76,7 @@ export const useDecksSearchParams = () => {
     }
   };
 
-  const getOrderDecksByForTablet = (value: string) => {
+  const setSortDecksBy = (value: string) => {
     if (value) {
       searchParams.set('orderBy', `${value}-asc`);
       setSearchParams(searchParams);
@@ -98,10 +98,10 @@ export const useDecksSearchParams = () => {
     getDecksNumberRange,
     getItemsPerPage,
     getOrderDecksBy,
-    getOrderDecksByForTablet,
     getSearchByName,
     itemsPerPage,
     orderDecksBy,
     searchByName,
+    setSortDecksBy,
   };
 };

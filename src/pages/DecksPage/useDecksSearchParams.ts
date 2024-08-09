@@ -76,6 +76,13 @@ export const useDecksSearchParams = () => {
     }
   };
 
+  const setSortDecksBy = (value: string) => {
+    if (value) {
+      searchParams.set('orderBy', `${value}-asc`);
+      setSearchParams(searchParams);
+    }
+  };
+
   const clearFilters = () => {
     setSearchParams({});
   };
@@ -95,5 +102,6 @@ export const useDecksSearchParams = () => {
     itemsPerPage,
     orderDecksBy,
     searchByName,
+    setSortDecksBy,
   };
 };

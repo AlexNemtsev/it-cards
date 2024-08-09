@@ -1,5 +1,12 @@
-$tablet: 1200;
-$mobile: 1200;
+$laptop: 992;
+$tablet: 768;
+$mobile: 480;
+
+@mixin laptop {
+  @media (max-width: #{$laptop}px) {
+    @content;
+  }
+}
 
 @mixin tablet {
   @media (max-width: #{$tablet}px) {

@@ -1,20 +1,73 @@
+@import '@/app/styles/mixins';
+
 .filters {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: space-between;
+  @include laptop {
+    grid-template-areas:
+      'search search search search'
+      'tabs slider . .'
+      'clearFilter . . .';
+    grid-template-columns: max-content minmax(251px, max-content) max-content 1fr;
+  }
+
+  display: grid;
+  grid-template-areas: 'search tabs slider clearFilter';
+  grid-template-columns: 1fr max-content minmax(251px, max-content) max-content;
+  gap: 10px 20px;
+
+  margin-bottom: 20px;
+
+  @media (width <= 1159px) {
+    grid-template-areas:
+      'search search search search'
+      'tabs slider clearFilter .';
+  }
+
+  @media (width <= 1088px) {
+    grid-template-areas:
+      'search search search search'
+      'tabs slider . .'
+      'clearFilter . . .';
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (width <= 580px) {
+    grid-template-areas:
+      'search'
+      'tabs'
+      'slider'
+      'clearFilter';
+    grid-template-columns: 1fr;
+  }
+
+  @media (width <= 1104px) {
+    margin-bottom: 26px;
+  }
 }
 
-.input {
-  min-width: 50px;
-  max-width: 299px;
+.inputContainer {
+  grid-area: search;
+  min-width: 175px;
 }
 
 .tabs {
-  flex-shrink: 0;
+  grid-area: tabs;
+  min-width: max-content;
+}
+
+.slider {
+  @include mobile {
+    max-width: 100%;
+  }
+
+  grid-area: slider;
+  min-width: 251px;
 }
 
 .button {
-  flex-shrink: 0;
-  width: max-content;
+  @include mobile {
+    max-width: 100%;
+  }
+
+  grid-area: clearFilter;
+  max-width: max-content;
 }

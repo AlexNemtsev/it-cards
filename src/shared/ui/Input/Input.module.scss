@@ -84,8 +84,6 @@ select:-webkit-autofill:focus {
   gap: 2px;
   align-items: flex-start;
 
-  width: 100%;
-
   &.disabled {
     .field {
       pointer-events: none;

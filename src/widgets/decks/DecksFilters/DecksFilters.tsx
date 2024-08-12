@@ -41,7 +41,8 @@ export const DecksFilters = () => {
         <div className={s.filters}>
           <DebouncedInput
             changeSearchValue={getSearchByName}
-            containerClassName={s.input}
+            className={s.input}
+            containerClassName={s.inputContainer}
             placeholder="Input search"
             resetInput={clearSearchByName}
             type="search"
@@ -59,6 +60,7 @@ export const DecksFilters = () => {
             max={maxCards}
             min={minCards}
             range={range}
+            wrapperClassName={s.slider}
           />
           <Button className={s.button} onClick={clearFilters} variant="secondary">
             <Delete />

@@ -6,8 +6,8 @@ import { Routes } from '@/shared/constants/routes';
 import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemDivider } from '@/shared/ui/Dropdown/DropdownItemDivider';
-import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
-import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
+import { DeleteDeckModal } from '@/widgets/Decks/DeleteDeckModal';
+import { EditDeckModal } from '@/widgets/Decks/EditDeckModal';
 
 import s from './MyDeckDropdownMenu.module.scss';
 

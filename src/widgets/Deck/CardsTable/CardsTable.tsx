@@ -5,7 +5,6 @@ import { useDeleteCardMutation, useGetCardsQuery } from '@/entities/card/api/car
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
 import { EditCardModal } from '@/features/EditCardModal';
-import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
@@ -24,6 +23,8 @@ import { DeleteCardButton } from '@/widgets/Deck/DeleteCardButton';
 
 import s from './CardsTable.module.scss';
 
+import { useDeck } from '../lib/useDeck';
+
 export const CardsTable = () => {
   const { [Routes.DECK_ID]: deckId = '' } = useParams();
   const { data: deck } = useGetDeckQuery(deckId);
@@ -41,7 +42,7 @@ export const CardsTable = () => {
     onPaginationChange,
     orderBy,
     question,
-  } = useDeckPage();
+  } = useDeck();
 
   const {
     data: cards,

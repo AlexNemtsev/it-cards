@@ -1,5 +1,5 @@
 import { Typography } from '@/shared/ui/Typography';
-import { AddNewDeckModal } from '@/widgets/decks/AddNewDeckModal';
+import { AddNewDeckModal } from '@/widgets/Decks/AddNewDeckModal';
 
 import s from './DecksHeader.module.scss';
 

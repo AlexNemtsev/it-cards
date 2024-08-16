@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { breakpoints } from '@/app/styles/breakpoints';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
+import { useDecksSearchParams } from '@/pages/DecksPage/lib/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';
@@ -21,9 +21,9 @@ import { TableHead } from '@/shared/ui/Table/TableHead';
 import { TableHeadCell } from '@/shared/ui/Table/TableHead/TableHeadCell';
 import { TableRow } from '@/shared/ui/Table/TableRow';
 import { Typography } from '@/shared/ui/Typography';
-import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/decksFiltersConstants';
-import { DeleteDeckModal } from '@/widgets/decks/DeleteDeckModal';
-import { EditDeckModal } from '@/widgets/decks/EditDeckModal';
+import { tabSwitcherStates } from '@/widgets/Decks/DecksFilters/model/decksFiltersConstants';
+import { DeleteDeckModal } from '@/widgets/Decks/DeleteDeckModal';
+import { EditDeckModal } from '@/widgets/Decks/EditDeckModal';
 
 import s from './DecksTable.module.scss';
 

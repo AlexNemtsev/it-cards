@@ -8,7 +8,7 @@ import { Typography } from '@/shared/ui/Typography';
 
 import s from './PersonalInformation.module.scss';
 
-import { EditNickNameForm, FormValues } from './EditNickNameForm/EditNickNameForm';
+import { EditNickNameForm, FormValues } from './ui/EditNickNameForm/EditNickNameForm';
 import { LogoutButton } from './ui/LogoutButton';
 import { UploadAvatarButton } from './ui/UploadAvatarButton';
 

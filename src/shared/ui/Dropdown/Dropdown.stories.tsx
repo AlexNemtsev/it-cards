@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Avatar } from '@/entities/user/ui/Avatar';
-import { DropdownTrigger } from '@/features/UserMenu/DropdownTrigger';
+import { DropdownTrigger } from '@/features/UserMenu/ui/DropdownTrigger';
 import { Burger } from '@/shared/assets/icons/Burger/Burger';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Edit } from '@/shared/assets/icons/Edit/Edit';

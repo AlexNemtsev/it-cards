@@ -1,0 +1,1 @@
+export { AddNewCardModalTitle } from './AddNewCardModalTitle';

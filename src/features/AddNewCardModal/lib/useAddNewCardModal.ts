@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Nullable } from '@/entities/card/types';
+import { Nullable } from '@/shared/types/nullable';
 
 export const useAddNewCardModal = () => {
   const [open, setOpen] = useState(false);

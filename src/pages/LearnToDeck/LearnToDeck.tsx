@@ -5,7 +5,7 @@ import { useGetRandomCardQuery, useToRateCardMutation } from '@/entities/card/ap
 import { ToRateCardQueryArgs } from '@/entities/card/types';
 import { useGetDeckQuery } from '@/entities/deck/api/deckApi';
 import { BackToLink } from '@/pages/DeckPage/ui/BackToLink';
-import { ShowingAnswer } from '@/pages/LearnToDeck/ShowingAnswer/ShowingAnswer';
+import { ShowingAnswer } from '@/pages/LearnToDeck/ui/ShowingAnswer/ShowingAnswer';
 import { Routes } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';

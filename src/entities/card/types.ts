@@ -1,4 +1,4 @@
-import { AddNewCardFormValues } from '@/features/AddNewCardModal/NewCardForm/NewCardForm';
+import { AddNewCardFormValues } from '@/features/AddNewCardModal/ui/NewCardForm/NewCardForm';
 import { components, operations } from '@/shared/api/schema';
 
 export type PaginatedCardsWithGrade = components['schemas']['PaginatedCardsWithGrade'];
@@ -6,8 +6,6 @@ export type PaginatedCardsWithGrade = components['schemas']['PaginatedCardsWithG
 export type GetCardQueryArgs = {
   deckId: string;
 } & operations['DecksController_findCardsInDeck']['parameters']['query'];
-
-export type Nullable<T> = T | null;
 
 export type Card = components['schemas']['Card'];
 

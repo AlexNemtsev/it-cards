@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 
-export const useDeckPage = () => {
+export const useDeck = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const question = searchParams.get('question') || '';

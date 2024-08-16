@@ -1,0 +1,1 @@
+export { EditCardModalTitle } from './EditCardModalTitle';

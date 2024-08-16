@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { breakpoints } from '@/app/styles/breakpoints';
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
 import { useMeQuery } from '@/entities/user/api';
-import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
+import { useDecksSearchParams } from '@/pages/DecksPage/lib/useDecksSearchParams';
 import { ChevronDownIcon } from '@/shared/assets/icons/ChevronDownIcon';
 import { ChevronUpIcon } from '@/shared/assets/icons/ChevronUpIcon';
 import { Routes } from '@/shared/constants/routes';

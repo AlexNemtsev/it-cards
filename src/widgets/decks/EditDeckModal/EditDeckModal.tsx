@@ -2,8 +2,8 @@ import { useEditDeckMutation } from '@/entities/deck/api/deckApi';
 import { Edit } from '@/shared/assets/icons/Edit';
 import { Modal } from '@/shared/ui/Modal';
 import { ToolsButton } from '@/widgets/Deck/CardsTable/ui/ToolsButton';
-import { EditDeckForm } from '@/widgets/Decks/EditDeckModal/EditDeckForm';
-import { EditDeckTitle } from '@/widgets/Decks/EditDeckModal/ui/EditDeckTitle';
+import { EditDeckForm } from '@/widgets/decks/EditDeckModal/EditDeckForm';
+import { EditDeckTitle } from '@/widgets/decks/EditDeckModal/ui/EditDeckTitle';
 
 type Props = {
   cover: string;

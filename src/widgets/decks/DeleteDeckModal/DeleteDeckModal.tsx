@@ -2,7 +2,7 @@ import { useDeleteDeckMutation } from '@/entities/deck/api/deckApi';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { CloseModalButton, Modal } from '@/shared/ui/Modal';
 import { ToolsButton } from '@/widgets/Deck/CardsTable/ui/ToolsButton';
-import { DeleteDeckTitle } from '@/widgets/Decks/DeleteDeckModal/ui/DeleteDeckTitle';
+import { DeleteDeckTitle } from '@/widgets/decks/DeleteDeckModal/ui/DeleteDeckTitle';
 
 import s from './DeleteDeckModal.module.scss';
 

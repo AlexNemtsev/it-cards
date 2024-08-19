@@ -1,6 +1,18 @@
+@import './mixins';
+
 :root {
   --header-height: 60px;
   --layout-padding: 0 136px;
+
+  @include laptop {
+    --layout-padding: 0 17px;
+  }
+}
+
+@include tablet {
+  :root {
+    --layout-padding: 12px 16px;
+  }
 }
 
 html {

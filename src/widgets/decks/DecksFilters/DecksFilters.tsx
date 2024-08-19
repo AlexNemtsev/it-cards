@@ -1,16 +1,15 @@
 import { useGetMinMaxCardsQuery } from '@/entities/deck/api/deckApi';
-import { useDecksSearchParams } from '@/pages/DecksPage/useDecksSearchParams';
+import { useDecksSearchParams } from '@/pages/DecksPage/lib/useDecksSearchParams';
 import { Delete } from '@/shared/assets/icons/Delete/Delete';
 import { Button } from '@/shared/ui/Button';
 import { DebouncedInput } from '@/shared/ui/DebouncedInput';
 import { DebouncedSlider } from '@/shared/ui/DebouncedSlider';
 import { Spinner } from '@/shared/ui/Spinner';
 import { TabSwitcher } from '@/shared/ui/TabSwitcher';
-import { tabSwitcherStates } from '@/widgets/decks/DecksFilters/model/decksFiltersConstants';
 
 import s from './DecksFilters.module.scss';
 
-import { tabOptions } from './model/decksFiltersConstants';
+import { tabOptions, tabSwitcherStates } from './model/decksFiltersConstants';
 
 export const DecksFilters = () => {
   const { data: minMaxCards, isLoading } = useGetMinMaxCardsQuery();
@@ -41,7 +40,8 @@ export const DecksFilters = () => {
         <div className={s.filters}>
           <DebouncedInput
             changeSearchValue={getSearchByName}
-            containerClassName={s.input}
+            className={s.input}
+            containerClassName={s.inputContainer}
             placeholder="Input search"
             resetInput={clearSearchByName}
             type="search"
@@ -59,6 +59,7 @@ export const DecksFilters = () => {
             max={maxCards}
             min={minCards}
             range={range}
+            wrapperClassName={s.slider}
           />
           <Button className={s.button} onClick={clearFilters} variant="secondary">
             <Delete />

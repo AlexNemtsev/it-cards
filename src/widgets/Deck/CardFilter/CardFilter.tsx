@@ -1,10 +1,11 @@
-import { useDeckPage } from '@/pages/DeckPage/useDeckPage';
 import { DebouncedInput } from '@/shared/ui/DebouncedInput';
 
 import s from './CardFilter.module.scss';
 
+import { useDeck } from '../lib/useDeck';
+
 export const CardFilter = () => {
-  const { changeSearchValue, onInputClear, question } = useDeckPage();
+  const { changeSearchValue, onInputClear, question } = useDeck();
 
   return (
     <DebouncedInput

@@ -16,7 +16,7 @@ import { Typography } from '@/shared/ui/Typography';
 import s from './UserMenu.module.scss';
 import DropdownProfileInfoStyles from '@/shared/ui/Dropdown/DropdownProfileInfo/DropdownProfileInfo.module.scss';
 
-import { DropdownTrigger } from './DropdownTrigger';
+import { DropdownTrigger } from './ui/DropdownTrigger';
 
 type Props = {
   data: User;

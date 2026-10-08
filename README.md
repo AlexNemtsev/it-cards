@@ -1,30 +1,77 @@
-# React + TypeScript + Vite
+# IT-Cards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для создания и изучения флеш-карточек (decks & cards). Позволяет создавать колоды, добавлять карточки с вопросом и ответом, просматривать, редактировать и удалять их, а также проходить обучение по колоде.
 
-Currently, two official plugins are available:
+🚀 **Деплой:** [https://it-cards.vercel.app](https://it-cards.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Технологический стек
 
-## Expanding the ESLint configuration
+**Основные технологии:**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [TypeScript](https://www.typescriptlang.org/) — статическая типизация
+- [React 18](https://react.dev/) — библиотека пользовательского интерфейса
+- [Vite 5](https://vitejs.dev/) — сборка и dev-сервер (SWC-плагин)
 
-- Configure the top-level `parserOptions` property like this:
+**Состояние и данные:**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- [Redux Toolkit](https://redux-toolkit.js.org/) / [React Redux](https://react-redux.js.org/) — управление состоянием и RTK Query для работы с API
+
+**Роутинг и формы:**
+
+- [React Router DOM 6](https://reactrouter.com/) — маршрутизация
+- [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) — работа с формами и валидация
+
+**UI:**
+
+- [Radix UI](https://www.radix-ui.com/) — доступные примитивы (Checkbox, Dialog, Dropdown, Select, Slider, Tabs, Radio Group)
+- [SCSS / Sass](https://sass-lang.com/) — стилизация (CSS-модули)
+- [React Toastify](https://fkhadra.github.io/react-toastify/) — уведомления
+- [Fontsource Roboto](https://fontsource.org/fonts/roboto) — шрифт
+
+**Разработка и качество кода:**
+
+- [Storybook 8](https://storybook.js.org/) — разработка и документация UI-компонентов
+- [ESLint](https://eslint.org/) + [@it-incubator/eslint-config](https://www.npmjs.com/package/@it-incubator/eslint-config) — линтинг JavaScript/TypeScript
+- [Stylelint](https://stylelint.io/) + [@it-incubator/stylelint-config](https://www.npmjs.com/package/@it-incubator/stylelint-config) — линтинг стилей
+- [Prettier](https://prettier.io/) + [@it-incubator/prettier-config](https://www.npmjs.com/package/@it-incubator/prettier-config) — форматирование кода
+- [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged) — pre-commit проверки
+- [pnpm](https://pnpm.io/) — менеджер пакетов
+
+## Архитектура
+
+Проект организован по методологии **Feature-Sliced Design (FSD)**:
+
+| Слой       | Назначение                                                             |
+| ---------- | ---------------------------------------------------------------------- |
+| `app/`     | Инициализация приложения: провайдеры, роутер, стор, глобальные стили    |
+| `pages/`   | Страницы приложения                                                     |
+| `widgets/` | Крупные композиционные блоки (таблица карточек, фильтры, хедеры)         |
+| `features/`| Пользовательские сценарии (модалки карточек, формы авторизации, меню)   |
+| `entities/`| Бизнес-сущности (auth, card, deck, user)                                |
+| `shared/`  | Переиспользуемый код: UI-компоненты, API, хуки, утилиты, ассеты          |
+
+## Установка и запуск
+
+Убедитесь, что установлен [Node.js](https://nodejs.org/) и [pnpm](https://pnpm.io/).
+
+```bash
+# Установка зависимостей
+pnpm install
+
+# Запуск dev-сервера
+pnpm dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Приложение будет доступно по адресу: http://localhost:5173
+
+## Доступные скрипты
+
+| Команда             | Описание                                        |
+| ------------------- | ----------------------------------------------- |
+| `pnpm dev`          | Запуск dev-сервера Vite                         |
+| `pnpm build`        | Сборка production-версии (tsc + vite build)     |
+| `pnpm preview`      | Локальный просмотр production-сборки            |
+| `pnpm lint`         | Запуск ESLint и Stylelint с автоисправлением    |
+| `pnpm format`       | Форматирование кода через Prettier              |
+| `pnpm storybook`    | Запуск Storybook на порту 6006                  |
+| `pnpm build-storybook` | Статическая сборка Storybook                 |
